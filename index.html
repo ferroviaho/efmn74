@@ -1,2 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+name="description"
+content="Portal oficial da Ferrovia EFMN 74, projeto de ferromodelismo em escala HO."
+>
+
+<title>Ferrovia EFMN 74</title>
+
+<style>
+:root {
+--verde-escuro: #183a2d;
+--verde: #2f684e;
+--dourado: #c49a45;
+--bege: #f3efe5;
+--branco: #ffffff;
+--cinza: #4c4c4c;
+--sombra: 0 5px 18px rgba(0, 0, 0, 0.16);
+}
+
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+body {
+font-family: Arial, Helvetica, sans-serif;
+background: var(--bege);
+color: #222222;
+line-height: 1.6;
+}
+
+header {
+background:
+linear-gradient(
+rgba(20, 55, 42, 0.96),
+rgba(20, 55, 42, 0.96)
+);
+color: var(--branco);
+text-align: center;
+padding: 48px 20px 38px;
+border-bottom: 6px solid var(--dourado);
+}
+
+header h1 {
+font-family: Georgia, "Times New Roman", serif;
+font-size: clamp(2.5rem, 7vw, 5rem);
+letter-spacing: 3px;
+margin-bottom: 8px;
+}
+
+header p {
+font-size: 1.15rem;
+color: #f1e8d2;
+}
+
+nav {
+background: #102b21;
+position: sticky;
+top: 0;
+z-index: 10;
+box-shadow: var(--sombra);
+}
+
+nav ul {
+max-width: 1150px;
+margin: auto;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+list-style: none;
+}
+
+nav a {
+display: block;
+padding: 15px 17px;
+color: var(--branco);
+text-decoration: none;
+font-weight: bold;
+transition: background 0.2s ease;
+}
+
+nav a:hover {
+background: var(--verde);
+}
+
+.apresentacao {
+max-width: 1150px;
+margin: 36px auto 20px;
+padding: 0 20px;
+}
+
+.destaque {
+background: var(--branco);
+border-left: 7px solid var(--dourado);
+border-radius: 8px;
+box-shadow: var(--sombra);
+padding: 30px;
+}
+
+.destaque h2 {
+font-family: Georgia, "Times New Roman", serif;
+color: var(--verde-escuro);
+font-size: 2rem;
+margin-bottom: 15px;
+}
+
+.destaque p {
+margin-bottom: 12px;
+font-size: 1.08rem;
+}
+
+.secao {
+max-width: 1150px;
+margin: 35px auto;
+padding: 0 20px;
+}
+
+.secao h2 {
+font-family: Georgia, "Times New Roman", serif;
+color: var(--verde-escuro);
+font-size: 2rem;
+margin-bottom: 20px;
+border-bottom: 3px solid var(--dourado);
+padding-bottom: 7px;
+}
+
+.grade {
+display: grid;
+grid-template-columns:
+repeat(auto-fit, minmax(230px, 1fr));
+gap: 22px;
+}
+
+.cartao {
+background: var(--branco);
+border-radius: 8px;
+box-shadow: var(--sombra);
+padding: 24px;
+transition:
+transform 0.2s ease,
+box-shadow 0.2s ease;
+}
+
+.cartao:hover {
+transform: translateY(-4px);
+box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+.cartao h3 {
+color: var(--verde);
+font-size: 1.3rem;
+margin-bottom: 10px;
+}
+
+.cartao p {
+color: var(--cinza);
+margin-bottom: 18px;
+}
+
+.botao {
+display: inline-block;
+background: var(--verde-escuro);
+color: var(--branco);
+padding: 10px 16px;
+border-radius: 5px;
+text-decoration: none;
+font-weight: bold;
+}
+
+.botao:hover {
+background: var(--verde);
+}
+
+.aviso {
+background: #fff8df;
+border: 1px solid #d4b966;
+border-radius: 7px;
+padding: 18px;
+margin-top: 20px;
+}
+
+footer {
+margin-top: 45px;
+background: var(--verde-escuro);
+color: var(--branco);
+text-align: center;
+padding: 25px 15px;
+border-top: 5px solid var(--dourado);
+}
+
+footer p {
+margin: 4px 0;
+}
+
+@media (max-width: 600px) {
+nav ul {
+display: block;
+text-align: center;
+}
+
+nav a {
+border-bottom:
+1px solid rgba(255, 255, 255, 0.12);
+}
+
+header {
+padding-top: 35px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<header>
 <h1>EFMN 74</h1>
-<p>Portal oficial da Ferrovia EFMN 74 em construção.</p>
+<p>
+Ferrovia em escala HO — construção, automação,
+memória e documentação
+</p>
+</header>
+
+<nav>
+<ul>
+<li><a href="#inicio">Início</a></li>
+<li><a href="#diario">Diário de Bordo</a></li>
+<li><a href="#documentacao">Documentação</a></li>
+<li><a href="#manual">Manual de Construção</a></li>
+<li><a href="#galeria">Galeria</a></li>
+<li><a href="#downloads">Downloads</a></li>
+</ul>
+</nav>
+
+<main>
+
+<section class="apresentacao" id="inicio">
+<div class="destaque">
+<h2>Bem-vindo à Ferrovia EFMN 74</h2>
+
+<p>
+Este é o portal oficial de documentação da
+Ferrovia EFMN 74, uma maquete ferroviária em
+escala HO 1:87.
+</p>
+
+<p>
+O projeto reúne ferromodelismo, construção de
+cenários, instalações elétricas, automação com
+ESP32 e preservação da memória ferroviária.
+</p>
+
+<p>
+Os desenhos técnicos, diagramas, relatórios,
+procedimentos de teste e manuais serão
+disponibilizados gratuitamente neste portal.
+</p>
+</div>
+</section>
+
+<section class="secao">
+<h2>Conteúdo do portal</h2>
+
+<div class="grade">
+
+<article class="cartao" id="diario">
+<h3>Diário de Bordo</h3>
+<p>
+Registro resumido da construção, das decisões
+técnicas, das dificuldades encontradas e das
+soluções adotadas.
+</p>
+<a class="botao" href="#">Em preparação</a>
+</article>
+
+<article class="cartao" id="documentacao">
+<h3>Documentação Técnica</h3>
+<p>
+Diagramas elétricos, desenhos A4, listas de
+materiais, arquitetura das gavetas e sistemas
+de controle.
+</p>
+<a class="botao" href="#">Em preparação</a>
+</article>
+
+<article class="cartao" id="manual">
+<h3>Manual de Construção</h3>
+<p>
+Procedimentos para trilhos, desvios, cortiça,
+cenários, edificações, vegetação e demais
+elementos da maquete.
+</p>
+<a class="botao" href="#">Em preparação</a>
+</article>
+
+<article class="cartao" id="galeria">
+<h3>Galeria de Fotos</h3>
+<p>
+Fotografias da maquete, das regiões,
+estruturas ferroviárias, cenários e etapas da
+construção.
+</p>
+<a class="botao" href="#">Em preparação</a>
+</article>
+
+<article class="cartao" id="downloads">
+<h3>Downloads</h3>
+<p>
+Arquivos em PDF A4, esquemas, desenhos,
+relatórios, modelos e materiais gratuitos do
+projeto.
+</p>
+<a class="botao" href="#">Em preparação</a>
+</article>
+
+<article class="cartao">
+<h3>Automação</h3>
+<p>
+Desenvolvimento do controle dos desvios,
+sensores, rotas, sons e interfaces com ESP32.
+</p>
+<a class="botao" href="#">Em preparação</a>
+</article>
+
+</div>
+
+<div class="aviso">
+<strong>Portal em construção:</strong>
+esta é a primeira versão da página oficial.
+Novos documentos e fotografias serão acrescentados
+gradualmente.
+</div>
+</section>
+
+</main>
+
+<footer>
+<p><strong>Ferrovia EFMN 74</strong></p>
+<p>Projeto de ferromodelismo HO 1:87</p>
+<p>© 2026 — Eduardo Carvalhaes Nobre</p>
+</footer>
+
+</body>
+</html>
