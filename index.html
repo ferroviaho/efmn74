@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portal oficial da Ferrovia EFMN 74 em escala HO. Construção, automação, memória e documentação.">
-  <title>Ferrovia EFMN 74</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Portal oficial da Ferrovia EFMN 74 em escala HO. Construção, automação, memória e documentação." name="description"/>
+<title>Ferrovia EFMN 74</title>
+<style>
     :root {
       --bg: #f4f1ea;
       --paper: #fffdf8;
@@ -103,18 +104,18 @@
     main {
       width: min(var(--max), calc(100% - 34px));
       margin: 0 auto;
+    }
     section {
-  scroll-margin-top: 85px;
-  padding: 34px 0;
-  border-bottom: 1px solid var(--line);
-}
-
-   section h2 {
-  margin: 0 0 14px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 500;
-}
+      scroll-margin-top: 85px;
+      padding: 62px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    section h2 {
+      margin: 0 0 24px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 500;
+    }
     section h3 {
       margin-top: 32px;
       font-family: Georgia, "Times New Roman", serif;
@@ -122,10 +123,8 @@
       font-weight: 500;
     }
     .welcome {
-      display: grid;
-      grid-template-columns: 1.4fr .6fr;
-      gap: 40px;
-      align-items: start;
+      display: block;
+      max-width: 900px;
     }
     .card {
       background: var(--paper);
@@ -227,121 +226,47 @@
         border-bottom: 0;
         padding: 5px 0;
       }
-      .welcome { grid-template-columns: 1fr; }
-      section { padding: 28px 0; }
+      .welcome { display: block; }
+      section { padding: 46px 0; }
     }
   </style>
 </head>
 <body>
-
 <header class="hero" id="inicio">
-  <div class="hero-inner">
-    <h1>EFMN 74</h1>
-    <p>Ferrovia em escala HO<br>
-    - construção<br>
-    - automação<br>
-    - memória<br>
-    - documentação</p>
-  </div>
-
-  <nav class="side-nav" aria-label="Navegação principal">
-    <a href="#inicio">Início</a>
-    <a href="#diario">Diário de Bordo</a>
-    <a href="#documentacao">Documentação</a>
-    <a href="#manual">Manual de Construção</a>
-    <a href="#galeria">Galeria</a>
-    <a href="#downloads">Downloads</a>
-    <a href="#contato">Contato</a>
-  </nav>
+<div class="hero-inner">
+<h1>EFMN 74</h1>
+<p>Ferrovia em escala HO<br/>
+- construção<br/>
+- automação<br/>
+- memória<br/>
+- documentação</p>
+</div>
 </header>
-
+<nav aria-label="Navegação principal" class="side-nav">
+<a href="index.html">Início</a>
+<a href="#">Diário de Bordo</a>
+<a href="#">Documentação</a>
+<a href="manual.html">Manual de Construção</a>
+<a href="#">Galeria</a>
+<a href="#">Downloads</a>
+<a href="#">Contato</a>
+</nav>
 <main>
-  <section id="apresentacao">
-    <div class="welcome">
-      <div>
-        <h2>Bem-vindo à Ferrovia EFMN 74</h2>
-        <p>Este é o portal oficial da Ferrovia EFMN 74, um projeto de ferromodelismo em escala HO. Aqui serão reunidos o Diário de Bordo, a documentação técnica, o Manual de Construção, fotografias, diagramas e materiais para download.</p>
-        <p>O objetivo é registrar a evolução da ferrovia e compartilhar gratuitamente as experiências, os acertos, os erros e as soluções encontradas durante a construção.</p>
-      </div>
-      <aside class="card">
-        <p>Escala: HO 1:87</p>
-        <p>Projeto: EFMN 74</p>
-        <p>Conteúdo em desenvolvimento contínuo.</p>
-      </aside>
-    </div>
-  </section>
+<section id="apresentacao">
+<div class="welcome">
+<div>
+<h2>Bem-vindo à Ferrovia EFMN 74</h2>
+<p>A Ferrovia EFMN 74 nasceu de muitos anos de interesse pelo ferromodelismo e vem sendo construída passo a passo, reunindo experiência prática, pesquisa e novas soluções.</p>
+<p>Este site foi criado para registrar essa trajetória e compartilhar aquilo que aprendi durante a construção da maquete. A proposta é mostrar não apenas o resultado final, mas também as escolhas feitas, as dificuldades encontradas e as soluções que deram certo.</p>
+<p>Espero que este conteúdo seja útil a outros ferromodelistas e também a quem está começando neste hobby.</p></div>
 
-  <section id="diario">
-    <h2>Diário de Bordo</h2>
-    <div class="placeholder">Esta seção receberá os registros cronológicos da construção e evolução da Ferrovia EFMN 74.</div>
-  </section>
-
-  <section id="documentacao">
-    <h2>Documentação</h2>
-    <div class="placeholder">Diagramas elétricos, especificações, listas de materiais, arquitetura do sistema e outros documentos técnicos serão reunidos aqui.</div>
-  </section>
-
-  <section id="manual">
-    <h2>Manual de Construção</h2>
-
-    <div class="note">
-      O primeiro tópico definitivo do Manual será “Como fiz o layout e fixei os trilhos”. Ele será colocado nesta posição quando o texto for enviado e aprovado. Até lá, os demais textos permanecem sem numeração.
-    </div>
-
-    <article class="manual-topic">
-      <h3>Introdução — A filosofia deste Manual</h3>
-      <p>Este manual nasceu da experiência prática na construção da Ferrovia EFMN 74. Minha intenção é compartilhar aquilo que realmente fiz, inclusive as tentativas que não deram certo e as soluções que encontrei depois.</p>
-      <p>Procurei sempre chegar a uma maneira fácil, rápida, econômica e com aparência realista. Muitas das dicas apresentadas aqui são resultado de erros, correções e novas tentativas. Se minha experiência puder evitar que outro ferromodelista cometa os mesmos erros, este manual já terá cumprido parte de seu objetivo.</p>
-      <h3>Não tenha medo de perguntar e de errar</h3>
-      <p>Ninguém nasce sabendo. Eu perguntei, pesquisei, estudei, experimentei, errei, corrigi e aprendi. O erro faz parte do aprendizado e, muitas vezes, foi justamente ele que me levou a uma solução melhor.</p>
-    </article>
-
-    <article class="manual-topic">
-      <h3>Preparação do Terreno</h3>
-      <div class="manual-step">
-        <div class="step-label">Foto 1</div>
-        <p>Esta base do terreno foi feita misturando areia e rejunte marrom, usado para assentar cerâmicas, em partes iguais, e água. Jogue vagarosamente a mistura no local escolhido e deixe secar. Para acelerar esta secagem, usei um ventilador.</p>
-      </div>
-      <div class="manual-step">
-        <div class="step-label">Foto 2</div>
-        <p>Após a secagem, fure no local onde serão fixadas as árvores e proteja os furos com fita crepe acima e embaixo da mesa. Acima, para evitar que os furos fiquem entupidos quando aplicar a grama, que foi feita com serragem verde. Abaixo, para que a cola que será aplicada para fixar os caules não pingue no chão.</p>
-      </div>
-      <div class="manual-step">
-        <div class="step-label">Foto 3</div>
-        <p>Passe cola branca no terreno, exceto abaixo das árvores, onde sua sombra não deixa a grama crescer. Espalhe a serragem verde sobre a cola e aperte com uma bucha de cozinha. Depois de seco, espalhe galhos secos, musgo e capim (veja como fazer). Fixe as árvores. Veja na foto como ficou real?</p>
-      </div>
-    </article>
-
-    <article class="manual-topic">
-      <h3>Como fazer telhado de zinco</h3>
-      <div class="placeholder">Tópico em preparação. O texto completo será incorporado em uma próxima revisão.</div>
-    </article>
-  </section>
-
-  <section id="galeria">
-    <h2>Galeria</h2>
-    <div class="placeholder">A galeria receberá as fotografias da maquete, das etapas de construção e dos detalhes cenográficos.</div>
-  </section>
-
-  <section id="downloads">
-    <h2>Downloads</h2>
-    <div class="placeholder">Aqui serão disponibilizados gratuitamente documentos, diagramas, manuais e outros arquivos do projeto EFMN 74.</div>
-  </section>
-
-  <section id="contato">
-    <h2>Contato</h2>
-    <div class="contact-box">
-      <p>Será disponibilizado um formulário para envio de mensagens sem exibir publicamente o endereço de e-mail do responsável pelo projeto.</p>
-      <p class="lead">O formulário será ativado em uma próxima revisão do site.</p>
-    </div>
-  </section>
+</div>
+</section>
 </main>
-
 <footer>
-  <div>EFMN 74 — Ferrovia em escala HO</div>
-  <small>Site em construção e atualização contínua.</small>
+<div>EFMN 74 — Ferrovia em escala HO</div>
+<small>Site em construção e atualização contínua.</small>
 </footer>
-
 </body>
 </html>
 
