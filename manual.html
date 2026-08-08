@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manual de Construção da Ferrovia EFMN 74 em escala HO.">
+  <title>Manual de Construção — Ferrovia EFMN 74</title>
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --paper: #fffdf8;
+      --ink: #222;
+      --muted: #68635a;
+      --dark: #151515;
+      --gold: #c89b2b;
+      --line: #ded7c8;
+      --max: 1180px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    .topbar {
+      background: var(--dark);
+      color: white;
+      border-bottom: 4px solid var(--gold);
+    }
+    .topbar-inner {
+      width: min(var(--max), calc(100% - 34px));
+      margin: 0 auto;
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.8rem;
+      text-decoration: none;
+    }
+    .topnav {
+      display: flex;
+      gap: 10px 22px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .topnav a {
+      text-decoration: none;
+      padding: 6px 0;
+    }
+    .topnav a:hover { color: #f0c55b; }
+    .page-head {
+      width: min(var(--max), calc(100% - 34px));
+      margin: 0 auto;
+      padding: 34px 0 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    .page-head h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.6rem, 5vw, 4.4rem);
+      font-weight: 500;
+    }
+    .page-head p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+    main {
+      width: min(var(--max), calc(100% - 34px));
+      margin: 0 auto;
+      padding: 18px 0 50px;
+    }
+    .manual-topic {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 18px 0;
+    }
+    .manual-topic h3 {
+      margin-top: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.7rem;
+      font-weight: 500;
+    }
+    .manual-step {
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+    }
+    .manual-step:first-of-type { border-top: 0; }
+    .step-label {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: .78rem;
+      margin-bottom: 6px;
+    }
+    .placeholder {
+      color: var(--muted);
+      background: #f7f4ed;
+      border: 1px dashed #c9c1b1;
+      border-radius: 10px;
+      padding: 18px;
+    }
+    footer {
+      background: var(--dark);
+      color: #ddd;
+      text-align: center;
+      padding: 26px 20px;
+      margin-top: 24px;
+    }
+    @media (max-width: 760px) {
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+      .topnav {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">EFMN 74</a>
+    <nav class="topnav" aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="#">Diário de Bordo</a>
+      <a href="#">Documentação</a>
+      <a href="manual.html">Manual de Construção</a>
+      <a href="#">Galeria</a>
+      <a href="#">Downloads</a>
+      <a href="#">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-head">
+  <h1>Manual de Construção</h1>
+  <p>Experiências, técnicas e soluções adotadas na construção da Ferrovia EFMN 74.</p>
+</section>
+
+<main>
+
+
+
+<article class="manual-topic">
+<h3>Introdução — A filosofia deste Manual</h3>
+<p>Este manual nasceu da experiência prática na construção da Ferrovia EFMN 74. Minha intenção é compartilhar aquilo que realmente fiz, inclusive as tentativas que não deram certo e as soluções que encontrei depois.</p>
+<p>Procurei sempre chegar a uma maneira fácil, rápida, econômica e com aparência realista. Muitas das dicas apresentadas aqui são resultado de erros, correções e novas tentativas. Se minha experiência puder evitar que outro ferromodelista cometa os mesmos erros, este manual já terá cumprido parte de seu objetivo.</p>
+<h3>Não tenha medo de perguntar e de errar</h3>
+<p>Ninguém nasce sabendo. Eu perguntei, pesquisei, estudei, experimentei, errei, corrigi e aprendi. O erro faz parte do aprendizado e, muitas vezes, foi justamente ele que me levou a uma solução melhor.</p>
+</article>
+<article class="manual-topic">
+<h3>Preparação do Terreno</h3>
+<div class="manual-step">
+<div class="step-label">Foto 1</div>
+<p>Esta base do terreno foi feita misturando areia e rejunte marrom, usado para assentar cerâmicas, em partes iguais, e água. Jogue vagarosamente a mistura no local escolhido e deixe secar. Para acelerar esta secagem, usei um ventilador.</p>
+</div>
+<div class="manual-step">
+<div class="step-label">Foto 2</div>
+<p>Após a secagem, fure no local onde serão fixadas as árvores e proteja os furos com fita crepe acima e embaixo da mesa. Acima, para evitar que os furos fiquem entupidos quando aplicar a grama, que foi feita com serragem verde. Abaixo, para que a cola que será aplicada para fixar os caules não pingue no chão.</p>
+</div>
+<div class="manual-step">
+<div class="step-label">Foto 3</div>
+<p>Passe cola branca no terreno, exceto abaixo das árvores, onde sua sombra não deixa a grama crescer. Espalhe a serragem verde sobre a cola e aperte com uma bucha de cozinha. Depois de seco, espalhe galhos secos, musgo e capim (veja como fazer). Fixe as árvores. Veja na foto como ficou real?</p>
+</div>
+</article>
+<article class="manual-topic">
+<h3>Como fazer telhado de zinco</h3>
+<div class="placeholder">Tópico em preparação. O texto completo será incorporado em uma próxima revisão.</div>
+</article>
+
+</main>
+
+<footer>
+  <div>EFMN 74 — Ferrovia em escala HO</div>
+</footer>
+
+</body>
+</html>
+
