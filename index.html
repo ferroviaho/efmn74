@@ -1,3 +1,18 @@
+
+
+Pular para o conteúdo
+Como usar o Gmail com leitores de tela
+1 de 43
+index
+Caixa de entrada
+
+Eduardo Carvalhaes Nobre <ecnobre51@gmail.com>
+Anexos
+22:15 (há 0 minuto)
+para mim
+
+ 1 anexo
+  •  Verificados pelo Gmail
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -32,8 +47,8 @@
       display: flex;
       align-items: flex-end;
       background:
-        linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.38) 42%, rgba(0,0,0,.12) 72%),
-        url("capa.png") center center / cover no-repeat;
+        linear-gradient(to top, rgba(0,0,0,.45) 0%, rgba(0,0,0,.18) 42%, rgba(0,0,0,.04) 72%),
+        url("capa.png") center top / cover no-repeat;
       color: white;
     }
     .hero-inner {
@@ -173,14 +188,12 @@
   </style>
 </head>
 <body>
-
 <header class="hero" id="inicio">
   <div class="hero-inner">
     <h1>EFMN 74</h1>
     <p>Ferrovia em escala HO — construção, automação, memória e documentação</p>
   </div>
 </header>
-
 <nav aria-label="Navegação principal">
   <div class="nav-inner">
     <a href="#inicio">Início</a>
@@ -192,7 +205,6 @@
     <a href="#contato">Contato</a>
   </div>
 </nav>
-
 <main>
   <section id="apresentacao">
     <div class="welcome">
@@ -208,7 +220,6 @@
       </aside>
     </div>
   </section>
-
   <section id="diario">
     <h2>Diário de Bordo</h2>
     <div class="placeholder">Esta seção receberá os registros cronológicos da construção e evolução da Ferrovia EFMN 74.</div>
@@ -221,11 +232,9 @@
 
   <section id="manual">
     <h2>Manual de Construção</h2>
-
     <div class="note">
       O primeiro tópico definitivo do Manual será “Como fiz o layout e fixei os trilhos”. Ele será colocado nesta posição quando o texto for enviado e aprovado. Até lá, os demais textos permanecem sem numeração.
     </div>
-
     <article class="manual-topic">
       <h3>Introdução — A filosofia deste Manual</h3>
       <p>Este manual nasceu da experiência prática na construção da Ferrovia EFMN 74. Minha intenção é compartilhar aquilo que realmente fiz, inclusive as tentativas que não deram certo e as soluções que encontrei depois.</p>
@@ -233,7 +242,6 @@
       <h3>Não tenha medo de perguntar e de errar</h3>
       <p>Ninguém nasce sabendo. Eu perguntei, pesquisei, estudei, experimentei, errei, corrigi e aprendi. O erro faz parte do aprendizado e, muitas vezes, foi justamente ele que me levou a uma solução melhor.</p>
     </article>
-
     <article class="manual-topic">
       <h3>Preparação do Terreno</h3>
       <div class="manual-step">
@@ -249,7 +257,6 @@
         <p>Passe cola branca no terreno, exceto abaixo das árvores, onde sua sombra não deixa a grama crescer. Espalhe a serragem verde sobre a cola e aperte com uma bucha de cozinha. Depois de seco, espalhe galhos secos, musgo e capim (veja como fazer). Fixe as árvores. Veja na foto como ficou real?</p>
       </div>
     </article>
-
     <article class="manual-topic">
       <h3>Como fazer telhado de zinco</h3>
       <div class="placeholder">Tópico em preparação. O texto completo será incorporado em uma próxima revisão.</div>
@@ -260,14 +267,10 @@
     <h2>Galeria</h2>
     <div class="placeholder">A galeria receberá as fotografias da maquete, das etapas de construção e dos detalhes cenográficos.</div>
   </section>
-
   <section id="downloads">
     <h2>Downloads</h2>
     <div class="placeholder">Aqui serão disponibilizados gratuitamente documentos, diagramas, manuais e outros arquivos do projeto EFMN 74.</div>
   </section>
-
- 
-
 
 <section id="contato">
   <h2>Contato</h2>
@@ -277,60 +280,26 @@
       Dúvidas, sugestões ou comentários sobre a Ferrovia EFMN 74?
       Envie uma mensagem pelo formulário abaixo.
     </p>
-
     <form action="https://formspree.io/f/mrpzebyp" method="POST">
       <div style="margin-bottom:16px;">
         <label for="nome" style="display:block; margin-bottom:6px;">Nome</label>
-        <input
-          type="text"
-          id="nome"
-          name="nome"
-          required
-          style="width:100%; padding:12px; border:1px solid #c9c1b1; border-radius:8px; font:inherit;"
-        >
+        <input type="text" id="nome" name="nome" required style="width:100%; padding:12px; border:1px solid #c9c1b1; border-radius:8px; font:inherit;">
       </div>
-
       <div style="margin-bottom:16px;">
         <label for="email" style="display:block; margin-bottom:6px;">E-mail</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          required
-          style="width:100%; padding:12px; border:1px solid #c9c1b1; border-radius:8px; font:inherit;"
-        >
+        <input type="email" id="email" name="email" required style="width:100%; padding:12px; border:1px solid #c9c1b1; border-radius:8px; font:inherit;">
       </div>
-
       <div style="margin-bottom:16px;">
         <label for="assunto" style="display:block; margin-bottom:6px;">Assunto</label>
-        <input
-          type="text"
-          id="assunto"
-          name="assunto"
-          required
-          style="width:100%; padding:12px; border:1px solid #c9c1b1; border-radius:8px; font:inherit;"
-        >
+        <input type="text" id="assunto" name="assunto" required style="width:100%; padding:12px; border:1px solid #c9c1b1; border-radius:8px; font:inherit;">
       </div>
-
       <div style="margin-bottom:18px;">
         <label for="mensagem" style="display:block; margin-bottom:6px;">Mensagem</label>
-        <textarea
-          id="mensagem"
-          name="mensagem"
-          rows="7"
-          required
-          style="width:100%; padding:12px; border:1px solid #c9c1b1; border-radius:8px; font:inherit; resize:vertical;"
-        ></textarea>
+        <textarea id="mensagem" name="mensagem" rows="7" required style="width:100%; padding:12px; border:1px solid #c9c1b1; border-radius:8px; font:inherit; resize:vertical;"></textarea>
       </div>
 
       <input type="text" name="_gotcha" style="display:none;">
-
-      <button
-        type="submit"
-        style="background:#151515; color:white; border:0; border-radius:8px; padding:13px 22px; font:inherit; cursor:pointer;"
-      >
-        Enviar mensagem
-      </button>
+      <button type="submit" style="background:#151515; color:white; border:0; border-radius:8px; padding:13px 22px; font:inherit; cursor:pointer;">Enviar mensagem</button>
     </form>
   </div>
 </section>
@@ -346,3 +315,5 @@
 
 </body>
 </html>
+index.txt
+Exibindo index.txt.
