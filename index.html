@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Portal oficial da Ferrovia EFMN 74 em escala HO. Construção, automação, memória e documentação.">
   <title>Ferrovia EFMN 74</title>
-
   <style>
     :root {
       --bg: #f4f1ea;
@@ -17,15 +16,8 @@
       --line: #ded7c8;
       --max: 1180px;
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
@@ -33,59 +25,57 @@
       background: var(--bg);
       line-height: 1.65;
     }
-
+    a { color: inherit; }
     .hero {
       height: 78vh;
       min-height: 0;
       position: relative;
       background:
-        linear-gradient(
-          to top,
-          rgba(0,0,0,.35) 0%,
-          rgba(0,0,0,.12) 38%,
-          rgba(0,0,0,0) 68%
-        ),
+        linear-gradient(to top, rgba(0,0,0,.35) 0%, rgba(0,0,0,.12) 38%, rgba(0,0,0,0) 68%),
         url("capa.png") center center / contain no-repeat;
       color: white;
+      overflow: hidden;
     }
 
+    /* Informações na faixa lateral esquerda */
     .hero-inner {
-      width: min(var(--max), calc(100% - 100px));
-      min-height: 82vh;
-      margin: 0 auto;
-      position: relative;
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
     }
 
     .hero h1 {
-      margin: 0;
       position: absolute;
-      top: 22px;
-      left: 30px;
+      top: 28px;
+      left: 34px;
+      margin: 0;
+      max-width: 180px;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(3rem, 7vw, 6rem);
+      font-size: clamp(3.2rem, 6vw, 6.3rem);
+      line-height: .95;
       font-weight: 500;
       letter-spacing: .02em;
-      line-height: .95;
       text-shadow: 0 3px 16px rgba(0,0,0,.55);
     }
 
     .hero p {
       position: absolute;
-      left: 30px;
-      bottom: 38px;
-      max-width: 620px;
+      left: 34px;
+      bottom: 42px;
+      width: 165px;
       margin: 0;
-      font-size: clamp(1rem, 1.8vw, 1.35rem);
-      line-height: 1.35;
+      font-size: 1rem;
+      line-height: 1.45;
       text-shadow: 0 2px 8px rgba(0,0,0,.75);
     }
-
     nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
       background: rgba(20,20,20,.97);
       border-top: 4px solid var(--gold);
       color: white;
     }
-
     .nav-inner {
       width: min(var(--max), calc(100% - 30px));
       margin: auto;
@@ -95,50 +85,39 @@
       justify-content: center;
       padding: 14px 0;
     }
-
     nav a {
-      color: white;
       text-decoration: none;
       font-size: .98rem;
       padding: 5px 0;
     }
-
-    nav a:hover {
-      color: #f0c55b;
-    }
-
+    nav a:hover { color: #f0c55b; }
     main {
       width: min(var(--max), calc(100% - 34px));
       margin: 0 auto;
     }
-
     section {
       scroll-margin-top: 85px;
       padding: 62px 0;
       border-bottom: 1px solid var(--line);
     }
-
     section h2 {
       margin: 0 0 24px;
       font-family: Georgia, "Times New Roman", serif;
       font-size: clamp(2rem, 4vw, 3.2rem);
       font-weight: 500;
     }
-
     section h3 {
       margin-top: 32px;
       font-family: Georgia, "Times New Roman", serif;
       font-size: 1.55rem;
       font-weight: 500;
     }
-
     .welcome {
       display: grid;
       grid-template-columns: 1.4fr .6fr;
       gap: 40px;
       align-items: start;
     }
-
     .card {
       background: var(--paper);
       border: 1px solid var(--line);
@@ -146,14 +125,12 @@
       padding: 28px;
       box-shadow: 0 8px 24px rgba(0,0,0,.045);
     }
-
     .note {
       border-left: 5px solid var(--gold);
       background: #fff8df;
       padding: 18px 22px;
       margin: 20px 0 30px;
     }
-
     .manual-topic {
       background: var(--paper);
       border: 1px solid var(--line);
@@ -161,21 +138,15 @@
       padding: 28px;
       margin: 24px 0;
     }
-
     .manual-topic h3 {
       margin-top: 0;
       font-size: 1.8rem;
     }
-
     .manual-step {
       padding: 18px 0;
       border-top: 1px solid var(--line);
     }
-
-    .manual-step:first-of-type {
-      border-top: 0;
-    }
-
+    .manual-step:first-of-type { border-top: 0; }
     .step-label {
       color: var(--muted);
       text-transform: uppercase;
@@ -183,12 +154,7 @@
       font-size: .78rem;
       margin-bottom: 6px;
     }
-
-    .lead {
-      color: var(--muted);
-      font-size: 1.05rem;
-    }
-
+    .lead { color: var(--muted); font-size: 1.05rem; }
     .placeholder {
       color: var(--muted);
       background: #f7f4ed;
@@ -196,7 +162,6 @@
       border-radius: 10px;
       padding: 22px;
     }
-
     .contact-box {
       max-width: 760px;
       background: var(--paper);
@@ -204,7 +169,6 @@
       border-radius: 12px;
       padding: 28px;
     }
-
     footer {
       background: var(--dark);
       color: #ddd;
@@ -212,48 +176,32 @@
       padding: 34px 20px;
       margin-top: 20px;
     }
-
-    footer small {
-      color: #aaa;
-    }
-
+    footer small { color: #aaa; }
     @media (max-width: 760px) {
       .hero {
-        min-height: 58vh;
+        height: 58vh;
+        background-size: cover;
+        background-position: center center;
       }
-
-      .hero-inner {
-        width: min(var(--max), calc(100% - 34px));
-        min-height: 58vh;
-      }
-
       .hero h1 {
-        left: 8px;
-        top: 18px;
+        top: 24px;
+        left: 20px;
+        max-width: none;
+        font-size: clamp(3rem, 15vw, 5.5rem);
       }
-
       .hero p {
-        left: 8px;
-        right: 8px;
-        bottom: 26px;
+        left: 20px;
+        right: 20px;
+        bottom: 28px;
+        width: auto;
+        font-size: .98rem;
       }
-
-      .welcome {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-inner {
-        gap: 8px 18px;
-        justify-content: flex-start;
-      }
-
-      section {
-        padding: 46px 0;
-      }
+      .welcome { grid-template-columns: 1fr; }
+      .nav-inner { gap: 8px 18px; justify-content: flex-start; }
+      section { padding: 46px 0; }
     }
   </style>
 </head>
-
 <body>
 
 <header class="hero" id="inicio">
@@ -276,7 +224,6 @@
 </nav>
 
 <main>
-
   <section id="apresentacao">
     <div class="welcome">
       <div>
@@ -284,7 +231,6 @@
         <p>Este é o portal oficial da Ferrovia EFMN 74, um projeto de ferromodelismo em escala HO. Aqui serão reunidos o Diário de Bordo, a documentação técnica, o Manual de Construção, fotografias, diagramas e materiais para download.</p>
         <p>O objetivo é registrar a evolução da ferrovia e compartilhar gratuitamente as experiências, os acertos, os erros e as soluções encontradas durante a construção.</p>
       </div>
-
       <aside class="card">
         <p>Escala: HO 1:87</p>
         <p>Projeto: EFMN 74</p>
@@ -295,16 +241,12 @@
 
   <section id="diario">
     <h2>Diário de Bordo</h2>
-    <div class="placeholder">
-      Esta seção receberá os registros cronológicos da construção e evolução da Ferrovia EFMN 74.
-    </div>
+    <div class="placeholder">Esta seção receberá os registros cronológicos da construção e evolução da Ferrovia EFMN 74.</div>
   </section>
 
   <section id="documentacao">
     <h2>Documentação</h2>
-    <div class="placeholder">
-      Diagramas elétricos, especificações, listas de materiais, arquitetura do sistema e outros documentos técnicos serão reunidos aqui.
-    </div>
+    <div class="placeholder">Diagramas elétricos, especificações, listas de materiais, arquitetura do sistema e outros documentos técnicos serão reunidos aqui.</div>
   </section>
 
   <section id="manual">
@@ -316,29 +258,22 @@
 
     <article class="manual-topic">
       <h3>Introdução — A filosofia deste Manual</h3>
-
       <p>Este manual nasceu da experiência prática na construção da Ferrovia EFMN 74. Minha intenção é compartilhar aquilo que realmente fiz, inclusive as tentativas que não deram certo e as soluções que encontrei depois.</p>
-
       <p>Procurei sempre chegar a uma maneira fácil, rápida, econômica e com aparência realista. Muitas das dicas apresentadas aqui são resultado de erros, correções e novas tentativas. Se minha experiência puder evitar que outro ferromodelista cometa os mesmos erros, este manual já terá cumprido parte de seu objetivo.</p>
-
       <h3>Não tenha medo de perguntar e de errar</h3>
-
       <p>Ninguém nasce sabendo. Eu perguntei, pesquisei, estudei, experimentei, errei, corrigi e aprendi. O erro faz parte do aprendizado e, muitas vezes, foi justamente ele que me levou a uma solução melhor.</p>
     </article>
 
     <article class="manual-topic">
       <h3>Preparação do Terreno</h3>
-
       <div class="manual-step">
         <div class="step-label">Foto 1</div>
         <p>Esta base do terreno foi feita misturando areia e rejunte marrom, usado para assentar cerâmicas, em partes iguais, e água. Jogue vagarosamente a mistura no local escolhido e deixe secar. Para acelerar esta secagem, usei um ventilador.</p>
       </div>
-
       <div class="manual-step">
         <div class="step-label">Foto 2</div>
         <p>Após a secagem, fure no local onde serão fixadas as árvores e proteja os furos com fita crepe acima e embaixo da mesa. Acima, para evitar que os furos fiquem entupidos quando aplicar a grama, que foi feita com serragem verde. Abaixo, para que a cola que será aplicada para fixar os caules não pingue no chão.</p>
       </div>
-
       <div class="manual-step">
         <div class="step-label">Foto 3</div>
         <p>Passe cola branca no terreno, exceto abaixo das árvores, onde sua sombra não deixa a grama crescer. Espalhe a serragem verde sobre a cola e aperte com uma bucha de cozinha. Depois de seco, espalhe galhos secos, musgo e capim (veja como fazer). Fixe as árvores. Veja na foto como ficou real?</p>
@@ -347,67 +282,27 @@
 
     <article class="manual-topic">
       <h3>Como fazer telhado de zinco</h3>
-      <div class="placeholder">
-        Tópico em preparação. O texto completo será incorporado em uma próxima revisão.
-      </div>
+      <div class="placeholder">Tópico em preparação. O texto completo será incorporado em uma próxima revisão.</div>
     </article>
   </section>
 
   <section id="galeria">
     <h2>Galeria</h2>
-    <div class="placeholder">
-      A galeria receberá as fotografias da maquete, das etapas de construção e dos detalhes cenográficos.
-    </div>
+    <div class="placeholder">A galeria receberá as fotografias da maquete, das etapas de construção e dos detalhes cenográficos.</div>
   </section>
 
   <section id="downloads">
     <h2>Downloads</h2>
-    <div class="placeholder">
-      Aqui serão disponibilizados gratuitamente documentos, diagramas, manuais e outros arquivos do projeto EFMN 74.
-    </div>
+    <div class="placeholder">Aqui serão disponibilizados gratuitamente documentos, diagramas, manuais e outros arquivos do projeto EFMN 74.</div>
   </section>
 
   <section id="contato">
     <h2>Contato</h2>
-
     <div class="contact-box">
-      <p>
-        Dúvidas, sugestões ou comentários sobre a Ferrovia EFMN 74?
-        Envie uma mensagem pelo formulário abaixo.
-      </p>
-
-      <form action="https://formspree.io/f/mrpzebyp" method="POST">
-
-        <div style="margin-bottom:16px;">
-          <label for="nome" style="display:block; margin-bottom:6px;">Nome</label>
-          <input type="text" id="nome" name="nome" required style="width:100%; padding:12px; border:1px solid #c9c1b1; border-radius:8px; font:inherit;">
-        </div>
-
-        <div style="margin-bottom:16px;">
-          <label for="email" style="display:block; margin-bottom:6px;">E-mail</label>
-          <input type="email" id="email" name="email" required style="width:100%; padding:12px; border:1px solid #c9c1b1; border-radius:8px; font:inherit;">
-        </div>
-
-        <div style="margin-bottom:16px;">
-          <label for="assunto" style="display:block; margin-bottom:6px;">Assunto</label>
-          <input type="text" id="assunto" name="assunto" required style="width:100%; padding:12px; border:1px solid #c9c1b1; border-radius:8px; font:inherit;">
-        </div>
-
-        <div style="margin-bottom:18px;">
-          <label for="mensagem" style="display:block; margin-bottom:6px;">Mensagem</label>
-          <textarea id="mensagem" name="mensagem" rows="7" required style="width:100%; padding:12px; border:1px solid #c9c1b1; border-radius:8px; font:inherit; resize:vertical;"></textarea>
-        </div>
-
-        <input type="text" name="_gotcha" style="display:none;">
-
-        <button type="submit" style="background:#151515; color:white; border:0; border-radius:8px; padding:13px 22px; font:inherit; cursor:pointer;">
-          Enviar mensagem
-        </button>
-
-      </form>
+      <p>Será disponibilizado um formulário para envio de mensagens sem exibir publicamente o endereço de e-mail do responsável pelo projeto.</p>
+      <p class="lead">O formulário será ativado em uma próxima revisão do site.</p>
     </div>
   </section>
-
 </main>
 
 <footer>
