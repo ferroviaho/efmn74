@@ -35,7 +35,8 @@
     }
 
     .hero {
-      min-height: 82vh;
+      aspect-ratio: 16 / 9;
+      min-height: 0;
       position: relative;
       background:
         linear-gradient(
@@ -44,7 +45,7 @@
           rgba(0,0,0,.12) 38%,
           rgba(0,0,0,0) 68%
         ),
-        url("capa.png") center bottom / cover no-repeat;
+        url("capa.png") center center / cover no-repeat;
       color: white;
     }
 
