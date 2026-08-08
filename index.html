@@ -25,16 +25,25 @@
       color: var(--ink);
       background: var(--bg);
       line-height: 1.65;
+    .hero {
+      min-height: 68vh;
+      position: relative;
+      background:
+        linear-gradient(to top, rgba(0,0,0,.35) 0%, rgba(0,0,0,.12) 38%, rgba(0,0,0,0) 68%),
+        url("capa.png") center top / cover no-repeat;
+      color: white;
     }
-    a { color: inherit; }
+
     .hero-inner {
-      width: min(var(--max), calc(100% - 40px));
+      width: min(var(--max), calc(100% - 100px));
+      min-height: 68vh;
       margin: 0 auto;
-      padding: 70px 0 24px;
+      padding-top: 24px;
+      position: relative;
     }
 
     .hero h1 {
-      margin: 0 0 10px;
+      margin: 0;
       font-family: Georgia, "Times New Roman", serif;
       font-size: clamp(3rem, 7vw, 6rem);
       font-weight: 500;
@@ -44,16 +53,16 @@
     }
 
     .hero p {
+      position: absolute;
+      left: 0;
+      bottom: 28px;
       max-width: 620px;
       margin: 0;
       font-size: clamp(1rem, 1.8vw, 1.35rem);
       line-height: 1.35;
       text-shadow: 0 2px 8px rgba(0,0,0,.75);
     }
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 20;
+
       background: rgba(20,20,20,.97);
       border-top: 4px solid var(--gold);
       color: white;
