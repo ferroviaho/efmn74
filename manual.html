@@ -1,131 +1,149 @@
+<!-- =========================================================
+BLOCO DAS 4 FOTOS - COMO FAZER TELHADO DE ZINCO
+
+Foto 1: esquerda / texto direita
+Foto 2: direita / texto esquerda
+Foto 3: esquerda / texto direita
+Foto 4: direita / texto esquerda
+
+No smartphone:
+foto em cima / texto embaixo
+========================================================= -->
+
 <style>
-  body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f4f1ea;Manual
-    color: #222;
-    line-height: 1.6;
+  .manual-fotos {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 18px;
   }
 
   .manual-item {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 32px 24px 48px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin: 28px 0;
   }
 
-  .manual-item h2 {
-    margin: 0 0 18px;
-    font-size: 2rem;
-    line-height: 1.2;
+  .manual-item.reverse {
+    flex-direction: row-reverse;
   }
 
-  .manual-item p {
-    margin: 0 0 24px;
-    font-size: 1.05rem;
-  }
-
-  .manual-item figure {
-    margin: 34px auto;
-    text-align: center;
-  }
-
-  .manual-item img {
+  .manual-foto {
+    width: 360px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
     display: block;
-    width: 100%;
-    max-width: 700px;
-    height: auto;
-    margin: 0 auto;
-    border-radius: 6px;
   }
 
-  .manual-item figcaption {
-    max-width: 700px;
-    margin: 10px auto 0;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    text-align: left;
-    color: #555;
+  .manual-texto {
+    flex: 1;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #222;
   }
 
-  @media (max-width: 760px) {
-    .manual-item {
-      padding: 24px 16px 36px;
+  .manual-texto p {
+    margin: 0;
+  }
+
+  /* Smartphone e telas menores */
+  @media (max-width: 700px) {
+    .manual-item,
+    .manual-item.reverse {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+      margin: 24px 0 34px;
     }
 
-    .manual-item h2 {
-      font-size: 1.6rem;
+    .manual-foto {
+      width: 100%;
+      height: auto;
+      max-height: none;
+      object-fit: contain;
     }
 
-    .manual-item p {
-      font-size: 1rem;
-    }
-
-    .manual-item figcaption {
-      font-size: 0.9rem;
+    .manual-texto {
+      width: 100%;
     }
   }
 </style>
 
+<div class="manual-fotos">
 
-<!-- =========================================================
-     COMO FAZER TELHADO DE ZINCO
-     Inserir no manual.html
-     ========================================================= -->
+  <!-- FOTO 1 -->
+  <div class="manual-item">
+    <img
+      src="Foto 1.JPG"
+      alt="Embalagens de alumínio utilizadas para fazer o telhado de zinco"
+      class="manual-foto"
+      loading="lazy"
+    >
+    <div class="manual-texto">
+      <p>
+        Utilize folhas de alumínio retiradas de pequenas embalagens descartáveis.
+        Recorte uma parte lisa no tamanho aproximado do telhado que deseja construir.
+      </p>
+    </div>
+  </div>
 
-<section class="manual-item" id="telhado-zinco">
-  <p class="Voltar-manual"><a href=index.html#manual"><- Voltar ao Manual da Construção</a></p>
-  <h2>Como fazer telhado de zinco</h2>
+  <!-- FOTO 2 -->
+  <div class="manual-item reverse">
+    <img
+      src="Foto 2.JPG"
+      alt="Molde feito com palitos de madeira para formar os frisos do telhado"
+      class="manual-foto"
+      loading="lazy"
+    >
+    <div class="manual-texto">
+      <p>
+        Cole palitos de madeira paralelamente sobre uma base, mantendo aproximadamente
+        a mesma distância entre eles. Este será o molde utilizado para formar os frisos
+        do telhado.
+      </p>
+    </div>
+  </div>
 
-  <p>
-    Nesta dica mostro uma maneira simples de reproduzir telhas de zinco em escala HO, usando materiais fáceis de encontrar e um molde artesanal. O resultado pode ser usado em galpões, casas, depósitos e outras construções da maquete.
-  </p>
+  <!-- FOTO 3 -->
+  <div class="manual-item">
+    <img
+      src="Foto 3.JPG"
+      alt="Folha de alumínio sendo moldada sobre os palitos"
+      class="manual-foto"
+      loading="lazy"
+    >
+    <div class="manual-texto">
+      <p>
+        Coloque sobre o molde de palitos uma folha de alumínio do tamanho desejado.
+        Fixe uma das pontas com fita crepe. Com outro palito, faça um friso onde não
+        há palito, moldando a folha de alumínio como se fosse um telhado de zinco.
+      </p>
+    </div>
+  </div>
 
-  <figure>
-    <img src="Foto 1.JPG"
-         alt="Embalagens de alumínio utilizadas para fazer o telhado de zinco"
-         loading="lazy">
-    <figcaption>
-      Figura 1 — Utilize folhas de alumínio retiradas de pequenas embalagens
-      descartáveis. Recorte uma parte lisa no tamanho aproximado do telhado
-      que deseja construir.
-    </figcaption>
-  </figure>
+  <!-- FOTO 4 -->
+  <div class="manual-item reverse">
+    <img
+      src="Foto 4.jpg"
+      alt="Acabamento do telhado de zinco"
+      class="manual-foto"
+      loading="lazy"
+    >
+    <div class="manual-texto">
+      <p>
+        Após concluir, cole o telhado em uma cartolina ou em outro compensado do
+        tamanho do telhado. Se ficar grande, corte o que passar do limite. Se ficar
+        pequeno, complete com outro pedaço de alumínio moldado.
+      </p>
+      <p style="margin-top: 12px;">
+        Pinte o telhado com uma mistura de tinta PVA na cor marrom-claro e água,
+        em partes iguais (50% de cada). Depois de seco, passe betume da Judeia,
+        tipo cera, em alguns pontos para imitar poeira e fuligem acumuladas.
+      </p>
+    </div>
+  </div>
 
-  <figure>
-    <img src="Foto 2.JPG"
-         alt="Molde feito com palitos de madeira para formar as ondulações do telhado"
-         loading="lazy">
-    <figcaption>
-      Figura 2 — Cole palitos de madeira paralelamente sobre uma base,
-      mantendo aproximadamente a mesma distância entre eles. Este será o molde
-      utilizado para formar os frisos do telhado.
-    </figcaption>
-  </figure>
-
-  <figure>
-    <img src="Foto 3.JPG"
-         alt="Folha de alumínio sendo moldada sobre os palitos"
-         loading="lazy">
-    <figcaption>
-      Figura 3 — Coloque sobre o molde de palitos uma folha de alumínio do
-      tamanho desejado. Fixe uma das pontas com fita crepe. Com outro palito,
-      faça um friso onde não há palito, moldando a folha de alumínio como se
-      fosse um telhado de zinco.
-    </figcaption>
-  </figure>
-
-  <figure>
-    <img src="Foto 4.jpg"
-         alt="Resultado da folha de alumínio já moldada com aspecto de telhado de zinco"
-         loading="lazy">
-    <figcaption>
-      Figura 4 — Após concluir, cole o telhado em uma cartolina ou em outro
-      compensado do tamanho do telhado. Se ficar grande, corte o que passar do
-      limite. Se ficar pequeno, complete com outro pedaço de alumínio moldado.
-      Pinte o telhado com uma mistura de tinta PVA na cor marrom-claro e água,
-      em partes iguais (50% de cada). Depois de seco, passe betume da Judeia,
-      tipo cera, em alguns pontos para imitar poeira e fuligem acumuladas.
-    </figcaption>
-  </figure>
-</section>
+</div>
 
