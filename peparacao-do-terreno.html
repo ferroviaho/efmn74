@@ -1,1 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Preparação do terreno em escala HO - Manual de Construção da Ferrovia EFMN 74.">
+  <title>Preparação do Terreno | Ferrovia EFMN 74</title>
+
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --paper: #fffdf8;
+      --ink: #222;
+      --muted: #68635a;
+      --line: #ded7c8;
+      --blue: #0056b3;
+      --max: 1000px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    main { width: 100%; }
+
+    .preparacao-terreno {
+      max-width: var(--max);
+      margin: 30px auto;
+      padding: 30px 24px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+
+    .voltar-manual { margin: 0 0 18px; }
+
+    .voltar-manual a {
+      color: var(--blue);
+      text-decoration: underline;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .voltar-manual a:hover { text-decoration: none; }
+
+    .preparacao-terreno h1 {
+      margin: 0 0 14px;
+      font-size: 2rem;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .terreno-abertura {
+      margin: 0 0 30px;
+      font-size: 1.1rem;
+      color: var(--ink);
+    }
+
+    .manual-item {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin: 28px 0;
+    }
+
+    .manual-item.reverse { flex-direction: row-reverse; }
+
+    .manual-foto {
+      width: 360px;
+      height: auto;
+      max-height: 260px;
+      object-fit: contain;
+      border-radius: 8px;
+      flex-shrink: 0;
+      display: block;
+    }
+
+    .manual-texto {
+      flex: 1;
+      font-size: 1.1rem;
+      color: var(--ink);
+    }
+
+    .manual-texto p { margin: 0; }
+
+    .rodape-efmn {
+      max-width: var(--max);
+      margin: 36px auto 24px;
+      padding: 24px 18px 10px;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .rodape-efmn img {
+      width: 120px;
+      max-width: 40vw;
+      height: auto;
+      display: block;
+      margin: 0 auto 10px;
+    }
+
+    .rodape-efmn p {
+      margin: 2px 0;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 700px) {
+      .preparacao-terreno {
+        margin: 0;
+        padding: 22px 18px;
+        border-left: 0;
+        border-right: 0;
+        border-radius: 0;
+      }
+
+      .preparacao-terreno h1 { font-size: 1.65rem; }
+
+      .manual-item,
+      .manual-item.reverse {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        margin: 24px 0 34px;
+      }
+
+      .manual-foto {
+        width: 100%;
+        height: auto;
+        max-height: none;
+        object-fit: contain;
+      }
+
+      .manual-texto { width: 100%; }
+
+      .rodape-efmn { margin-top: 26px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <section class="preparacao-terreno" id="preparacao-terreno">
+
+      <p class="voltar-manual">
+        <a href="manual-indice.html">← Voltar ao índice</a>
+      </p>
+
+      <h1>Preparação do Terreno</h1>
+
+      <p class="terreno-abertura">
+        A aparência do terreno é uma das partes que mais contribuem para o realismo de uma
+        maquete ferroviária. Neste trabalho, procurei utilizar materiais simples e de fácil
+        obtenção para criar uma base que pudesse receber posteriormente a vegetação, as árvores
+        e outros elementos da paisagem. As fotografias a seguir mostram as principais etapas
+        do trabalho.
+      </p>
+
+      <!-- FOTO 1: esquerda / texto direita -->
+      <div class="manual-item">
+        <img
+          src="terreno-1.jpg"
+          alt="Base do terreno preparada com areia e rejunte marrom"
+          class="manual-foto"
+          loading="lazy"
+        >
+
+        <div class="manual-texto">
+          <p>
+            Esta base do terreno foi feita misturando areia e rejunte marrom, usado para
+            assentar cerâmicas, em partes iguais, e água. Jogue vagarosamente a mistura no
+            local escolhido e deixe secar. Para acelerar esta secagem, usei um ventilador.
+          </p>
+        </div>
+      </div>
+
+      <!-- FOTO 2: direita / texto esquerda -->
+      <div class="manual-item reverse">
+        <img
+          src="terreno-2.jpg"
+          alt="Furos preparados para a fixação das árvores"
+          class="manual-foto"
+          loading="lazy"
+        >
+
+        <div class="manual-texto">
+          <p>
+            Após a secagem, fure no local onde serão fixadas as árvores e proteja os furos
+            com fita crepe acima e embaixo da mesa. Acima, para evitar que os furos fiquem
+            entupidos quando aplicar a grama, que foi feita com serragem verde. Abaixo, para
+            que a cola que será aplicada para fixar os caules não pingue no chão.
+          </p>
+        </div>
+      </div>
+
+      <!-- FOTO 3: esquerda / texto direita -->
+      <div class="manual-item">
+        <img
+          src="terreno-3.jpg"
+          alt="Terreno finalizado com grama, vegetação e árvores"
+          class="manual-foto"
+          loading="lazy"
+        >
+
+        <div class="manual-texto">
+          <p>
+            Passe cola branca no terreno, exceto abaixo das árvores, onde sua sombra não
+            deixa a grama crescer. Espalhe a serragem verde sobre a cola e aperte com uma
+            bucha de cozinha. Depois de seco, espalhe galhos secos, musgo e capim
+            (veja como fazer). Fixe as árvores. Veja na foto como ficou real?
+          </p>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="rodape-efmn">
+    <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74">
+    <p>Ferrovia EFMN 74 - Escala HO</p>
+    <p>Construção, automação, memória e documentação</p>
+  </footer>
+</body>
+</html>
+
 
