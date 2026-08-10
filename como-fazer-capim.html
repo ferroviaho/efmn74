@@ -1,10 +1,26 @@
+Nenhum selecionado
+
+Pular para o conteúdo
+Como usar o Gmail com leitores de tela
+1 de 7
+como-fazer-capim-com-fotos
+Caixa de entrada
+
+Eduardo Carvalhaes Nobre <ecnobre51@gmail.com>
+Anexos
+10:38 (há 0 minuto)
+para mim
+
+ 1 anexo
+  •  Verificados pelo Gmail
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Como fazer capim com estopa na escala HO - Ferrovia EFMN 74.">
+  <meta name="description" content="Como fazer capim com estopa e sisal na escala HO - Ferrovia EFMN 74.">
   <title>Como fazer capim | Ferrovia EFMN 74</title>
+
   <style>
     :root {
       --bg: #f4f1ea;
@@ -17,7 +33,9 @@
       --max: 1000px;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -61,7 +79,9 @@
       margin-left: 18px;
     }
 
-    nav a:hover { color: var(--gold); }
+    nav a:hover {
+      color: var(--gold);
+    }
 
     main {
       max-width: var(--max);
@@ -80,7 +100,9 @@
       font-weight: 600;
     }
 
-    .voltar-indice a:hover { text-decoration: underline; }
+    .voltar-indice a:hover {
+      text-decoration: underline;
+    }
 
     h1 {
       margin: 0 0 14px;
@@ -113,7 +135,41 @@
       padding-left: 24px;
     }
 
-    .bloco li { margin: 8px 0; }
+    .bloco li {
+      margin: 8px 0;
+    }
+
+    .manual-item {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin: 34px 0;
+    }
+
+    .manual-item.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .manual-foto {
+      width: 360px;
+      height: 240px;
+      object-fit: contain;
+      border-radius: 8px;
+      flex-shrink: 0;
+      display: block;
+      border: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .manual-texto {
+      flex: 1;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .manual-texto p {
+      margin: 0;
+    }
 
     footer {
       border-top: 1px solid var(--line);
@@ -132,25 +188,58 @@
       margin: 0 auto 10px;
     }
 
-    footer p { margin: 3px 0; }
+    footer p {
+      margin: 3px 0;
+    }
 
     @media (max-width: 700px) {
-      .header-inner { display: block; }
+      .header-inner {
+        display: block;
+      }
 
-      nav { margin-top: 10px; }
+      nav {
+        margin-top: 10px;
+      }
 
       nav a {
         display: inline-block;
         margin: 4px 12px 4px 0;
       }
 
-      main { padding: 26px 16px 40px; }
+      main {
+        padding: 26px 16px 40px;
+      }
 
-      h1 { font-size: 1.75rem; }
+      h1 {
+        font-size: 1.75rem;
+      }
 
-      .abertura { font-size: 1.05rem; }
+      .abertura {
+        font-size: 1.05rem;
+      }
 
-      .bloco { padding: 18px 20px; }
+      .bloco {
+        padding: 18px 20px;
+      }
+
+      .manual-item,
+      .manual-item.reverse {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        margin: 26px 0 36px;
+      }
+
+      .manual-foto {
+        width: 100%;
+        height: auto;
+        max-height: none;
+        object-fit: contain;
+      }
+
+      .manual-texto {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -184,6 +273,39 @@
     As fibras podem ser tingidas em diferentes tonalidades e cortadas em alturas variadas, permitindo
     obter uma vegetação menos uniforme e mais natural.
   </p>
+
+  <!-- FOTO 1 -->
+  <div class="manual-item">
+    <img
+      src="estopa-e-tinta.jpg"
+      alt="Estopa natural e tinta usada para tingimento"
+      class="manual-foto"
+      loading="lazy"
+    >
+
+    <div class="manual-texto">
+      <p>
+        Estopa natural e tinta usada para o tingimento das fibras que serão utilizadas para fazer o capim.
+      </p>
+    </div>
+  </div>
+
+  <!-- FOTO 2 -->
+  <div class="manual-item reverse">
+    <img
+      src="capim-de-sisal-e-estopa.jpg"
+      alt="Corda de sisal e estopa tingida para representar capim"
+      class="manual-foto"
+      loading="lazy"
+    >
+
+    <div class="manual-texto">
+      <p>
+        Você pode usar também corda de sisal, mostrada nas duas imagens à esquerda.
+        À direita, estopa depois de tingida na cor marrom-claro, imitando capim seco.
+      </p>
+    </div>
+  </div>
 
   <section class="bloco">
     <h2>Materiais</h2>
@@ -221,4 +343,5 @@
 
 </body>
 </html>
-
+como-fazer- ... m-fotos.txt
+Exibindo como-fazer-capim-com-fotos.txt.
