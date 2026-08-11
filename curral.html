@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Preparação do piso do curral em escala HO - Manual de Construção da Ferrovia EFMN 74.">
+  <title>Curral | Ferrovia EFMN 74</title>
+
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --paper: #fffdf8;
+      --ink: #222;
+      --muted: #68635a;
+      --line: #ded7c8;
+      --blue: #0056b3;
+      --max: 1000px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    main { width: 100%; }
+
+    .curral {
+      max-width: var(--max);
+      margin: 30px auto;
+      padding: 30px 24px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+
+    .voltar-manual { margin: 0 0 18px; }
+
+    .voltar-manual a {
+      color: var(--blue);
+      text-decoration: underline;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .voltar-manual a:hover { text-decoration: none; }
+
+    .curral h1 {
+      margin: 0 0 14px;
+      font-size: 2rem;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .curral h2 {
+      margin-top: 30px;
+      font-size: 1.35rem;
+    }
+
+    .curral p,
+    .curral li {
+      font-size: 1.1rem;
+    }
+
+    .curral ul {
+      padding-left: 24px;
+    }
+
+    .manual-item {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin: 32px 0;
+    }
+
+    .manual-item.reverse { flex-direction: row-reverse; }
+
+    .manual-foto {
+      width: 360px;
+      height: auto;
+      max-height: 300px;
+      object-fit: contain;
+      border-radius: 8px;
+      flex-shrink: 0;
+      display: block;
+    }
+
+    .manual-texto {
+      flex: 1;
+      font-size: 1.1rem;
+      color: var(--ink);
+    }
+
+    .manual-texto p { margin: 0; }
+
+    .observacao {
+      margin-top: 30px;
+      padding: 18px 20px;
+      background: #f7f4ed;
+      border-left: 4px solid var(--line);
+      border-radius: 6px;
+    }
+
+    .observacao p {
+      margin: 0;
+    }
+
+    .rodape-efmn {
+      max-width: var(--max);
+      margin: 36px auto 24px;
+      padding: 24px 18px 10px;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .rodape-efmn img {
+      width: 120px;
+      max-width: 40vw;
+      height: auto;
+      display: block;
+      margin: 0 auto 10px;
+    }
+
+    .rodape-efmn p {
+      margin: 2px 0;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 760px) {
+      .curral {
+        margin: 0;
+        padding: 24px 16px;
+        border: 0;
+        border-radius: 0;
+      }
+
+      .curral h1 {
+        font-size: 1.7rem;
+      }
+
+      .manual-item,
+      .manual-item.reverse {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+      }
+
+      .manual-foto {
+        width: 100%;
+        max-height: none;
+      }
+
+      .manual-texto {
+        font-size: 1.05rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+    <section class="curral">
+
+      <p class="voltar-manual">
+        <a href="manual-indice.html">← Voltar ao índice</a>
+      </p>
+
+      <h1>Preparação do Piso do Curral</h1>
+
+      <p>
+        O piso de um curral apresenta características próprias, resultantes do intenso
+        trânsito de animais e da ação das condições climáticas. Para obter um acabamento
+        realista na maquete, recomenda-se reproduzir os seguintes aspectos:
+      </p>
+
+      <ul>
+        <li>Terra fortemente compactada pelo pisoteio constante dos animais.</li>
+        <li>Ausência ou pouca presença de grama no interior dos piquetes, devido ao desgaste contínuo do solo.</li>
+        <li>Pequenas depressões provocadas pelas marcas dos cascos, distribuídas de forma irregular.</li>
+        <li>Áreas de lama escura nas proximidades dos portões, bebedouros e cochos, locais de maior concentração de animais.</li>
+        <li>Manchas de esterco, alternando regiões secas e úmidas, distribuídas aleatoriamente sobre o terreno.</li>
+        <li>Coloração predominante em tons de marrom-escuro, com variações em cinza e preto nas áreas de maior circulação.</li>
+        <li>Pequenas poças de água em locais com drenagem deficiente.</li>
+        <li>Acúmulo de terra e esterco junto às cercas, cantos e demais pontos de difícil limpeza.</li>
+        <li>Pequenos tufos de capim apenas próximos às cercas, onde os animais normalmente não conseguem alcançar.</li>
+        <li>Como o curral está localizado ao lado da ferrovia, a região próxima aos portões e à entrada pode apresentar aspecto mais enlameado e desgastado, enquanto as áreas mais afastadas podem ter apenas solo seco e compactado.</li>
+      </ul>
+
+      <h2>Procedimento</h2>
+
+      <p>
+        A preparação da base do terreno deve seguir o procedimento descrito no capítulo
+        “Preparação do Terreno – Acabamento com Aspecto de Terra Natural”.
+      </p>
+
+      <p>
+        Após a secagem da base, aplicar os efeitos descritos neste capítulo utilizando
+        tintas, pigmentos e materiais naturais, reproduzindo as diferentes tonalidades,
+        marcas de uso e irregularidades características de um curral em funcionamento.
+        O objetivo é obter um cenário com aparência natural, evidenciando o desgaste
+        provocado pelo trânsito contínuo dos animais e pelas condições do ambiente rural.
+      </p>
+
+      <!-- FOTO 1: esquerda / legenda direita -->
+      <div class="manual-item">
+        <img
+          src="curral-visao-geral.jpg"
+          alt="Visão geral do curral da Ferrovia EFMN 74"
+          class="manual-foto"
+          loading="lazy"
+        >
+
+        <div class="manual-texto">
+          <p>
+            Vista geral do curral, com cercas, animais, figuras, abrigo, caixa-d’água
+            e outros elementos que compõem a cena rural.
+          </p>
+        </div>
+      </div>
+
+      <!-- FOTO 2: direita / legenda esquerda -->
+      <div class="manual-item reverse">
+        <img
+          src="curral-vista-superior.jpg"
+          alt="Vista superior do curral da Ferrovia EFMN 74"
+          class="manual-foto"
+          loading="lazy"
+        >
+
+        <div class="manual-texto">
+          <p>
+            Vista superior mostrando a divisão dos cercados, a distribuição dos animais
+            e os detalhes do terreno, com áreas de terra e pequenos pontos de vegetação.
+          </p>
+        </div>
+      </div>
+
+      <!-- FOTO 3: esquerda / legenda direita -->
+      <div class="manual-item">
+        <img
+          src="curral-detalhe-cercados.jpg"
+          alt="Detalhe dos cercados do curral da Ferrovia EFMN 74"
+          class="manual-foto"
+          loading="lazy"
+        >
+
+        <div class="manual-texto">
+          <p>
+            Vista frontal dos cercados, destacando os animais, as divisões internas,
+            as cercas envelhecidas e os detalhes de vegetação que ajudam a dar maior
+            realismo à cena.
+          </p>
+        </div>
+      </div>
+
+      <div class="observacao">
+        <p>
+          <strong>Obs.:</strong> O curral foi montado com diversos elementos adquiridos
+          prontos, entre eles o próprio curral, figuras, animais, cercas, caixa-d’água,
+          carroça e caminhão. As peças chegaram sem acabamento e foram pintadas e
+          envelhecidas com tintas PVA, betume da Judeia e rejunte marrom, buscando
+          integrar todos os elementos ao cenário e dar à composição uma aparência
+          mais natural e usada.
+        </p>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="rodape-efmn">
+    <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74">
+    <p>Ferrovia EFMN 74 - Escala HO</p>
+    <p>Construção, automação, memória e documentação</p>
+  </footer>
+
+</body>
+</html>
+
