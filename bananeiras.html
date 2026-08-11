@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Como fazer bananeiras em escala HO — Manual de Construção da Ferrovia EFMN 74.">
+  <title>Como fazer bananeiras — EFMN 74</title>
+
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --paper: #fffdf8;
+      --ink: #222;
+      --muted: #68635a;
+      --dark: #151515;
+      --gold: #c89b2b;
+      --line: #ded7c8;
+      --link: #0056b3;
+      --max: 1000px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--dark);
+      color: white;
+      border-bottom: 4px solid var(--gold);
+    }
+
+    .header-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 18px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover { text-decoration: underline; }
+
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 34px 20px 60px;
+    }
+
+    .voltar-manual {
+      margin: 0 0 18px;
+    }
+
+    .voltar-manual a {
+      color: var(--link);
+      text-decoration: underline;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: 2rem;
+    }
+
+    .abertura {
+      margin: 0 0 32px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .manual-item {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin: 30px 0;
+    }
+
+    .manual-item.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .manual-foto {
+      width: 360px;
+      height: auto;
+      max-height: 300px;
+      object-fit: contain;
+      border-radius: 8px;
+      flex-shrink: 0;
+      display: block;
+    }
+
+    .manual-texto {
+      flex: 1;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .manual-texto p {
+      margin: 0 0 12px;
+    }
+
+    .manual-texto p:last-child {
+      margin-bottom: 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      text-align: center;
+      padding: 24px 20px 30px;
+      color: var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .footer-logo {
+      width: 105px;
+      max-width: 35vw;
+      height: auto;
+      display: block;
+      margin: 0 auto 10px;
+    }
+
+    .footer-linha1 {
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .footer-linha2 {
+      margin: 3px 0 0;
+    }
+
+    @media (max-width: 700px) {
+      .header-inner { display: block; }
+
+      nav { margin-top: 10px; }
+
+      nav a {
+        display: inline-block;
+        margin: 4px 12px 4px 0;
+      }
+
+      main { padding: 26px 16px 44px; }
+
+      h1 { font-size: 1.7rem; }
+
+      .manual-item,
+      .manual-item.reverse {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        margin: 26px 0 36px;
+      }
+
+      .manual-foto {
+        width: 100%;
+        height: auto;
+        max-height: none;
+        object-fit: contain;
+      }
+
+      .manual-texto,
+      .abertura {
+        font-size: 1.05rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">EFMN 74</div>
+
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="index.html#diario">Diário de Bordo</a>
+      <a href="manual-indice.html">Manual de Construção</a>
+      <a href="index.html#automacao">Automação</a>
+      <a href="index.html#memoria">Memória</a>
+      <a href="index.html#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <p class="voltar-manual">
+    <a href="manual-indice.html">← Voltar ao índice</a>
+  </p>
+
+  <h1>Como fazer bananeiras</h1>
+
+  <p class="abertura">
+    Uma maneira simples de fazer bananeiras em escala HO é utilizar folha aluminizada
+    para formar as folhas e um alfinete como estrutura central da planta. As folhas,
+    o tronco e a posição de cada bananeira podem variar, deixando o conjunto mais natural.
+  </p>
+
+  <!-- FOTO 1 -->
+  <div class="manual-item">
+    <img
+      src="bananeira-1.jpg"
+      alt="Recorte e modelagem de uma folha de bananeira em folha aluminizada"
+      class="manual-foto"
+      loading="lazy"
+    >
+    <div class="manual-texto">
+      <p>
+        Pinte a folha aluminizada dos dois lados com tinta Acrilex verde-clara,
+        sem diluente, e depois fixe a pintura com verniz acrílico à base de água.
+      </p>
+      <p>
+        Corte as folhas com aproximadamente 0,5 a 1 cm de largura e 3 a 6 cm de
+        comprimento. Alise cada peça, dobre-a ao meio para marcar a nervura central
+        e faça os frisos com um palito sobre uma bandeja de isopor.
+      </p>
+      <p>
+        Faça também dois ou três pequenos picotes de cada lado, imitando os rasgos
+        naturais das folhas de bananeira.
+      </p>
+    </div>
+  </div>
+
+  <!-- FOTO 2 -->
+  <div class="manual-item reverse">
+    <img
+      src="bananeira-2.jpg"
+      alt="Montagem das folhas da bananeira em torno de um alfinete"
+      class="manual-foto"
+      loading="lazy"
+    >
+    <div class="manual-texto">
+      <p>
+        Fure cada folha com um alfinete e vá montando o conjunto ao redor da haste,
+        distribuindo as folhas em diferentes direções.
+      </p>
+      <p>
+        Coloque cola no topo da montagem. Outra opção é cobrir a cabeça do alfinete
+        com pequenos restos de folhas e depois aplicar a cola.
+      </p>
+    </div>
+  </div>
+
+  <!-- FOTO 3 -->
+  <div class="manual-item">
+    <img
+      src="bananeira-3.jpg"
+      alt="Bananeira pronta com tronco revestido e folhas modeladas"
+      class="manual-foto"
+      loading="lazy"
+    >
+    <div class="manual-texto">
+      <p>
+        Faça o tronco envolvendo a haste com fita crepe. Pinte-o de verde e acrescente
+        alguns riscos em tom de cobre.
+      </p>
+      <p>
+        Deixe a maioria das folhas maiores voltada para cima, procurando reproduzir
+        a posição natural em direção à luz, e algumas folhas menores inclinadas para baixo.
+      </p>
+      <p>
+        Corte os troncos em diferentes comprimentos para que as bananeiras não fiquem
+        todas com a mesma altura.
+      </p>
+    </div>
+  </div>
+
+  <!-- FOTO 4 -->
+  <div class="manual-item reverse">
+    <img
+      src="bananeira-4.jpg"
+      alt="Bananal instalado na maquete junto à linha férrea"
+      class="manual-foto"
+      loading="lazy"
+    >
+    <div class="manual-texto">
+      <p>
+        Fure o local escolhido na maquete e fixe cada bananeira com cola.
+      </p>
+      <p>
+        No terreno abaixo do bananal, espalhe algumas folhas soltas em tons amarelados
+        e marrons, além de restos de grama e outros materiais, criando a aparência de
+        vegetação seca e sujeira acumulada no solo.
+      </p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="footer-logo">
+  <p class="footer-linha1">Ferrovia EFMN 74 - Escala HO</p>
+  <p class="footer-linha2">Construção, automação, memória e documentação</p>
+</footer>
+
+</body>
+</html>
+
