@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Índice da Galeria da Ferrovia EFMN 74 em escala HO.">
+  <title>Galeria — EFMN 74</title>
+
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --paper: #fffdf8;
+      --ink: #222;
+      --muted: #68635a;
+      --dark: #151515;
+      --gold: #c89b2b;
+      --line: #ded7c8;
+      --link: #0056b3;
+      --max: 1000px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--dark);
+      color: white;
+      border-bottom: 4px solid var(--gold);
+    }
+
+    .header-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 18px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 36px 20px 60px;
+    }
+
+    .voltar-inicio {
+      margin: 0 0 20px;
+    }
+
+    .voltar-inicio a {
+      color: var(--link);
+      text-decoration: underline;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 2.1rem;
+    }
+
+    .abertura {
+      margin: 0 0 30px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .indice {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 24px;
+    }
+
+    .indice h2 {
+      margin-top: 0;
+      margin-bottom: 18px;
+    }
+
+    .lista-assuntos {
+      display: grid;
+      gap: 12px;
+    }
+
+    .assunto-link {
+      display: block;
+      padding: 15px 17px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.05rem;
+      color: var(--link);
+      background: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .assunto-link:hover,
+    .assunto-link:focus {
+      text-decoration: underline;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      text-align: center;
+      padding: 24px 20px 30px;
+      color: var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .footer-logo {
+      width: 105px;
+      max-width: 35vw;
+      height: auto;
+      display: block;
+      margin: 0 auto 10px;
+    }
+
+    .footer-linha1 {
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .footer-linha2 {
+      margin: 3px 0 0;
+    }
+
+    @media (max-width: 700px) {
+      .header-inner {
+        display: block;
+      }
+
+      nav {
+        margin-top: 10px;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 4px 12px 4px 0;
+      }
+
+      main {
+        padding: 26px 16px 44px;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      .abertura {
+        font-size: 1.05rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">EFMN 74</div>
+
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="index.html#diario">Diário de Bordo</a>
+      <a href="manual-indice.html">Manual de Construção</a>
+      <a href="galeria-indice.html">Galeria</a>
+      <a href="index.html#automacao">Automação</a>
+      <a href="index.html#memoria">Memória</a>
+      <a href="index.html#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <p class="voltar-inicio">
+    <a href="index.html">← Voltar à página principal</a>
+  </p>
+
+  <h1>Galeria</h1>
+
+  <p class="abertura">
+    Nesta página estão reunidas imagens da Ferrovia EFMN 74, acompanhadas de textos
+    que registram detalhes da construção, dos cenários, das estruturas e da evolução
+    da maquete. Clique no título desejado para abrir a página correspondente.
+  </p>
+
+  <section class="indice">
+    <h2>Índice da Galeria</h2>
+
+    <div class="lista-assuntos">
+
+      <a class="assunto-link" href="viadutos-canion.html">
+        Viadutos sobre um cânion
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="footer-logo">
+  <p class="footer-linha1">Ferrovia EFMN 74 - Escala HO</p>
+  <p class="footer-linha2">Construção, automação, memória e documentação</p>
+</footer>
+
+</body>
+</html>
+
