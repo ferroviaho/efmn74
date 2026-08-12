@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Acionamento dos Desvios | Ferrovia EFMN 74</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f1e8;
+      color: #2d2d2d;
+      line-height: 1.7;
+    }
+
+    .pagina {
+      width: min(1000px, calc(100% - 32px));
+      margin: 32px auto;
+      background: #ffffff;
+      padding: 36px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      margin-top: 0;
+      color: #5a341f;
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+
+    h2 {
+      margin-top: 32px;
+      color: #70452b;
+      font-size: 1.35rem;
+    }
+
+    p {
+      margin: 0 0 18px;
+      font-size: 1.08rem;
+    }
+
+    ul {
+      margin: 0 0 20px 22px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 9px;
+      font-size: 1.05rem;
+    }
+
+    .destaque {
+      margin: 24px 0;
+      padding: 18px 20px;
+      background: #f7f1e8;
+      border-left: 5px solid #8a5a37;
+      border-radius: 6px;
+    }
+
+    .voltar {
+      display: inline-block;
+      margin-top: 30px;
+      color: #5a341f;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .voltar:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 42px;
+      padding-top: 28px;
+      border-top: 1px solid #d7d0c5;
+      text-align: center;
+    }
+
+    footer img {
+      width: 120px;
+      max-width: 40%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    footer p {
+      margin: 3px 0;
+      font-size: 0.95rem;
+      color: #5a5a5a;
+    }
+
+    @media (max-width: 700px) {
+      .pagina {
+        width: calc(100% - 20px);
+        margin: 10px auto;
+        padding: 24px 18px;
+      }
+
+      h1 {
+        font-size: 1.65rem;
+      }
+
+      h2 {
+        font-size: 1.25rem;
+      }
+
+      p,
+      li {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="pagina">
+
+    <h1>Acionamento dos Desvios</h1>
+
+    <p>
+      Na Ferrovia EFMN 74, o acionamento dos desvios está sendo padronizado para
+      simplificar a instalação elétrica, os testes, a automação e a manutenção futura.
+    </p>
+
+    <p>
+      Alguns desvios Frateschi ainda possuem o sistema original de acionamento por
+      bobinas. Embora esse sistema possa funcionar normalmente, ele exige uma forma de
+      comando diferente daquela utilizada nos demais desvios da ferrovia.
+    </p>
+
+    <h2>Padronização adotada</h2>
+
+    <p>
+      Nos desvios Frateschi que ainda possuem as bobinas originais, a orientação é
+      retirar essas bobinas e instalar o mesmo tipo de motor utilizado nos demais
+      desvios da EFMN 74.
+    </p>
+
+    <div class="destaque">
+      O objetivo não é alterar o desvio propriamente dito, mas padronizar apenas o seu
+      sistema de acionamento.
+    </div>
+
+    <h2>Por que retirar as bobinas</h2>
+
+    <p>
+      A utilização de um único padrão de acionamento traz várias vantagens para a
+      ferrovia:
+    </p>
+
+    <ul>
+      <li>simplifica a integração dos desvios com as ESP32;</li>
+      <li>reduz a quantidade de circuitos e componentes diferentes;</li>
+      <li>permite utilizar o mesmo padrão de ligação elétrica;</li>
+      <li>facilita os testes de bancada e os testes após a instalação;</li>
+      <li>simplifica a programação do sistema de controle;</li>
+      <li>facilita a manutenção futura;</li>
+      <li>reduz a variedade de peças de reposição que precisam ser mantidas.</li>
+    </ul>
+
+    <h2>Procedimento sugerido</h2>
+
+    <p>
+      Antes da instalação definitiva de cada desvio, verificar se ele ainda utiliza o
+      acionamento original por bobinas. Quando isso ocorrer, retirar cuidadosamente o
+      conjunto de bobinas e preparar o desvio para receber o motor padronizado.
+    </p>
+
+    <p>
+      Depois da adaptação, o conjunto deverá seguir o mesmo procedimento de testes dos
+      demais desvios: primeiro o motor isolado, depois os sensores e, finalmente, o
+      conjunto completo montado antes da instalação definitiva na ferrovia.
+    </p>
+
+    <h2>Peças retiradas</h2>
+
+    <p>
+      As bobinas retiradas não precisam ser descartadas. Elas podem ser identificadas e
+      guardadas para testes de bancada, experiências futuras ou eventual reposição.
+    </p>
+
+    <p>
+      O Protetor de Desvios Frateschi 5000 também pode ser preservado para testes ou
+      algum uso futuro, mesmo que deixe de ser necessário no sistema padronizado da
+      EFMN 74.
+    </p>
+
+    <h2>Resultado esperado</h2>
+
+    <p>
+      Ao final da padronização, todos os desvios passam a utilizar uma filosofia comum
+      de acionamento, ligação, comando e teste. Isso torna o sistema mais simples de
+      compreender e reduz diferenças entre regiões da ferrovia.
+    </p>
+
+    <p>
+      Em um projeto com vários desvios, sensores, gavetas de controle e duas ESP32,
+      essa uniformidade é importante para que futuras alterações e manutenções possam
+      ser realizadas com maior facilidade.
+    </p>
+
+    <a class="voltar" href="manual-indice.html">&larr; Voltar ao índice</a>
+
+    <footer>
+      <img src="logo-efmn74.PNG" alt="Logomarca Ferrovia EFMN 74">
+      <p>Ferrovia EFMN 74 - Escala HO</p>
+      <p>Construção, automação, memória e documentação</p>
+    </footer>
+
+  </main>
+</body>
+</html>
+
