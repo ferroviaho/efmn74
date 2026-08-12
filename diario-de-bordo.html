@@ -26,6 +26,25 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
 
+    .menu-topo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+      margin-bottom: 22px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #d8d8d8;
+    }
+
+    .menu-topo a {
+      color: #0b63c7;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .menu-topo a:hover {
+      text-decoration: underline;
+    }
+
     .topo {
       margin-bottom: 26px;
       padding-bottom: 18px;
@@ -36,7 +55,7 @@
       display: inline-block;
       margin-bottom: 16px;
       text-decoration: none;
-      color: #222;
+      color: #0b63c7;
       font-weight: bold;
     }
 
@@ -73,7 +92,7 @@
       display: inline-block;
       margin-top: 24px;
       text-decoration: none;
-      color: #222;
+      color: #0b63c7;
       font-weight: bold;
     }
 
@@ -120,6 +139,14 @@
 
   <div class="container">
     <main>
+
+      <nav class="menu-topo" aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="diario-de-bordo.html">Diário de Bordo</a>
+        <a href="manual-indice.html">Manual de Construção</a>
+        <a href="galeria-indice.html">Galeria</a>
+        <a href="onde-comprar.html">Onde Comprar</a>
+      </nav>
 
       <div class="topo">
         <a class="voltar-topo" href="index.html">← Voltar à página principal</a>
