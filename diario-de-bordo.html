@@ -3,131 +3,193 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diário de Bordo — Ferrovia EFMN 74</title>
+  <meta name="description" content="Diário de Bordo da Ferrovia EFMN 74 em escala HO.">
+  <title>Diário de Bordo — EFMN 74</title>
+
   <style>
+    :root {
+      --bg: #f4f1ea;
+      --ink: #222;
+      --muted: #68635a;
+      --dark: #151515;
+      --gold: #c89b2b;
+      --line: #ded7c8;
+      --link: #0056b3;
+      --max: 1000px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f4f4f4;
-      color: #222;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
       line-height: 1.6;
     }
 
-    .container {
-      max-width: 980px;
+    header {
+      background: var(--dark);
+      color: white;
+      border-bottom: 4px solid var(--gold);
+    }
+
+    .header-inner {
+      max-width: var(--max);
       margin: 0 auto;
-      padding: 20px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 18px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      text-decoration: underline;
     }
 
     main {
-      background: #ffffff;
-      padding: 28px 30px 22px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 36px 20px 60px;
     }
 
-    .topo {
-      margin-bottom: 26px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid #d8d8d8;
+    .voltar-inicio,
+    .voltar-final {
+      margin: 0 0 20px;
     }
 
-    .topo .voltar-topo {
-      display: inline-block;
-      margin-bottom: 16px;
-      text-decoration: none;
-      color: #222;
-      font-weight: bold;
+    .voltar-final {
+      margin-top: 30px;
     }
 
-    .topo h1 {
-      margin: 0 0 4px;
-      font-size: 2rem;
+    .voltar-inicio a,
+    .voltar-final a {
+      color: var(--link);
+      text-decoration: underline;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
     }
 
-    .topo p {
-      margin: 0;
-      color: #555;
+    h1 {
+      margin: 0 0 28px;
+      font-size: 2.1rem;
     }
 
     .intro {
       margin-bottom: 30px;
+      font-size: 1.1rem;
     }
 
     article {
       padding: 20px 0;
-      border-top: 1px solid #dddddd;
+      border-top: 1px solid var(--line);
     }
 
-    article:first-of-type {
-      border-top: none;
-      padding-top: 0;
-    }
-
-    h2 {
+    article h2 {
       margin-top: 0;
       font-size: 1.35rem;
     }
 
-    .voltar {
-      display: inline-block;
-      margin-top: 24px;
-      text-decoration: none;
-      color: #222;
-      font-weight: bold;
-    }
-
     footer {
+      border-top: 1px solid var(--line);
       text-align: center;
-      margin-top: 24px;
-      padding-top: 18px;
-      border-top: 1px solid #d8d8d8;
-      color: #444;
+      padding: 24px 20px 30px;
+      color: var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.9rem;
     }
 
-    footer img {
-      width: 82px;
+    .footer-logo {
+      width: 105px;
+      max-width: 35vw;
       height: auto;
       display: block;
-      margin: 0 auto 6px;
+      margin: 0 auto 10px;
     }
 
-    footer p {
+    .footer-linha1 {
       margin: 0;
-      line-height: 1.45;
+      font-weight: 600;
+    }
+
+    .footer-linha2 {
+      margin: 3px 0 0;
     }
 
     @media (max-width: 700px) {
-      .container {
-        padding: 18px 12px 30px;
+      .header-inner {
+        display: block;
+      }
+
+      nav {
+        margin-top: 10px;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 4px 12px 4px 0;
       }
 
       main {
-        padding: 20px 16px;
+        padding: 26px 16px 44px;
       }
 
-      .topo h1 {
-        font-size: 1.6rem;
+      h1 {
+        font-size: 1.75rem;
       }
 
-      h2 {
-        font-size: 1.2rem;
+      .intro {
+        font-size: 1.05rem;
       }
     }
   </style>
 </head>
+
 <body>
 
-  <div class="container">
-    <main>
+<header>
+  <div class="header-inner">
+    <div class="brand">EFMN 74</div>
 
-      <div class="topo">
-        <a class="voltar-topo" href="index.html">← Voltar à página principal</a>
-        <h1>Diário de Bordo</h1>
-        <p>Ferrovia EFMN 74</p>
-      </div>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="diario-de-bordo.html">Diário de Bordo</a>
+      <a href="index.html#documentacao">Documentação</a>
+      <a href="manual-indice.html">Manual de Construção</a>
+      <a href="galeria-indice.html">Galeria</a>
+      <a href="index.html#downloads">Downloads</a>
+    </nav>
+  </div>
+</header>
 
-      <div class="intro">
+<main>
+
+  <p class="voltar-inicio">
+    <a href="index.html">← Voltar à página principal</a>
+  </p>
+
+  <h1>Diário de Bordo</h1>
+
+<div class="intro">
         <p>
           Este Diário de Bordo registra, de forma resumida, a evolução da Ferrovia EFMN 74.
           Não pretende reproduzir todos os detalhes técnicos dos relatórios de trabalho,
@@ -350,8 +412,6 @@
       </article>
 
 
-      <!-- INÍCIO: NOVA ENTRADA DO DIÁRIO DE BORDO -->
-
       <article>
         <h2>12 de agosto de 2026</h2>
         <p>
@@ -365,20 +425,20 @@
         </p>
       </article>
 
-      <!-- COLE AQUI O PRÓXIMO NOVO TEXTO DO DIÁRIO DE BORDO -->
 
-      <!-- FIM: NOVA ENTRADA DO DIÁRIO DE BORDO -->
+  <!-- COLE AQUI O PRÓXIMO NOVO TEXTO DO DIÁRIO DE BORDO -->
 
-      <a class="voltar" href="index.html">← Voltar à página principal</a>
+  <p class="voltar-final">
+    <a href="index.html">← Voltar à página principal</a>
+  </p>
 
-      <footer>
-        <img src="logo-efmn74.PNG" alt="Logomarca Ferrovia EFMN 74">
-        <p>Ferrovia EFMN 74 - Escala HO</p>
-        <p>Construção, automação, memória e documentação</p>
-      </footer>
+</main>
 
-    </main>
-  </div>
+<footer>
+  <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="footer-logo">
+  <p class="footer-linha1">Ferrovia EFMN 74 - Escala HO</p>
+  <p class="footer-linha2">Construção, automação, memória e documentação</p>
+</footer>
 
 </body>
 </html>
