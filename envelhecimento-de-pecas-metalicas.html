@@ -30,7 +30,7 @@
       line-height: 1.6;
     }
 
-    header {
+    .site-header {
       background: var(--dark);
       color: white;
       border-bottom: 4px solid var(--gold);
@@ -40,15 +40,24 @@
     .header-inner {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 10px 20px 12px;
-      text-align: center;
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
     }
 
     .header-logo {
       width: 72px;
       height: auto;
       display: block;
-      margin: 0 auto 6px;
+      margin: 0;
+      flex: 0 0 auto;
+    }
+
+    .header-texto {
+      text-align: left;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     .header-linha1 {
@@ -151,7 +160,8 @@
 
     @media (max-width: 700px) {
       .header-inner {
-        padding: 8px 14px 10px;
+        padding: 8px 14px;
+        gap: 12px;
       }
 
       .header-logo {
@@ -198,11 +208,18 @@
 
 <body>
 
-<header>
+<header class="site-header">
   <div class="header-inner">
-    <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo">
-    <p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p>
-    <p class="header-linha2">Construção, automação, memória e documentação</p>
+    <img
+      src="logo-efmn74.PNG"
+      alt="Logomarca da Ferrovia EFMN 74"
+      class="header-logo"
+    >
+
+    <div class="header-texto">
+      <p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p>
+      <p class="header-linha2">Construção, automação, memória e documentação</p>
+    </div>
   </div>
 </header>
 
