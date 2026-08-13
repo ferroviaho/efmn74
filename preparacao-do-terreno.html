@@ -11,9 +11,10 @@
       --bg: #f4f1ea;
       --paper: #fffdf8;
       --ink: #222;
-      --muted: #68635a;
-      --line: #ded7c8;
+      --dark: #151515;
+      --gold: #c89b2b;
       --blue: #0056b3;
+      --line: #ded7c8;
       --max: 1000px;
     }
 
@@ -25,6 +26,44 @@
       color: var(--ink);
       font-family: Arial, Helvetica, sans-serif;
       line-height: 1.6;
+    }
+
+    header {
+      background: var(--dark);
+      color: white;
+      border-bottom: 4px solid var(--gold);
+    }
+
+    .header-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .header-logo {
+      width: 72px;
+      height: auto;
+      display: block;
+      margin: 0;
+      flex: 0 0 auto;
+    }
+
+    .header-texto { text-align: left; }
+
+    .header-linha1 {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .header-linha2 {
+      margin: 2px 0 0;
+      font-size: 0.9rem;
+      color: #d8d8d8;
     }
 
     main { width: 100%; }
@@ -89,29 +128,16 @@
 
     .manual-texto p { margin: 0; }
 
-    .rodape-efmn {
-      max-width: var(--max);
-      margin: 36px auto 24px;
-      padding: 24px 18px 10px;
-      text-align: center;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-    }
-
-    .rodape-efmn img {
-      width: 120px;
-      max-width: 40vw;
-      height: auto;
-      display: block;
-      margin: 0 auto 10px;
-    }
-
-    .rodape-efmn p {
-      margin: 2px 0;
-      font-size: 0.95rem;
-    }
-
     @media (max-width: 700px) {
+      .header-inner {
+        padding: 8px 14px;
+        gap: 12px;
+      }
+
+      .header-logo { width: 62px; }
+      .header-linha1 { font-size: 0.9rem; }
+      .header-linha2 { font-size: 0.82rem; }
+
       .preparacao-terreno {
         margin: 0;
         padding: 22px 18px;
@@ -138,95 +164,77 @@
       }
 
       .manual-texto { width: 100%; }
-
-      .rodape-efmn { margin-top: 26px; }
     }
   </style>
 </head>
 
 <body>
-  <main>
-    <section class="preparacao-terreno" id="preparacao-terreno">
 
-      <p class="voltar-manual">
-        <a href="manual-indice.html">← Voltar ao índice</a>
-      </p>
+<header>
+  <div class="header-inner">
+    <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo">
+    <div class="header-texto">
+      <p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p>
+      <p class="header-linha2">Construção, automação, memória e documentação</p>
+    </div>
+  </div>
+</header>
 
-      <h1>Preparação do Terreno</h1>
+<main>
+  <section class="preparacao-terreno" id="preparacao-terreno">
 
-      <p class="terreno-abertura">
-        A aparência do terreno é uma das partes que mais contribuem para o realismo de uma
-        maquete ferroviária. Neste trabalho, procurei utilizar materiais simples e de fácil
-        obtenção para criar uma base que pudesse receber posteriormente a vegetação, as árvores
-        e outros elementos da paisagem. As fotografias a seguir mostram as principais etapas
-        do trabalho.
-      </p>
+    <p class="voltar-manual">
+      <a href="manual-indice.html">← Voltar ao índice</a>
+    </p>
 
-      <!-- FOTO 1: esquerda / texto direita -->
-      <div class="manual-item">
-        <img
-          src="terreno-1.jpg"
-          alt="Base do terreno preparada com areia e rejunte marrom"
-          class="manual-foto"
-          loading="lazy"
-        >
+    <h1>Preparação do Terreno</h1>
 
-        <div class="manual-texto">
-          <p>
-            Esta base do terreno foi feita misturando areia e rejunte marrom, usado para
-            assentar cerâmicas, em partes iguais e água. Jogue vagarosamente a mistura no
-            local escolhido e deixe secar. Para acelerar esta secagem, usei um ventilador.
-          </p>
-        </div>
+    <p class="terreno-abertura">
+      A aparência do terreno é uma das partes que mais contribuem para o realismo de uma
+      maquete ferroviária. Neste trabalho, procurei utilizar materiais simples e de fácil
+      obtenção para criar uma base que pudesse receber posteriormente a vegetação, as árvores
+      e outros elementos da paisagem. As fotografias a seguir mostram as principais etapas
+      do trabalho.
+    </p>
+
+    <div class="manual-item">
+      <img src="terreno-1.jpg" alt="Base do terreno preparada com areia e rejunte marrom" class="manual-foto" loading="lazy">
+      <div class="manual-texto">
+        <p>
+          Esta base do terreno foi feita misturando areia e rejunte marrom, usado para
+          assentar cerâmicas, em partes iguais, e água. Jogue vagarosamente a mistura no
+          local escolhido e deixe secar. Para acelerar esta secagem, usei um ventilador.
+        </p>
       </div>
+    </div>
 
-      <!-- FOTO 2: direita / texto esquerda -->
-      <div class="manual-item reverse">
-        <img
-          src="terreno-2.jpg"
-          alt="Furos preparados para a fixação das árvores"
-          class="manual-foto"
-          loading="lazy"
-        >
-
-        <div class="manual-texto">
-          <p>
-            Após a secagem, fure no local onde serão fixadas as árvores e proteja os furos
-            com fita crepe acima e embaixo da mesa. Acima, para evitar que os furos fiquem
-            entupidos quando aplicar a grama, que foi feita com serragem verde. Abaixo, para
-            que a cola que será aplicada para fixar os caules não pingue no chão.
-          </p>
-        </div>
+    <div class="manual-item reverse">
+      <img src="terreno-2.jpg" alt="Furos preparados para a fixação das árvores" class="manual-foto" loading="lazy">
+      <div class="manual-texto">
+        <p>
+          Após a secagem, fure no local onde serão fixadas as árvores e proteja os furos
+          com fita crepe acima e embaixo da mesa. Acima, para evitar que os furos fiquem
+          entupidos quando aplicar a grama, que foi feita com serragem verde. Abaixo, para
+          que a cola que será aplicada para fixar os caules não pingue no chão.
+        </p>
       </div>
+    </div>
 
-      <!-- FOTO 3: esquerda / texto direita -->
-      <div class="manual-item">
-        <img
-          src="terreno-3.jpg"
-          alt="Terreno finalizado com grama, vegetação e árvores"
-          class="manual-foto"
-          loading="lazy"
-        >
-
-        <div class="manual-texto">
-          <p>
-            Passe cola branca no terreno, exceto abaixo das árvores, onde sua sombra não
-            deixa a grama crescer. Espalhe a serragem verde sobre a cola e aperte com uma
-            bucha de cozinha. Depois de seco, espalhe galhos secos, musgo e capim
-            (veja como fazer). Fixe as árvores. Veja na foto como ficou real?
-          </p>
-        </div>
+    <div class="manual-item">
+      <img src="terreno-3.jpg" alt="Terreno finalizado com grama, vegetação e árvores" class="manual-foto" loading="lazy">
+      <div class="manual-texto">
+        <p>
+          Passe cola branca no terreno, exceto abaixo das árvores, onde sua sombra não
+          deixa a grama crescer. Espalhe a serragem verde sobre a cola e aperte com uma
+          bucha de cozinha. Depois de seco, espalhe galhos secos, musgo e capim
+          (veja como fazer). Fixe as árvores. Veja na foto como ficou real?
+        </p>
       </div>
+    </div>
 
-    </section>
-  </main>
+  </section>
+</main>
 
-  <footer class="rodape-efmn">
-    <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74">
-    <p>Ferrovia EFMN 74 - Escala HO</p>
-    <p>Construção, automação, memória e documentação</p>
-  </footer>
 </body>
 </html>
-
 
