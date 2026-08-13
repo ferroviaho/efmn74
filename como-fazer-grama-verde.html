@@ -5,255 +5,131 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Como fazer grama verde em escala HO - Manual de Construção da Ferrovia EFMN 74.">
   <title>Como fazer grama verde | Ferrovia EFMN 74</title>
-
   <style>
-    :root {
-      --bg: #f4f1ea;
-      --paper: #fffdf8;
-      --ink: #222;
-      --muted: #68635a;
-      --line: #ded7c8;
-      --blue: #0056b3;
-      --max: 1000px;
-    }
+    :root { --bg:#f4f1ea; --paper:#fffdf8; --ink:#222; --dark:#151515; --gold:#c89b2b; --blue:#0056b3; --line:#ded7c8; --max:1000px; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:Arial,Helvetica,sans-serif; line-height:1.6; }
 
-    * {
-      box-sizing: border-box;
-    }
+    .site-header { background:var(--dark); color:#fff; border-bottom:4px solid var(--gold); border-radius:0; }
+    .header-inner { max-width:var(--max); margin:0 auto; padding:8px 20px; display:flex; align-items:center; justify-content:center; gap:16px; }
+    .header-logo { width:72px; height:auto; display:block; margin:0; flex:0 0 auto; }
+    .header-texto { text-align:left; font-family:Arial,Helvetica,sans-serif; }
+    .header-linha1 { margin:0; font-size:.95rem; font-weight:600; }
+    .header-linha2 { margin:2px 0 0; font-size:.9rem; color:#d8d8d8; }
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.6;
-    }
+    main { width:100%; }
+    .grama-verde { max-width:var(--max); margin:30px auto; padding:30px 24px; background:var(--paper); border:1px solid var(--line); border-radius:10px; }
+    .voltar-manual { margin:0 0 18px; }
+    .voltar-manual a { color:var(--blue); text-decoration:underline; font-size:1rem; font-weight:600; }
+    .voltar-manual a:hover { text-decoration:none; }
+    .grama-verde h1 { margin:0 0 14px; font-size:2rem; line-height:1.2; color:var(--ink); }
+    .abertura { margin:0 0 30px; font-size:1.1rem; color:var(--ink); }
 
-    main {
-      width: 100%;
-    }
+    .manual-item { display:flex; align-items:flex-start; gap:28px; margin:28px 0; }
+    .manual-foto { width:360px; height:auto; max-height:440px; object-fit:contain; border-radius:8px; flex-shrink:0; display:block; }
+    .manual-texto { flex:1; font-size:1.1rem; color:var(--ink); }
+    .manual-texto p { margin:0; }
+    .manual-texto p + p { margin-top:18px; }
 
-    .grama-verde {
-      max-width: var(--max);
-      margin: 30px auto;
-      padding: 30px 24px;
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-    }
+    .texto-horizontal { width:100%; margin:30px 0; font-size:1.1rem; color:var(--ink); }
+    .texto-horizontal p { margin:0; }
+    .texto-horizontal p + p { margin-top:18px; }
 
-    .voltar-manual {
-      margin: 0 0 18px;
-    }
+    @media (max-width:700px) {
+      .header-inner { padding:8px 14px; gap:12px; }
+      .header-logo { width:62px; }
+      .header-linha1 { font-size:.9rem; }
+      .header-linha2 { font-size:.82rem; }
 
-    .voltar-manual a {
-      color: var(--blue);
-      text-decoration: underline;
-      font-size: 1rem;
-      font-weight: 600;
-    }
+      .grama-verde { margin:0; padding:22px 18px; border-left:0; border-right:0; border-radius:0; }
+      .grama-verde h1 { font-size:1.65rem; }
 
-    .voltar-manual a:hover {
-      text-decoration: none;
-    }
-
-    .grama-verde h1 {
-      margin: 0 0 14px;
-      font-size: 2rem;
-      line-height: 1.2;
-      color: var(--ink);
-    }
-
-    .abertura {
-      margin: 0 0 30px;
-      font-size: 1.1rem;
-      color: var(--ink);
-    }
-
-    .manual-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 28px;
-      margin: 28px 0;
-    }
-
-    .manual-foto {
-      width: 360px;
-      height: auto;
-      max-height: 440px;
-      object-fit: contain;
-      border-radius: 8px;
-      flex-shrink: 0;
-      display: block;
-    }
-
-    .manual-texto {
-      flex: 1;
-      font-size: 1.1rem;
-      color: var(--ink);
-    }
-
-    .manual-texto p {
-      margin: 0;
-    }
-
-    .manual-texto p + p {
-      margin-top: 18px;
-    }
-
-    .texto-horizontal {
-      width: 100%;
-      margin: 30px 0;
-      font-size: 1.1rem;
-      color: var(--ink);
-    }
-
-    .texto-horizontal p {
-      margin: 0;
-    }
-
-    .texto-horizontal p + p {
-      margin-top: 18px;
-    }
-
-    .rodape-efmn {
-      max-width: var(--max);
-      margin: 36px auto 24px;
-      padding: 24px 18px 10px;
-      text-align: center;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-    }
-
-    .rodape-efmn img {
-      width: 120px;
-      max-width: 40vw;
-      height: auto;
-      display: block;
-      margin: 0 auto 10px;
-    }
-
-    .rodape-efmn p {
-      margin: 2px 0;
-      font-size: 0.95rem;
-    }
-
-    @media (max-width: 700px) {
-      .grama-verde {
-        margin: 0;
-        padding: 22px 18px;
-        border-left: 0;
-        border-right: 0;
-        border-radius: 0;
-      }
-
-      .grama-verde h1 {
-        font-size: 1.65rem;
-      }
-
-      .manual-item {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 16px;
-        margin: 24px 0 34px;
-      }
-
-      .manual-foto {
-        width: 100%;
-        max-height: none;
-      }
-
-      .manual-texto,
-      .texto-horizontal,
-      .abertura {
-        font-size: 1.05rem;
-      }
-
-      .rodape-efmn {
-        margin-top: 26px;
-      }
+      .manual-item { flex-direction:column; align-items:stretch; gap:16px; margin:24px 0 34px; }
+      .manual-foto { width:100%; max-height:none; }
+      .manual-texto, .texto-horizontal, .abertura { font-size:1.05rem; }
     }
   </style>
 </head>
 
 <body>
-  <main>
-    <section class="grama-verde" id="grama-verde">
 
-      <p class="voltar-manual">
-        <a href="manual-indice.html">← Voltar ao índice</a>
-      </p>
+<header class="site-header">
+  <div class="header-inner">
+    <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo">
+    <div class="header-texto">
+      <p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p>
+      <p class="header-linha2">Construção, automação, memória e documentação</p>
+    </div>
+  </div>
+</header>
 
-      <h1>Como fazer grama verde</h1>
+<main>
+  <section class="grama-verde" id="grama-verde">
 
-      <p class="abertura">
-        Uma maneira simples e econômica de produzir grama para a maquete é utilizar serragem
-        bem peneirada e tingida. Com peneiras de tamanhos diferentes, também é possível obter
-        materiais com texturas variadas para diferentes aplicações.
-      </p>
+    <p class="voltar-manual">
+      <a href="manual-indice.html">← Voltar ao índice</a>
+    </p>
 
-      <div class="manual-item">
-        <img
-          src="grama-verde.jpg"
-          alt="Serragem tingida de verde utilizada para representar grama na maquete"
-          class="manual-foto"
-          loading="lazy"
-        >
+    <h1>Como fazer grama verde</h1>
 
-        <div class="manual-texto">
-          <p>
-            Para fazer a grama utilizada na maquete, comecei peneirando a serragem com uma
-            peneira bem fina.
-          </p>
+    <p class="abertura">
+      Uma maneira simples e econômica de produzir grama para a maquete é utilizar serragem
+      bem peneirada e tingida. Com peneiras de tamanhos diferentes, também é possível obter
+      materiais com texturas variadas para diferentes aplicações.
+    </p>
 
-          <p>
-            A serragem que passou pela peneira ficou reservada para representar a grama mais
-            baixa e uniforme. A parte mais grossa foi peneirada novamente, desta vez com uma
-            peneira um pouco maior.
-          </p>
+    <div class="manual-item">
+      <img src="grama-verde.jpg" alt="Serragem tingida de verde utilizada para representar grama na maquete" class="manual-foto" loading="lazy">
 
-          <p>
-            Dessa forma, obtive dois tipos de material: uma serragem bem fina, usada como grama,
-            e outra um pouco mais grossa, adequada para aplicação na base das árvores, junto aos
-            mourões das cercas e em outros pontos onde seja desejada uma vegetação mais irregular.
-          </p>
-        </div>
-      </div>
-
-      <div class="texto-horizontal">
+      <div class="manual-texto">
         <p>
-          Para tingir a serragem, coloque em um copo uma colher de chá de tinta PVA na cor
-          verde-claro. Também podem ser usadas tinta para tecido ou anilina, sendo esta última
-          a opção que apresenta melhor resultado.
+          Para fazer a grama utilizada na maquete, comecei peneirando a serragem com uma
+          peneira bem fina.
         </p>
 
         <p>
-          Acrescente aproximadamente um dedo de álcool 70%. Se disponível, o álcool 90% é
-          preferível.
+          A serragem que passou pela peneira ficou reservada para representar a grama mais
+          baixa e uniforme. A parte mais grossa foi peneirada novamente, desta vez com uma
+          peneira um pouco maior.
         </p>
 
         <p>
-          Coloque uma quantidade de serragem no copo e misture bem. Se necessário, acrescente
-          mais tinta e álcool aos poucos, até que toda a serragem fique uniformemente tingida.
-        </p>
-
-        <p>
-          Depois de bem misturada, espalhe a serragem e deixe secar ao sol.
-        </p>
-
-        <p>
-          Quando estiver completamente seca, a grama estará pronta para ser aplicada na maquete.
+          Dessa forma, obtive dois tipos de material: uma serragem bem fina, usada como grama,
+          e outra um pouco mais grossa, adequada para aplicação na base das árvores, junto aos
+          mourões das cercas e em outros pontos onde seja desejada uma vegetação mais irregular.
         </p>
       </div>
+    </div>
 
-    </section>
-  </main>
+    <div class="texto-horizontal">
+      <p>
+        Para tingir a serragem, coloque em um copo uma colher de chá de tinta PVA na cor
+        verde-claro. Também podem ser usadas tinta para tecido ou anilina, sendo esta última
+        a opção que apresenta melhor resultado.
+      </p>
 
-  <footer class="rodape-efmn">
-    <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74">
-    <p>Ferrovia EFMN 74 - Escala HO</p>
-    <p>Construção, automação, memória e documentação</p>
-  </footer>
+      <p>
+        Acrescente aproximadamente um dedo de álcool 70%. Se disponível, o álcool 90% é
+        preferível.
+      </p>
+
+      <p>
+        Coloque uma quantidade de serragem no copo e misture bem. Se necessário, acrescente
+        mais tinta e álcool aos poucos, até que toda a serragem fique uniformemente tingida.
+      </p>
+
+      <p>
+        Depois de bem misturada, espalhe a serragem e deixe secar ao sol.
+      </p>
+
+      <p>
+        Quando estiver completamente seca, a grama estará pronta para ser aplicada na maquete.
+      </p>
+    </div>
+
+  </section>
+</main>
+
 </body>
 </html>
 
