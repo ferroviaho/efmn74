@@ -39,15 +39,30 @@
     .header-inner {
       width: 100%;
       margin: 0;
-      padding: 18px 20px;
+      padding: 18px 20px 20px;
       box-sizing: border-box;
       text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
-    .brand {
-      font-size: 1.45rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
+    .header-logo {
+      width: 105px;
+      max-width: 35vw;
+      height: auto;
+      display: block;
+      margin: 0 auto 10px;
+    }
+
+    .header-linha1 {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .header-linha2 {
+      margin: 3px 0 0;
+      font-size: 0.9rem;
+      color: #d8d8d8;
     }
 
     main {
@@ -144,7 +159,9 @@
 
 <header>
   <div class="header-inner">
-    <div class="brand">EFMN 74</div>
+    <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo">
+    <p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p>
+    <p class="header-linha2">Construção, automação, memória e documentação</p>
   </div>
 </header>
 
