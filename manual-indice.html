@@ -40,29 +40,36 @@
     .header-inner {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 18px 20px;
+      padding: 8px 20px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand {
-      font-size: 1.45rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 18px;
+      justify-content: center;
+      gap: 16px;
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.95rem;
     }
 
-    nav a:hover {
-      text-decoration: underline;
+    .header-logo {
+      width: 72px;
+      height: auto;
+      display: block;
+      margin: 0;
+      flex: 0 0 auto;
+    }
+
+    .header-texto {
+      text-align: left;
+    }
+
+    .header-linha1 {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .header-linha2 {
+      margin: 2px 0 0;
+      font-size: 0.9rem;
+      color: #d8d8d8;
     }
 
     main {
@@ -128,7 +135,8 @@
       font-weight: 600;
     }
 
-    .assunto-link:hover {
+    .assunto-link:hover,
+    .assunto-link:focus {
       text-decoration: underline;
     }
 
@@ -137,27 +145,22 @@
       background: #f7f4ed;
     }
 
-    footer {
-      border-top: 1px solid var(--line);
-      text-align: center;
-      padding: 24px 20px;
-      color: var(--muted);
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.9rem;
-    }
-
     @media (max-width: 700px) {
       .header-inner {
-        display: block;
+        padding: 8px 14px;
+        gap: 12px;
       }
 
-      nav {
-        margin-top: 10px;
+      .header-logo {
+        width: 62px;
       }
 
-      nav a {
-        display: inline-block;
-        margin: 4px 12px 4px 0;
+      .header-linha1 {
+        font-size: 0.9rem;
+      }
+
+      .header-linha2 {
+        font-size: 0.82rem;
       }
 
       main {
@@ -172,16 +175,6 @@
         font-size: 1.05rem;
       }
     }
-  .footer-logo {
-width: 90px;
-height: auto;
-display: block;
-margin: 0 auto 10px;
-}
-
-footer p {
-margin: 3px 0;
-}
   </style>
 </head>
 
@@ -189,15 +182,11 @@ margin: 3px 0;
 
 <header>
   <div class="header-inner">
-    <div class="brand">EFMN 74</div>
-
-    <nav>
-      <a href="index.html">Início</a>
-      <a href="index.html#diario">Diário de Bordo</a>
-      <a href="index.html#documentacao">Documentação</a>
-      <a href="manual-indice.html">Manual de Construção</a>
-      <a href="index.html#galeria">Galeria</a>
-    </nav>
+    <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo">
+    <div class="header-texto">
+      <p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p>
+      <p class="header-linha2">Construção, automação, memória e documentação</p>
+    </div>
   </div>
 </header>
 
@@ -223,40 +212,42 @@ margin: 3px 0;
         Como fazer um telhado de zinco
       </a>
 
-    <a class="assunto-link" href="preparacao-do-terreno.html">
-Preparação do terreno
-</a>
-<a class="assunto-link" href="envelhecimento-de-pecas-metalicas.html">
-Envelhecimento de peças metálicas
-</a>
+      <a class="assunto-link" href="preparacao-do-terreno.html">
+        Preparação do terreno
+      </a>
+
+      <a class="assunto-link" href="envelhecimento-de-pecas-metalicas.html">
+        Envelhecimento de peças metálicas
+      </a>
+
       <a class="assunto-link" href="como-fazer-grama-verde.html">
-Como fazer grama verde
-</a>
-    <a class="assunto-link" href="assentamento-de-trilhos.html">
-Assentamento de trilhos
-</a>
+        Como fazer grama verde
+      </a>
 
-        <a class="assunto-link" href="como-fazer-capim.html">
-Como fazer capim
-</a>
+      <a class="assunto-link" href="assentamento-de-trilhos.html">
+        Assentamento de trilhos
+      </a>
 
-<a class="assunto-link" href="curral.html">
-Preparação do piso do curral
-</a>
+      <a class="assunto-link" href="como-fazer-capim.html">
+        Como fazer capim
+      </a>
 
-<a class="assunto-link" href="bananeiras.html">
-Como fazer bananeiras
-</a>
-      
+      <a class="assunto-link" href="curral.html">
+        Preparação do piso do curral
+      </a>
 
-<a class="assunto-link" href="onde-comprar.html">
-Onde comprar
-</a>
+      <a class="assunto-link" href="bananeiras.html">
+        Como fazer bananeiras
+      </a>
+
+      <a class="assunto-link" href="onde-comprar.html">
+        Onde comprar
+      </a>
 
       <a class="assunto-link" href="cabine-de-sinalizacao.html">
-Posição de uma cabine de sinalização
-</a>
-      
+        Posição de uma cabine de sinalização
+      </a>
+
       <div class="assunto-pendente">
         Viadutos — em preparação
       </div>
@@ -264,22 +255,15 @@ Posição de uma cabine de sinalização
       <div class="assunto-pendente">
         Edificações — em preparação
       </div>
-      
-<a class="assunto-link" href="acionamento-desvios.html">
-       Acionamento dos desvios
+
+      <a class="assunto-link" href="acionamento-desvios.html">
+        Acionamento dos desvios
       </a>
+
     </div>
-    
   </section>
 
 </main>
-
-<footer>
-<img src="logo-efmn74.PNG" alt="Logomarca EFMN 74" class="footer-logo">
-
-<p>Ferrovia EFMN 74 - Escala HO</p>
-<p>Construção, automação, memória e documentação</p>
-</footer>
 
 </body>
 </html>
