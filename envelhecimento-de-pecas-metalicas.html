@@ -5,127 +5,289 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Envelhecimento de peças metálicas em escala HO - Manual de Construção da Ferrovia EFMN 74.">
   <title>Envelhecimento de peças metálicas | Ferrovia EFMN 74</title>
+
   <style>
     :root {
-      --bg:#f4f1ea; --paper:#fffdf8; --ink:#222; --line:#ded7c8;
-      --blue:#0056b3; --dark:#151515; --gold:#c89b2b; --max:1000px;
+      --bg: #f4f1ea;
+      --paper: #fffdf8;
+      --ink: #222;
+      --dark: #151515;
+      --gold: #c89b2b;
+      --blue: #0056b3;
+      --line: #ded7c8;
+      --max: 1000px;
     }
-    * { box-sizing:border-box; }
-    body { margin:0; background:var(--bg); color:var(--ink); font-family:Arial,Helvetica,sans-serif; line-height:1.6; }
 
-    header { background:var(--dark); color:#fff; border-bottom:4px solid var(--gold); }
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--dark);
+      color: white;
+      border-bottom: 4px solid var(--gold);
+      border-radius: 0;
+    }
+
     .header-inner {
-      max-width:var(--max); margin:0 auto; padding:8px 20px;
-      display:flex; align-items:center; justify-content:center; gap:16px;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 10px 20px 12px;
+      text-align: center;
     }
-    .header-logo { width:72px; height:auto; display:block; flex:0 0 auto; }
-    .header-texto { text-align:left; }
-    .header-linha1 { margin:0; font-size:.95rem; font-weight:600; }
-    .header-linha2 { margin:2px 0 0; font-size:.9rem; color:#d8d8d8; }
 
-    main { width:100%; }
+    .header-logo {
+      width: 72px;
+      height: auto;
+      display: block;
+      margin: 0 auto 6px;
+    }
+
+    .header-linha1 {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .header-linha2 {
+      margin: 2px 0 0;
+      font-size: 0.9rem;
+      color: #d8d8d8;
+    }
+
+    main {
+      width: 100%;
+    }
+
     .envelhecimento-metal {
-      max-width:var(--max); margin:30px auto; padding:30px 24px;
-      background:var(--paper); border:1px solid var(--line); border-radius:10px;
+      max-width: var(--max);
+      margin: 30px auto;
+      padding: 30px 24px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
     }
-    .voltar-manual { margin:0 0 18px; }
-    .voltar-manual a { color:var(--blue); text-decoration:underline; font-size:1rem; font-weight:600; }
-    .voltar-manual a:hover { text-decoration:none; }
-    .envelhecimento-metal h1 { margin:0 0 14px; font-size:2rem; line-height:1.2; }
-    .abertura { margin:0 0 30px; font-size:1.1rem; }
-    .manual-item { display:flex; align-items:flex-start; gap:28px; margin:28px 0; }
-    .manual-foto {
-      width:360px; height:auto; max-height:440px; object-fit:contain;
-      border-radius:8px; flex-shrink:0; display:block;
-    }
-    .manual-texto { flex:1; font-size:1.1rem; }
-    .manual-texto h2 { margin:0 0 10px; font-size:1.25rem; line-height:1.3; }
-    .manual-texto p { margin:0; }
-    .manual-texto p + p, .manual-texto h2:not(:first-child) { margin-top:18px; }
 
-    @media (max-width:700px) {
-      .header-inner { padding:8px 14px; gap:12px; }
-      .header-logo { width:62px; }
-      .header-linha1 { font-size:.9rem; }
-      .header-linha2 { font-size:.82rem; }
-      .envelhecimento-metal {
-        margin:0; padding:22px 18px; border-left:0; border-right:0; border-radius:0;
+    .voltar-manual {
+      margin: 0 0 18px;
+    }
+
+    .voltar-manual a {
+      color: var(--blue);
+      text-decoration: underline;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .voltar-manual a:hover {
+      text-decoration: none;
+    }
+
+    .envelhecimento-metal h1 {
+      margin: 0 0 14px;
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+
+    .abertura {
+      margin: 0 0 30px;
+      font-size: 1.1rem;
+    }
+
+    .primeiro-bloco {
+      display: flex;
+      align-items: flex-start;
+      gap: 28px;
+      margin: 28px 0 34px;
+    }
+
+    .manual-foto {
+      width: 360px;
+      height: auto;
+      max-height: 440px;
+      object-fit: contain;
+      border-radius: 8px;
+      flex-shrink: 0;
+      display: block;
+    }
+
+    .item-1 {
+      flex: 1;
+      font-size: 1.1rem;
+    }
+
+    .item-1 h2,
+    .bloco-horizontal h2 {
+      margin: 0 0 10px;
+      font-size: 1.25rem;
+      line-height: 1.3;
+    }
+
+    .item-1 p,
+    .bloco-horizontal p {
+      margin: 0;
+    }
+
+    .item-1 p + p,
+    .bloco-horizontal p + p {
+      margin-top: 18px;
+    }
+
+    .bloco-horizontal {
+      width: 100%;
+      padding-top: 24px;
+      margin-top: 24px;
+      border-top: 1px solid var(--line);
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 700px) {
+      .header-inner {
+        padding: 8px 14px 10px;
       }
-      .envelhecimento-metal h1 { font-size:1.65rem; }
-      .manual-item { flex-direction:column; align-items:stretch; gap:16px; margin:24px 0 34px; }
-      .manual-foto { width:100%; max-height:none; }
-      .manual-texto { width:100%; }
+
+      .header-logo {
+        width: 62px;
+      }
+
+      .header-linha1 {
+        font-size: 0.9rem;
+      }
+
+      .header-linha2 {
+        font-size: 0.82rem;
+      }
+
+      .envelhecimento-metal {
+        margin: 0;
+        padding: 22px 18px;
+        border-left: 0;
+        border-right: 0;
+        border-radius: 0;
+      }
+
+      .envelhecimento-metal h1 {
+        font-size: 1.65rem;
+      }
+
+      .primeiro-bloco {
+        flex-direction: column;
+        gap: 16px;
+        margin: 24px 0 34px;
+      }
+
+      .manual-foto {
+        width: 100%;
+        max-height: none;
+      }
+
+      .item-1 {
+        width: 100%;
+      }
     }
   </style>
 </head>
+
 <body>
 
 <header>
   <div class="header-inner">
     <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo">
-    <div class="header-texto">
-      <p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p>
-      <p class="header-linha2">Construção, automação, memória e documentação</p>
-    </div>
+    <p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p>
+    <p class="header-linha2">Construção, automação, memória e documentação</p>
   </div>
 </header>
 
 <main>
   <section class="envelhecimento-metal" id="envelhecimento-metal">
-    <p class="voltar-manual"><a href="manual-indice.html">← Voltar ao índice</a></p>
+
+    <p class="voltar-manual">
+      <a href="manual-indice.html">← Voltar ao índice</a>
+    </p>
+
     <h1>Envelhecimento de peças metálicas</h1>
+
     <p class="abertura">
       O envelhecimento de peças metálicas pode produzir um efeito bastante realista,
       reproduzindo tinta descascada, áreas oxidadas e ferrugem acumulada pelo tempo.
     </p>
 
-    <div class="manual-item">
-      <img src="Corrosao.jpg" alt="Peça metálica envelhecida com tinta descascada e áreas de ferrugem" class="manual-foto" loading="lazy">
+    <div class="primeiro-bloco">
+      <img
+        src="Corrosao.jpg"
+        alt="Peça metálica envelhecida com tinta descascada e áreas de ferrugem"
+        class="manual-foto"
+        loading="lazy"
+      >
 
-      <div class="manual-texto">
+      <div class="item-1">
         <h2>1. Para enrugar e descascar a tinta</h2>
-        <p>Use um removedor de tinta, como Pintoff, Maxi Rubber, Stripe ou produto semelhante.</p>
+
+        <p>
+          Use um removedor de tinta, como Pintoff, Maxi Rubber, Stripe ou produto semelhante.
+        </p>
+
         <p>
           Em vez de aplicar o removedor e raspar toda a tinta imediatamente, como seria feito
           em uma restauração convencional, aplique o produto com um pincel apenas em algumas
           áreas da peça.
         </p>
+
         <p>
           Deixe o produto agir por alguns minutos, até a tinta começar a formar bolhas e
           enrugar. Quando atingir o efeito visual desejado, interrompa a ação do produto
           conforme as instruções do fabricante.
         </p>
+
         <p>
           O objetivo é conservar algumas áreas com a tinta aderida e outras parcialmente
           soltas e enrugadas, criando a aparência de uma peça envelhecida.
         </p>
-
-        <h2>2. Para criar a textura de ferrugem</h2>
-        <p>
-          A peça da foto apresenta bastante oxidação, com áreas de ferrugem aparecendo por
-          baixo e por cima da tinta vermelha/alaranjada.
-        </p>
-        <p>
-          Se estiver trabalhando com uma peça de metal ferroso limpa, é possível acelerar
-          a formação da ferrugem utilizando água oxigenada 10 volumes, vinagre branco e sal.
-        </p>
-        <p>
-          Aplique a solução sobre as áreas de metal exposto. Após algum tempo, começará a
-          se formar uma camada de ferrugem real, porosa e escura.
-        </p>
-
-        <h2>3. Finalização com verniz fosco</h2>
-        <p>
-          Depois de obter o efeito desejado, aplique verniz fosco para proteger e conservar
-          o acabamento.
-        </p>
-        <p>
-          O verniz ajudará a fixar as partes de tinta envelhecida e a preservar o aspecto
-          da oxidação. Prefira o acabamento fosco, pois o brilho prejudicaria o efeito
-          realista de uma peça antiga e exposta ao tempo.
-        </p>
       </div>
     </div>
+
+    <div class="bloco-horizontal">
+      <h2>2. Para criar a textura de ferrugem</h2>
+
+      <p>
+        A peça da foto apresenta bastante oxidação, com áreas de ferrugem aparecendo por
+        baixo e por cima da tinta vermelha/alaranjada.
+      </p>
+
+      <p>
+        Se estiver trabalhando com uma peça de metal ferroso limpa, é possível acelerar
+        a formação da ferrugem utilizando água oxigenada 10 volumes, vinagre branco e sal.
+      </p>
+
+      <p>
+        Aplique a solução sobre as áreas de metal exposto. Após algum tempo, começará a
+        se formar uma camada de ferrugem real, porosa e escura.
+      </p>
+    </div>
+
+    <div class="bloco-horizontal">
+      <h2>3. Finalização com verniz fosco</h2>
+
+      <p>
+        Depois de obter o efeito desejado, aplique verniz fosco para proteger e conservar
+        o acabamento.
+      </p>
+
+      <p>
+        O verniz ajudará a fixar as partes de tinta envelhecida e a preservar o aspecto
+        da oxidação. Prefira o acabamento fosco, pois o brilho prejudicaria o efeito
+        realista de uma peça antiga e exposta ao tempo.
+      </p>
+    </div>
+
   </section>
 </main>
 
