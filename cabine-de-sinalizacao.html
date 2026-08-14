@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -64,26 +65,7 @@
       border-radius: 6px;
     }
     .destaque p { margin: 0; }
-    .rodape-efmn {
-      max-width: var(--max);
-      margin: 36px auto 24px;
-      padding: 24px 18px 10px;
-      text-align: center;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-    }
-    .rodape-efmn img {
-      width: 120px;
-      max-width: 40vw;
-      height: auto;
-      display: block;
-      margin: 0 auto 10px;
-    }
-    .rodape-efmn p {
-      margin: 2px 0;
-      font-size: 0.95rem;
-    }
-    @media (max-width: 760px) {
+@media (max-width: 760px) {
       .cabine-sinalizacao {
         margin: 0;
         padding: 24px 16px;
@@ -94,9 +76,95 @@
       .cabine-sinalizacao h2 { font-size: 1.25rem; }
       .cabine-sinalizacao p { font-size: 1.05rem; }
     }
-  </style>
+  
+  .topo-efmn {
+    width: 100%;
+    background: #000;
+    border-bottom: 2px solid #c9a227;
+  }
+  .topo-conteudo {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 10px 18px 8px;
+  }
+  .topo-identidade {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+  }
+  .topo-identidade img {
+    width: 112px;
+    height: auto;
+    display: block;
+  }
+  .topo-textos {
+    color: #fff;
+    line-height: 1.25;
+  }
+  .topo-titulo {
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+  .topo-subtitulo {
+    margin-top: 2px;
+    font-size: 0.88rem;
+    color: #d8d8d8;
+  }
+  .topo-menu {
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+  .topo-menu a,
+  .topo-menu span {
+    font-size: 0.9rem;
+    color: #fff;
+    text-decoration: none;
+  }
+  .topo-menu a:hover { text-decoration: underline; }
+  .topo-menu .inativo {
+    color: #aaa;
+    cursor: default;
+  }
+
+
+  @media (max-width: 760px) {
+    .topo-conteudo { padding: 9px 12px 7px; }
+    .topo-identidade { gap: 12px; }
+    .topo-identidade img { width: 88px; }
+    .topo-titulo { font-size: 0.92rem; }
+    .topo-subtitulo { font-size: 0.78rem; }
+    .topo-menu { gap: 12px 16px; margin-top: 7px; }
+    .topo-menu a, .topo-menu span { font-size: 0.82rem; }
+  }
+
+</style>
 </head>
 <body>
+<header class="topo-efmn">
+  <div class="topo-conteudo">
+    <div class="topo-identidade">
+      <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74">
+      <div class="topo-textos">
+        <div class="topo-titulo">Ferrovia EFMN 74 - Escala HO</div>
+        <div class="topo-subtitulo">Construção, automação, memória e documentação</div>
+      </div>
+    </div>
+    <nav class="topo-menu" aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="diario-de-bordo.html">Diário de Bordo</a>
+      <a href="documentacao.html">Documentação</a>
+      <span class="inativo">Manual de Construção</span>
+      <a href="galeria-indice.html">Galeria</a>
+      <a href="downloads.html">Download</a>
+    </nav>
+  </div>
+</header>
+
   <main>
     <section class="cabine-sinalizacao">
       <p class="voltar-manual">
@@ -146,11 +214,6 @@
       </div>
     </section>
   </main>
-  <footer class="rodape-efmn">
-    <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74">
-    <p>Ferrovia EFMN 74 - Escala HO</p>
-    <p>Construção, automação, memória e documentação</p>
-  </footer>
 </body>
 </html>
 
