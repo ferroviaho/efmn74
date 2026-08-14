@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>F
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="FLojas e sites consultados para compra de materiais e componentes da Ferrovia EFMN 74.">
+  <meta name="description" content="Lojas e sites consultados para compra de materiais e componentes da Ferrovia EFMN 74.">
   <title>Onde comprar | Ferrovia EFMN 74</title>
 
   <style>
@@ -101,30 +101,38 @@
       color: var(--muted);
       font-size: 0.95rem;
     }
+@media (max-width: 700px) {
 
-    .rodape-efmn {
-      max-width: var(--max);
-      margin: 36px auto 24px;
-      padding: 24px 18px 10px;
-      text-align: center;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-    }
+      .topo-conteudo {
+        padding: 8px 12px 7px;
+      }
 
-    .rodape-efmn img {
-      width: 120px;
-      max-width: 40vw;
-      height: auto;
-      display: block;
-      margin: 0 auto 10px;
-    }
+      .topo-identidade {
+        gap: 12px;
+      }
 
-    .rodape-efmn p {
-      margin: 2px 0;
-      font-size: 0.95rem;
-    }
+      .topo-logo {
+        width: 72px;
+      }
 
-    @media (max-width: 700px) {
+      .topo-titulo {
+        font-size: 0.92rem;
+      }
+
+      .topo-subtitulo {
+        font-size: 0.78rem;
+      }
+
+      .topo-menu {
+        gap: 10px 14px;
+        margin-top: 6px;
+      }
+
+      .topo-menu a,
+      .topo-menu span {
+        font-size: 0.82rem;
+      }
+
       .onde-comprar {
         margin: 0;
         padding: 22px 18px;
@@ -144,15 +152,107 @@
       .lista-lojas li {
         padding: 13px 2px;
       }
-
-      .rodape-efmn {
-        margin-top: 26px;
-      }
+}
+  
+    /* ===== Cabeçalho padrão das páginas internas ===== */
+    .topo-efmn {
+      width: 100%;
+      background: #0b0b0b;
+      color: #fff;
     }
+
+    .topo-conteudo {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 8px 18px 7px;
+    }
+
+    .topo-identidade {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .topo-logo {
+      width: 72px;
+      height: auto;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .topo-textos {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.2;
+    }
+
+    .topo-titulo {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .topo-subtitulo {
+      margin: 3px 0 0;
+      font-size: 0.9rem;
+      color: #d6d6d6;
+    }
+
+    .topo-menu {
+      margin-top: 7px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .topo-menu a,
+    .topo-menu span {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .topo-menu a:hover {
+      text-decoration: underline;
+    }
+
+    .topo-menu .inativo {
+      color: #aaa;
+      cursor: default;
+    }
+
   </style>
 </head>
 
 <body>
+  <header class="topo-efmn">
+    <div class="topo-conteudo">
+      <div class="topo-identidade">
+        <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="topo-logo">
+        <div class="topo-textos">
+          <p class="topo-titulo">Ferrovia EFMN 74 - Escala HO</p>
+          <p class="topo-subtitulo">Construção, automação, memória e documentação</p>
+        </div>
+      </div>
+
+      <nav class="topo-menu" aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="diario-de-bordo.html">Diário de Bordo</a>
+        <a href="documentacao.html">Documentação</a>
+        <span class="inativo">Manual de Construção</span>
+        <a href="galeria-indice.html">Galeria</a>
+        <a href="downloads.html">Download</a>
+      </nav>
+    </div>
+  </header>
+
   <main>
     <section class="onde-comprar" id="onde-comprar">
 
@@ -160,7 +260,7 @@
         <a href="manual-indice.html">← Voltar ao índice</a>
       </p>
 
-      <h1>Onde comprar material HO</h1>
+      <h1>Onde comprar</h1>
 
       <p class="abertura">
         Relação de lojas e sites que costumo consultar para pesquisar e adquirir
@@ -224,12 +324,6 @@
 
     </section>
   </main>
-
-  <footer class="rodape-efmn">
-    <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74">
-    <p>Ferrovia EFMN 74 - Escala HO</p>
-    <p>Construção, automação, memória e documentação</p>
-  </footer>
 </body>
 </html>
 
