@@ -41,27 +41,40 @@
       padding: 18px 20px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+      justify-content: flex-start;
+      gap: 22px;
     }
 
-    .brand {
+    .header-logo {
+      width: 125px;
+      height: auto;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .header-textos {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.25;
+    }
+
+    .header-titulo {
+      margin: 0;
+      color: #fff;
       font-size: 1.45rem;
       font-weight: 700;
-      letter-spacing: 0.03em;
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 18px;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.95rem;
+    .header-subtitulo {
+      margin: 6px 0 0;
+      color: #ddd;
+      font-size: 1.05rem;
+      font-weight: 400;
     }
 
-    nav a:hover { text-decoration: underline; }
-
-    main {
+main {
       max-width: var(--max);
       margin: 0 auto;
       padding: 34px 20px 60px;
@@ -152,13 +165,21 @@
     }
 
     @media (max-width: 700px) {
-      .header-inner { display: block; }
+      .header-inner {
+        padding: 14px 16px;
+        gap: 14px;
+      }
 
-      nav { margin-top: 10px; }
+      .header-logo {
+        width: 92px;
+      }
 
-      nav a {
-        display: inline-block;
-        margin: 4px 12px 4px 0;
+      .header-titulo {
+        font-size: 1.1rem;
+      }
+
+      .header-subtitulo {
+        font-size: 0.9rem;
       }
 
       main { padding: 26px 16px 44px; }
@@ -192,16 +213,12 @@
 
 <header>
   <div class="header-inner">
-    <div class="brand">EFMN 74</div>
+    <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo">
 
-    <nav>
-      <a href="index.html">Início</a>
-      <a href="index.html#diario">Diário de Bordo</a>
-      <a href="manual-indice.html">Manual de Construção</a>
-      <a href="index.html#automacao">Automação</a>
-      <a href="index.html#memoria">Memória</a>
-      <a href="index.html#contato">Contato</a>
-    </nav>
+    <div class="header-textos">
+      <p class="header-titulo">Ferrovia EFMN 74 - Escala HO</p>
+      <p class="header-subtitulo">Construção, automação, memória e documentação</p>
+    </div>
   </div>
 </header>
 
@@ -211,11 +228,11 @@
     <a href="manual-indice.html">← Voltar ao índice</a>
   </p>
 
-  <h1>Bananeiras reais!</h1>
+  <h1>Como fazer bananeiras</h1>
 
   <p class="abertura">
-    Uma maneira simples de fazer bananeiras em escala HO é utilizar tampas de latas aluminizadas 
-    para formar as folhas e uma haste de cotonete como estrutura central da planta. As folhas,
+    Uma maneira simples de fazer bananeiras em escala HO é utilizar folha aluminizada
+    para formar as folhas e um alfinete como estrutura central da planta. As folhas,
     o tronco e a posição de cada bananeira podem variar, deixando o conjunto mais natural.
   </p>
 
@@ -235,10 +252,10 @@
       <p>
         Corte as folhas com aproximadamente 0,5 a 1 cm de largura e 3 a 6 cm de
         comprimento. Alise cada peça, dobre-a ao meio para marcar a nervura central
-        e faça os frisos com um palito sobre uma superfície macia, por exemplo, uma bandeja de isopor.
+        e faça os frisos com um palito sobre uma bandeja de isopor.
       </p>
       <p>
-        Faça também dois ou três pequenos picotes de cada lado da folha, imitando os rasgos
+        Faça também dois ou três pequenos picotes de cada lado, imitando os rasgos
         naturais das folhas de bananeira.
       </p>
     </div>
@@ -254,12 +271,12 @@
     >
     <div class="manual-texto">
       <p>
-        Fure cada folha com um alfinete e vá montando o conjunto de cabeça para baixo ao redor da haste. Coloque cola no furo do cotonete e 
-        distribuia as folhas em diferentes direções.
+        Fure cada folha com um alfinete e vá montando o conjunto ao redor da haste,
+        distribuindo as folhas em diferentes direções.
       </p>
       <p>
-        Após esta etapa coloque cola no topo da montagem e cobra a cabeça do alfinete
-        com pequenos restos de folhas.
+        Coloque cola no topo da montagem. Outra opção é cobrir a cabeça do alfinete
+        com pequenos restos de folhas e depois aplicar a cola.
       </p>
     </div>
   </div>
@@ -298,12 +315,12 @@
     >
     <div class="manual-texto">
       <p>
-        Fure o local escolhido na maquete e fixe cada bananeira com cola Tekbond.
+        Fure o local escolhido na maquete e fixe cada bananeira com cola.
       </p>
       <p>
         No terreno abaixo do bananal, espalhe algumas folhas soltas em tons amarelados
         e marrons, além de restos de grama e outros materiais, criando a aparência de
-        vegetação seca e sujeira acumulada no solo. Está pronto o bananal.
+        vegetação seca e sujeira acumulada no solo.
       </p>
     </div>
   </div>
