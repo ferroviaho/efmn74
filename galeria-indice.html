@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Índice da Galeria da Ferrovia EFMN 74 em escala HO.">
+  <meta name="description" content="Galeria da Ferrovia EFMN 74 — Escala HO.">
   <title>Galeria — EFMN 74</title>
 
   <style>
@@ -16,7 +16,7 @@
       --gold: #c89b2b;
       --line: #ded7c8;
       --link: #0056b3;
-      --max: 1000px;
+      --max: 1100px;
     }
 
     * {
@@ -31,44 +31,87 @@
       line-height: 1.6;
     }
 
+    /* ===== CABEÇALHO PADRÃO ===== */
+
     header {
       background: var(--dark);
-      color: white;
-      border-bottom: 4px solid var(--gold);
+      color: #fff;
+      border-bottom: 2px solid var(--gold);
     }
 
     .header-inner {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 18px 20px;
+      padding: 8px 20px 6px;
+    }
+
+    .header-identidade {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+      justify-content: center;
+      gap: 14px;
     }
 
-    .brand {
-      font-size: 1.45rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
+    .header-logo {
+      width: 72px;
+      height: auto;
+      display: block;
+      flex-shrink: 0;
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 18px;
+    .header-texto {
+      text-align: left;
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.95rem;
     }
 
-    nav a:hover {
+    .header-linha1,
+    .header-linha2 {
+      margin: 0;
+    }
+
+    .header-linha1 {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .header-linha2 {
+      margin-top: 2px;
+      font-size: 0.88rem;
+      color: #ddd;
+    }
+
+    .main-nav {
+      margin-top: 7px;
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.93rem;
+    }
+
+    .main-nav a,
+    .main-nav .ativo {
+      display: inline-block;
+      margin: 3px 10px;
+      color: #fff;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .main-nav a:hover,
+    .main-nav a:focus {
       text-decoration: underline;
     }
+
+    .main-nav .ativo {
+      color: #aaa;
+      cursor: default;
+    }
+
+    /* ===== CONTEÚDO ===== */
 
     main {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 36px 20px 60px;
+      padding: 34px 20px 60px;
     }
 
     .voltar-inicio {
@@ -84,44 +127,40 @@
     }
 
     h1 {
-      margin: 0 0 12px;
-      font-size: 2.1rem;
+      margin: 0 0 14px;
+      font-size: 2rem;
     }
 
     .abertura {
       margin: 0 0 30px;
       font-size: 1.1rem;
-      line-height: 1.6;
     }
 
     .indice {
       background: var(--paper);
       border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 24px;
+      border-radius: 8px;
+      padding: 22px 28px 28px;
     }
 
     .indice h2 {
-      margin-top: 0;
-      margin-bottom: 18px;
+      margin: 0 0 18px;
+      font-size: 1.55rem;
     }
 
     .lista-assuntos {
-      display: grid;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
       gap: 12px;
     }
 
     .assunto-link {
-      display: block;
-      padding: 15px 17px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
+      color: var(--link);
       font-family: Arial, Helvetica, sans-serif;
       font-size: 1.05rem;
-      color: var(--link);
-      background: white;
-      text-decoration: none;
       font-weight: 600;
+      text-decoration: none;
     }
 
     .assunto-link:hover,
@@ -129,44 +168,36 @@
       text-decoration: underline;
     }
 
-    footer {
-      border-top: 1px solid var(--line);
-      text-align: center;
-      padding: 24px 20px 30px;
-      color: var(--muted);
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.9rem;
-    }
-
-    .footer-logo {
-      width: 105px;
-      max-width: 35vw;
-      height: auto;
-      display: block;
-      margin: 0 auto 10px;
-    }
-
-    .footer-linha1 {
-      margin: 0;
-      font-weight: 600;
-    }
-
-    .footer-linha2 {
-      margin: 3px 0 0;
-    }
-
     @media (max-width: 700px) {
       .header-inner {
-        display: block;
+        padding: 8px 14px 7px;
       }
 
-      nav {
-        margin-top: 10px;
+      .header-identidade {
+        gap: 12px;
       }
 
-      nav a {
-        display: inline-block;
-        margin: 4px 12px 4px 0;
+      .header-logo {
+        width: 62px;
+      }
+
+      .header-linha1 {
+        font-size: 0.9rem;
+      }
+
+      .header-linha2 {
+        font-size: 0.8rem;
+      }
+
+      .main-nav {
+        margin-top: 6px;
+        line-height: 1.5;
+      }
+
+      .main-nav a,
+      .main-nav .ativo {
+        margin: 2px 6px;
+        font-size: 0.85rem;
       }
 
       main {
@@ -180,6 +211,10 @@
       .abertura {
         font-size: 1.05rem;
       }
+
+      .indice {
+        padding: 20px;
+      }
     }
   </style>
 </head>
@@ -188,17 +223,29 @@
 
 <header>
   <div class="header-inner">
-    <div class="brand">EFMN 74</div>
 
-  <nav>
-<a href="index.html">Início</a>
-<a href="diario-de-bordo.html">Diário de Bordo</a>
-<span>Documentação</span>
-<a href="manual-indice.html">Manual de Construção</a>
-<a href="galeria-indice.html">Galeria</a>
-<a href="index.html#downloads">Downloads</a>
-</nav>
-    
+    <div class="header-identidade">
+      <img
+        src="logo-efmn74.PNG"
+        alt="Logomarca da Ferrovia EFMN 74"
+        class="header-logo"
+      >
+
+      <div class="header-texto">
+        <p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p>
+        <p class="header-linha2">Construção, automação, memória e documentação</p>
+      </div>
+    </div>
+
+    <nav class="main-nav" aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="diario-de-bordo.html">Diário de Bordo</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="manual-indice.html">Manual de Construção</a>
+      <span class="ativo">Galeria</span>
+      <a href="downloads.html">Downloads</a>
+    </nav>
+
   </div>
 </header>
 
@@ -225,16 +272,30 @@
         Viadutos sobre um cânion
       </a>
 
+      <a class="assunto-link" href="cachoeira-caracol.html">
+        Cachoeira abaixo da escada caracol
+      </a>
+
+      <a class="assunto-link" href="pontes-e-rio.html">
+        Pontes e rio
+      </a>
+
+      <a class="assunto-link" href="grandes-retas.html">
+        Grandes retas
+      </a>
+
+      <a class="assunto-link" href="saida-do-tunel.html">
+        Saída do túnel
+      </a>
+
+      <a class="assunto-link" href="casa-com-banheiro.html">
+        Casa simples com banheiro
+      </a>
+
     </div>
   </section>
 
 </main>
-
-<footer>
-  <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="footer-logo">
-  <p class="footer-linha1">Ferrovia EFMN 74 - Escala HO</p>
-  <p class="footer-linha2">Construção, automação, memória e documentação</p>
-</footer>
 
 </body>
 </html>
