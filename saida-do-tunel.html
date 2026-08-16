@@ -12,8 +12,10 @@
       --paper: #fffdf8;
       --ink: #222;
       --muted: #68635a;
+      --dark: #151515;
       --gold: #c89b2b;
       --line: #ded7c8;
+      --link: #0056b3;
       --max: 1100px;
     }
 
@@ -23,26 +25,110 @@
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
       background: var(--bg);
       color: var(--ink);
-      line-height: 1.65;
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
     }
 
-    .page {
-      width: min(92%, var(--max));
-      margin: 36px auto;
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 34px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    /* ===== CABEÇALHO PADRÃO ===== */
+
+    header {
+      background: var(--dark);
+      color: #fff;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .header-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 8px 20px 6px;
+    }
+
+    .header-identidade {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .header-logo {
+      width: 72px;
+      height: auto;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .header-texto {
+      text-align: left;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .header-linha1,
+    .header-linha2 {
+      margin: 0;
+    }
+
+    .header-linha1 {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .header-linha2 {
+      margin-top: 2px;
+      font-size: 0.88rem;
+      color: #ddd;
+    }
+
+    .main-nav {
+      margin-top: 7px;
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.93rem;
+    }
+
+    .main-nav a,
+    .main-nav .ativo {
+      display: inline-block;
+      margin: 3px 10px;
+      color: #fff;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .main-nav a:hover,
+    .main-nav a:focus {
+      text-decoration: underline;
+    }
+
+    .main-nav .ativo {
+      color: #aaa;
+      cursor: default;
+    }
+
+    /* ===== CONTEÚDO ===== */
+
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 34px 20px 60px;
+    }
+
+    .voltar-inicio {
+      margin: 0 0 20px;
+    }
+
+    .voltar-inicio a {
+      color: var(--link);
+      text-decoration: underline;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
     }
 
     h1 {
-      margin: 0 0 10px;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.15;
+      margin: 0 0 8px;
+      font-size: 2rem;
     }
 
     .subtitle {
@@ -51,23 +137,30 @@
       font-size: 1.05rem;
     }
 
+    .conteudo-galeria {
+      display: grid;
+      grid-template-columns: minmax(0, 44%) minmax(0, 56%);
+      gap: 30px;
+      align-items: start;
+    }
+
     figure {
-      margin: 0 0 28px;
+      margin: 0;
     }
 
     figure img {
       display: block;
       width: 100%;
       height: auto;
-      border-radius: 10px;
+      border-radius: 8px;
       border: 1px solid var(--line);
     }
 
     figcaption {
-      margin-top: 10px;
+      margin-top: 9px;
       color: var(--muted);
-      font-size: 0.95rem;
-      text-align: center;
+      font-size: 0.92rem;
+      text-align: left;
     }
 
     .text {
@@ -78,45 +171,49 @@
       margin: 0 0 18px;
     }
 
-    .back {
-      display: inline-block;
-      margin-top: 14px;
-      color: var(--ink);
-      text-decoration: none;
-      font-weight: 700;
-      border-bottom: 2px solid var(--gold);
-      padding-bottom: 2px;
-    }
-
-    .back:hover {
-      opacity: 0.75;
-    }
-
-    footer {
-      margin-top: 38px;
-      padding-top: 24px;
-      border-top: 1px solid var(--line);
-      text-align: center;
-      color: var(--muted);
-    }
-
-    footer img {
-      width: 110px;
-      max-width: 35vw;
-      height: auto;
-      margin-bottom: 10px;
-    }
-
-    .footer-line-1,
-    .footer-line-2 {
-      margin: 2px 0;
-    }
-
     @media (max-width: 700px) {
-      .page {
-        width: 94%;
-        margin: 18px auto;
-        padding: 22px 18px;
+      .header-inner {
+        padding: 8px 14px 7px;
+      }
+
+      .header-identidade {
+        gap: 12px;
+      }
+
+      .header-logo {
+        width: 62px;
+      }
+
+      .header-linha1 {
+        font-size: 0.9rem;
+      }
+
+      .header-linha2 {
+        font-size: 0.8rem;
+      }
+
+      .main-nav {
+        margin-top: 6px;
+        line-height: 1.5;
+      }
+
+      .main-nav a,
+      .main-nav .ativo {
+        margin: 2px 6px;
+        font-size: 0.85rem;
+      }
+
+      main {
+        padding: 26px 16px 44px;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      .conteudo-galeria {
+        grid-template-columns: 1fr;
+        gap: 24px;
       }
 
       .text {
@@ -127,12 +224,46 @@
 </head>
 
 <body>
-  <main class="page">
-    <h1>Saída do Túnel</h1>
-    <p class="subtitle">Curral, maciço de pedra e área de contenção junto à linha férrea</p>
 
+<header>
+  <div class="header-inner">
+
+    <div class="header-identidade">
+      <img
+        src="logo-efmn74.PNG"
+        alt="Logomarca da Ferrovia EFMN 74"
+        class="header-logo"
+      >
+
+      <div class="header-texto">
+        <p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p>
+        <p class="header-linha2">Construção, automação, memória e documentação</p>
+      </div>
+    </div>
+
+    <nav class="main-nav" aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="diario-de-bordo.html">Diário de Bordo</a>
+      <a href="documentacao.html">Documentação</a>
+      <a href="manual-indice.html">Manual de Construção</a>
+      <span class="ativo">Galeria</span>
+      <a href="downloads.html">Downloads</a>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+  <p class="voltar-inicio">
+    <a href="galeria-indice.html">← Voltar ao índice da galeria</a>
+  </p>
+
+  <h1>Saída do Túnel</h1>
+  <p class="subtitle">Curral, maciço de pedra e área de contenção junto à linha férrea</p>
+
+  <div class="conteudo-galeria">
     <figure>
-      <img src="saida-do-túnel.jpg" alt="Região do curral com maciço de pedra, saída do túnel e linha férrea na maquete EFMN 74">
+      <img src="saída-do-tunel.jpg" alt="Região do curral com maciço de pedra, saída do túnel e linha férrea na maquete EFMN 74">
       <figcaption>
         Região do curral, com o grande maciço de pedra ao fundo e a saída do túnel à direita.
       </figcaption>
@@ -167,14 +298,8 @@
         Oswaldo Nobre.
       </p>
     </section>
+  </div>
+</main>
 
-    <a class="back" href="galeria-indice.html">← Voltar ao índice da galeria</a>
-
-    <footer>
-      <img src="logo-efmn74.PNG" alt="Logomarca Ferrovia EFMN 74">
-      <p class="footer-line-1">Ferrovia EFMN 74 - Escala HO</p>
-      <p class="footer-line-2">Construção, automação, memória e documentação</p>
-    </footer>
-  </main>
 </body>
 </html>
