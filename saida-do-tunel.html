@@ -7,13 +7,77 @@
   <title>Saída do Túnel | Ferrovia EFMN 74</title>
 
   <style>
+  .site-header {
+    width: 100%;
+    background: #000;
+    border-bottom: 1px solid #c9a227;
+    margin: 0;
+    padding: 8px 16px;
+    box-sizing: border-box;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .header-logo {
+    width: 72px;
+    height: auto;
+    display: block;
+    flex: 0 0 auto;
+  }
+
+  .header-text {
+    color: #fff;
+    line-height: 1.25;
+    text-align: left;
+  }
+
+  .header-title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  .header-subtitle {
+    margin: 2px 0 0;
+    font-size: 0.88rem;
+    font-weight: 400;
+  }
+
+  @media (max-width: 600px) {
+    .site-header {
+      padding: 7px 10px;
+    }
+
+    .header-inner {
+      gap: 10px;
+    }
+
+    .header-logo {
+      width: 72px;
+    }
+
+    .header-title {
+      font-size: 0.98rem;
+    }
+
+    .header-subtitle {
+      font-size: 0.80rem;
+    }
+  }
+</style>
+
+  <style>
     :root {
       --bg: #f4f1ea;
-      --paper: #fffdf8;
       --ink: #222;
       --muted: #68635a;
-      --dark: #151515;
-      --gold: #c89b2b;
       --line: #ded7c8;
       --link: #0056b3;
       --max: 1100px;
@@ -30,83 +94,6 @@
       font-family: Georgia, "Times New Roman", serif;
       line-height: 1.6;
     }
-
-    /* ===== CABEÇALHO PADRÃO ===== */
-
-    header {
-      background: var(--dark);
-      color: #fff;
-      border-bottom: 2px solid var(--gold);
-    }
-
-    .header-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 8px 20px 6px;
-    }
-
-    .header-identidade {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-    }
-
-    .header-logo {
-      width: 72px;
-      height: auto;
-      display: block;
-      flex-shrink: 0;
-    }
-
-    .header-texto {
-      text-align: left;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    .header-linha1,
-    .header-linha2 {
-      margin: 0;
-    }
-
-    .header-linha1 {
-      font-size: 1.05rem;
-      font-weight: 600;
-    }
-
-    .header-linha2 {
-      margin-top: 2px;
-      font-size: 0.88rem;
-      color: #ddd;
-    }
-
-    .main-nav {
-      margin-top: 7px;
-      text-align: center;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.93rem;
-    }
-
-    .main-nav a,
-    .main-nav .ativo {
-      display: inline-block;
-      margin: 3px 10px;
-      color: #fff;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .main-nav a:hover,
-    .main-nav a:focus {
-      text-decoration: underline;
-    }
-
-    .main-nav .ativo {
-      color: #aaa;
-      cursor: default;
-    }
-
-    /* ===== CONTEÚDO ===== */
 
     main {
       max-width: var(--max);
@@ -172,37 +159,6 @@
     }
 
     @media (max-width: 700px) {
-      .header-inner {
-        padding: 8px 14px 7px;
-      }
-
-      .header-identidade {
-        gap: 12px;
-      }
-
-      .header-logo {
-        width: 62px;
-      }
-
-      .header-linha1 {
-        font-size: 0.9rem;
-      }
-
-      .header-linha2 {
-        font-size: 0.8rem;
-      }
-
-      .main-nav {
-        margin-top: 6px;
-        line-height: 1.5;
-      }
-
-      .main-nav a,
-      .main-nav .ativo {
-        margin: 2px 6px;
-        font-size: 0.85rem;
-      }
-
       main {
         padding: 26px 16px 44px;
       }
@@ -225,31 +181,14 @@
 
 <body>
 
-<header>
+<header class="site-header">
   <div class="header-inner">
+    <img class="header-logo" src="logo-efmn74.png" alt="Ferrovia EFMN 74">
 
-    <div class="header-identidade">
-      <img
-        src="logo-efmn74.PNG"
-        alt="Logomarca da Ferrovia EFMN 74"
-        class="header-logo"
-      >
-
-      <div class="header-texto">
-        <p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p>
-        <p class="header-linha2">Construção, automação, memória e documentação</p>
-      </div>
+    <div class="header-text">
+      <p class="header-title">Ferrovia EFMN 74 - Escala HO</p>
+      <p class="header-subtitle">Construção, automação, memória e documentação</p>
     </div>
-
-    <nav class="main-nav" aria-label="Navegação principal">
-      <a href="index.html">Início</a>
-      <a href="diario-de-bordo.html">Diário de Bordo</a>
-      <a href="documentacao.html">Documentação</a>
-      <a href="manual-indice.html">Manual de Construção</a>
-      <span class="ativo">Galeria</span>
-      <a href="downloads.html">Downloads</a>
-    </nav>
-
   </div>
 </header>
 
@@ -263,7 +202,7 @@
 
   <div class="conteudo-galeria">
     <figure>
-      <img src="saída-do-tunel.jpg" alt="Região do curral com maciço de pedra, saída do túnel e linha férrea na maquete EFMN 74">
+      <img src="saida-do-tunel.jpg" alt="Região do curral com maciço de pedra, saída do túnel e linha férrea na maquete EFMN 74">
       <figcaption>
         Região do curral, com o grande maciço de pedra ao fundo e a saída do túnel à direita.
       </figcaption>
