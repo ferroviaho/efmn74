@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Galeria da Ferrovia EFMN 74: região do curral, maciço de pedra e saída do túnel.">
+  <title>Saída do Túnel | Ferrovia EFMN 74</title>
+
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --paper: #fffdf8;
+      --ink: #222;
+      --muted: #68635a;
+      --gold: #c89b2b;
+      --line: #ded7c8;
+      --max: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    .page {
+      width: min(92%, var(--max));
+      margin: 36px auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 34px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    figure {
+      margin: 0 0 28px;
+    }
+
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+    }
+
+    figcaption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    .text {
+      font-size: 1.08rem;
+    }
+
+    .text p {
+      margin: 0 0 18px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 14px;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 2px;
+    }
+
+    .back:hover {
+      opacity: 0.75;
+    }
+
+    footer {
+      margin-top: 38px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+      color: var(--muted);
+    }
+
+    footer img {
+      width: 110px;
+      max-width: 35vw;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    .footer-line-1,
+    .footer-line-2 {
+      margin: 2px 0;
+    }
+
+    @media (max-width: 700px) {
+      .page {
+        width: 94%;
+        margin: 18px auto;
+        padding: 22px 18px;
+      }
+
+      .text {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <h1>Saída do Túnel</h1>
+    <p class="subtitle">Curral, maciço de pedra e área de contenção junto à linha férrea</p>
+
+    <figure>
+      <img src="saida-do-túnel.jpg" alt="Região do curral com maciço de pedra, saída do túnel e linha férrea na maquete EFMN 74">
+      <figcaption>
+        Região do curral, com o grande maciço de pedra ao fundo e a saída do túnel à direita.
+      </figcaption>
+    </figure>
+
+    <section class="text">
+      <p>
+        Esta região da ferrovia é conhecida como Curral. Localizada ao lado da linha férrea,
+        tem ao fundo um grande maciço de pedra que domina a paisagem. À direita encontra-se
+        a saída do túnel e, sobre ele, uma área de floresta formada por dezenas de árvores,
+        onde também foram distribuídos pequenos animais silvestres.
+      </p>
+
+      <p>
+        Para representar a proteção da via contra possíveis desmoronamentos do maciço,
+        foram construídos muros de contenção de concreto, reforçados por vigas feitas com
+        segmentos de trilhos, reproduzindo uma solução encontrada em antigas ferrovias.
+      </p>
+
+      <p>
+        Na vida real, a instalação de um curral tão próximo de uma linha férrea não seria
+        recomendável, pois o ruído e a movimentação dos trens poderiam estressar os animais.
+        Na maquete, porém, foi necessário fazer essa concessão: o espaço disponível na mesa
+        não permitia colocar esse cenário em outro local.
+      </p>
+
+      <p>
+        Um pequeno detalhe à direita guarda uma lembrança especial. Junto à vegetação
+        encontra-se um antigo outdoor onde se lê “O Debate”, referência ao tradicional jornal
+        que, após 90 anos de existência, encerrou suas atividades em janeiro de 2026.
+        O detalhe foi colocado na maquete como uma homenagem ao meu pai, o jornalista
+        Oswaldo Nobre.
+      </p>
+    </section>
+
+    <a class="back" href="galeria-indice.html">← Voltar ao índice da galeria</a>
+
+    <footer>
+      <img src="logo-efmn74.PNG" alt="Logomarca Ferrovia EFMN 74">
+      <p class="footer-line-1">Ferrovia EFMN 74 - Escala HO</p>
+      <p class="footer-line-2">Construção, automação, memória e documentação</p>
+    </footer>
+  </main>
+</body>
+</html>
