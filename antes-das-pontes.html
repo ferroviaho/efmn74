@@ -3,123 +3,168 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Antes das pontes - Ferrovia EFMN 74</title>
+  <meta name="description" content="Casa simples com banheiro externo no cenário antes das pontes da Ferrovia EFMN 74 em escala HO.">
+  <title>Casa simples com banheiro externo — Ferrovia EFMN 74</title>
 
   <style>
+    :root {
+      --bg: #f4f1ea;
+      --ink: #222;
+      --muted: #68635a;
+      --dark: #151515;
+      --gold: #c89b2b;
+      --link: #0056b3;
+      --max: 1100px;
+    }
+
     * {
       box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f4f1e8;
-      color: #2f2f2f;
-      line-height: 1.7;
-    }
-
-    .container {
-      width: min(1000px, 92%);
-      margin: 0 auto;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
     }
 
     header {
-      padding: 34px 0 18px;
-      text-align: center;
+      background: var(--dark);
+      color: #fff;
+      border-bottom: 1px solid var(--gold);
     }
 
-    h1 {
+    .header-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 8px 20px 7px;
+    }
+
+    .header-identidade {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .header-logo {
+      width: 72px;
+      height: auto;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .header-texto {
+      text-align: left;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .header-linha1,
+    .header-linha2 {
       margin: 0;
-      font-size: 2.2rem;
-      color: #4a3424;
     }
 
-    .subtitle {
-      margin-top: 8px;
+    .header-linha1 {
       font-size: 1.05rem;
-      color: #6b6259;
+      font-weight: 600;
+    }
+
+    .header-linha2 {
+      margin-top: 2px;
+      font-size: 0.88rem;
+      color: #ddd;
     }
 
     main {
-      background: #ffffff;
-      padding: 28px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-      margin-bottom: 28px;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 34px 20px 60px;
     }
 
-    .foto {
-      margin: 0 0 26px;
+    .voltar-galeria {
+      margin: 0 0 18px;
+    }
+
+    .voltar-galeria a {
+      color: var(--link);
+      text-decoration: underline;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      font-size: 2rem;
+    }
+
+    .conteudo {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 34px;
+      align-items: start;
+    }
+
+    figure {
+      margin: 0;
+    }
+
+    .galeria-foto {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+    }
+
+    figcaption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.95rem;
       text-align: center;
     }
 
-    .foto img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      display: block;
-    }
-
-    .foto figcaption {
-      margin-top: 10px;
-      font-size: 0.95rem;
-      color: #666;
-    }
-
-    p {
+    .texto-galeria p {
       margin: 0 0 18px;
       font-size: 1.08rem;
     }
 
-    .voltar {
-      margin-top: 28px;
-    }
+    @media (max-width: 700px) {
+      .header-inner {
+        padding: 8px 14px 7px;
+      }
 
-    .voltar a {
-      display: inline-block;
-      padding: 10px 16px;
-      background: #4a3424;
-      color: #ffffff;
-      text-decoration: none;
-      border-radius: 6px;
-    }
+      .header-identidade {
+        gap: 12px;
+      }
 
-    .voltar a:hover {
-      background: #684b35;
-    }
+      .header-logo {
+        width: 62px;
+      }
 
-    footer {
-      text-align: center;
-      padding: 24px 0 34px;
-      color: #5f5f5f;
-      font-size: 0.95rem;
-    }
+      .header-linha1 {
+        font-size: 0.9rem;
+      }
 
-    footer img {
-      width: 90px;
-      max-width: 28vw;
-      height: auto;
-      margin-bottom: 8px;
-    }
+      .header-linha2 {
+        font-size: 0.8rem;
+      }
 
-    .footer-line {
-      margin: 2px 0;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        padding-top: 24px;
+      main {
+        padding: 26px 16px 44px;
       }
 
       h1 {
         font-size: 1.75rem;
       }
 
-      main {
-        padding: 20px;
+      .conteudo {
+        grid-template-columns: 1fr;
+        gap: 24px;
       }
 
-      p {
+      .texto-galeria p {
         font-size: 1rem;
       }
     }
@@ -127,22 +172,37 @@
 </head>
 
 <body>
-  <div class="container">
 
-    <header>
-      <h1>Antes das pontes</h1>
-      <div class="subtitle">Um pequeno recanto rural cheio de detalhes</div>
-    </header>
+<header>
+  <div class="header-inner">
+    <div class="header-identidade">
+      <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo">
+      <div class="header-texto">
+        <p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p>
+        <p class="header-linha2">Construção, automação, memória e documentação</p>
+      </div>
+    </div>
+  </div>
+</header>
 
-    <main>
+<main>
+  <p class="voltar-galeria">
+    <a href="galeria-indice.html">← Voltar ao índice da Galeria</a>
+  </p>
 
-      <figure class="foto">
-        <img src="antes-das-pontes.jpg" alt="Cenário rural antes das pontes da Ferrovia EFMN 74">
-        <figcaption>
-          Casa simples, chiqueiro, bananal, árvores, grama e moitas formando o cenário antes das pontes.
-        </figcaption>
-      </figure>
+  <h1>Casa simples com banheiro externo</h1>
 
+  <div class="conteudo">
+    <figure>
+      <img src="antes-das-pontes.jpg"
+           alt="Casa simples com banheiro externo no cenário antes das pontes da Ferrovia EFMN 74"
+           class="galeria-foto">
+      <figcaption>
+        Casa simples, chiqueiro, bananal, árvores, grama e moitas formando o cenário antes das pontes.
+      </figcaption>
+    </figure>
+
+    <section class="texto-galeria">
       <p>
         Antes das pontes, o cenário reproduz um pequeno recanto rural, simples e cheio de detalhes que ajudam a dar vida à ferrovia.
       </p>
@@ -166,19 +226,9 @@
       <p>
         São justamente esses pequenos detalhes — alguns facilmente percebidos e outros quase escondidos — que tornam a observação da maquete mais divertida e convidam o visitante a olhar cada cena com mais atenção.
       </p>
-
-      <div class="voltar">
-        <a href="galeria-indice.html">&larr; Voltar ao índice</a>
-      </div>
-
-    </main>
-
-    <footer>
-      <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74">
-      <div class="footer-line">Ferrovia EFMN 74 - Escala HO</div>
-      <div class="footer-line">Construção, automação, memória e documentação</div>
-    </footer>
-
+    </section>
   </div>
+</main>
+
 </body>
 </html>
