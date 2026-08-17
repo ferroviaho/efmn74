@@ -211,7 +211,7 @@
       margin: 0 auto;
     }
     #apresentacao {
-      padding-top: 18px;
+      padding-top: 0;
     }
 
     @media (max-width: 760px) {
@@ -222,10 +222,11 @@
         background-size: cover;
         background-position: center center;
       }
-             .hero-text { 
+      .hero-text {
+        padding-top: 12px;
         color: white !important;
-                 text-shadow: 0 2px 8px rgba(0,0,0,.85);
-}
+        text-shadow: 0 2px 8px rgba(0,0,0,.85);
+      }
                  
       .hero h1 {
         top: 135px;
@@ -288,7 +289,7 @@ color: #68635a;
 <div class="hero-slide" style="background-image: url('capa2.png');"></div>
 <div class="hero-inner">
 <h1>EFMN 74</h1>
-<p>Ferrovia em escala HO<br/>
+<p class="hero-text">Ferrovia em escala HO<br/>
 - construção<br/>
 - automação<br/>
 - memória<br/>
