@@ -31,9 +31,21 @@
       height: 78vh;
       min-height: 0;
       position: relative;
-      background:
-        url("capa.png") center center / contain no-repeat;
       overflow: hidden;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-position: center center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
     }
 
     /* Faixa lateral esquerda: identificação */
@@ -201,9 +213,11 @@
     @media (max-width: 760px) {
       .hero {
         height: 58vh;
+          }
+      .hero-slide {
         background-size: cover;
         background-position: center center;
-          }
+      }
              .hero-text { 
         color: white !important;
                  text-shadow: 0 2px 8px rgba(0,0,0,.85);
@@ -266,6 +280,8 @@ color: #68635a;
 </head>
 <body>
 <header class="hero" id="inicio">
+<div class="hero-slide active" style="background-image: url('capa.png');"></div>
+<div class="hero-slide" style="background-image: url('capa2.png');"></div>
 <div class="hero-inner">
 <h1>EFMN 74</h1>
 <p>Ferrovia em escala HO<br/>
@@ -307,5 +323,15 @@ color: #68635a;
 <footer>
 <img src="logo-efmn74.PNG" alt="Ferrovia EFMN 74">
 </footer>
+<script>
+  const heroSlides = document.querySelectorAll('.hero-slide');
+  let heroAtual = 0;
+
+  setInterval(() => {
+    heroSlides[heroAtual].classList.remove('active');
+    heroAtual = (heroAtual + 1) % heroSlides.length;
+    heroSlides[heroAtual].classList.add('active');
+  }, 7000);
+</script>
 </body>
 </html>
