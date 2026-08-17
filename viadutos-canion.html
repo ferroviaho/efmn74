@@ -12,14 +12,14 @@
       --paper: #fffdf8;
       --ink: #222;
       --muted: #68635a;
-      --dark: #151515;
-      --gold: #c89b2b;
       --line: #ded7c8;
       --link: #0056b3;
       --max: 1000px;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -29,37 +29,51 @@
       line-height: 1.6;
     }
 
-    header {
-      background: var(--dark);
-      color: white;
-      border-bottom: 4px solid var(--gold);
+    /* ===== CABEÇALHO PADRÃO EFMN 74 ===== */
+
+    .site-header {
+      width: 100%;
+      background: #000;
+      border-bottom: 1px solid #c9a227;
+      margin: 0;
+      padding: 8px 16px;
+      box-sizing: border-box;
     }
 
     .header-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 18px 20px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+      justify-content: center;
+      gap: 14px;
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
-    .brand {
-      font-size: 1.45rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
+    .header-logo {
+      width: 72px;
+      height: auto;
+      display: block;
+      flex: 0 0 auto;
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 18px;
+    .header-text {
+      color: #fff;
+      line-height: 1.25;
+      text-align: left;
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.95rem;
     }
 
-    nav a:hover { text-decoration: underline; }
+    .header-title {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .header-subtitle {
+      margin: 2px 0 0;
+      font-size: 0.88rem;
+      font-weight: 400;
+    }
 
     main {
       max-width: var(--max);
@@ -105,55 +119,7 @@
       margin: 0 0 16px;
     }
 
-    .veja-tambem {
-      margin-top: 22px;
-      padding-top: 16px;
-      border-top: 1px solid var(--line);
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    .veja-tambem a {
-      color: var(--link);
-      font-weight: 600;
-      text-decoration: underline;
-    }
-
-    footer {
-      border-top: 1px solid var(--line);
-      text-align: center;
-      padding: 24px 20px 30px;
-      color: var(--muted);
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.9rem;
-    }
-
-    .footer-logo {
-      width: 105px;
-      max-width: 35vw;
-      height: auto;
-      display: block;
-      margin: 0 auto 10px;
-    }
-
-    .footer-linha1 {
-      margin: 0;
-      font-weight: 600;
-    }
-
-    .footer-linha2 {
-      margin: 3px 0 0;
-    }
-
     @media (max-width: 700px) {
-      .header-inner { display: block; }
-
-      nav { margin-top: 10px; }
-
-      nav a {
-        display: inline-block;
-        margin: 4px 12px 4px 0;
-      }
-
       main {
         padding: 26px 16px 44px;
       }
@@ -166,26 +132,49 @@
         font-size: 1.05rem;
       }
     }
+
+    @media (max-width: 600px) {
+      .site-header {
+        padding: 7px 10px;
+      }
+
+      .header-inner {
+        gap: 10px;
+      }
+
+      .header-logo {
+        width: 72px;
+      }
+
+      .header-title {
+        font-size: 0.98rem;
+      }
+
+      .header-subtitle {
+        font-size: 0.80rem;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-<header>
+<!-- ===== CABEÇALHO PADRÃO EFMN 74 ===== -->
+<header class="site-header">
   <div class="header-inner">
-    <div class="brand">EFMN 74</div>
+    <img
+      src="logo-efmn74.PNG"
+      alt="Logomarca da Ferrovia EFMN 74"
+      class="header-logo"
+    >
 
-    <nav>
-      <a href="index.html">Início</a>
-      <a href="index.html#diario">Diário de Bordo</a>
-      <a href="manual-indice.html">Manual de Construção</a>
-      <a href="galeria-indice.html">Galeria</a>
-      <a href="index.html#automacao">Automação</a>
-      <a href="index.html#memoria">Memória</a>
-      <a href="index.html#contato">Contato</a>
-    </nav>
+    <div class="header-text">
+      <p class="header-title">Ferrovia EFMN 74 - Escala HO</p>
+      <p class="header-subtitle">Construção, automação, memória e documentação</p>
+    </div>
   </div>
 </header>
+<!-- ===== FIM DO CABEÇALHO PADRÃO ===== -->
 
 <main>
 
@@ -222,29 +211,11 @@
         quedas, foi confeccionada com papel, algodão e glitter, procurando reproduzir o
         movimento e a espuma da água.
       </p>
-
-      <p>
-        A parede de fundo ainda receberá uma placa de Depron, que será colada diretamente
-        sobre a parede e posteriormente pintada para compor o cenário. A técnica utilizada
-        nessa etapa será apresentada em breve em um item específico.
-      </p>
-
-      <p class="veja-tambem">
-        Veja também:
-        <a href="como-fazer-cachoeira.html">Como fazer uma cachoeira</a>.
-      </p>
     </div>
 
   </div>
 
 </main>
 
-<footer>
-  <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="footer-logo">
-  <p class="footer-linha1">Ferrovia EFMN 74 - Escala HO</p>
-  <p class="footer-linha2">Construção, automação, memória e documentação</p>
-</footer>
-
 </body>
 </html>
-
