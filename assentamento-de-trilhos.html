@@ -3,90 +3,309 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content=" de trilhos da Ferrovia EFMN 74 em escala HO.">
+  <meta name="description" content="Assentamento de trilhos da Ferrovia EFMN 74 em escala HO.">
   <title>Assentamento de trilhos | Ferrovia EFMN 74</title>
+
   <style>
-    :root{--bg:#f4f1ea;--paper:#fffdf8;--ink:#222;--dark:#151515;--gold:#c89b2b;--line:#ded7c8;--blue:#0056b3;--max:1000px}
-    *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.6}
-    .site-header{background:var(--dark);color:#fff;border-bottom:4px solid var(--gold);border-radius:0}
-    .header-inner{max-width:var(--max);margin:0 auto;padding:8px 20px;display:flex;align-items:center;justify-content:center;gap:16px}
-    .header-logo{width:72px;height:auto;display:block;margin:0;flex:0 0 auto}
-    .header-texto{text-align:left;font-family:Arial,Helvetica,sans-serif}
-    .header-linha1{margin:0;font-size:.95rem;font-weight:600}
-    .header-linha2{margin:2px 0 0;font-size:.9rem;color:#d8d8d8}
-    main{max-width:var(--max);margin:0 auto;padding:34px 20px 56px}
-    .voltar-indice{margin:0 0 22px;font-family:Arial,Helvetica,sans-serif}
-    .voltar-indice a{color:var(--blue);text-decoration:underline;font-weight:600}
-    h1{margin:0 0 14px;line-height:1.2;font-size:2.25rem}
-    .abertura{margin:0 0 32px;font-size:1.08rem;color:#333}
-    .etapas{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:22px 26px;margin:0 0 36px}
-    .etapas h2{margin-top:0;font-size:1.35rem}
-    .etapas ol{margin-bottom:0;padding-left:24px}
-    .etapas li{margin:7px 0}
-    .manual-item{display:flex;align-items:center;gap:28px;margin:34px 0}
-    .manual-item.reverse{flex-direction:row-reverse}
-    .manual-foto{width:360px;height:240px;object-fit:cover;border-radius:8px;flex-shrink:0;display:block;border:1px solid var(--line)}
-    .manual-texto{flex:1;font-size:1rem;line-height:1.6}
-    .manual-texto p{margin:0}
-    @media(max-width:700px){
-      .header-inner{padding:8px 14px;gap:12px}
-      .header-logo{width:62px}
-      .header-linha1{font-size:.9rem}
-      .header-linha2{font-size:.82rem}
-      main{padding:26px 16px 44px}
-      h1{font-size:1.75rem}
-      .manual-item,.manual-item.reverse{flex-direction:column;align-items:stretch;gap:12px;margin:26px 0 36px}
-      .manual-foto{width:100%;height:auto;max-height:none;object-fit:contain}
-      .manual-texto{width:100%}
-      .etapas{padding:18px 20px}
+    :root {
+      --bg: #f4f1ea;
+      --paper: #fffdf8;
+      --ink: #222;
+      --muted: #68635a;
+      --dark: #151515;
+      --gold: #c89b2b;
+      --line: #ded7c8;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--dark);
+      color: #fff;
+      border-bottom: 4px solid var(--gold);
+    }
+
+    .header-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    nav {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.95rem;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 18px;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 34px 20px 56px;
+    }
+
+    .voltar-indice {
+      margin: 0 0 22px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .voltar-indice a {
+      color: #0056b3;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .voltar-indice a:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      line-height: 1.2;
+      font-size: 2.25rem;
+    }
+
+    .abertura {
+      margin: 0 0 32px;
+      font-size: 1.08rem;
+      color: #333;
+    }
+
+    .etapas {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin: 0 0 36px;
+    }
+
+    .etapas h2 {
+      margin-top: 0;
+      font-size: 1.35rem;
+    }
+
+    .etapas ol {
+      margin-bottom: 0;
+      padding-left: 24px;
+    }
+
+    .etapas li {
+      margin: 7px 0;
+    }
+
+    .manual-item {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin: 34px 0;
+    }
+
+    .manual-item.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .manual-foto {
+      width: 360px;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 8px;
+      flex-shrink: 0;
+      display: block;
+      border: 1px solid var(--line);
+    }
+
+    .manual-texto {
+      flex: 1;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .manual-texto p {
+      margin: 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      text-align: center;
+      margin-top: 48px;
+      padding: 26px 15px 30px;
+      color: #555;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.92rem;
+    }
+
+    .footer-logo {
+      width: 90px;
+      height: auto;
+      display: block;
+      margin: 0 auto 10px;
+    }
+
+    footer p {
+      margin: 3px 0;
+    }
+
+    @media (max-width: 700px) {
+      .header-inner {
+        display: block;
+      }
+
+      nav {
+        margin-top: 10px;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 4px 12px 4px 0;
+      }
+
+      main {
+        padding: 26px 16px 44px;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      .manual-item,
+      .manual-item.reverse {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        margin: 26px 0 36px;
+      }
+
+      .manual-foto {
+        width: 100%;
+        height: auto;
+        max-height: none;
+        object-fit: contain;
+      }
+
+      .manual-texto {
+        width: 100%;
+      }
+
+      .etapas {
+        padding: 18px 20px;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<header class="site-header">
+<header>
   <div class="header-inner">
-    <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo">
-    <div class="header-texto">
-      <p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p>
-      <p class="header-linha2">Construção, automação, memória e documentação</p>
-    </div>
+    <div class="brand">EFMN 74</div>
+
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="index.html#diario">Diário de Bordo</a>
+      <a href="index.html#documentacao">Documentação</a>
+      <a href="manual-indice.html">Manual de Construção</a>
+      <a href="index.html#galeria">Galeria</a>
+    </nav>
   </div>
 </header>
 
 <main>
-  <p class="voltar-indice"><a href="manual-indice.html">← Voltar ao índice</a></p>
 
-  <h1>O assentamento dos trilhos</h1>
+  <p class="voltar-indice">
+    <a href="manual-indice.html">← Voltar ao índice</a>
+  </p>
+
+  <h1>Assentamento de trilhos</h1>
 
   <p class="abertura">
     O assentamento dos trilhos é uma das etapas mais importantes da construção da ferrovia.
-    Buscou-se obter um alinhamento seguro e, ao mesmo tempo, uma aparência realista,
+    Na EFMN 74, procurei obter um alinhamento seguro e, ao mesmo tempo, uma aparência realista,
     utilizando cortiça como base e brita fina para formar o lastro.
   </p>
 
   <section class="etapas">
-    <h2>Como foi feito</h2>
+    <h2>Como fiz</h2>
     <ol>
-      <li>Os trilhos devem ser posicionados no traçado projetado e parcialmente pregados, apenas para manter o alinhamento básico.</li>
-      <li>Depois, levantante os trilhos, sem retirar os pregos e pinte a mesa, na cor cinza, uma faixa de 0,5 cm no final dos dormente no sentido dos trilhos, para esconder a cor do fundo quando for aplicado o lastro</li>
-      <li>A cortiça de 3 mm também deve ser pintada de cinza.</li>
-      <li>Nas curvas, preparare moldes de cartolina acompanhando o traçado dos trilhos. Com esses moldes, corte a cortiça.</li>
-      <li>Para fixar a cortiça use cola de contato ou Tekbond.</li>
-      <li>Em seguida, abaixe os trilhos e coloque pesos sobre eles para auxiliar na fixação da cortiça.</li>
-      <li>Em seguida alinhe os trilhos com uma régua e pregue os pregos com muito cuidado usando um punção para evitar bater nos dormentes de plástico que quebram com facilidade</li>
-      <li>Quando estiver todo circuito finalizado comece a colocar pedras pedras HO (veja neste capítulo o item Onde comprar). Distribua as pedras entre os dormentes e nas laterais dos trilhos. Use um pincel para espalhar o material.</li>
-      <li>Para acomodar as pedrinhas dê várias batidas nos trilhos com o cabo de um pincel e depois retire o excesso sobre os dormentes.</li>
-      <li>Nos desvios é necessário um cuidado especial para evitar que as pedrinhas ou a cola prejudiquem o funcionamento das agulhas.</li>
-      <li>Umedeça as pedras com uma mistura de álcool 70% com algumas gotas de detergente.</li>
-      <li>Após aproximadamente 20 minutos aplique, com uma pipeta ou conta-gotas, uma mistura de 25% de cola branca e 75% de água.</li>
-      <li>Aguarde pelo menos 2 horas para uma boa secagem. Em seguida aspire a montagem para tirar as pedras que não colaram e acrescente pedrinhas necessário. Aplique cola neste locais novamente</li>
+      <li>Posicionei os trilhos no traçado e preguei parcialmente, apenas para manter o alinhamento.</li>
+      <li>Levantei os trilhos sem retirar os pregos e pintei a mesa de cinza até a região correspondente ao final dos dormentes.</li>
+      <li>Cortei a cortiça de 3 mm e também a pintei de cinza.</li>
+      <li>Nas curvas, fiz moldes de cartolina acompanhando o traçado dos trilhos. Com esses moldes marquei e cortei a cortiça.</li>
+      <li>Passei cola de contato ou Tekbond sob a cortiça e a coloquei abaixo dos trilhos.</li>
+      <li>Abaixei novamente os trilhos e coloquei peso sobre eles para ajudar na fixação da cortiça.</li>
+      <li>Distribuí as pedras entre os dormentes e nas laterais dos trilhos, espalhando o material com um pincel.</li>
+      <li>Bati levemente nos trilhos para acomodar o lastro e retirei o excesso sobre os dormentes e na parte interna dos trilhos.</li>
+      <li>Nos desvios, tive cuidado especial para não deixar pedras ou cola prejudicarem o funcionamento das partes móveis.</li>
+      <li>Gotejei álcool 70% com algumas gotas de detergente para umedecer o lastro.</li>
+      <li>Após aproximadamente 20 minutos, apliquei uma mistura de 25% de cola branca e 75% de água.</li>
+      <li>Deixei secar por um dia, aspirei o excesso e completei com pequenas pedras onde foi necessário.</li>
     </ol>
   </section>
 
+  <section class="etapas">
+    <h2>Reforço do lastro de brita</h2>
+    <p>Para reforçar ou recuperar o lastro já existente, recomenda-se trabalhar em trechos pequenos, de no máximo 40 cm, facilitando o controle da aplicação.</p>
+    <ul>
+      <li>Aspirar cuidadosamente o trecho com um aspirador forte, retirando poeira e partículas soltas.</li>
+      <li>Repor a brita nos pontos onde houver falhas ou pequenos buracos.</li>
+      <li>Aplicar uma solução de álcool com detergente para umedecer e facilitar a penetração da cola.</li>
+      <li>Aguardar alguns minutos.</li>
+      <li>Aplicar a mistura de cola branca com água sobre a brita e deixar secar completamente.</li>
+    </ul>
+
+    <h2>Pintura de ferrugem nos trilhos</h2>
+    <p>Para reproduzir o aspecto de ferrugem nas laterais dos trilhos, podem ser utilizadas canetas hidrocor nas cores vermelha, laranja e marrom.</p>
+    <p>Aplicar cada uma das três cores sucessivamente, repetindo o processo três vezes para criar variações de tonalidade. Ao final, aspirar cuidadosamente para retirar eventuais resíduos.</p>
+
+    <h2>Envelhecimento e pintura dos dormentes</h2>
+    <ul>
+      <li>Passar uma escova de dentes sobre os dormentes para remover sujeira e resíduos.</li>
+      <li>Aspirar o trecho com potência média.</li>
+      <li>Aplicar uma mistura bem diluída de tinta PVA marrom-claro.</li>
+      <li>Deixar secar completamente.</li>
+      <li>Passar novamente a escova de dentes.</li>
+      <li>Finalizar aspirando o trecho com potência média.</li>
+    </ul>
+  </section>
+
+  <!-- FOTO 1 -->
   <div class="manual-item">
-    <img src="assentamento-trilhos-lastro.jpg" alt="Trilhos assentados com aplicação de lastro" class="manual-foto" loading="lazy">
+    <img
+      src="assentamento-trilhos-lastro.jpg"
+      alt="Trilhos assentados com aplicação de lastro"
+      class="manual-foto"
+      loading="lazy"
+    >
+
     <div class="manual-texto">
       <p>
         Trilhos assentados e alinhados após a aplicação do lastro. A brita fina é distribuída
@@ -96,8 +315,16 @@
     </div>
   </div>
 
+  <!-- FOTO 2 -->
   <div class="manual-item reverse">
-    <img src="trilhos-com-paisagismo.jpg" alt="Trecho de trilho concluído com lastro e paisagismo" class="manual-foto" loading="lazy">
+    <img
+      src="trilhos-com-paisagismo.jpg"
+      alt="Trecho de trilho concluído com lastro e paisagismo"
+      class="manual-foto"
+      loading="lazy"
+      style="transform: rotate(90deg);"
+    >
+
     <div class="manual-texto">
       <p>
         Trecho concluído após o assentamento dos trilhos, aplicação do lastro e execução do
@@ -106,8 +333,14 @@
       </p>
     </div>
   </div>
+
 </main>
+
+<footer>
+  <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="footer-logo">
+  <p>Ferrovia EFMN 74 - Escala HO</p>
+  <p>Construção, automação, memória e documentação</p>
+</footer>
 
 </body>
 </html>
-
