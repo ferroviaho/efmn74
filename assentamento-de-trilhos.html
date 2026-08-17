@@ -30,42 +30,49 @@
       line-height: 1.6;
     }
 
-    header {
-      background: var(--dark);
-      color: #fff;
-      border-bottom: 4px solid var(--gold);
+    /* ===== CABEÇALHO PADRÃO EFMN 74 ===== */
+    .site-header {
+      width: 100%;
+      background: #000;
+      border-bottom: 1px solid #c9a227;
+      margin: 0;
+      padding: 8px 16px;
+      box-sizing: border-box;
     }
 
     .header-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 18px 20px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 24px;
+      justify-content: center;
+      gap: 14px;
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
-    .brand {
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 1.45rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+    .header-logo {
+      width: 72px;
+      height: auto;
+      display: block;
+      flex: 0 0 auto;
     }
 
-    nav {
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.95rem;
-    }
-
-    nav a {
+    .header-text {
       color: #fff;
-      text-decoration: none;
-      margin-left: 18px;
+      line-height: 1.25;
+      text-align: left;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
-    nav a:hover {
-      color: var(--gold);
+    .header-title {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .header-subtitle {
+      margin: 2px 0 0;
+      font-size: 0.88rem;
+      font-weight: 400;
     }
 
     main {
@@ -176,17 +183,24 @@
     }
 
     @media (max-width: 700px) {
+      .site-header {
+        padding: 7px 10px;
+      }
+
       .header-inner {
-        display: block;
+        gap: 10px;
       }
 
-      nav {
-        margin-top: 10px;
+      .header-logo {
+        width: 72px;
       }
 
-      nav a {
-        display: inline-block;
-        margin: 4px 12px 4px 0;
+      .header-title {
+        font-size: 0.98rem;
+      }
+
+      .header-subtitle {
+        font-size: 0.80rem;
       }
 
       main {
@@ -225,19 +239,22 @@
 
 <body>
 
-<header>
+<!-- ===== CABEÇALHO PADRÃO EFMN 74 ===== -->
+<header class="site-header">
   <div class="header-inner">
-    <div class="brand">EFMN 74</div>
+    <img
+      src="logo-efmn74.PNG"
+      alt="Logomarca da Ferrovia EFMN 74"
+      class="header-logo"
+    >
 
-    <nav>
-      <a href="index.html">Início</a>
-      <a href="index.html#diario">Diário de Bordo</a>
-      <a href="index.html#documentacao">Documentação</a>
-      <a href="manual-indice.html">Manual de Construção</a>
-      <a href="index.html#galeria">Galeria</a>
-    </nav>
+    <div class="header-text">
+      <p class="header-title">Ferrovia EFMN 74 - Escala HO</p>
+      <p class="header-subtitle">Construção, automação, memória e documentação</p>
+    </div>
   </div>
 </header>
+<!-- ===== FIM DO CABEÇALHO PADRÃO ===== -->
 
 <main>
 
@@ -249,25 +266,25 @@
 
   <p class="abertura">
     O assentamento dos trilhos é uma das etapas mais importantes da construção da ferrovia.
-    Na EFMN 74, procurei obter um alinhamento seguro e, ao mesmo tempo, uma aparência realista,
+    Na EFMN 74, busca-se obter um alinhamento seguro e, ao mesmo tempo, uma aparência realista,
     utilizando cortiça como base e brita fina para formar o lastro.
   </p>
 
   <section class="etapas">
-    <h2>Como fiz</h2>
+    <h2>Como fazer</h2>
     <ol>
-      <li>Posicionei os trilhos no traçado e preguei parcialmente, apenas para manter o alinhamento.</li>
-      <li>Levantei os trilhos sem retirar os pregos e pintei a mesa de cinza até a região correspondente ao final dos dormentes.</li>
-      <li>Cortei a cortiça de 3 mm e também a pintei de cinza.</li>
-      <li>Nas curvas, fiz moldes de cartolina acompanhando o traçado dos trilhos. Com esses moldes marquei e cortei a cortiça.</li>
-      <li>Passei cola de contato ou Tekbond sob a cortiça e a coloquei abaixo dos trilhos.</li>
-      <li>Abaixei novamente os trilhos e coloquei peso sobre eles para ajudar na fixação da cortiça.</li>
-      <li>Distribuí as pedras entre os dormentes e nas laterais dos trilhos, espalhando o material com um pincel.</li>
-      <li>Bati levemente nos trilhos para acomodar o lastro e retirei o excesso sobre os dormentes e na parte interna dos trilhos.</li>
-      <li>Nos desvios, tive cuidado especial para não deixar pedras ou cola prejudicarem o funcionamento das partes móveis.</li>
-      <li>Gotejei álcool 70% com algumas gotas de detergente para umedecer o lastro.</li>
-      <li>Após aproximadamente 20 minutos, apliquei uma mistura de 25% de cola branca e 75% de água.</li>
-      <li>Deixei secar por um dia, aspirei o excesso e completei com pequenas pedras onde foi necessário.</li>
+      <li>Posicionar os trilhos no traçado e pregá-los parcialmente, apenas para manter o alinhamento.</li>
+      <li>Levantar os trilhos sem retirar os pregos e pintar a mesa de cinza até a região correspondente ao final dos dormentes.</li>
+      <li>Cortar a cortiça de 3 mm e também pintá-la de cinza.</li>
+      <li>Nas curvas, fazer moldes de cartolina acompanhando o traçado dos trilhos. Com esses moldes, marcar e cortar a cortiça.</li>
+      <li>Passar cola de contato ou Tekbond sob a cortiça e colocá-la abaixo dos trilhos.</li>
+      <li>Abaixar novamente os trilhos e colocar peso sobre eles para ajudar na fixação da cortiça.</li>
+      <li>Distribuir as pedras entre os dormentes e nas laterais dos trilhos, espalhando o material com um pincel.</li>
+      <li>Bater levemente nos trilhos para acomodar o lastro e retirar o excesso sobre os dormentes e na parte interna dos trilhos.</li>
+      <li>Nos desvios, ter cuidado especial para não deixar pedras ou cola prejudicarem o funcionamento das partes móveis.</li>
+      <li>Gotejar álcool 70% com algumas gotas de detergente para umedecer o lastro.</li>
+      <li>Após aproximadamente 20 minutos, aplicar uma mistura de 25% de cola branca e 75% de água.</li>
+      <li>Deixar secar por um dia, aspirar o excesso e completar com pequenas pedras onde for necessário.</li>
     </ol>
   </section>
 
