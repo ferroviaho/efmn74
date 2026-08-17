@@ -1,212 +1,327 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Posição de uma cabine de sinalização - Manual de Construção da Ferrovia EFMN 74.">
-  <title>Posição de uma cabine de sinalização | Ferrovia EFMN 74</title>
+  <meta name="description" content="Cabine de sinalização envelhecida — Manual de Construção da Ferrovia EFMN 74.">
+  <title>Cabine de sinalização — EFMN 74</title>
+
   <style>
     :root {
       --bg: #f4f1ea;
-      --paper: #fffdf8;
       --ink: #222;
-      --muted: #68635a;
-      --line: #ded7c8;
-      --blue: #0056b3;
-      --max: 1000px;
+      --link: #0056b3;
+      --max: 1100px;
     }
-    * { box-sizing: border-box; }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       background: var(--bg);
       color: var(--ink);
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Georgia, "Times New Roman", serif;
       line-height: 1.6;
     }
-    main { width: 100%; }
-    .cabine-sinalizacao {
-      max-width: var(--max);
-      margin: 30px auto;
-      padding: 30px 24px;
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 10px;
+
+    /* ===== CABEÇALHO PADRÃO EFMN 74 ===== */
+
+    .site-header {
+      width: 100%;
+      background: #000;
+      border-bottom: 1px solid #c9a227;
+      margin: 0;
+      padding: 8px 16px;
+      box-sizing: border-box;
     }
-    .voltar-manual { margin: 0 0 18px; }
-    .voltar-manual a {
-      color: var(--blue);
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .header-logo {
+      width: 72px;
+      height: auto;
+      display: block;
+      flex: 0 0 auto;
+    }
+
+    .header-text {
+      color: #fff;
+      line-height: 1.25;
+      text-align: left;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .header-title {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .header-subtitle {
+      margin: 2px 0 0;
+      font-size: 0.88rem;
+      font-weight: 400;
+    }
+
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 34px 20px 60px;
+    }
+
+    .voltar {
+      margin: 0 0 20px;
+    }
+
+    .voltar a {
+      color: var(--link);
       text-decoration: underline;
+      font-family: Arial, Helvetica, sans-serif;
       font-size: 1rem;
       font-weight: 600;
     }
-    .voltar-manual a:hover { text-decoration: none; }
-    .cabine-sinalizacao h1 {
-      margin: 0 0 18px;
+
+    h1 {
+      margin: 0 0 24px;
       font-size: 2rem;
-      line-height: 1.2;
-      color: var(--ink);
     }
-    .cabine-sinalizacao h2 {
-      margin: 30px 0 10px;
-      font-size: 1.35rem;
-      line-height: 1.3;
-      color: var(--ink);
+
+    .conteudo {
+      display: flex;
+      align-items: flex-start;
+      gap: 30px;
     }
-    .cabine-sinalizacao p {
-      margin: 0 0 18px;
-      font-size: 1.1rem;
+
+    .foto {
+      flex: 0 0 42%;
+      max-width: 42%;
     }
-    .destaque {
-      margin-top: 30px;
-      padding: 18px 20px;
-      background: #f7f4ed;
-      border-left: 4px solid var(--line);
-      border-radius: 6px;
+
+    .foto img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
     }
-    .destaque p { margin: 0; }
-@media (max-width: 760px) {
-      .cabine-sinalizacao {
-        margin: 0;
-        padding: 24px 16px;
-        border: 0;
-        border-radius: 0;
+
+    .texto {
+      flex: 1;
+      font-size: 1.05rem;
+    }
+
+    .texto h2,
+    .texto-completo h2 {
+      margin: 0 0 14px;
+      font-size: 1.45rem;
+    }
+
+    .texto h3,
+    .texto-completo h3 {
+      margin: 24px 0 8px;
+      font-size: 1.15rem;
+    }
+
+    .texto p,
+    .texto-completo p {
+      margin: 0 0 14px;
+    }
+
+    .texto ul,
+    .texto ol,
+    .texto-completo ul,
+    .texto-completo ol {
+      margin-top: 8px;
+      padding-left: 24px;
+    }
+
+    .texto li,
+    .texto-completo li {
+      margin-bottom: 8px;
+    }
+
+    .texto-completo {
+      width: 100%;
+      font-size: 1.05rem;
+    }
+
+    @media (max-width: 800px) {
+      .conteudo {
+        flex-direction: column;
       }
-      .cabine-sinalizacao h1 { font-size: 1.7rem; }
-      .cabine-sinalizacao h2 { font-size: 1.25rem; }
-      .cabine-sinalizacao p { font-size: 1.05rem; }
+
+      .foto {
+        flex: none;
+        max-width: 100%;
+        width: 100%;
+      }
     }
-  
-  .topo-efmn {
-    width: 100%;
-    background: #000;
-    border-bottom: 2px solid #c9a227;
-  }
-  .topo-conteudo {
-    max-width: var(--max);
-    margin: 0 auto;
-    padding: 10px 18px 8px;
-  }
-  .topo-identidade {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 18px;
-  }
-  .topo-identidade img {
-    width: 72px;
-    height: auto;
-    display: block;
-  }
-  .topo-textos {
-    color: #fff;
-    line-height: 1.25;
-  }
-  .topo-titulo {
-    font-size: 1.05rem;
-    font-weight: 700;
-  }
-  .topo-subtitulo {
-    margin-top: 2px;
-    font-size: 0.88rem;
-    color: #d8d8d8;
-  }
-  .topo-menu {
-    margin-top: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 22px;
-    flex-wrap: wrap;
-  }
-  .topo-menu a,
-  .topo-menu span {
-    font-size: 0.9rem;
-    color: #fff;
-    text-decoration: none;
-  }
-  .topo-menu a:hover { text-decoration: underline; }
-  .topo-menu .inativo {
-    color: #aaa;
-    cursor: default;
-  }
 
+    @media (max-width: 600px) {
+      .site-header {
+        padding: 7px 10px;
+      }
 
-  @media (max-width: 760px) {
-    .topo-conteudo { padding: 9px 12px 7px; }
-    .topo-identidade { gap: 12px; }
-    .topo-identidade img { width: 72px; }
-    .topo-titulo { font-size: 0.92rem; }
-    .topo-subtitulo { font-size: 0.78rem; }
-    .topo-menu { gap: 12px 16px; margin-top: 7px; }
-    .topo-menu a, .topo-menu span { font-size: 0.82rem; }
-  }
+      .header-inner {
+        gap: 10px;
+      }
 
-</style>
+      .header-logo {
+        width: 72px;
+      }
+
+      .header-title {
+        font-size: 0.98rem;
+      }
+
+      .header-subtitle {
+        font-size: 0.80rem;
+      }
+
+      main {
+        padding: 26px 16px 44px;
+      }
+
+      h1 {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header class="topo-efmn">
-  <div class="topo-conteudo">
-    <div class="topo-identidade">
-      <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74">
-      <div class="topo-textos">
-        <div class="topo-titulo">Ferrovia EFMN 74 - Escala HO</div>
-        <div class="topo-subtitulo">Construção, automação, memória e documentação</div>
-      </div>
+
+<!-- ===== CABEÇALHO PADRÃO EFMN 74 ===== -->
+<header class="site-header">
+  <div class="header-inner">
+    <img
+      src="logo-efmn74.PNG"
+      alt="Logomarca da Ferrovia EFMN 74"
+      class="header-logo"
+    >
+
+    <div class="header-text">
+      <p class="header-title">Ferrovia EFMN 74 - Escala HO</p>
+      <p class="header-subtitle">Construção, automação, memória e documentação</p>
     </div>
-   
   </div>
 </header>
+<!-- ===== FIM DO CABEÇALHO PADRÃO ===== -->
 
-  <main>
-    <section class="cabine-sinalizacao">
-      <p class="voltar-manual">
-        <a href="manual-indice.html">← Voltar ao índice</a>
-      </p>
-      <h1>Posição de uma cabine de sinalização</h1>
+<main>
+
+  <p class="voltar">
+    <a href="manual-indice.html">← Voltar ao índice</a>
+  </p>
+
+  <h1>Cabine de sinalização após 10 anos exposta ao tempo</h1>
+
+  <div class="conteudo">
+
+    <div class="texto">
       <p>
-        A localização de uma cabine de sinalização deve estar relacionada à função que ela
-        desempenha na operação ferroviária. Além do aspecto visual na maquete, seu
-        posicionamento deve fazer sentido em relação aos desvios, cruzamentos, sinais e
-        circulação dos trens.
+        Com o passar dos anos, uma cabine de sinalização exposta ao sol, chuva, poeira e
+        umidade perde gradualmente o aspecto de construção nova. Depois de aproximadamente
+        dez anos, é comum apresentar características típicas de envelhecimento, que podem
+        ser reproduzidas na maquete para aumentar o realismo.
       </p>
-      <h2>1. Entradas e saídas de estações e pátios</h2>
+
+      <h2>Aspectos do envelhecimento</h2>
+
+      <ul>
+        <li><strong>Pintura:</strong> perde intensidade e desbota. Os tons vermelhos tendem a adquirir aparência mais terrosa, com áreas descascadas principalmente nos pontos mais expostos ao sol e à chuva.</li>
+        <li><strong>Tijolos:</strong> acumulam poeira, sujeira e manchas de umidade. Em alguns pontos podem surgir manchas esbranquiçadas, simulando eflorescência.</li>
+        <li><strong>Madeira e metal:</strong> portas e esquadrias de madeira podem adquirir tons acinzentados e apresentar marcas de desgaste. Nas peças metálicas podem aparecer pontos de ferrugem.</li>
+        <li><strong>Telhado:</strong> pode acumular sujeira, folhas, musgo e liquens, principalmente junto às bordas e locais de menor escoamento da água.</li>
+        <li><strong>Aspecto geral:</strong> a construção deve adquirir aparência envelhecida, suja e bastante utilizada, característica de antigas instalações ferroviárias.</li>
+      </ul>
+
+      <h2>Como fazer — técnica rápida para envelhecer a cabine em HO</h2>
+
+      <h3>1. Preparação</h3>
       <p>
-        Este é um dos locais mais comuns para a instalação de uma cabine de sinalização.
-        Estações e pátios de manobra normalmente concentram vários AMVs
-        (Aparelhos de Mudança de Via), por isso a cabine deve ser posicionada em um ponto
-        que proporcione ao operador boa visibilidade das agulhas e dos sinais.
+        Limpe bem a peça para retirar poeira e resíduos. Se necessário, aplique uma camada
+        fina de primer cinza ou vermelho e deixe secar completamente.
       </p>
-      <h2>2. Cruzamentos e junções de linhas</h2>
+
+      <h3>2. Cor-base dos tijolos</h3>
       <p>
-        Outro local adequado é próximo aos pontos onde duas linhas se cruzam ou se unem.
-        Nesses casos, a cabine pode ficar no “V” formado pela junção ou em uma posição mais
-        elevada, permitindo observar as vias e verificar se estão livres antes da
-        autorização para a passagem do trem.
+        Pinte as paredes com vermelho-terra, terracota ou vermelho-óxido. Evite uma pintura
+        excessivamente uniforme: pequenas diferenças de tonalidade ajudam a produzir um
+        resultado mais natural.
       </p>
-      <h2>3. Pontos de bloqueio em trechos de linha</h2>
+
+      <h3>3. Envelhecimento das paredes</h3>
       <p>
-        Em ferrovias mais extensas, as cabines também podem ser encontradas ao longo da
-        linha, associadas à divisão da ferrovia em blocos. Cada bloco constitui um trecho
-        controlado, no qual apenas um trem deve permanecer por vez. A cabine participa do
-        controle da liberação do trem para o trecho seguinte.
+        Prepare uma mistura bem diluída de marrom-escuro com uma pequena quantidade de
+        preto, formando um wash. Passe a mistura sobre as paredes, permitindo que ela penetre
+        principalmente nos rejuntes e reentrâncias.
       </p>
-      <h2>Aplicação no ferromodelismo</h2>
       <p>
-        Ao instalar uma cabine de sinalização em uma ferrovia em escala HO, não é
-        necessário escolher sua posição apenas pela aparência da cena. Sempre que possível,
-        é interessante colocá-la em um local coerente com sua função: próxima a um conjunto
-        de desvios, à entrada ou saída de uma estação, a um pátio ou a uma junção de linhas.
+        Depois da secagem, utilize a técnica de pincel seco com bege, areia ou outro tom
+        claro sobre as partes mais salientes. Isso ajuda a reproduzir o desbotamento
+        provocado pelo tempo.
       </p>
-      <div class="destaque">
-        <p>
-          Dessa maneira, mesmo sendo um elemento cenográfico, a cabine passa a ter uma
-          justificativa ferroviária dentro da maquete e contribui para tornar o conjunto
-          mais convincente.
-        </p>
-      </div>
-    </section>
-  </main>
+    </div>
+
+    <div class="foto">
+      <img
+        src="cabine-sinalizacao.jpg"
+        alt="Cabine de sinalização envelhecida"
+        loading="lazy"
+      >
+    </div>
+
+  </div>
+
+  <div class="texto-completo">
+    <h3>4. Telhado</h3>
+    <p>
+      Pinte o telhado inicialmente em marrom-escuro ou na cor correspondente ao material
+      representado. Depois de seco, aplique pequenas quantidades de verde-musgo com uma
+      esponja ou pincel velho, principalmente nas bordas e reentrâncias.
+    </p>
+
+    <h3>5. Portas e esquadrias</h3>
+    <p>
+      Utilize cinza envelhecido, marrom-claro ou a cor original desejada. Depois da
+      secagem, aplique um wash escuro nas frestas e cantos para destacar o desgaste.
+      Nas peças metálicas podem ser acrescentados pequenos pontos em tons de ferrugem.
+    </p>
+
+    <h3>6. Sujeira e acabamento</h3>
+    <p>
+      Com pincel seco, aplique marrom-claro, terra ou bege principalmente próximo à base
+      das paredes, nos cantos, abaixo das janelas, junto às portas e nas áreas onde a água
+      da chuva normalmente escorreria.
+    </p>
+    <p>
+      Pigmentos em pó também podem ser utilizados para reforçar o efeito de poeira, terra
+      e fuligem. O importante é trabalhar aos poucos.
+    </p>
+
+    <h3>7. Proteção</h3>
+    <p>
+      Depois que toda a pintura estiver completamente seca, aplique uma camada leve de
+      verniz fosco para proteger o trabalho e eliminar brilhos indesejados.
+    </p>
+
+    <p>
+      O resultado deve ser uma cabine com aparência envelhecida e integrada ao ambiente
+      ferroviário, evitando tanto o aspecto de peça recém-pintada quanto um envelhecimento
+      exagerado.
+    </p>
+  </div>
+
+</main>
+
 </body>
 </html>
-
