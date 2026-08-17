@@ -27,7 +27,6 @@
     }
 
     /* ===== CABEÇALHO PADRÃO EFMN 74 ===== */
-
     .site-header {
       width: 100%;
       background: #000;
@@ -95,15 +94,24 @@
       font-size: 2rem;
     }
 
-    .conteudo {
-      display: flex;
-      align-items: flex-start;
+    /* TEXTO À ESQUERDA / FOTO À DIREITA */
+    .bloco-superior {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 42%);
       gap: 30px;
+      align-items: start;
+    }
+
+    .texto-superior {
+      grid-column: 1;
+      font-size: 1.05rem;
+      min-width: 0;
     }
 
     .foto {
-      flex: 0 0 42%;
-      max-width: 42%;
+      grid-column: 2;
+      width: 100%;
+      min-width: 0;
     }
 
     .foto img {
@@ -113,43 +121,55 @@
       border-radius: 8px;
     }
 
-    .texto {
-      flex: 1;
+    /* A PARTIR DE "TELHADO", TODO O TEXTO OCUPA A LARGURA TOTAL */
+    .texto-completo {
+      width: 100%;
+      clear: both;
       font-size: 1.05rem;
+      margin-top: 18px;
     }
 
-    .texto h2 {
+    .texto-superior h2,
+    .texto-completo h2 {
       margin: 0 0 14px;
       font-size: 1.45rem;
     }
 
-    .texto h3 {
+    .texto-superior h3,
+    .texto-completo h3 {
       margin: 24px 0 8px;
       font-size: 1.15rem;
     }
 
-    .texto p {
+    .texto-superior p,
+    .texto-completo p {
       margin: 0 0 14px;
     }
 
-    .texto ul,
-    .texto ol {
+    .texto-superior ul,
+    .texto-completo ul,
+    .texto-completo ol {
       margin-top: 8px;
       padding-left: 24px;
     }
 
-    .texto li {
+    .texto-superior li,
+    .texto-completo li {
       margin-bottom: 8px;
     }
 
     @media (max-width: 800px) {
-      .conteudo {
+      .bloco-superior {
+        display: flex;
         flex-direction: column;
       }
 
+      .texto-superior {
+        order: 1;
+      }
+
       .foto {
-        flex: none;
-        max-width: 100%;
+        order: 2;
         width: 100%;
       }
     }
@@ -213,17 +233,9 @@
 
   <h1>Cabine de sinalização após 10 anos exposta ao tempo</h1>
 
-  <div class="conteudo">
+  <div class="bloco-superior">
 
-    <div class="foto">
-      <img
-        src="cabine-sinalizacao.jpg"
-        alt="Cabine de sinalização envelhecida"
-        loading="lazy"
-      >
-    </div>
-
-    <div class="texto">
+    <div class="texto-superior">
       <p>
         Com o passar dos anos, uma cabine de sinalização exposta ao sol, chuva, poeira e
         umidade perde gradualmente o aspecto de construção nova. Depois de aproximadamente
@@ -237,74 +249,89 @@
         <li><strong>Pintura:</strong> perde intensidade e desbota. Os tons vermelhos tendem a adquirir aparência mais terrosa, com áreas descascadas principalmente nos pontos mais expostos ao sol e à chuva.</li>
         <li><strong>Tijolos:</strong> acumulam poeira, sujeira e manchas de umidade. Em alguns pontos podem surgir manchas esbranquiçadas, simulando eflorescência.</li>
         <li><strong>Madeira e metal:</strong> portas e esquadrias de madeira podem adquirir tons acinzentados e apresentar marcas de desgaste. Nas peças metálicas podem aparecer pontos de ferrugem.</li>
-        <li><strong>Telhado:</strong> pode acumular sujeira, folhas, musgo e liquens, principalmente junto às bordas e locais de menor escoamento da água.</li>
-        <li><strong>Aspecto geral:</strong> a construção deve adquirir aparência envelhecida, suja e bastante utilizada, característica de antigas instalações ferroviárias.</li>
       </ul>
-
-      <h2>Como fazer — técnica rápida para envelhecer a cabine em HO</h2>
-
-      <h3>1. Preparação</h3>
-      <p>
-        Limpe bem a peça para retirar poeira e resíduos. Se necessário, aplique uma camada
-        fina de primer cinza ou vermelho e deixe secar completamente.
-      </p>
-
-      <h3>2. Cor-base dos tijolos</h3>
-      <p>
-        Pinte as paredes com vermelho-terra, terracota ou vermelho-óxido. Evite uma pintura
-        excessivamente uniforme: pequenas diferenças de tonalidade ajudam a produzir um
-        resultado mais natural.
-      </p>
-
-      <h3>3. Envelhecimento das paredes</h3>
-      <p>
-        Prepare uma mistura bem diluída de marrom-escuro com uma pequena quantidade de
-        preto, formando um wash. Passe a mistura sobre as paredes, permitindo que ela penetre
-        principalmente nos rejuntes e reentrâncias.
-      </p>
-      <p>
-        Depois da secagem, utilize a técnica de pincel seco com bege, areia ou outro tom
-        claro sobre as partes mais salientes. Isso ajuda a reproduzir o desbotamento
-        provocado pelo tempo.
-      </p>
-
-      <h3>4. Telhado</h3>
-      <p>
-        Pinte o telhado inicialmente em marrom-escuro ou na cor correspondente ao material
-        representado. Depois de seco, aplique pequenas quantidades de verde-musgo com uma
-        esponja ou pincel velho, principalmente nas bordas e reentrâncias.
-      </p>
-
-      <h3>5. Portas e esquadrias</h3>
-      <p>
-        Utilize cinza envelhecido, marrom-claro ou a cor original desejada. Depois da
-        secagem, aplique um wash escuro nas frestas e cantos para destacar o desgaste.
-        Nas peças metálicas podem ser acrescentados pequenos pontos em tons de ferrugem.
-      </p>
-
-      <h3>6. Sujeira e acabamento</h3>
-      <p>
-        Com pincel seco, aplique marrom-claro, terra ou bege principalmente próximo à base
-        das paredes, nos cantos, abaixo das janelas, junto às portas e nas áreas onde a água
-        da chuva normalmente escorreria.
-      </p>
-      <p>
-        Pigmentos em pó também podem ser utilizados para reforçar o efeito de poeira, terra
-        e fuligem. O importante é trabalhar aos poucos.
-      </p>
-
-      <h3>7. Proteção</h3>
-      <p>
-        Depois que toda a pintura estiver completamente seca, aplique uma camada leve de
-        verniz fosco para proteger o trabalho e eliminar brilhos indesejados.
-      </p>
-
-      <p>
-        O resultado deve ser uma cabine com aparência envelhecida e integrada ao ambiente
-        ferroviário, evitando tanto o aspecto de peça recém-pintada quanto um envelhecimento
-        exagerado.
-      </p>
     </div>
+
+    <div class="foto">
+      <img
+        src="cabine-sinalizacao.jpg"
+        alt="Cabine de sinalização envelhecida"
+        loading="lazy"
+      >
+    </div>
+
+  </div>
+
+  <div class="texto-completo">
+
+    <ul>
+      <li><strong>Telhado:</strong> pode acumular sujeira, folhas, musgo e liquens, principalmente junto às bordas e locais de menor escoamento da água.</li>
+      <li><strong>Aspecto geral:</strong> a construção deve adquirir aparência envelhecida, suja e bastante utilizada, característica de antigas instalações ferroviárias.</li>
+    </ul>
+
+    <h2>Como fazer — técnica rápida para envelhecer a cabine em HO</h2>
+
+    <h3>1. Preparação</h3>
+    <p>
+      Limpe bem a peça para retirar poeira e resíduos. Se necessário, aplique uma camada
+      fina de primer cinza ou vermelho e deixe secar completamente.
+    </p>
+
+    <h3>2. Cor-base dos tijolos</h3>
+    <p>
+      Pinte as paredes com vermelho-terra, terracota ou vermelho-óxido. Evite uma pintura
+      excessivamente uniforme: pequenas diferenças de tonalidade ajudam a produzir um
+      resultado mais natural.
+    </p>
+
+    <h3>3. Envelhecimento das paredes</h3>
+    <p>
+      Prepare uma mistura bem diluída de marrom-escuro com uma pequena quantidade de
+      preto, formando um wash. Passe a mistura sobre as paredes, permitindo que ela penetre
+      principalmente nos rejuntes e reentrâncias.
+    </p>
+    <p>
+      Depois da secagem, utilize a técnica de pincel seco com bege, areia ou outro tom
+      claro sobre as partes mais salientes. Isso ajuda a reproduzir o desbotamento
+      provocado pelo tempo.
+    </p>
+
+    <h3>4. Telhado</h3>
+    <p>
+      Pinte o telhado inicialmente em marrom-escuro ou na cor correspondente ao material
+      representado. Depois de seco, aplique pequenas quantidades de verde-musgo com uma
+      esponja ou pincel velho, principalmente nas bordas e reentrâncias.
+    </p>
+
+    <h3>5. Portas e esquadrias</h3>
+    <p>
+      Utilize cinza envelhecido, marrom-claro ou a cor original desejada. Depois da
+      secagem, aplique um wash escuro nas frestas e cantos para destacar o desgaste.
+      Nas peças metálicas podem ser acrescentados pequenos pontos em tons de ferrugem.
+    </p>
+
+    <h3>6. Sujeira e acabamento</h3>
+    <p>
+      Com pincel seco, aplique marrom-claro, terra ou bege principalmente próximo à base
+      das paredes, nos cantos, abaixo das janelas, junto às portas e nas áreas onde a água
+      da chuva normalmente escorreria.
+    </p>
+    <p>
+      Pigmentos em pó também podem ser utilizados para reforçar o efeito de poeira, terra
+      e fuligem. O importante é trabalhar aos poucos.
+    </p>
+
+    <h3>7. Proteção</h3>
+    <p>
+      Depois que toda a pintura estiver completamente seca, aplique uma camada leve de
+      verniz fosco para proteger o trabalho e eliminar brilhos indesejados.
+    </p>
+
+    <p>
+      O resultado deve ser uma cabine com aparência envelhecida e integrada ao ambiente
+      ferroviário, evitando tanto o aspecto de peça recém-pintada quanto um envelhecimento
+      exagerado.
+    </p>
 
   </div>
 
