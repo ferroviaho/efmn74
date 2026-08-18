@@ -190,42 +190,63 @@
       border-radius: 10px;
       padding: 22px;
     }
+    #contato {
+      display: none;
+      padding: 26px 0;
+    }
+    #contato.aberto {
+      display: block;
+    }
     .contact-box {
-      max-width: 760px;
+      max-width: 520px;
+      margin: 0 auto;
       background: var(--paper);
       border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 28px;
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+    .contact-box h2 {
+      margin: 0 0 8px;
+      font-size: 1.8rem;
+    }
+    .contact-box p {
+      margin: 0 0 12px;
+      font-size: .95rem;
     }
     .contact-form {
       display: grid;
-      gap: 16px;
+      gap: 8px;
     }
     .contact-form label {
+      display: block;
+      margin-bottom: 2px;
+      font-size: .9rem;
       font-weight: 600;
     }
     .contact-form input,
     .contact-form textarea {
       width: 100%;
-      padding: 12px 14px;
+      padding: 7px 9px;
       border: 1px solid #c9c1b1;
-      border-radius: 8px;
+      border-radius: 6px;
       font: inherit;
+      font-size: .95rem;
       color: var(--ink);
       background: #fff;
     }
     .contact-form textarea {
-      min-height: 160px;
+      min-height: 85px;
       resize: vertical;
     }
     .contact-form button {
       width: fit-content;
-      padding: 11px 20px;
+      padding: 8px 15px;
       border: 0;
-      border-radius: 8px;
+      border-radius: 6px;
       background: var(--dark);
       color: #fff;
       font: inherit;
+      font-size: .95rem;
       cursor: pointer;
     }
     .contact-form button:hover {
@@ -339,7 +360,7 @@ color: #68635a;
 <a href="galeria-indice.html">Galeria</a>
     
 <a href="#">Downloads</a>
-<a href="#contato">Contato</a>
+<a href="#contato" id="abrir-contato">Contato</a>
 </nav>
 <main>
 <section id="apresentacao">
@@ -396,6 +417,15 @@ color: #68635a;
     heroAtual = (heroAtual + 1) % heroSlides.length;
     heroSlides[heroAtual].classList.add('active');
   }, 7000);
+
+  const abrirContato = document.getElementById('abrir-contato');
+  const contato = document.getElementById('contato');
+
+  abrirContato.addEventListener('click', (event) => {
+    event.preventDefault();
+    contato.classList.add('aberto');
+    contato.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 </script>
 </body>
 </html>
