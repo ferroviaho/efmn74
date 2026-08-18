@@ -190,63 +190,80 @@
       border-radius: 10px;
       padding: 22px;
     }
-    #contato {
+    .contact-modal {
       display: none;
-      padding: 26px 0;
-    }
-    #contato.aberto {
-      display: block;
-    }
-    .contact-box {
-      max-width: 520px;
-      margin: 0 auto;
-      background: var(--paper);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: min(360px, calc(100% - 40px));
+      z-index: 20;
+      background: rgba(255,253,248,.97);
       border: 1px solid var(--line);
       border-radius: 10px;
-      padding: 18px 20px;
+      padding: 14px 16px 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.28);
+      color: var(--ink);
     }
-    .contact-box h2 {
-      margin: 0 0 8px;
-      font-size: 1.8rem;
+    .contact-modal.aberto {
+      display: block;
     }
-    .contact-box p {
-      margin: 0 0 12px;
-      font-size: .95rem;
+    .contact-modal h2 {
+      margin: 0 28px 8px 0;
+      font-size: 1.45rem;
+      line-height: 1.2;
+    }
+    .contact-modal p {
+      margin: 0 0 10px;
+      font-size: .86rem;
+      line-height: 1.35;
+    }
+    .contact-close {
+      position: absolute;
+      top: 7px;
+      right: 9px;
+      border: 0;
+      background: transparent;
+      color: #444;
+      font-size: 1.35rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 2px 5px;
     }
     .contact-form {
       display: grid;
-      gap: 8px;
+      gap: 7px;
     }
     .contact-form label {
       display: block;
       margin-bottom: 2px;
-      font-size: .9rem;
+      font-size: .82rem;
       font-weight: 600;
     }
     .contact-form input,
     .contact-form textarea {
       width: 100%;
-      padding: 7px 9px;
+      padding: 6px 8px;
       border: 1px solid #c9c1b1;
-      border-radius: 6px;
+      border-radius: 5px;
       font: inherit;
-      font-size: .95rem;
+      font-size: .86rem;
       color: var(--ink);
       background: #fff;
     }
     .contact-form textarea {
-      min-height: 85px;
+      min-height: 62px;
       resize: vertical;
     }
     .contact-form button {
       width: fit-content;
-      padding: 8px 15px;
+      padding: 7px 13px;
       border: 0;
-      border-radius: 6px;
+      border-radius: 5px;
       background: var(--dark);
       color: #fff;
       font: inherit;
-      font-size: .95rem;
+      font-size: .86rem;
       cursor: pointer;
     }
     .contact-form button:hover {
@@ -350,6 +367,29 @@ color: #68635a;
 - memória<br/>
 - documentação</p>
 </div>
+<div class="contact-modal" id="contato" role="dialog" aria-modal="true" aria-labelledby="contato-titulo">
+<button class="contact-close" id="fechar-contato" type="button" aria-label="Fechar">×</button>
+<h2 id="contato-titulo">Contato</h2>
+<p>Envie uma mensagem para a Ferrovia EFMN 74.</p>
+<form class="contact-form" action="https://formsubmit.co/ecnobre@yahoo.com.br" method="POST">
+<input type="hidden" name="_subject" value="Contato pelo site Ferrovia EFMN 74">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_next" value="https://ferroviaho.github.io/efmn74/">
+<div>
+<label for="nome">Nome</label>
+<input type="text" id="nome" name="Nome" required>
+</div>
+<div>
+<label for="assunto">Assunto</label>
+<input type="text" id="assunto" name="Assunto" required>
+</div>
+<div>
+<label for="mensagem">Mensagem</label>
+<textarea id="mensagem" name="Mensagem" required></textarea>
+</div>
+<button type="submit">Enviar</button>
+</form>
+</div>
 </header>
 <nav aria-label="Navegação principal" class="side-nav">
 <span class="menu-vazio" aria-hidden="true"></span>
@@ -376,31 +416,6 @@ color: #68635a;
 </div>
 </div>
 </section>
-<section id="contato">
-<div class="contact-box">
-<h2>Contato</h2>
-<p>Para enviar uma mensagem sobre a Ferrovia EFMN 74, preencha o formulário abaixo.</p>
-<form class="contact-form" action="mailto:ecnobre@yahoo.com.br" method="post" enctype="text/plain">
-<div>
-<label for="nome">Nome</label>
-<input type="text" id="nome" name="Nome" required>
-</div>
-<div>
-<label for="email">E-mail</label>
-<input type="email" id="email" name="E-mail" required>
-</div>
-<div>
-<label for="assunto">Assunto</label>
-<input type="text" id="assunto" name="Assunto" required>
-</div>
-<div>
-<label for="mensagem">Mensagem</label>
-<textarea id="mensagem" name="Mensagem" required></textarea>
-</div>
-<button type="submit">Enviar e-mail</button>
-</form>
-</div>
-</section>
 </main>
 <div style="text-align:center; margin:20px 0 10px;">
 <a href="https://wa.me/?text=Conhe%C3%A7a%20a%20Ferrovia%20EFMN%2074%3A%20https%3A%2F%2Fferroviaho.github.io%2Fefmn74%2F" target="_blank" rel="noopener">Enviar para um amigo</a>
@@ -419,12 +434,16 @@ color: #68635a;
   }, 7000);
 
   const abrirContato = document.getElementById('abrir-contato');
+  const fecharContato = document.getElementById('fechar-contato');
   const contato = document.getElementById('contato');
 
   abrirContato.addEventListener('click', (event) => {
     event.preventDefault();
     contato.classList.add('aberto');
-    contato.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  fecharContato.addEventListener('click', () => {
+    contato.classList.remove('aberto');
   });
 </script>
 </body>
