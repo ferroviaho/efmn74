@@ -369,7 +369,440 @@
     </p>
   </article>
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Diário de Bordo da Ferrovia EFMN 74 em escala HO.">
+  <title>Diário de Bordo — EFMN 74</title>
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --ink: #222;
+      --dark: #151515;
+      --gold: #c89b2b;
+      --line: #ded7c8;
+      --link: #0056b3;
+      --max: 1000px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+    header {
+      background: var(--dark);
+      color: white;
+      border-bottom: 4px solid var(--gold);
+    }
+    .header-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .header-logo {
+      width: 72px;
+      height: auto;
+      display: block;
+      margin: 0;
+      flex: 0 0 auto;
+    }
+    .header-texto { text-align: left; }
+    .header-linha1 { margin: 0; font-size: 0.95rem; font-weight: 600; }
+    .header-linha2 { margin: 2px 0 0; font-size: 0.9rem; color: #d8d8d8; }
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 36px 20px 60px;
+    }
+    .voltar-inicio, .voltar-final { margin: 0 0 20px; }
+    .voltar-final { margin-top: 30px; }
+    .voltar-inicio a, .voltar-final a {
+      color: var(--link);
+      text-decoration: underline;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    h1 { margin: 0 0 28px; font-size: 2.1rem; }
+    .intro { margin-bottom: 30px; font-size: 1.1rem; }
+    article { padding: 20px 0; border-top: 1px solid var(--line); }
+    article h2 { margin-top: 0; font-size: 1.35rem; }
+    @media (max-width: 700px) {
+      .header-inner { padding: 16px; }
+      main { padding: 26px 16px 44px; }
+      h1 { font-size: 1.75rem; }
+      .intro { font-size: 1.05rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo">
+    <div class="header-texto">
+      <p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p>
+      <p class="header-linha2">Construção, automação, memória e documentação</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <p class="voltar-inicio">
+    <a href="index.html">← Voltar à página principal</a>
+  </p>
+
+  <h1>Diário de Bordo</h1>
+
+  <div class="intro">
+    <p>
+      Este Diário de Bordo registra, de forma resumida, a evolução da Ferrovia EFMN 74.
+      Não pretende reproduzir todos os detalhes técnicos dos relatórios de trabalho,
+      mas preservar as principais decisões, experiências, dificuldades e avanços do projeto.
+    </p>
+  </div>
+
+  <article>
+    <h2>Antes do Diário de Bordo</h2>
+    <p>A história desta ferrovia não começou com este Diário de Bordo.</p>
+    <p>
+      Em 2022, retomei com maior dedicação um hobby que me acompanha desde a infância:
+      o ferromodelismo. Foi quando começou a tomar forma a ferrovia que, com o passar do tempo,
+      seria ampliada, modificada e aperfeiçoada até chegar à atual Ferrovia EFMN 74.
+    </p>
+    <p>
+      Durante esses primeiros anos, muita coisa foi construída. Trilhos foram assentados,
+      cenários ganharam forma, surgiram pontes, túneis, estação, curral, vegetação e tantos outros
+      pequenos detalhes. Houve experiências que deram certo, outras que precisaram ser refeitas —
+      todas fazendo parte do aprendizado.
+    </p>
+    <p>Naquela época, porém, eu ainda não mantinha um registro diário organizado do trabalho realizado.</p>
+    <p>
+      Por isso, embora esta etapa da ferrovia tenha começado em 2022, o Diário de Bordo propriamente dito
+      começa em julho de 2026, quando passei a registrar de maneira sistemática as decisões,
+      experiências e avanços do projeto.
+    </p>
+    <p>
+      As páginas que seguem contam essa história a partir desse momento, enquanto outras partes deste site
+      procuram preservar também aquilo que foi construído e aprendido nos anos anteriores.
+    </p>
+  </article>
+
+  <article>
+    <h2>22 de julho de 2026</h2>
+    <p>
+      Começou a organização formal da documentação técnica da ferrovia. Foram estabelecidos
+      procedimentos para inicialização, testes de segurança, operação manual e automática
+      e registro de eventos.
+    </p>
+    <p>
+      Também começou a estruturação dos documentos que futuramente formariam a documentação
+      completa da EFMN 74.
+    </p>
+  </article>
+
+  <article>
+    <h2>24 de julho de 2026</h2>
+    <p>
+      A arquitetura do sistema de automação ganhou uma definição mais clara, com dois ESP32
+      responsáveis pelo controle dos desvios, sensores e demais funções.
+    </p>
+    <p>
+      Foram consolidados conceitos importantes de segurança, como testes automáticos antes
+      da operação, bloqueio em caso de falha e retomada segura.
+    </p>
+  </article>
+
+  <article>
+    <h2>Final de julho de 2026</h2>
+    <p>
+      O projeto avançou na definição das rotas automáticas, modos Analógico e DCC e distribuição
+      dos equipamentos pelas diferentes regiões da ferrovia.
+    </p>
+    <p>Também foram desenvolvidas as ideias para os painéis de controle, tablets e sinótico da ferrovia.</p>
+    <p>
+      Nesse período surgiram novos desvios, ampliando o projeto para D01 a D21, e foram definidas
+      regras para impedir a execução simultânea de rotas conflitantes.
+    </p>
+  </article>
+
+  <article>
+    <h2>31 de julho de 2026</h2>
+    <p>
+      Foi incorporado ao projeto um nobreak de 600 VA para aumentar a segurança e a confiabilidade
+      da alimentação elétrica.
+    </p>
+    <p>
+      Também prosseguiram os estudos da interface gráfica da ferrovia e o aprendizado de SVG/Inkscape
+      para a construção do futuro sinótico.
+    </p>
+  </article>
+
+  <article>
+    <h2>2 de agosto de 2026</h2>
+    <p>Avançaram os testes da parte elétrica e foi adotado um DPS antes do nobreak como proteção adicional.</p>
+    <p>
+      O Layout Mestre da ferrovia foi consolidado, reunindo desvios, sensores, alto-falantes,
+      linhas, gavetas de controle e principais edificações.
+    </p>
+  </article>
+
+  <article>
+    <h2>3 de agosto de 2026</h2>
+    <p>
+      Começou a definição mais detalhada da distribuição elétrica sob a maquete, incluindo
+      barramentos de alimentação e derivações para os trilhos.
+    </p>
+    <p>
+      As gavetas de controle passaram a ter funções cada vez mais bem definidas e surgiu também
+      a decisão de separar a iluminação em uma gaveta própria.
+    </p>
+    <p>
+      A documentação pública do projeto começou a ganhar maior importância, incluindo a ideia
+      de manter um Diário de Bordo acessível aos interessados.
+    </p>
+  </article>
+
+  <article>
+    <h2>4 a 6 de agosto de 2026</h2>
+    <p>
+      Foi desenvolvido o conceito do testador TTD-01, destinado a verificar motores de desvios
+      e sensores antes da instalação definitiva.
+    </p>
+    <p>
+      A sequência de testes passou a prever motor isolado, sensores isolados, conjunto completamente
+      montado e, posteriormente, testes automáticos comandados pelo ESP32.
+    </p>
+    <p>
+      Também foram definidos detalhes para a instalação dos sensores Hall e a construção de
+      protótipos sobre MDF e cortiça.
+    </p>
+  </article>
+
+  <article>
+    <h2>7 de agosto de 2026</h2>
+    <p>
+      O trabalho começou a se dividir cada vez mais entre a construção da ferrovia e a organização
+      de sua documentação pública.
+    </p>
+    <p>Foram adquiridos materiais para os barramentos elétricos e prosseguiram os trabalhos no site.</p>
+    <p>
+      O formulário de contato foi testado com sucesso, permitindo comunicação sem necessidade
+      de divulgar diretamente um endereço de e-mail.
+    </p>
+  </article>
+
+  <article>
+    <h2>8 de agosto de 2026</h2>
+    <p>O site da EFMN 74 começou a adquirir sua estrutura definitiva.</p>
+    <p>
+      A página principal foi simplificada e foram organizadas áreas próprias para Manual de Construção,
+      Diário de Bordo, Galeria, fornecedores, downloads e contato.
+    </p>
+    <p>
+      Também foi definido um padrão visual para as páginas do Manual de Construção,
+      tomando como referência a página “Como fazer um telhado de zinco”.
+    </p>
+  </article>
+
+  <article>
+    <h2>9 de agosto de 2026</h2>
+    <p>O Manual de Construção continuou crescendo.</p>
+    <p>
+      Foram trabalhadas páginas sobre preparação do terreno, grama verde, envelhecimento de peças
+      e outras técnicas utilizadas na própria maquete.
+    </p>
+    <p>O rodapé das páginas também ganhou uma identidade padronizada com a logomarca EFMN 74.</p>
+    <p>
+      Paralelamente, continuaram as aquisições e o recebimento de componentes destinados
+      à parte elétrica e aos testes da ferrovia.
+    </p>
+  </article>
+
+  <article>
+    <h2>10 de agosto de 2026</h2>
+    <p>
+      Novos conteúdos foram incorporados ao Manual de Construção, incluindo assentamento de trilhos,
+      capim feito com materiais simples, curral e outros elementos do cenário.
+    </p>
+    <p>
+      O índice do Manual foi ampliado e passou por diversas revisões para melhorar sua navegação
+      tanto no computador quanto no smartphone.
+    </p>
+    <p>
+      Foi também criada a área “Onde Comprar”, destinada a reunir as lojas pesquisadas
+      durante o desenvolvimento do projeto.
+    </p>
+  </article>
+
+  <article>
+    <h2>11 de agosto de 2026</h2>
+    <p>O trabalho concentrou-se principalmente na documentação da Ferrovia EFMN 74 e na organização do site.</p>
+    <p>
+      Novos cenários foram incorporados à Galeria, entre eles as pontes sobre o rio,
+      as grandes retas em dois níveis e o trecho com a pequena casa, chiqueiro e bananeiras.
+      Além de apresentar a maquete, os textos registram materiais, técnicas de construção
+      e pequenos detalhes que dão vida aos cenários.
+    </p>
+    <p>
+      O Manual de Construção também ganhou novos conteúdos e foi definida uma página dedicada
+      aos testes dos desvios, mostrando desde o teste individual do motor e dos sensores
+      até o conjunto completamente montado.
+    </p>
+    <p>
+      Aos poucos, o site vai cumprindo um de seus principais objetivos: não apenas mostrar
+      a ferrovia pronta, mas preservar a história de como ela foi construída.
+    </p>
+  </article>
+
+  <article>
+    <h2>12 de agosto de 2026</h2>
+    <p>
+      Hoje foram realizados trabalhos de organização e documentação da Ferrovia EFMN 74,
+      além de importantes definições na parte elétrica e no acionamento dos desvios.
+    </p>
+    <p>
+      Foram instaladas barras duplas de conectores Sindal nos barramentos das linhas L1 e L2,
+      buscando melhorar a distribuição da alimentação elétrica, reduzir possibilidades de mau
+      contato e facilitar futuras derivações e serviços de manutenção.
+    </p>
+    <p>
+      Também foi definida a padronização dos desvios Frateschi que ainda possuem acionamento
+      original por bobinas. A orientação é retirar essas bobinas e utilizar os mesmos motores
+      adotados nos demais desvios da ferrovia, simplificando a integração com as ESP32, os testes
+      e a manutenção. As bobinas retiradas e o Protetor de Desvios Frateschi 5000 serão preservados
+      para testes de bancada ou eventual uso futuro.
+    </p>
+    <p>
+      No site da EFMN 74 foram acrescentados e organizados novos conteúdos no Manual de Construção
+      e realizados diversos ajustes no Diário de Bordo, especialmente no cabeçalho, nos links de
+      navegação e na padronização visual das páginas internas.
+    </p>
+  </article>
+
+  <article>
+    <h2>13 de agosto de 2026</h2>
+    <p>
+      Foi concluído o lançamento dos barramentos de alimentação dos trilhos L1 e L2 e dos circuitos
+      de +5 V e GND, todos com fios de 1,5 mm², devidamente identificados e fixados separadamente
+      sob a mesa para facilitar a organização, a manutenção e a localização dos circuitos.
+    </p>
+    <p>
+      Os circuitos L1 e L2 utilizam fios vermelho e preto. L1 foi identificado com fita preta e
+      L2 com arames coloridos. Os fios de +5 V e GND destinados ao controle também foram instalados
+      em vermelho e preto e identificados com fita crepe branca.
+    </p>
+    <p>
+      Como recomendação para futuras instalações, definiu-se utilizar preferencialmente laranja
+      para +5 V e cinza para GND, evitando repetir as cores vermelho e preto empregadas na alimentação
+      dos trilhos. Branco, azul e amarelo permanecem reservados aos fios de controle.
+    </p>
+    <p>
+      Também foi definida a nova bancada de testes dos desvios após a confirmação do uso de
+      microservos SG90. O sistema utilizará alimentação de 5 V, ESP32 e duas botoeiras identificadas
+      como DI e AC para comandar as duas posições do servo.
+    </p>
+    <p>
+      A montagem física da bancada será realizada passo a passo, fazendo e conferindo uma ligação
+      de cada vez antes da energização.
+    </p>
+  </article>
+
+  <article>
+    <h2>14 de agosto de 2026</h2>
+    <p>
+      O trabalho do dia concentrou-se principalmente na revisão e padronização das páginas
+      do site da Ferrovia EFMN 74, especialmente no Manual de Construção.
+    </p>
+    <p>
+      Foi consolidado o padrão dos cabeçalhos das páginas internas, com a logomarca ajustada
+      para 72 px e o conjunto formado pela logo e pelos textos de identificação centralizado.
+    </p>
+    <p>
+      Foram revisadas as páginas “Onde comprar”, “Posição de uma cabine de sinalização”
+      e “Acionamento dos Desvios”, corrigindo cabeçalhos, eliminando elementos de navegação
+      que não faziam parte do padrão desejado e retirando rodapés quando necessário.
+    </p>
+    <p>
+      Na página “Acionamento dos Desvios”, o link “← Voltar ao índice” foi colocado acima
+      do título e mantido em azul, completando mais uma etapa da uniformização visual
+      do Manual de Construção.
+    </p>
+  </article>
+
+  <article>
+    <h2>15 de agosto de 2026</h2>
+    <p>
+      Prosseguiram os trabalhos de organização da Ferrovia EFMN 74 e de preparação dos sistemas
+      de controle. Foi definida a utilização de gavetas de aproximadamente 50 x 30 cm para os
+      controles, exceto a GAR, avaliando-se também o melhor posicionamento físico da ESP32 na gaveta.
+    </p>
+    <p>
+      Para a sala da ferrovia, com cerca de 15 m², foi adquirido um desumidificador de ar Ventisol
+      de 1 litro, com o objetivo de reduzir a umidade e ajudar a proteger a maquete, os componentes
+      e o ambiente.
+    </p>
+  </article>
+
+  <article>
+    <h2>16 de agosto de 2026</h2>
+    <p>
+      O trabalho concentrou-se principalmente na ampliação e revisão da Galeria da Ferrovia EFMN 74.
+      Foram criadas e corrigidas páginas como “Grandes retas”, “Pontes e rio” e “Saída do túnel”,
+      sempre buscando manter o cabeçalho padronizado, fotografia à esquerda e texto à direita.
+    </p>
+    <p>
+      Também foram corrigidos links no índice da Galeria, legendas, títulos e problemas de repetição
+      no Diário de Bordo quando visualizado no smartphone.
+    </p>
+    <p>
+      Na parte eletrônica, continuaram as avaliações sobre a posição e a fixação da ESP32,
+      considerando o uso de espaçadores, o acesso aos pinos e a conexão dos jumpers.
+    </p>
+  </article>
+
+  <article>
+    <h2>17 de agosto de 2026</h2>
+    <p>
+      O trabalho concentrou-se principalmente na evolução do site da Ferrovia EFMN 74. Foram revisadas
+      e padronizadas diversas páginas do Manual de Construção e da Galeria, com correções de cabeçalhos,
+      fotografias, links, textos e rodapés.
+    </p>
+    <p>
+      A página principal também recebeu importantes melhorias. Foi implantada a alternância automática
+      das fotografias da capa, inicialmente com <code>capa.png</code> e <code>capa2.png</code>, utilizando
+      transição suave. Foram realizados vários ajustes para melhorar a apresentação tanto no computador
+      quanto no smartphone, incluindo posicionamento e espaçamento dos textos da capa e do título
+      “Bem-vindo à Ferrovia EFMN 74”.
+    </p>
+    <p>
+      Também prosseguiram os estudos para instalação da ESP32, avaliando sua posição, fixação,
+      acesso aos pinos e conexão dos jumpers. Para os testes de bancada, ficou confirmado que a placa
+      poderá ser alimentada pela porta USB do notebook.
+    </p>
+  </article>
+
   <!-- ===== INSERIR O PRÓXIMO DIA AQUI ===== -->
+
+  <p class="voltar-final">
+    <a href="index.html">← Voltar à página principal</a>
+  </p>
+
+</main>
+
+</body>
+</html>
+
 
   <p class="voltar-final">
     <a href="index.html">← Voltar à página principal</a>
