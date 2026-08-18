@@ -41,7 +41,7 @@
       background-size: contain;
       background-repeat: no-repeat;
       opacity: 0;
-      transition: opacity 2s ease-in-out;
+      transition: opacity 4s ease-in-out;
     }
 
     .hero-slide.active {
@@ -375,11 +375,11 @@ color: #68635a;
 <div class="contact-modal" id="contato" role="dialog" aria-modal="true" aria-labelledby="contato-titulo">
 <button class="contact-close" id="fechar-contato" type="button" aria-label="Fechar">×</button>
 <h2 id="contato-titulo">Contato</h2>
-<form class="contact-form" action="https://formsubmit.co/ecnobre@yahoo.com.br" method="POST">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_subject" value="Contato pelo site Ferrovia EFMN 74">
-<input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_next" value="https://ferroviaho.github.io/efmn74/">
+<form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+<input type="hidden" name="access_key" value="4ab8db99-eacc-4706-8cc8-c1c6f397111e">
+<input type="hidden" name="subject" value="Contato pelo site Ferrovia EFMN 74">
+<input type="hidden" name="from_name" value="Ferrovia EFMN 74">
+<input type="hidden" name="redirect" value="https://ferroviaho.github.io/efmn74/">
 <div>
 <label for="nome">Nome</label>
 <input type="text" id="nome" name="Nome" required>
