@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Como fazer um relevo bem realista na Ferrovia EFMN 74 em escala HO.">
+  <title>Como fazer um relevo bem realista | Ferrovia EFMN 74</title>
+
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --paper: #fffdf8;
+      --ink: #222;
+      --dark: #151515;
+      --gold: #c89b2b;
+      --line: #ded7c8;
+      --blue: #0056b3;
+      --max: 1000px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+
+    /* ===== CABEÇALHO PADRÃO EFMN 74 ===== */
+    .site-header {
+      width: 100%;
+      background: #000;
+      border-bottom: 1px solid var(--gold);
+      margin: 0;
+      padding: 8px 16px;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .header-logo {
+      width: 72px;
+      height: auto;
+      display: block;
+      flex: 0 0 auto;
+    }
+
+    .header-text {
+      color: #fff;
+      line-height: 1.25;
+      text-align: left;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .header-title {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .header-subtitle {
+      margin: 2px 0 0;
+      font-size: 0.88rem;
+      font-weight: 400;
+    }
+
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 34px 20px 56px;
+    }
+
+    .voltar-indice {
+      margin: 0 0 22px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .voltar-indice a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .voltar-indice a:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      line-height: 1.2;
+      font-size: 2.25rem;
+    }
+
+    .abertura {
+      margin: 0 0 26px;
+      font-size: 1.08rem;
+    }
+
+    .foto-relevo {
+      width: 520px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 24px auto 30px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+    }
+
+    .etapas {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin: 0 0 30px;
+    }
+
+    .etapas h2 {
+      margin-top: 0;
+      font-size: 1.35rem;
+    }
+
+    .etapas ol {
+      margin-bottom: 0;
+      padding-left: 24px;
+    }
+
+    .etapas li {
+      margin: 10px 0;
+    }
+
+    .dica {
+      background: var(--paper);
+      border-left: 4px solid var(--gold);
+      padding: 18px 20px;
+      border-radius: 6px;
+    }
+
+    .dica h2 {
+      margin: 0 0 8px;
+      font-size: 1.3rem;
+    }
+
+    .dica p {
+      margin: 0;
+    }
+
+    @media (max-width: 700px) {
+      .site-header {
+        padding: 7px 10px;
+      }
+
+      .header-inner {
+        gap: 10px;
+      }
+
+      .header-title {
+        font-size: 0.98rem;
+      }
+
+      .header-subtitle {
+        font-size: 0.80rem;
+      }
+
+      main {
+        padding: 26px 16px 44px;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      .etapas {
+        padding: 18px 20px;
+      }
+
+      .foto-relevo {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== CABEÇALHO PADRÃO EFMN 74 ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <img
+        src="logo-efmn74.PNG"
+        alt="Logomarca da Ferrovia EFMN 74"
+        class="header-logo"
+      >
+
+      <div class="header-text">
+        <p class="header-title">Ferrovia EFMN 74 - Escala HO</p>
+        <p class="header-subtitle">Construção, automação, memória e documentação</p>
+      </div>
+    </div>
+  </header>
+  <!-- ===== FIM DO CABEÇALHO PADRÃO ===== -->
+
+  <main>
+
+    <p class="voltar-indice">
+      <a href="manual-indice.html">← Voltar ao índice</a>
+    </p>
+
+    <h1>Como fazer um relevo bem realista</h1>
+
+    <p class="abertura">
+      Um relevo convincente pode ser construído com materiais simples e em várias camadas.
+      O segredo está em evitar formas muito regulares e combinar diferentes texturas até
+      obter uma superfície com aparência natural.
+    </p>
+
+    <img
+      src="relevo.jpg"
+      alt="Exemplo de relevo realista na Ferrovia EFMN 74"
+      class="foto-relevo"
+    >
+
+    <section class="etapas">
+      <h2>Como fazer</h2>
+      <ol>
+        <li>Formar o relevo com placas de isopor ou Depron fino, sobrepostas conforme a técnica das curvas de nível.</li>
+        <li>Depois de definir o formato básico, aparar e arredondar as bordas das placas para eliminar o aspecto de degraus. Fazer também cortes e rasgos irregulares para criar depressões, saliências e pequenas erosões.</li>
+        <li>Cobrir o conjunto com camadas de faixa gessada previamente molhada em uma mistura de água com rejunte marrom. Modelar a superfície enquanto estiver úmida e deixar secar completamente.</li>
+        <li>Aplicar pedaços de papel-toalha embebidos em uma mistura de água, tinta marrom — ou rejunte marrom — e cola branca. Distribuir o material de maneira irregular sobre o terreno e aguardar a secagem.</li>
+        <li>Fazer os últimos acertos do relevo com uma mistura de gesso, tinta marrom — ou rejunte marrom — e areia fina. Aproveitar esta etapa para criar pequenas irregularidades e suavizar as transições. Deixar secar completamente.</li>
+        <li>Finalizar com árvores, tufos de capim, arbustos, pequenas flores e outros elementos adequados ao cenário.</li>
+      </ol>
+    </section>
+
+    <section class="dica">
+      <h2>Uma dica</h2>
+      <p>
+        Caso ainda não se conheça a técnica de construção de relevo por curvas de nível,
+        pode-se pedir ao ChatGPT uma explicação passo a passo e adaptá-la às dimensões e
+        ao formato do cenário.
+      </p>
+    </section>
+
+  </main>
+
+</body>
+</html>
