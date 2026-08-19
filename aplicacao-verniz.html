@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aplicação de verniz no Manual de Construção da Ferrovia EFMN 74 em escala HO.">
+  <title>Aplicação de verniz | Ferrovia EFMN 74</title>
+
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --paper: #fffdf8;
+      --ink: #222;
+      --dark: #151515;
+      --gold: #c89b2b;
+      --line: #ded7c8;
+      --blue: #0056b3;
+      --max: 1000px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+
+    /* ===== CABEÇALHO PADRÃO EFMN 74 ===== */
+    .site-header {
+      width: 100%;
+      background: #000;
+      border-bottom: 1px solid var(--gold);
+      margin: 0;
+      padding: 8px 16px;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .header-logo {
+      width: 72px;
+      height: auto;
+      display: block;
+      flex: 0 0 auto;
+    }
+
+    .header-text {
+      color: #fff;
+      line-height: 1.25;
+      text-align: left;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .header-title {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .header-subtitle {
+      margin: 2px 0 0;
+      font-size: 0.88rem;
+      font-weight: 400;
+    }
+
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 34px 20px 56px;
+    }
+
+    .voltar-indice {
+      margin: 0 0 22px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .voltar-indice a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .voltar-indice a:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      line-height: 1.2;
+      font-size: 2.25rem;
+    }
+
+    .abertura {
+      margin: 0 0 28px;
+      font-size: 1.08rem;
+    }
+
+    .etapas {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin: 0 0 30px;
+    }
+
+    .etapas h2 {
+      margin-top: 0;
+      font-size: 1.35rem;
+    }
+
+    .etapas h3 {
+      margin-bottom: 8px;
+      font-size: 1.12rem;
+    }
+
+    .etapas ol {
+      margin-bottom: 0;
+      padding-left: 24px;
+    }
+
+    .etapas li {
+      margin: 12px 0;
+    }
+
+    .etapas ul {
+      margin-top: 8px;
+      padding-left: 22px;
+    }
+
+    .etapas ul li {
+      margin: 6px 0;
+    }
+
+    .tipos {
+      background: var(--paper);
+      border-left: 4px solid var(--gold);
+      padding: 18px 20px;
+      border-radius: 6px;
+    }
+
+    .tipos h2 {
+      margin: 0 0 10px;
+      font-size: 1.3rem;
+    }
+
+    .tipos ul {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .tipos li {
+      margin: 8px 0;
+    }
+
+    @media (max-width: 700px) {
+      .site-header {
+        padding: 7px 10px;
+      }
+
+      .header-inner {
+        gap: 10px;
+      }
+
+      .header-title {
+        font-size: 0.98rem;
+      }
+
+      .header-subtitle {
+        font-size: 0.80rem;
+      }
+
+      main {
+        padding: 26px 16px 44px;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      .etapas {
+        padding: 18px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== CABEÇALHO PADRÃO EFMN 74 ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <img
+        src="logo-efmn74.PNG"
+        alt="Logomarca da Ferrovia EFMN 74"
+        class="header-logo"
+      >
+
+      <div class="header-text">
+        <p class="header-title">Ferrovia EFMN 74 - Escala HO</p>
+        <p class="header-subtitle">Construção, automação, memória e documentação</p>
+      </div>
+    </div>
+  </header>
+  <!-- ===== FIM DO CABEÇALHO PADRÃO ===== -->
+
+  <main>
+
+    <p class="voltar-indice">
+      <a href="manual-indice.html">← Voltar ao índice</a>
+    </p>
+
+    <h1>Aplicação de verniz</h1>
+
+    <p class="abertura">
+      A aplicação de verniz protege a pintura e ajuda a definir o acabamento final da peça.
+      Nos vernizes acrílicos comuns da Acrilex, brilhantes ou foscos, o melhor resultado é
+      obtido com a superfície limpa, a tinta completamente seca e a aplicação de camadas finas.
+    </p>
+
+    <section class="etapas">
+      <h2>Passo a passo</h2>
+
+      <ol>
+        <li>
+          <h3>Aguardar a secagem completa da pintura</h3>
+          A tinta acrílica deve estar totalmente seca antes da aplicação do verniz.
+          Como referência, recomenda-se aguardar de 24 a 48 horas, conforme a espessura da pintura.
+          A aplicação sobre tinta ainda úmida pode provocar manchas, empelotamento ou alteração da cor.
+        </li>
+
+        <li>
+          <h3>Limpar e preparar a superfície</h3>
+          Remover toda a poeira com pincel macio ou pano seco, ou apenas ligeiramente úmido.
+          A peça deve estar limpa e sem resíduos de gordura.
+        </li>
+
+        <li>
+          <h3>Escolher o pincel adequado</h3>
+          Utilizar pincel largo e de cerdas macias, de preferência um pincel chato de acabamento.
+          Pincéis velhos ou com cerdas endurecidas devem ser evitados, pois podem deixar marcas.
+        </li>
+
+        <li>
+          <h3>Aplicar o verniz</h3>
+          Nos vernizes acrílicos brilhante ou fosco, normalmente o produto é utilizado puro.
+          <ul>
+            <li>Molhar apenas levemente o pincel, sem encharcá-lo.</li>
+            <li>Retirar o excesso de verniz na borda do recipiente.</li>
+            <li>Aplicar camadas finas e uniformes.</li>
+            <li>Manter as pinceladas sempre no mesmo sentido.</li>
+            <li>Evitar pressionar excessivamente o pincel ou repetir muitas passadas sobre a mesma área.</li>
+          </ul>
+        </li>
+
+        <li>
+          <h3>Aplicar as camadas necessárias</h3>
+          Normalmente são suficientes duas ou três camadas finas.
+          <ul>
+            <li>Aguardar a secagem completa entre as camadas, geralmente de 1 a 4 horas.</li>
+            <li>Antes de aplicar a camada seguinte, verificar se a superfície está seca ao toque.</li>
+            <li>Evitar camadas grossas, que podem provocar bolhas, escorrimentos ou aspecto leitoso, especialmente no verniz fosco.</li>
+          </ul>
+        </li>
+
+        <li>
+          <h3>Realizar a secagem final</h3>
+          Após a última camada, deixar a peça curar por pelo menos 24 a 48 horas em local ventilado,
+          protegido de poeira e umidade. O verniz fosco pode apresentar aspecto leitoso enquanto está
+          molhado, tornando-se transparente após a secagem.
+        </li>
+
+        <li>
+          <h3>Limpar o pincel</h3>
+          Nos vernizes acrílicos à base de água, lavar o pincel imediatamente após o uso com água e sabão.
+          Não deixar o produto secar nas cerdas.
+        </li>
+      </ol>
+    </section>
+
+    <section class="tipos">
+      <h2>Tipos de verniz Acrilex</h2>
+      <ul>
+        <li><strong>Verniz Acrílico Brilhante:</strong> protege a superfície e realça as cores. Deve ser aplicado em camadas finas para evitar escorrimentos.</li>
+        <li><strong>Verniz Acrílico Fosco:</strong> reduz os reflexos e é indicado quando se deseja um acabamento mais realista. Pode parecer leitoso enquanto está úmido, mas seca transparente e fosco.</li>
+        <li><strong>Verniz Geral:</strong> apresenta acabamento brilhante e é solúvel em aguarrás. Quando necessário, pode ser diluído com aguarrás mineral compatível.</li>
+        <li><strong>Verniz Vitral:</strong> produz acabamento muito brilhante e resistente à água, sendo mais indicado para peças decorativas. Deve também ser aplicado em camadas finas.</li>
+      </ul>
+    </section>
+
+  </main>
+
+</body>
+</html>
