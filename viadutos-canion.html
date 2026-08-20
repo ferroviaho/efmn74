@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Viadutos sobre um cânion — Galeria da Ferrovia EFMN 74.">
   <title>Viadutos sobre um cânion — EFMN 74</title>
-
   <style>
     :root {
       --bg: #f4f1ea;
@@ -30,7 +29,6 @@
     }
 
     /* ===== CABEÇALHO PADRÃO EFMN 74 ===== */
-
     .site-header {
       width: 100%;
       background: #000;
@@ -103,7 +101,7 @@
     }
 
     .galeria-foto {
-      width: 100%;
+      width: 50%;
       height: auto;
       display: block;
       border-radius: 8px;
@@ -117,6 +115,24 @@
 
     .galeria-texto p {
       margin: 0 0 16px;
+    }
+
+    .acidente-bloco {
+      display: flex;
+      align-items: flex-start;
+      gap: 22px;
+    }
+
+    .acidente-foto {
+      width: 50%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      flex: 0 0 50%;
+    }
+
+    .acidente-texto {
+      flex: 1;
     }
 
     @media (max-width: 700px) {
@@ -156,66 +172,71 @@
     }
   </style>
 </head>
-
 <body>
-
-<!-- ===== CABEÇALHO PADRÃO EFMN 74 ===== -->
-<header class="site-header">
-  <div class="header-inner">
-    <img
-      src="logo-efmn74.PNG"
-      alt="Logomarca da Ferrovia EFMN 74"
-      class="header-logo"
-    >
-
-    <div class="header-text">
-      <p class="header-title">Ferrovia EFMN 74 - Escala HO</p>
-      <p class="header-subtitle">Construção, automação, memória e documentação</p>
+  <!-- ===== CABEÇALHO PADRÃO EFMN 74 ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <img
+        src="logo-efmn74.PNG"
+        alt="Logomarca da Ferrovia EFMN 74"
+        class="header-logo"
+      >
+      <div class="header-text">
+        <p class="header-title">Ferrovia EFMN 74 - Escala HO</p>
+        <p class="header-subtitle">Construção, automação, memória e documentação</p>
+      </div>
     </div>
-  </div>
-</header>
-<!-- ===== FIM DO CABEÇALHO PADRÃO ===== -->
+  </header>
+  <!-- ===== FIM DO CABEÇALHO PADRÃO ===== -->
 
-<main>
+  <main>
+    <p class="voltar-galeria">
+      <a href="galeria-indice.html">← Voltar ao índice da Galeria</a>
+    </p>
 
-  <p class="voltar-galeria">
-    <a href="galeria-indice.html">← Voltar ao índice da Galeria</a>
-  </p>
+    <h1>Viadutos sobre um cânion</h1>
 
-  <h1>Viadutos sobre um cânion</h1>
+    <div class="galeria-item">
+      <img
+        src="viadutos-canion-01.jpg"
+        alt="Dois viadutos atravessando um cânion na maquete EFMN 74"
+        class="galeria-foto"
+        loading="lazy"
+      >
 
-  <div class="galeria-item">
+      <div class="galeria-texto">
+        <p>
+          Dois viadutos atravessam o cânion da maquete. O viaduto em primeiro plano foi
+          construído por mim com madeira balsa. O viaduto ao fundo foi produzido em
+          impressora 3D pelo saudoso Marcos AbiAckel.
+        </p>
 
-    <img
-      src="viadutos-canion-01.jpg"
-      alt="Dois viadutos atravessando um cânion na maquete EFMN 74"
-      class="galeria-foto"
-      loading="lazy"
-    >
+        <div class="acidente-bloco">
+          <img
+            src="acidente-canion.jpg"
+            alt="Restos de um acidente ferroviário no cânion"
+            class="acidente-foto"
+            loading="lazy"
+          >
 
-    <div class="galeria-texto">
-      <p>
-        Dois viadutos atravessam o cânion da maquete. O viaduto em primeiro plano foi
-        construído por mim com madeira balsa. O viaduto ao fundo foi produzido em
-        impressora 3D pelo saudoso Marcos AbiAckel.
-      </p>
+          <div class="acidente-texto">
+            <p>
+              Ao fundo do cenário também aparecem restos de um acidente ferroviário envolvendo
+              um vagão que transportava madeira.
+            </p>
 
-      <p>
-        Ao fundo do cenário também aparecem restos de um acidente ferroviário envolvendo
-        um vagão que transportava madeira.
-      </p>
-
-      <p>
-        Na parede ao fundo, foi aplicada uma folha de isopor, posteriormente moldada e
-        pintada para simular o desgaste natural da rocha. A cachoeira, dividida em várias
-        quedas, foi confeccionada com papel, algodão e glitter, procurando reproduzir o
-        movimento e a espuma da água. Na parte de cima da cachoeira, onde aparece uma mancha branca, será aplicada uma folha de depron pintada com a imagem de uma montanha de pedra.
-      </p>
+            <p>
+              Na parede ao fundo, foi aplicada uma folha de isopor, posteriormente moldada e
+              pintada para simular o desgaste natural da rocha. A cachoeira, dividida em várias
+              quedas, foi confeccionada com papel, algodão e glitter, procurando reproduzir o
+              movimento e a espuma da água. Na parte de cima da cachoeira, onde aparece uma
+              mancha branca, será aplicada uma folha de depron pintada com a imagem de uma
+              montanha de pedra.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-
-  </div>
-
-</main>
-
+  </main>
 </body>
 </html>
