@@ -113,6 +113,27 @@
       margin-bottom: 8px;
     }
 
+    .preservar-bloco {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      margin-top: 26px;
+    }
+
+    .preservar-foto {
+      width: 42%;
+      height: auto;
+      display: block;
+    }
+
+    .preservar-texto {
+      flex: 1;
+    }
+
+    .preservar-texto h2 {
+      margin-top: 0;
+    }
+
     @media (max-width: 700px) {
       .topo-conteudo {
         padding: 8px 12px 7px;
@@ -152,6 +173,15 @@
       li {
         font-size: 1rem;
       }
+
+      .preservar-bloco {
+        display: block;
+      }
+
+      .preservar-foto {
+        width: 100%;
+        margin-bottom: 18px;
+      }
     }
   </style>
 </head>
@@ -184,20 +214,26 @@
 
     <p>Entretanto, por se tratar de material vegetal natural, o musgo sem tratamento tende a secar, perder a cor e esfarelar com o passar do tempo. Por isso, antes de utilizá-lo na maquete, recomenda-se realizar um processo de preservação.</p>
 
-    <h2>Como preservar</h2>
+    <div class="preservar-bloco">
+      <img src="musgo.jpg" alt="Musgo para preservação e uso em maquetes" class="preservar-foto">
 
-    <ul>
-      <li>Limpar cuidadosamente o musgo, retirando terra, insetos e outros detritos.</li>
-      <li>Se necessário, lavar delicadamente em água corrente e deixar escorrer.</li>
-      <li>Preparar uma solução com 1 parte de glicerina vegetal para 2 partes de água quente. A água quente facilita a diluição da glicerina.</li>
-      <li>Opcionalmente, acrescentar 1 colher de sopa de álcool para cada litro da solução.</li>
-      <li>Para reforçar a tonalidade, podem ser acrescentadas algumas gotas de corante verde.</li>
-      <li>Colocar o musgo na solução, deixando-o completamente submerso.</li>
-      <li>Manter o musgo de molho durante 4 a 7 dias, virando-o diariamente para favorecer uma absorção uniforme.</li>
-      <li>Retirar o musgo da solução e deixar escorrer bem.</li>
-      <li>Espalhar o material sobre papel-toalha ou jornal e deixar secar à sombra durante aproximadamente 2 a 4 dias.</li>
-      <li>Depois de seco, o musgo estará pronto para ser utilizado na decoração da maquete.</li>
-    </ul>
+      <div class="preservar-texto">
+        <h2>Como preservar</h2>
+
+        <ul>
+          <li>Limpar cuidadosamente o musgo, retirando terra, insetos e outros detritos.</li>
+          <li>Se necessário, lavar delicadamente em água corrente e deixar escorrer.</li>
+          <li>Preparar uma solução com 1 parte de glicerina vegetal para 2 partes de água quente. A água quente facilita a diluição da glicerina.</li>
+          <li>Opcionalmente, acrescentar 1 colher de sopa de álcool para cada litro da solução.</li>
+          <li>Para reforçar a tonalidade, podem ser acrescentadas algumas gotas de corante verde.</li>
+          <li>Colocar o musgo na solução, deixando-o completamente submerso.</li>
+          <li>Manter o musgo de molho durante 4 a 7 dias, virando-o diariamente para favorecer uma absorção uniforme.</li>
+          <li>Retirar o musgo da solução e deixar escorrer bem.</li>
+          <li>Espalhar o material sobre papel-toalha ou jornal e deixar secar à sombra durante aproximadamente 2 a 4 dias.</li>
+          <li>Depois de seco, o musgo estará pronto para ser utilizado na decoração da maquete.</li>
+        </ul>
+      </div>
+    </div>
 
     <h2>Aplicação na maquete</h2>
 
