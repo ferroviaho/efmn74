@@ -14,6 +14,8 @@
       --muted: #68635a;
       --line: #ded7c8;
       --blue: #0056b3;
+      --dark: #151515;
+      --gold: #c89b2b;
       --max: 1000px;
     }
 
@@ -25,6 +27,44 @@
       color: var(--ink);
       font-family: Arial, Helvetica, sans-serif;
       line-height: 1.6;
+    }
+
+    header {
+      background: var(--dark);
+      color: white;
+      border-bottom: 4px solid var(--gold);
+    }
+
+    .header-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .header-logo {
+      width: 72px;
+      height: auto;
+      display: block;
+      margin: 0;
+      flex: 0 0 auto;
+    }
+
+    .header-texto { text-align: left; }
+
+    .header-linha1 {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .header-linha2 {
+      margin: 2px 0 0;
+      font-size: 0.9rem;
+      color: #d8d8d8;
     }
 
     main { width: 100%; }
@@ -89,27 +129,6 @@
 
     .manual-texto p { margin: 0; }
 
-    .rodape-efmn {
-      max-width: var(--max);
-      margin: 36px auto 24px;
-      padding: 24px 18px 10px;
-      text-align: center;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-    }
-
-    .rodape-efmn img {
-      width: 120px;
-      max-width: 40vw;
-      height: auto;
-      display: block;
-      margin: 0 auto 10px;
-    }
-
-    .rodape-efmn p {
-      margin: 2px 0;
-      font-size: 0.95rem;
-    }
 
     @media (max-width: 700px) {
       .preparacao-terreno {
@@ -139,12 +158,21 @@
 
       .manual-texto { width: 100%; }
 
-      .rodape-efmn { margin-top: 26px; }
     }
   </style>
 </head>
 
 <body>
+  <header>
+    <div class="header-inner">
+      <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo">
+      <div class="header-texto">
+        <p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p>
+        <p class="header-linha2">Construção, automação, memória e documentação</p>
+      </div>
+    </div>
+  </header>
+
   <main>
     <section class="preparacao-terreno" id="preparacao-terreno">
 
@@ -236,11 +264,5 @@
 
     </section>
   </main>
-
-  <footer class="rodape-efmn">
-    <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74">
-    <p>Ferrovia EFMN 74 - Escala HO</p>
-    <p>Construção, automação, memória e documentação</p>
-  </footer>
 </body>
 </html>
