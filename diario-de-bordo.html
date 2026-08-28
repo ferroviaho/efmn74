@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+t<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -133,13 +133,11 @@
     <p>Implantada a alternância automática das fotografias da capa do site.</p>
     <p>Prosseguidos os estudos de instalação e fixação da ESP32, com acesso aos pinos e conexão dos jumpers.</p>
     <p>Adquirido desumidificador para reduzir a umidade e auxiliar na proteção da maquete e dos componentes.</p>
-    <p>Criado o novo desvio D20, ampliando o conjunto atual para D01 a D20, com distribuição entre as ESP32 ainda a definir.</p>
     <p>Revisado o formulário de Contato da página principal e ajustado o envio das mensagens por e-mail.</p>
     <p>Ajustado para 4 segundos o tempo de alternância das fotografias da capa do site.</p>
     <p>Incluída no Manual de Construção a página “Como preparar tinta na cor cobre” e criado o respectivo link no índice.</p>
     <p>Reorganizado o Diário de Bordo no formato mensal resumido, mantendo integralmente a seção “Antes do Diário de Bordo”.</p>
     <p>Realizados testes da ESP32 na protoboard, com reconhecimento pelo computador e verificação da saída digital pelo GPIO 25.</p>
-    <p>Identificado e substituído um resistor de 220 Ω defeituoso, concluindo com sucesso o teste do LED piscando comandado pela ESP32.</p>
     <p>Iniciado o detalhamento da alimentação elétrica das gavetas de controle, começando pelo percurso entre a tomada de energia e o nobreak.</p>
     <p>Avaliada a montagem da ESP32 e de outros componentes eletrônicos em protoboard, visando facilitar as conexões e a manutenção.</p>
     <p>Iniciado o planejamento do diagrama trifilar da gaveta de controle e definidos os primeiros componentes necessários para alimentação, proteção e acionamento.</p>
@@ -156,7 +154,6 @@
     <p>Reavaliado o posicionamento dos sensores de presença a partir do layout da ferrovia, buscando reduzir pontos desnecessários sem comprometer a segurança e a automação.</p>
     <p>Definidos critérios para o futuro controle de velocidade das locomotivas, considerando os limites da locomotiva, da composição e do trecho percorrido, inclusive estações, pátios e desvios.</p>
     <p>Revisada a numeração dos sensores de presença após a eliminação do antigo SP16, reorganizando-se a sequência prevista para instalação.</p>
-    <p>Soldados os pinos de quatro módulos DRV e iniciada a preparação dos sensores Hall com a soldagem de suas três conexões.</p>
     <p>Dos 40 sensores Hall disponíveis, definidos 19 para a instalação inicial, permanecendo 21 unidades destinadas a futuras melhorias na detecção e à reserva técnica.</p>
 
     <p>Prosseguida a análise dos sensores de presença, com estudo detalhado da atuação de SP1-L1 e SP2-L1 nos dois sentidos de circulação, tanto para saída da Estação como para passagem direta.</p>
@@ -169,10 +166,16 @@
     <p>Desenvolvido o conceito de cadastro das locomotivas, contendo identificação, tipo de tração, limites de velocidade, sons e demais parâmetros operacionais, associado também ao tipo de composição utilizada.</p>
     <p>Estudada a identificação automática das locomotivas por tag eletrônica RFID/NFC com UID próprio, lida por dispositivo fixo na mesa antes da operação e associada ao cadastro da locomotiva no software.</p>
     <p>Mantida também a possibilidade de identificação e seleção manual da locomotiva pelo tablet, utilizando o mesmo cadastro empregado pela leitura automática da tag.</p>
-
-    <p>Iniciado o estudo para dividir o traçado em setores operacionais de velocidade, permitindo aplicar limites diferentes conforme o trecho percorrido.</p>
-    <p>Definido como princípio para o futuro controle das locomotivas que a velocidade deverá considerar simultaneamente o tipo de locomotiva, o tipo de composição ou carga e o limite aplicável ao setor da ferrovia.</p>
-    <p>Estudada a necessidade de posicionar sensores de presença nas entradas e saídas dos setores, de modo que o sistema possa identificar a transição da composição e aplicar automaticamente o limite correspondente.</p>
+    <p>Definido que o software de controle da Ferrovia EFMN 74 será desenvolvido para as ESP32 em C++, utilizando o ambiente Arduino, com evolução gradual da programação conforme a implantação do sistema.</p>
+    <p>Incluído no planejamento o estudo da linguagem C como apoio à compreensão da programação embarcada e à futura manutenção do software da ferrovia.</p>
+    <p>Dividida a maquete em três áreas operacionais para simplificar a detecção: Área 1 — Serviços, compreendendo Estação, pátio de cargas, manutenção e rotunda; Área 2 — Túnel; Área 3 — Armazéns.</p>
+    <p>Definido o SP3 como sensor de fronteira entre as Áreas 1 e 2, detectando a passagem de entrada ou saída entre Serviços e Túnel.</p>
+    <p>Definido o SP8 como sensor de fronteira entre as Áreas 1 e 3, detectando a passagem de entrada ou saída entre Serviços e Armazéns.</p>
+    <p>Estabelecido que a lógica geral de localização das composições utilizará principalmente a passagem pelos sensores de fronteira e pelos demais SP necessários à operação.</p>
+    <p>Definido que, na próxima etapa de detalhamento, deverá ser registrada a função operacional de cada sensor SP, indicando exatamente o que cada um detectará e qual ação será desencadeada.</p>
+    <p>Definido que deverão ser especificadas as informações, comandos e telas disponíveis no Tablet de Controle de Mão.</p>
+    <p>Definido que deverão ser especificadas as informações, estados e visualizações apresentadas na TV utilizada como painel sinótico.</p>
+    <p>Definido que o banner da capa do site será reproduzido fisicamente na maquete e instalado na região entre Armazéns e Chiqueirinho.</p>
   </article>
 
 <!-- ===== INSERIR O PRÓXIMO DIA AQUI ===== -->
