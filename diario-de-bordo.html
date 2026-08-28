@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Diário de Bordo da Ferrovia EFMN 74 em escala HO.">
+  <meta name="description" content="Diário de Bordo temático da Ferrovia EFMN 74 em escala HO.">
   <title>Diário de Bordo — EFMN 74</title>
   <style>
     :root {
@@ -62,10 +62,20 @@
       font-size: 1rem;
       font-weight: 600;
     }
-    h1 { margin: 0 0 28px; font-size: 2.1rem; }
+    h1 { margin: 0 0 18px; font-size: 2.1rem; }
     .intro { margin-bottom: 30px; font-size: 1.1rem; }
+    .indice {
+      padding: 18px 20px;
+      margin: 0 0 24px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.28);
+    }
+    .indice h2 { margin: 0 0 10px; font-size: 1.25rem; }
+    .indice ul { margin: 0; padding-left: 22px; }
+    .indice a { color: var(--link); }
     article { padding: 20px 0; border-top: 1px solid var(--line); }
     article h2 { margin-top: 0; font-size: 1.35rem; }
+    article p { margin: 0.65em 0; }
     @media (max-width: 700px) {
       .header-inner { padding: 16px; }
       main { padding: 26px 16px 44px; }
@@ -95,85 +105,155 @@
 
   <div class="intro">
     <p>
-      Este Diário de Bordo registra, de forma resumida, a evolução da Ferrovia EFMN 74.
-      Não pretende reproduzir todos os detalhes técnicos dos relatórios de trabalho,
-      mas preservar as principais decisões, experiências, dificuldades e avanços do projeto.
+      Este Diário de Bordo registra a evolução da Ferrovia EFMN 74 por temas.
+      A organização temática permite consultar diretamente um assunto específico,
+      reunindo em um mesmo local as decisões, experiências, dificuldades e avanços relacionados.
     </p>
   </div>
 
-  <article>
+  <article id="antes">
     <h2>Antes do Diário de Bordo</h2>
     <p>A história da ferrovia teve início antes da criação deste Diário de Bordo.</p>
     <p>Em 2022, foi retomada com maior dedicação a atividade de ferromodelismo, dando início à ferrovia que seria posteriormente ampliada, modificada e aperfeiçoada até chegar à atual Ferrovia EFMN 74.</p>
     <p>Nos primeiros anos foram assentados trilhos e construídos cenários, pontes, túneis, estação, curral, vegetação e outros elementos, em um processo contínuo de experiências, correções e aprendizado.</p>
-    <p>Nesse período ainda não era mantido um registro diário organizado dos trabalhos realizados.</p>
+    <p>Nesse período ainda não era mantido um registro organizado dos trabalhos realizados.</p>
     <p>O Diário de Bordo propriamente dito teve início em julho de 2026, quando os principais trabalhos, decisões, experiências e avanços do projeto passaram a ser registrados sistematicamente.</p>
-    <p>O registro a partir desse período complementa as demais páginas do site, que preservam também o que foi construído e aprendido nos anos anteriores.</p>
+    <p>A partir de agosto de 2026, diante do aumento da quantidade de decisões técnicas e operacionais, o Diário passou a ser organizado por temas, facilitando a consulta e servindo também como futura fonte de requisitos para o desenvolvimento do software de controle.</p>
   </article>
 
-  <article>
-    <h2>O que foi feito em julho/26</h2>
-    <p>Iniciada a organização formal da documentação técnica, com procedimentos de operação e segurança.</p>
-    <p>Definida a arquitetura da automação com dois ESP32 para controle dos desvios, sensores e demais funções.</p>
-    <p>Estruturadas as rotas automáticas e os modos Analógico e DCC.</p>
-    <p>Definidos os conceitos dos painéis de controle, tablets e sinótico da ferrovia.</p>
-    <p>Ampliado o projeto dos desvios e estabelecidas regras para impedir rotas conflitantes.</p>
-    <p>Incorporado nobreak de 600 VA para aumentar a segurança da alimentação elétrica.</p>
+  <div class="indice">
+    <h2>Assuntos</h2>
+    <ul>
+      <li><a href="#arquitetura">Arquitetura geral e automação</a></li>
+      <li><a href="#energia">Alimentação elétrica e proteção</a></li>
+      <li><a href="#gavetas">Gavetas de controle e eletrônica</a></li>
+      <li><a href="#esp32">ESP32, Arduino e programação</a></li>
+      <li><a href="#desvios">Desvios e segurança de rotas</a></li>
+      <li><a href="#sensores">Sensores de presença</a></li>
+      <li><a href="#velocidade">Locomotivas, composições e velocidade</a></li>
+      <li><a href="#audio">Áudio e efeitos sonoros</a></li>
+      <li><a href="#identificacao">Identificação das locomotivas</a></li>
+      <li><a href="#operacao">Operação da Estação e rotas</a></li>
+      <li><a href="#site">Site, Manual e documentação</a></li>
+      <li><a href="#materiais">Materiais, ambiente e fornecedores</a></li>
+    </ul>
+  </div>
+
+  <article id="arquitetura">
+    <h2>Arquitetura geral e automação</h2>
+    <p>Definida a arquitetura de automação com duas ESP32 destinadas ao controle dos desvios, sensores e demais funções da ferrovia.</p>
+    <p>Estruturados os modos de operação Analógico e DCC e definidos os conceitos dos painéis de controle, tablets e sinótico.</p>
+    <p>Estruturadas rotas automáticas e estabelecidas regras para impedir rotas conflitantes.</p>
+    <p>A maquete foi dividida em três áreas operacionais para simplificar a lógica de detecção: Área 1 — Serviços, compreendendo Estação, pátio de cargas, manutenção e rotunda; Área 2 — Túnel; Área 3 — Armazéns. O SP3 atua como fronteira entre as Áreas 1 e 2 e o SP8 como fronteira entre as Áreas 1 e 3.</p>
+    <p>Durante a fase atual, todas as decisões operacionais, de segurança e de automação devem ser registradas. A separação posterior em rotinas de software será feita quando começar o desenvolvimento do programa.</p>
   </article>
 
-  <article>
-    <h2>O que está sendo feito este mês</h2>
-    <p>Consolidado o Layout Mestre e organizada a distribuição elétrica da ferrovia.</p>
-    <p>Adotado DPS antes do nobreak como proteção adicional.</p>
+  <article id="energia">
+    <h2>Alimentação elétrica e proteção</h2>
+    <p>Incorporado nobreak de 600 VA para aumentar a segurança da alimentação elétrica e adotado DPS antes do nobreak como proteção adicional.</p>
     <p>Instalados e organizados os barramentos de L1, L2, +5 V e GND.</p>
-    <p>Desenvolvido o conceito do testador TTD-01 para motores e sensores dos desvios.</p>
-    <p>Definida a utilização de microservos SG90 e a padronização do acionamento dos desvios para integração com a ESP32.</p>
-    <p>Ampliados e padronizados o Manual de Construção, a Galeria e as páginas internas do site.</p>
-    <p>Uniformizados os cabeçalhos e corrigidos links, fotografias, legendas e apresentação no computador e smartphone.</p>
-    <p>Implantada a alternância automática das fotografias da capa do site.</p>
-    <p>Prosseguidos os estudos de instalação e fixação da ESP32, com acesso aos pinos e conexão dos jumpers.</p>
-    <p>Adquirido desumidificador para reduzir a umidade e auxiliar na proteção da maquete e dos componentes.</p>
-    <p>Criado o novo desvio D20, ampliando o conjunto atual para D01 a D20, com distribuição entre as ESP32 ainda a definir.</p>
-    <p>Revisado o formulário de Contato da página principal e ajustado o envio das mensagens por e-mail.</p>
-    <p>Ajustado para 4 segundos o tempo de alternância das fotografias da capa do site.</p>
-    <p>Incluída no Manual de Construção a página “Como preparar tinta na cor cobre” e criado o respectivo link no índice.</p>
-    <p>Reorganizado o Diário de Bordo no formato mensal resumido, mantendo integralmente a seção “Antes do Diário de Bordo”.</p>
-    <p>Realizados testes da ESP32 na protoboard, com reconhecimento pelo computador e verificação da saída digital pelo GPIO 25.</p>
-    <p>Identificado e substituído um resistor de 220 Ω defeituoso, concluindo com sucesso o teste do LED piscando comandado pela ESP32.</p>
-    <p>Iniciado o detalhamento da alimentação elétrica das gavetas de controle, começando pelo percurso entre a tomada de energia e o nobreak.</p>
-    <p>Avaliada a montagem da ESP32 e de outros componentes eletrônicos em protoboard, visando facilitar as conexões e a manutenção.</p>
-    <p>Iniciado o planejamento do diagrama trifilar da gaveta de controle e definidos os primeiros componentes necessários para alimentação, proteção e acionamento.</p>
-    <p>Revisado para o Manual de Construção o procedimento de preservação de musgos naturais utilizados na representação da vegetação da maquete.</p>
-    <p>Revisada a página “Preparação do gesso sem stress” e atualizado o respectivo acesso pelo índice do Manual de Construção.</p>
-    <p>Atualizada a página “Onde comprar” com a inclusão de City 3D, Modal Maquetes, Hangar 18, Orange Box e Soeiro Models, com seus respectivos links.</p>
-    <p>Prosseguido o planejamento da alimentação elétrica das gavetas de controle, definindo-se o percurso do nobreak, fusível, chave geral, LED indicador, fonte AC/DC e conversor buck até a ESP32.</p>
-    <p>Definido barramento principal em corrente contínua para distribuir a alimentação a todas as gavetas, com derivações individuais de positivo e negativo e elaboração de esquema em vista superior.</p>
-    <p>Detalhadas as cores e bitolas dos condutores, os terminais tipo garfo utilizados nos bornes das fontes e o procedimento de crimpagem dos terminais.</p>
-    <p>Pesquisados desvios em escala HO nas lojas relacionadas na página “Onde comprar”, com levantamento de marcas, modelos e preços, incluindo opções Frateschi, Peco e Atlas.</p>
-    <p>Prosseguida a montagem da gaveta analógica, com revisão da sequência entre fonte, fusível, chave geral, controle PWM, chave dos trilhos e alimentação dos trilhos.</p>
-    <p>Revisadas as funções dos módulos DRV8871, MOSFET e MCP no sistema de controle, mantendo os DRV8871 destinados ao acionamento dos motores dos desvios.</p>
-    <p>Definida a ligação dos sensores Hall A3144, adotando-se vermelho para alimentação, preto para GND e amarelo para o sinal individual enviado à ESP32.</p>
-    <p>Reavaliado o posicionamento dos sensores de presença a partir do layout da ferrovia, buscando reduzir pontos desnecessários sem comprometer a segurança e a automação.</p>
-    <p>Definidos critérios para o futuro controle de velocidade das locomotivas, considerando os limites da locomotiva, da composição e do trecho percorrido, inclusive estações, pátios e desvios.</p>
-    <p>Revisada a numeração dos sensores de presença após a eliminação do antigo SP16, reorganizando-se a sequência prevista para instalação.</p>
-    <p>Soldados os pinos de quatro módulos DRV e iniciada a preparação dos sensores Hall com a soldagem de suas três conexões.</p>
-    <p>Dos 40 sensores Hall disponíveis, definidos 19 para a instalação inicial, permanecendo 21 unidades destinadas a futuras melhorias na detecção e à reserva técnica.</p>
-
-    <p>Prosseguida a análise dos sensores de presença, com estudo detalhado da atuação de SP1-L1 e SP2-L1 nos dois sentidos de circulação, tanto para saída da Estação como para passagem direta.</p>
-    <p>Definida a sequência de partida na Estação, com acionamento do sino, espera de 5 segundos e somente depois energização da locomotiva.</p>
-    <p>Definido que, na passagem direta pela Estação em qualquer sentido, a velocidade será reduzida durante a travessia e apenas liberada após o sensor de saída, sem aceleração automática da locomotiva.</p>
-    <p>Estabelecido que o operador escolherá a movimentação, enquanto o software posicionará e protegerá automaticamente os desvios D1-L1 e D7-L1, impedindo partidas com desvios em posição incorreta ou ocupados.</p>
-    <p>Definida a possibilidade de reposicionamento automático de D1-L1 e D7-L1 com a composição parada na Estação, inclusive para encaminhamento de trens de carga à L6, atrás da Estação.</p>
-    <p>Iniciada a análise operacional do SP3-L1, relacionando sua atuação à transição entre a região da Estação/Pátio e a área dos túneis, com aplicação e posterior liberação dos limites de velocidade do trecho.</p>
-    <p>Definido que os sons de buzina, apito e outros efeitos associados à operação poderão ser reproduzidos pelos alto-falantes das regiões conforme o tipo de locomotiva em circulação.</p>
-    <p>Desenvolvido o conceito de cadastro das locomotivas, contendo identificação, tipo de tração, limites de velocidade, sons e demais parâmetros operacionais, associado também ao tipo de composição utilizada.</p>
-    <p>Estudada a identificação automática das locomotivas por tag eletrônica RFID/NFC com UID próprio, lida por dispositivo fixo na mesa antes da operação e associada ao cadastro da locomotiva no software.</p>
-    <p>Mantida também a possibilidade de identificação e seleção manual da locomotiva pelo tablet, utilizando o mesmo cadastro empregado pela leitura automática da tag.</p>
-    <p>Prosseguida a definição da gaveta GAR, avaliando-se a sequência de alimentação da tração analógica com fonte, fusível, reostato e chave de três posições liga/desliga/liga.</p>
-    <p>Iniciado o estudo da divisão do layout em setores operacionais para controle de velocidade das locomotivas, prevendo sensores de presença na entrada e na saída de cada setor para aplicação dos limites conforme o tipo de locomotiva, composição e trecho.</p>
+    <p>Instaladas barras duplas de conectores Sindal nos barramentos de L1 e L2 para melhorar a distribuição da alimentação, reduzir mau contato e facilitar derivações e manutenção.</p>
+    <p>Iniciado o detalhamento da alimentação elétrica das gavetas, partindo da tomada de energia e do nobreak.</p>
+    <p>Prosseguido o planejamento do percurso entre nobreak, fusível, chave geral, LED indicador, fonte AC/DC, conversor buck e ESP32.</p>
+    <p>Definido barramento principal em corrente contínua para distribuir alimentação às gavetas, com derivações individuais de positivo e negativo.</p>
+    <p>Detalhadas cores e bitolas dos condutores, utilização de terminais tipo garfo nos bornes das fontes e procedimento de crimpagem.</p>
   </article>
 
-<!-- ===== INSERIR O PRÓXIMO DIA AQUI ===== -->
+  <article id="gavetas">
+    <h2>Gavetas de controle e eletrônica</h2>
+    <p>Organizada a distribuição elétrica das gavetas de controle e iniciado o planejamento do diagrama trifilar.</p>
+    <p>Avaliada a instalação da ESP32 e de outros componentes eletrônicos em protoboard para facilitar conexões, testes e manutenção.</p>
+    <p>Revisadas as funções dos módulos DRV8871, MOSFET e MCP, mantendo os DRV8871 destinados ao acionamento dos motores dos desvios.</p>
+    <p>Na gaveta GAR, prosseguiu a definição da tração analógica com fonte, fusível, reostato e chave de três posições liga/desliga/liga, além da revisão da sequência até a alimentação dos trilhos.</p>
+  </article>
+
+  <article id="esp32">
+    <h2>ESP32, Arduino e programação</h2>
+    <p>Adotada a plataforma Arduino como ambiente de desenvolvimento para a programação das ESP32 utilizadas na automação da ferrovia.</p>
+    <p>A programação será desenvolvida em C++, linguagem utilizada no ambiente Arduino para a criação das rotinas de controle, leitura dos sensores, acionamento dos desvios, controle das locomotivas, áudio e demais funções do sistema.</p>
+    <p>O estudo da linguagem C contribuiu para a compreensão dos conceitos fundamentais de programação, como variáveis, condições, comandos, funções e estruturas de controle, facilitando posteriormente o entendimento da programação em C++ aplicada à plataforma Arduino.</p>
+    <p>Desenvolvido o conceito do testador TTD-01 para motores e sensores dos desvios.</p>
+    <p>Realizados testes da ESP32 em protoboard, com reconhecimento pelo computador e verificação da saída digital pelo GPIO 25.</p>
+    <p>O computador reconheceu a ESP32 como “USB-Enhanced-SERIAL CH9102 (COM3)”.</p>
+    <p>Prosseguiram os estudos de instalação e fixação da ESP32, com atenção ao acesso aos pinos e à conexão dos jumpers.</p>
+  </article>
+
+  <article id="desvios">
+    <h2>Desvios e segurança de rotas</h2>
+    <p>Padronizado o acionamento dos desvios para integração com a ESP32 e definida a substituição dos acionamentos por bobinas ainda existentes pelos mesmos motores utilizados nos demais desvios.</p>
+    <p>Estabelecido que o operador escolhe e comanda a movimentação, enquanto o sistema executa automaticamente o posicionamento e a proteção de segurança dos desvios necessários.</p>
+    <p>Na Estação, D1-L1 e D7-L1 podem ser reposicionados automaticamente com a composição parada, inclusive para encaminhamento de trens de carga à L6.</p>
+    <p>Regra central de segurança: sempre que qualquer sensor SP detectar uma composição, o sistema deve identificar o sentido de marcha e verificar os desvios relevantes à frente.</p>
+    <p>A composição somente pode prosseguir normalmente quando os desvios necessários estiverem confirmados na posição correta. Caso algum esteja incorreto, indefinido ou sem confirmação, o sistema deve comandar seu posicionamento e reduzir ou impedir a alimentação da locomotiva.</p>
+    <p>Não basta enviar o comando de posicionamento ao desvio. A liberação da composição depende da confirmação real de posição. Se a confirmação não ocorrer, a composição deve parar antes de alcançar o desvio, evitando risco de descarrilamento.</p>
+  </article>
+
+  <article id="sensores">
+    <h2>Sensores de presença</h2>
+    <p>Adotados sensores Hall A3144 para detecção, com vermelho para alimentação, preto para GND e amarelo para o sinal individual enviado à ESP32.</p>
+    <p>Reavaliado o posicionamento dos sensores no layout para reduzir pontos desnecessários sem comprometer segurança e automação.</p>
+    <p>Definido o padrão de identificação dos sensores como SPxx-Lx, indicando o número do sensor e a linha correspondente.</p>
+    <p>Após revisão da numeração, foi reorganizada a sequência prevista para instalação.</p>
+    <p>Dos 40 sensores Hall disponíveis, 19 foram destinados à instalação inicial e os demais permanecerão como reserva técnica e para futuras melhorias da detecção.</p>
+    <p>Analisada a atuação de SP1-L1 e SP2-L1 nos dois sentidos de circulação, tanto para saída da Estação quanto para passagem direta.</p>
+    <p>SP3 foi definido como sensor de fronteira entre as Áreas 1 e 2, e SP8 como sensor de fronteira entre as Áreas 1 e 3.</p>
+    <p>A passagem por um SP não deve ser tratada apenas como informação de presença: ela deve também desencadear as verificações de segurança e de rota aplicáveis ao trecho seguinte.</p>
+  </article>
+
+  <article id="velocidade">
+    <h2>Locomotivas, composições e velocidade</h2>
+    <p>Definidos critérios para o futuro controle de velocidade considerando simultaneamente os limites da locomotiva, da composição ou carga e do trecho percorrido.</p>
+    <p>A velocidade efetiva deverá respeitar sempre o menor limite aplicável, inclusive em Estação, pátios, desvios e demais trechos especiais.</p>
+    <p>Iniciado o estudo da divisão do layout em setores operacionais, com sensores de presença na entrada e na saída para aplicação e liberação dos limites de velocidade.</p>
+    <p>Na passagem direta pela Estação, em qualquer sentido, a composição deve entrar com velocidade reduzida. Depois do sensor de saída, o sistema apenas libera novamente ao operador a faixa normal permitida, sem acelerar automaticamente a locomotiva.</p>
+    <p>O cadastro de cada locomotiva deverá conter identificação, tipo de tração, limites de velocidade, sons e outros parâmetros operacionais, associados também ao tipo de composição utilizada.</p>
+  </article>
+
+  <article id="audio">
+    <h2>Áudio e efeitos sonoros</h2>
+    <p>Definido que buzina, apito, sino e demais efeitos sonoros poderão ser reproduzidos pelos alto-falantes das regiões de acordo com o tipo de locomotiva e a situação operacional.</p>
+    <p>Na partida da Estação, o sino deve ser acionado e, após 5 segundos, a locomotiva pode ser energizada.</p>
+    <p>Regra de segurança para operação simultânea: cada comando de áudio deve ser associado à composição, à linha e ao AF que o acionou.</p>
+    <p>Ao terminar um som, o sistema deve desligar somente o AF ou o som correspondente àquela composição. Não deve ser utilizado o comando “desligar todos os AF” como rotina normal, pois isso poderia interromper o áudio de outra composição em operação simultânea.</p>
+    <p>O comando geral de desligamento de todos os AF fica reservado para emergência, reinicialização do sistema ou falha detectada.</p>
+  </article>
+
+  <article id="identificacao">
+    <h2>Identificação das locomotivas</h2>
+    <p>Desenvolvido o conceito de cadastro individual das locomotivas com seus parâmetros de operação.</p>
+    <p>Estudada a identificação automática por tag eletrônica RFID/NFC passiva com UID próprio, associando a leitura ao cadastro da locomotiva no software.</p>
+    <p>Mantida também a possibilidade de identificação ou seleção manual da locomotiva pelo tablet antes do início da operação.</p>
+    <p>Os dois métodos deverão utilizar o mesmo cadastro e permitir o carregamento do perfil operacional da locomotiva.</p>
+  </article>
+
+  <article id="operacao">
+    <h2>Operação da Estação e rotas</h2>
+    <p>Estruturadas rotas automáticas e regras para impedir movimentos incompatíveis.</p>
+    <p>Na partida da Estação, a sequência operacional prevê acionamento do sino, espera de 5 segundos e somente depois energização da locomotiva.</p>
+    <p>O sistema deve impedir partidas quando os desvios necessários estiverem em posição incorreta, indefinida ou sem confirmação.</p>
+    <p>O modo manual mantém a decisão de movimentação nas mãos do operador, sem eliminar as proteções automáticas de segurança.</p>
+    <p>A lógica deve permitir a coexistência de mais de uma composição, evitando que comandos de uma linha interfiram indevidamente em outra.</p>
+  </article>
+
+  <article id="site">
+    <h2>Site, Manual e documentação</h2>
+    <p>Ampliados e padronizados o Manual de Construção, a Galeria e as páginas internas do site.</p>
+    <p>Uniformizados cabeçalhos e realizados ajustes de links, fotografias, legendas e apresentação em computador e smartphone.</p>
+    <p>Implantada a alternância automática das fotografias da capa e ajustado para 4 segundos o tempo de exibição.</p>
+    <p>Revisado o formulário de Contato e ajustado o envio das mensagens.</p>
+    <p>Incluídos e revisados conteúdos como preparação de tinta cor cobre, preservação de musgos naturais e “Preparação do gesso sem stress”.</p>
+    <p>O Diário de Bordo deixa de ter a data como estrutura principal e passa a reunir as informações por tema, permitindo que cada assunto seja consultado isoladamente.</p>
+    <p>Quando tiver início o desenvolvimento do software, este Diário deverá ser utilizado como uma das fontes para separar as decisões registradas em requisitos, rotinas, regras de segurança e exceções operacionais.</p>
+  </article>
+
+  <article id="materiais">
+    <h2>Materiais, ambiente e fornecedores</h2>
+    <p>Adquirido desumidificador para reduzir a umidade e auxiliar na proteção da maquete e dos componentes.</p>
+    <p>Atualizada a página “Onde comprar” com novos fornecedores e realizadas pesquisas de desvios em escala HO, incluindo modelos Frateschi, Peco e Atlas.</p>
+    <p>O ambiente onde está sendo montada a ferrovia possui 20 m² e o comprimento de trilhos instalado até o momento é de aproximadamente 47 metros lineares.</p>
+  </article>
+
+  <!-- ===== INSERIR NOVAS DECISÕES NO TEMA CORRESPONDENTE ===== -->
 
   <p class="voltar-final">
     <a href="index.html">← Voltar à página principal</a>
