@@ -165,13 +165,14 @@
 
   <article id="gavetas">
     <h2>Gavetas de controle e eletrônica</h2>
-    <p>Definida a arquitetura com cinco gavetas eletrônicas:</p>
+    <p>Definida a arquitetura com seis gavetas de controle, todas com dimensões externas de 50 × 40 cm e placa interna de montagem de 48 × 38 cm:</p>
     <ul>
-      <li>Gaveta Principal — alimentação, proteção, distribuição de energia, seleção dos modos Analógico/DCC e funções centrais de controle.</li>
-      <li>Gaveta Estação — controle dos desvios, sensores de presença, áudio e demais funções da região da Estação.</li>
-      <li>Gaveta Túnel — controle dos desvios, sensores de presença, áudio e demais funções da região do Túnel; utilizará seis módulos DRV8871, um para cada motor de desvio da região.</li>
-      <li>Gaveta Armazéns Gerais — controle dos desvios, sensores de presença, áudio e demais funções da região dos Armazéns Gerais; utilizará cinco módulos DRV8871.</li>
-      <li>Gaveta de Iluminação — alimentação e comando da iluminação de casas, galpões e postes, efeitos de iluminação e controle de brilho por PWM, utilizando módulo PCA9685 e barramentos locais de +5 V e GND.</li>
+      <li>GCP — Gaveta de Controle Principal: alimentação, proteção, distribuição de energia, seleção dos modos Analógico/DCC e funções centrais de controle.</li>
+      <li>GES — Gaveta Estação: controle dos desvios, sensores de presença, áudio e demais funções da região da Estação.</li>
+      <li>GTU — Gaveta Túnel: controle dos desvios, sensores de presença, áudio e demais funções da região do Túnel; utilizará seis módulos DRV8871, um para cada motor de desvio da região.</li>
+      <li>GAG — Gaveta Armazéns Gerais: controle dos desvios, sensores de presença, áudio e demais funções da região dos Armazéns Gerais; utilizará cinco módulos DRV8871.</li>
+      <li>GAR — Gaveta Analógica e Rotunda: controle da alimentação e operação analógica das linhas, incluindo fonte CC, reostato/PWM, chave liga/desliga e seleção de sentido dos trilhos, além das funções relacionadas à Rotunda.</li>
+      <li>GCI — Gaveta de Iluminação: alimentação e comando da iluminação de casas, galpões e postes, efeitos de iluminação e controle de brilho por PWM, utilizando módulo PCA9685 e barramentos locais de +5 V e GND.</li>
     </ul>
     <p>O painel frontal das gavetas deve conter chave liga/desliga, LED verde de indicação de energização e fusível de rosca de 2 A retardado.</p>
     <p>Nas gavetas regionais, a alimentação prevista é recebida da Gaveta Principal por +15 Vcc e GND, com borne ou conector destacável, fusível, chave frontal, LED após a chave e barramentos locais de distribuição.</p>
@@ -208,7 +209,7 @@
     <h2>Desvios e segurança de rotas</h2>
     <p>Padronizado o acionamento dos desvios para integração com a ESP32 e definida a substituição dos acionamentos por bobinas ainda existentes pelos mesmos motores utilizados nos demais desvios.</p>
     <p>Definido o padrão de identificação dos desvios como Dx-Lx, indicando o número do desvio e a linha ferroviária correspondente.</p>
-    <p>Após aprovação dos testes de inicialização, a configuração automática prevista é D1 a D9 em DI, D10 em AC e D11 a D20 em DI, com confirmação eletrônica de todas as posições.</p>
+    <p>Após aprovação dos testes de inicialização, a configuração automática prevista é D1 a D9 em DI, D10 em AC e D11 a D19 em DI, com confirmação eletrônica de todas as posições.</p>
     <p>Estabelecido que o operador escolhe e comanda a movimentação, enquanto o sistema executa automaticamente o posicionamento e a proteção de segurança dos desvios necessários.</p>
     <p>Na Estação, D1-L1 e D7-L1 podem ser reposicionados automaticamente com a composição parada, inclusive para encaminhamento de trens de carga à L6.</p>
     <p>Regra central de segurança: sempre que qualquer sensor SP detectar uma composição, o sistema deve identificar o sentido de marcha e verificar os desvios relevantes à frente.</p>
@@ -276,7 +277,7 @@
   <article id="interfaces">
     <h2>Tablets, TV e sinótico</h2>
     <p>A interface do Tablet de Controle de Mão será composta por duas telas.</p>
-    <p>A Tela 1 exibirá o desenho da ferrovia, LEDs indicadores e os botões BT01 a BT19 para acionamento manual dos desvios.</p>
+    <p>A Tela 1 exibirá o desenho da ferrovia, LEDs indicadores e os botões BT01 a BT20 para acionamento manual dos desvios.</p>
     <p>A Tela 2 concentrará seleção de rotas, Emergência, Teste/Rearme, Silenciar Alarme, Finalizar, seleção Passageiros/Carga, comandos manuais futuros, diagnósticos, configurações e histórico de eventos. A navegação entre as telas será feita por ← e →.</p>
     <p>A TV poderá ser ligada a qualquer momento. O sistema deverá identificá-la, testar a comunicação e enviar automaticamente o painel sinótico. Falha de comunicação com a TV será registrada e informada ao operador, mas não impedirá a operação.</p>
     <p>O desenho do sinótico será preparado em SVG, com elementos identificáveis para linhas, desvios, sensores, regiões, indicadores e botões, permitindo alteração dinâmica de estados e destaque da rota selecionada.</p>
