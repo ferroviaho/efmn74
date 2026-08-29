@@ -147,7 +147,7 @@
     <p>Definida a arquitetura de automação com duas ESP32 destinadas ao controle dos desvios, sensores e demais funções da ferrovia.</p>
     <p>Estruturados os modos de operação Analógico e DCC e definidos os conceitos dos painéis de controle, tablets e sinótico.</p>
     <p>Estruturadas rotas automáticas e estabelecidas regras para impedir rotas conflitantes.</p>
-    <p>A maquete foi dividida em três áreas operacionais para simplificar a lógica de detecção: Área 1 — Serviços, compreendendo Estação, pátio de cargas, manutenção e rotunda; Área 2 — Túnel; Área 3 — Armazéns. O SP3 atua como fronteira entre as Áreas 1 e 2 e o SP8 como fronteira entre as Áreas 1 e 3.</p>
+    <p>A maquete foi dividida em três áreas operacionais para simplificar a lógica de detecção: Área 1 — Serviços, compreendendo Estação, pátio de cargas, manutenção e rotunda; Área 2 — Túnel; Área 3 — Armazéns. O SP3-L1 atua como fronteira entre as Áreas 1 e 2 e o SP8-L1 como fronteira entre as Áreas 1 e 3.</p>
     <p>Durante a fase atual, todas as decisões operacionais, de segurança e de automação devem ser registradas. A separação posterior em rotinas de software será feita quando começar o desenvolvimento do programa.</p>
     <p>Definida a separação entre documentação técnica e sistema de controle: os documentos oficiais poderão ser fechados em DOCX/PDF, enquanto as interfaces operacionais serão desenvolvidas em HTML, CSS, JavaScript e SVG, comunicando-se com a lógica em C++ das ESP32.</p>
   </article>
@@ -188,9 +188,17 @@
     <p>Planejada, para etapa futura, a automação do processo de compilação, upload, abertura opcional do monitor serial e teste inicial por meio de ferramenta como Arduino CLI ou PlatformIO.</p>
   </article>
 
+  <div style="margin: 24px 0 30px;">
+    <object data="desvios-e-sps.pdf" type="application/pdf" width="100%" height="650">
+      <p><a href="desvios-e-sps.pdf">Abrir o esquema de desvios e sensores SP</a></p>
+    </object>
+    <p>Esquema geral dos desvios, sensores de presença e divisão das Áreas 1, 2 e 3. O layout poderá sofrer pequenos ajustes e revisões após o início da operação da ferrovia, em função dos testes e das necessidades operacionais observadas.</p>
+  </div>
+
   <article id="desvios">
     <h2>Desvios e segurança de rotas</h2>
     <p>Padronizado o acionamento dos desvios para integração com a ESP32 e definida a substituição dos acionamentos por bobinas ainda existentes pelos mesmos motores utilizados nos demais desvios.</p>
+    <p>Definido o padrão de identificação dos desvios como Dx-Lx, indicando o número do desvio e a linha ferroviária correspondente.</p>
     <p>Após aprovação dos testes de inicialização, a configuração automática prevista é D1 a D9 em DI, D10 em AC e D11 a D19 em DI, com confirmação eletrônica de todas as posições.</p>
     <p>Estabelecido que o operador escolhe e comanda a movimentação, enquanto o sistema executa automaticamente o posicionamento e a proteção de segurança dos desvios necessários.</p>
     <p>Na Estação, D1-L1 e D7-L1 podem ser reposicionados automaticamente com a composição parada, inclusive para encaminhamento de trens de carga à L6.</p>
@@ -203,12 +211,13 @@
     <h2>Sensores de presença</h2>
     <p>Adotados sensores Hall A3144 para detecção, com vermelho para alimentação, preto para GND e amarelo para o sinal individual enviado à ESP32.</p>
     <p>Reavaliado o posicionamento dos sensores no layout para reduzir pontos desnecessários sem comprometer segurança e automação.</p>
-    <p>Definido o padrão de identificação dos sensores como SPxx-Lx, indicando o número do sensor e a linha correspondente.</p>
+    <p>Definido o padrão de identificação dos sensores como SPx-Lx, indicando o número do sensor e a linha correspondente.</p>
     <p>Após revisão da numeração, foi reorganizada a sequência prevista para instalação.</p>
     <p>Dos 40 sensores Hall disponíveis, 19 foram destinados à instalação inicial e os demais permanecerão como reserva técnica e para futuras melhorias da detecção.</p>
     <p>Analisada a atuação de SP1-L1 e SP2-L1 nos dois sentidos de circulação, tanto para saída da Estação quanto para passagem direta.</p>
-    <p>SP3 foi definido como sensor de fronteira entre as Áreas 1 e 2, e SP8 como sensor de fronteira entre as Áreas 1 e 3.</p>
+    <p>SP3-L1 foi definido como sensor de fronteira entre as Áreas 1 e 2, e SP8-L1 como sensor de fronteira entre as Áreas 1 e 3.</p>
     <p>A passagem por um SP não deve ser tratada apenas como informação de presença: ela deve também desencadear as verificações de segurança e de rota aplicáveis ao trecho seguinte.</p>
+    <p>Para cada sensor SP deverá ser registrada sua função operacional, indicando o que será detectado e quais ações, verificações ou comandos deverão ser executados pelo sistema a partir dessa detecção.</p>
     <p>Na inicialização, os sensores SP serão verificados eletricamente quanto à alimentação, integridade da fiação, circuito aberto ou curto quando detectáveis, comunicação com ESP32/MCP23017 e estado lógico da entrada.</p>
     <p>Como os sensores Hall somente mudam de estado com a passagem do ímã da locomotiva, sua validação funcional ocorrerá durante a circulação. Cada acionamento deverá ser conferido quanto à mudança de estado, tempo de resposta, coerência com a rota, sentido e sequência prevista.</p>
     <p>Uma inconsistência deverá gerar registro do evento, identificação do sensor e da região, mensagem ao operador e aplicação das regras de segurança correspondentes.</p>
@@ -235,6 +244,7 @@
   <article id="identificacao">
     <h2>Identificação das locomotivas</h2>
     <p>Desenvolvido o conceito de cadastro individual das locomotivas com seus parâmetros de operação.</p>
+    <p>Cada locomotiva terá um ímã fixado na parte inferior para permitir sua detecção pelos sensores de presença SP durante a circulação.</p>
     <p>Estudada a identificação automática por tag eletrônica RFID/NFC passiva com UID próprio, associando a leitura ao cadastro da locomotiva no software.</p>
     <p>Mantida também a possibilidade de identificação ou seleção manual da locomotiva pelo tablet antes do início da operação.</p>
     <p>Os dois métodos deverão utilizar o mesmo cadastro e permitir o carregamento do perfil operacional da locomotiva.</p>
@@ -245,8 +255,8 @@
     <p>Foram oficializadas sete rotas operacionais, R1 a R7. R1 e R2 operam no sentido Leste → Oeste, R4 e R5 no sentido Oeste → Leste, R3 executa R1 seguida de R2 e R6 executa R4 seguida de R5.</p>
     <p>A R7 foi definida como Modo Aleatório Inteligente, em execução contínua até o comando FINALIZAR.</p>
     <p>As rotas R1 a R7 executam continuamente e somente encerram após FINALIZAR, concluindo antes o percurso em andamento.</p>
-    <p>Na finalização, trem de passageiros estaciona na Estação e trem de carga na Linha L6, situada entre D1 e D7.</p>
-    <p>Para estacionamento de carga no sentido LO, D7 encaminha a composição à L6; no sentido OL, D1 executa esse encaminhamento. Em ambos os casos, a locomotiva passa pelo SP3 e para 40 cm depois dele.</p>
+    <p>Na finalização, trem de passageiros estaciona na Estação e trem de carga na Linha L6, situada entre D1-L1 e D7-L1.</p>
+    <p>Para estacionamento de carga no sentido LO, D7-L1 encaminha a composição à L6; no sentido OL, D1-L1 executa esse encaminhamento. Em ambos os casos, a locomotiva passa pelo SP3-L1 e para 40 cm depois dele.</p>
     <p>Na partida da Estação, a sequência operacional prevê acionamento do sino, espera de 5 segundos e somente depois energização da locomotiva.</p>
     <p>O modo manual mantém a decisão de movimentação nas mãos do operador, enquanto o sistema continua controlando automaticamente desvios, sensores, alarmes e segurança.</p>
     <p>A composição poderá ser posicionada manualmente em qualquer ponto da ferrovia, que passa a ser considerado o ponto inicial válido. O sistema deverá identificar a posição, determinar o sentido quando possível, apresentar somente rotas compatíveis e bloquear as incompatíveis.</p>
@@ -275,7 +285,7 @@
     <h2>Inicialização, testes e liberação</h2>
     <p>Na inicialização, o nobreak energizará apenas o sistema de controle; os trilhos permanecerão desenergizados até a aprovação dos testes.</p>
     <p>Os testes automáticos incluirão ESP32, Wi‑Fi, Bluetooth BLE, comunicação com tablet e entre módulos, MCP23017, DRV8871, alimentações, curto entre trilhos e sobrecorrente.</p>
-    <p>Cada desvio D1 a D19 deverá ser movimentado para DI e AC com confirmação dos respectivos sensores. Falhas bloqueantes impedirão a operação.</p>
+    <p>Cada desvio, identificado no padrão Dx-Lx, deverá ser movimentado para DI e AC com confirmação dos respectivos sensores. Falhas bloqueantes impedirão a operação.</p>
     <p>Também serão testados painel, mensagens, alarmes, TESTE/REARME e EMERGÊNCIA. Falha do botão EMERGÊNCIA impede a operação; falhas de LEDs, indicadores, alto-falantes e alarmes sonoros serão registradas, mas são classificadas como não críticas.</p>
     <p>Antes de energizar a via, o sistema verificará ausência de curto e sobrecorrente e confirmação das posições dos desvios. Somente após aprovação completa os trilhos serão energizados e será apresentada a mensagem “FERROVIA LIBERADA PARA OPERAÇÃO”.</p>
     <p>Todos os eventos relevantes serão registrados com data, hora, região, equipamento, descrição e resultado da operação.</p>
