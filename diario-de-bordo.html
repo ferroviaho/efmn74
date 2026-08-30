@@ -172,13 +172,14 @@
       <li>GTU — Gaveta Túnel: controle dos desvios, sensores de presença, áudio e demais funções da região do Túnel; utilizará seis módulos DRV8871, um para cada motor de desvio da região.</li>
       <li>GAG — Gaveta Armazéns Gerais: controle dos desvios, sensores de presença, áudio e demais funções da região dos Armazéns Gerais; utilizará cinco módulos DRV8871.</li>
       <li>GAR — Gaveta Analógica e Rotunda: controle da alimentação e operação analógica das linhas, incluindo fonte CC, reostato/PWM, chave liga/desliga e seleção de sentido dos trilhos, além das funções relacionadas à Rotunda.</li>
-      <li>GCI — Gaveta de Iluminação: alimentação e comando da iluminação de casas, galpões e postes, efeitos de iluminação e controle de brilho por PWM, utilizando módulo PCA9685 e barramentos locais de +5 V e GND.</li>
+      <li>GIS — Gaveta de Iluminação e Som: alimentação e comando da iluminação de casas, galpões e postes, efeitos de iluminação e controle de brilho por PWM, utilizando módulo PCA9685 e barramentos locais de +5 V e GND; poderá concentrar também os módulos e controles relacionados ao sistema de som, como mixers e amplificadores, conforme a arquitetura de áudio que vier a ser definida.</li>
     </ul>
     <p>O painel frontal das gavetas deve conter chave liga/desliga, LED verde de indicação de energização e fusível de rosca de 2 A retardado.</p>
     <p>Nas gavetas regionais, a alimentação prevista é recebida da Gaveta Principal por +15 Vcc e GND, com borne ou conector destacável, fusível, chave frontal, LED após a chave e barramentos locais de distribuição.</p>
     <p>Cada DRV8871 receberá borne KF301 e terá saída individual para o respectivo motor. Os sinais IN1 e IN2 serão distribuídos por régua de bornes tipo Sindal, com GND comum entre a Gaveta Principal e as gavetas regionais.</p>
     <p>Previstos bornes para reed switches de confirmação DI/AC, sensores Hall SP, expansões futuras, pontos de teste, capacitores de desacoplamento, proteção contra inversão de polaridade, conectores destacáveis, laço de serviço e separação entre cabos de potência, comandos e sensores.</p>
     <p>Padronizado o uso de barras de pinos macho de 2,54 mm nos módulos eletrônicos, sempre que aplicável, para facilitar montagem, substituição e manutenção.</p>
+    <p>Definido que os módulos DRV8871 não deverão ser instalados diretamente na protoboard. Sua montagem deverá permitir fixação mecânica firme e conexões confiáveis, evitando pinos ou módulos bambos.</p>
   </article>
 
   <article id="esp32">
@@ -249,6 +250,8 @@
     <p>Regra de segurança para operação simultânea: cada comando de áudio deve ser associado à composição, à linha e ao AF que o acionou.</p>
     <p>Ao terminar um som, o sistema deve desligar somente o AF ou o som correspondente àquela composição. Não deve ser utilizado o comando “desligar todos os AF” como rotina normal, pois isso poderia interromper o áudio de outra composição em operação simultânea.</p>
     <p>O comando geral de desligamento de todos os AF fica reservado para emergência, reinicialização do sistema ou falha detectada.</p>
+    <p>Para permitir sons simultâneos de composições diferentes pela mesma caixa acústica AF, ficou registrado para estudo futuro o uso de mixagem dos sinais de áudio antes da amplificação.</p>
+    <p>Serão avaliadas duas alternativas antes da compra definitiva dos componentes: mixer físico por AF ou região, somando os sinais antes do PAM8403, ou mixagem digital/central. Os mixers e amplificadores poderão ser instalados na GIS — Gaveta de Iluminação e Som.</p>
   </article>
 
   <article id="identificacao">
