@@ -3,67 +3,192 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Instalação dos sensores Hall</title>
+  <meta name="description" content="Instalação dos sensores Hall da Ferrovia EFMN 74 — Escala HO.">
+  <title>Instalação dos sensores Hall — EFMN 74</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      color: #222;
-      background: #fff;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 24px;
+    :root {
+      --bg: #f4f1ea;
+      --paper: #fffdf8;
+      --ink: #222;
+      --muted: #68635a;
+      --dark: #151515;
+      --gold: #c89b2b;
+      --line: #ded7c8;
+      --link: #0056b3;
+      --max: 1000px;
+      --blue: #1f4e79;
     }
-h1 {
-  color: #1f4e79;
-  border-bottom: 2px solid #1f4e79;
-  padding-bottom: 8px;
-}
 
-h2 {
-  color: #1f4e79;
-  margin-top: 28px;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-p {
-  text-align: justify;
-}
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
 
-ul {
-  padding-left: 24px;
-}
+    /* ===== CABEÇALHO PADRÃO ===== */
 
-li {
-  margin-bottom: 8px;
-}
+    header {
+      background: var(--dark);
+      color: #fff;
+      border-bottom: 4px solid var(--gold);
+    }
 
-figure {
-  margin: 28px 0;
-  text-align: center;
-}
+    .header-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-figure img {
-  max-width: 100%;
-  height: auto;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
+    .header-logo {
+      width: 72px;
+      height: auto;
+      display: block;
+      margin: 0;
+      flex: 0 0 auto;
+    }
 
-figcaption {
-  margin-top: 8px;
-  font-size: 0.95em;
-  color: #555;
-}
+    .header-texto {
+      text-align: left;
+    }
 
-.observacao {
-  background: #f2f6fa;
-  border-left: 4px solid #1f4e79;
-  padding: 12px 16px;
-  margin-top: 24px;
-}
+    .header-linha1 {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .header-linha2 {
+      margin: 2px 0 0;
+      font-size: 0.9rem;
+      color: #d8d8d8;
+    }
+
+    /* ===== CONTEÚDO ===== */
+
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 36px 20px 60px;
+    }
+
+    .voltar-indice {
+      margin: 0 0 20px;
+    }
+
+    .voltar-indice a {
+      color: var(--link);
+      text-decoration: underline;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      font-size: 2rem;
+      line-height: 1.25;
+    }
+
+    h2 {
+      margin-top: 30px;
+      font-size: 1.45rem;
+    }
+
+    p {
+      text-align: justify;
+    }
+
+    ul {
+      padding-left: 24px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    figure {
+      margin: 28px 0;
+      text-align: center;
+    }
+
+    figure img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+    }
+
+    figcaption {
+      margin-top: 8px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .observacao {
+      background: var(--paper);
+      border-left: 4px solid var(--blue);
+      padding: 12px 16px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 700px) {
+      .header-inner {
+        padding: 8px 14px;
+        gap: 12px;
+      }
+
+      .header-logo {
+        width: 62px;
+      }
+
+      .header-linha1 {
+        font-size: 0.9rem;
+      }
+
+      .header-linha2 {
+        font-size: 0.82rem;
+      }
+
+      main {
+        padding: 26px 16px 44px;
+      }
+
+      h1 {
+        font-size: 1.7rem;
+      }
+    }
   </style>
 </head>
 <body>
+<header>
+  <div class="header-inner">
+    <img
+      src="logo-efmn74.PNG"
+      alt="Logomarca da Ferrovia EFMN 74"
+      class="header-logo"
+    >
+<div class="header-texto">
+  <p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p>
+  <p class="header-linha2">Construção, automação, memória e documentação</p>
+</div>
+  </div>
+</header>
+<main>
+  <p class="voltar-indice">
+    <a href="manual-indice.html">← Voltar ao índice</a>
+  </p>
   <h1>Instalação dos sensores Hall nas 19 posições de detecção e automação</h1>
   <p>
     Os sensores de presença da Ferrovia EFMN 74 utilizam sensores Hall instalados junto aos trilhos para detectar a passagem das locomotivas por meio de um ímã fixado na parte inferior de cada locomotiva.
@@ -73,9 +198,9 @@ figcaption {
   </p>
   <figure>
     <img src="hall.png" alt="Exemplo de instalação de um sensor Hall junto aos trilhos">
-    <figcaption>
-      Exemplo de instalação de um sensor Hall junto aos trilhos.
-    </figcaption>
+<figcaption>
+  Exemplo de instalação de um sensor Hall junto aos trilhos.
+</figcaption>
   </figure>
   <p>
     Em cada posição, o sensor deve ser instalado entre os dormentes ou em local equivalente, suficientemente próximo da parte inferior da locomotiva para garantir uma detecção confiável, sem interferir na passagem das rodas, nos trilhos ou nos componentes móveis dos desvios.
@@ -95,5 +220,9 @@ figcaption {
     <strong>Observação:</strong>
     A posição exata de cada sensor poderá variar conforme o tipo de trilho, a geometria da via, a proximidade de desvios e a altura do ímã instalado na locomotiva. O critério principal é obter uma detecção segura e repetível em todas as 19 posições, sem interferir mecanicamente na operação ferroviária e garantindo o funcionamento adequado dos recursos de automação da ferrovia.
   </div>
+  <p class="voltar-indice" style="margin-top: 32px;">
+    <a href="manual-indice.html">← Voltar ao índice</a>
+  </p>
+</main>
 </body>
 </html>
