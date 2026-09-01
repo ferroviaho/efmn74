@@ -3,155 +3,174 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Qual é o fio positivo e qual é o negativo? | Ferrovia EFMN 74</title>
+<title>Qual é o fio positivo e qual é o negativo? — Ferrovia EFMN 74</title>
 <style>
-:root{
---preto:#111;
---dourado:#c9a227;
---texto:#222;
---fundo:#f7f7f7;
---branco:#fff;
+:root {
+--bg: #f4f1ea;
+--paper: #fffdf8;
+--ink: #222;
+--muted: #68635a;
+--gold: #c89b2b;
+--line: #ded7c8;
+--link: #0056b3;
+--max: 1000px;
 }
 
-*{box-sizing:border-box}
+* { box-sizing: border-box; }
 
-body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background:var(--fundo);
-color:var(--texto);
-line-height:1.6;
+body {
+margin: 0;
+background: var(--bg);
+color: var(--ink);
+font-family: Georgia, "Times New Roman", serif;
+line-height: 1.6;
 }
 
-header{
-background:var(--preto);
-color:var(--branco);
-border-bottom:4px solid var(--dourado);
-padding:14px 20px;
+main {
+max-width: var(--max);
+margin: 0 auto;
+padding: 36px 20px 60px;
 }
 
-.cabecalho{
-max-width:1100px;
-margin:0 auto;
-display:flex;
-align-items:center;
-gap:18px;
+.voltar-manual {
+margin: 0 0 20px;
 }
 
-.cabecalho img{
-width:72px;
-height:auto;
-display:block;
-flex:0 0 auto;
+.voltar-manual a {
+color: #0056b3;
+text-decoration: underline;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 1rem;
+font-weight: 600;
 }
 
-.cabecalho-texto{
-margin-left:auto;
-text-align:right;
+h1 {
+margin: 0 0 20px;
+font-size: 2.1rem;
+line-height: 1.2;
 }
 
-.cabecalho-texto .linha1{
-font-size:1.25rem;
-font-weight:700;
+h2 {
+margin-top: 28px;
+font-size: 1.3rem;
 }
 
-.cabecalho-texto .linha2{
-margin-top:2px;
-font-size:.95rem;
-color:#ddd;
+ol { padding-left: 24px; }
+li { margin-bottom: 12px; }
+
+.nota {
+margin: 20px 0;
+padding: 14px 16px;
+background: #f0eee8;
+border-left: 4px solid var(--gold);
 }
 
-main{
-max-width:900px;
-margin:28px auto;
-background:var(--branco);
-padding:28px 34px;
-box-shadow:0 2px 10px rgba(0,0,0,.08);
+.atencao {
+margin: 24px 0;
+padding: 16px 18px;
+border-left: 4px solid var(--gold);
+background: #fff8dc;
 }
 
-.voltar{
-margin:0 0 22px;
-}
-
-.voltar a{
-color:#6b5200;
-text-decoration:none;
-font-weight:700;
-}
-
-.voltar a:hover{
-text-decoration:underline;
-}
-
-h1{
-margin:0 0 20px;
-font-size:2rem;
-line-height:1.2;
-color:#111;
-}
-
-h2{
-margin-top:28px;
-font-size:1.25rem;
-color:#111;
-}
-
-ol{
-padding-left:24px;
-}
-
-li{
-margin-bottom:12px;
-}
-
-.atencao{
-margin:24px 0;
-padding:16px 18px;
-border-left:5px solid var(--dourado);
-background:#fff8dc;
-}
-
-.nota{
-margin:20px 0;
-padding:14px 16px;
-background:#f0f0f0;
-border-radius:4px;
-}
-
-@media (max-width:700px){
-.cabecalho{
-align-items:flex-start;
-}
-
-.cabecalho-texto{
-font-size:.9rem;
-}
-
-main{
-margin:16px;
-padding:22px 20px;
-}
-
-h1{
-font-size:1.6rem;
-}
+@media (max-width: 700px) {
+main { padding: 26px 16px 44px; }
+h1 { font-size: 1.75rem; }
 }
 </style>
 </head>
 
 <body>
-<header>
-<div class="cabecalho">
-<img src="logo.png" alt="Logomarca Ferrovia EFMN 74">
-<div class="cabecalho-texto">
-<div class="linha1">Ferrovia EFMN 74 – Escala HO</div>
-<div class="linha2">Construção, automação, memória e documentação</div>
+
+<!-- ===== CABEÇALHO PADRÃO EFMN 74 ===== -->
+<style>
+.site-header {
+width: 100%;
+background: #000;
+border-bottom: 1px solid #c9a227;
+margin: 0;
+padding: 8px 16px;
+box-sizing: border-box;
+}
+
+.header-inner {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 14px;
+max-width: 1100px;
+margin: 0 auto;
+}
+
+.header-logo {
+width: 72px;
+height: auto;
+display: block;
+flex: 0 0 auto;
+}
+
+.header-text {
+color: #fff;
+line-height: 1.25;
+text-align: left;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+.header-title {
+margin: 0;
+font-size: 1.05rem;
+font-weight: 700;
+}
+
+.header-subtitle {
+margin: 2px 0 0;
+font-size: 0.88rem;
+font-weight: 400;
+}
+
+@media (max-width: 600px) {
+.site-header {
+padding: 7px 10px;
+}
+
+.header-inner {
+gap: 10px;
+}
+
+.header-logo {
+width: 72px;
+}
+
+.header-title {
+font-size: 0.98rem;
+}
+
+.header-subtitle {
+font-size: 0.80rem;
+}
+}
+</style>
+
+<header class="site-header">
+<div class="header-inner">
+<img
+src="logo-efmn74.PNG"
+alt="Logomarca da Ferrovia EFMN 74"
+class="header-logo"
+>
+
+<div class="header-text">
+<p class="header-title">Ferrovia EFMN 74 - Escala HO</p>
+<p class="header-subtitle">Construção, automação, memória e documentação</p>
 </div>
 </div>
 </header>
+<!-- ===== FIM DO CABEÇALHO PADRÃO ===== -->
 
 <main>
-<p class="voltar"><a href="manual-indice.html">← Voltar ao índice</a></p>
+
+<p class="voltar-manual">
+<a href="manual-indice.html">← Voltar ao índice</a>
+</p>
 
 <h1>Qual é o fio positivo e qual é o negativo?</h1>
 
@@ -173,7 +192,7 @@ os dois fios, sem identificação clara de polaridade.
 <ol>
 <li>
 Coloque o multímetro na função de medição de tensão contínua, indicada pelo símbolo
-<strong>V⎓</strong>, utilizando uma escala superior a 12 V.
+V⎓, utilizando uma escala superior a 12 V.
 </li>
 
 <li>
@@ -182,7 +201,9 @@ afastadas uma da outra, de modo que não possam se encostar. Isso evita um curto
 acidental durante o teste.
 </li>
 
-<li>Ligue a fonte à tomada.</li>
+<li>
+Ligue a fonte à tomada.
+</li>
 
 <li>
 Encoste a ponta preta do multímetro em um dos fios e a ponta vermelha no outro.
@@ -192,21 +213,21 @@ Encoste a ponta preta do multímetro em um dos fios e a ponta vermelha no outro.
 Observe o valor indicado no multímetro:
 <ul>
 <li>
-Se aparecer aproximadamente <strong>+12 V</strong>, o fio em contato com a ponta
-vermelha é o positivo (+), e o fio em contato com a ponta preta é o negativo (−).
+Se aparecer aproximadamente +12 V, o fio em contato com a ponta vermelha é o
+positivo (+), e o fio em contato com a ponta preta é o negativo (−).
 </li>
 <li>
-Se aparecer aproximadamente <strong>−12 V</strong>, a polaridade está invertida:
-o fio em contato com a ponta vermelha é o negativo (−), e o fio em contato com a
-ponta preta é o positivo (+).
+Se aparecer aproximadamente −12 V, a polaridade está invertida: o fio em contato
+com a ponta vermelha é o negativo (−), e o fio em contato com a ponta preta é o
+positivo (+).
 </li>
 </ul>
 </li>
 </ol>
 
 <div class="nota">
-Depois de identificar os fios, é recomendável marcá-los imediatamente, por exemplo, com
-fita vermelha para o positivo e fita preta para o negativo.
+Depois de identificar os fios, é recomendável marcá-los imediatamente, por exemplo,
+com fita vermelha para o positivo e fita preta para o negativo.
 </div>
 
 <div class="atencao">
@@ -214,8 +235,12 @@ fita vermelha para o positivo e fita preta para o negativo.
 não seguem um padrão de cores, principalmente quando houve reparo ou substituição do plug.
 </div>
 
-<p class="voltar"><a href="manual-indice.html">← Voltar ao índice</a></p>
+<p class="voltar-manual">
+<a href="manual-indice.html">← Voltar ao índice</a>
+</p>
+
 </main>
+
 </body>
 </html>
 
