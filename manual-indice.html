@@ -3,20 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Qual é o fio positivo e qual é o negativo? — Ferrovia EFMN 74</title>
+<meta name="description" content="Índice do Manual de Construção da Ferrovia EFMN 74 em escala HO.">
+<title>Manual de Construção — EFMN 74</title>
+
 <style>
 :root {
 --bg: #f4f1ea;
 --paper: #fffdf8;
 --ink: #222;
 --muted: #68635a;
+--dark: #151515;
 --gold: #c89b2b;
 --line: #ded7c8;
 --link: #0056b3;
 --max: 1000px;
 }
 
-* { box-sizing: border-box; }
+* {
+box-sizing: border-box;
+}
 
 body {
 margin: 0;
@@ -26,18 +31,59 @@ font-family: Georgia, "Times New Roman", serif;
 line-height: 1.6;
 }
 
+header {
+background: var(--dark);
+color: white;
+border-bottom: 4px solid var(--gold);
+}
+
+.header-inner {
+max-width: var(--max);
+margin: 0 auto;
+padding: 8px 20px;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 16px;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+.header-logo {
+width: 72px;
+height: auto;
+display: block;
+margin: 0;
+flex: 0 0 auto;
+}
+
+.header-texto {
+text-align: left;
+}
+
+.header-linha1 {
+margin: 0;
+font-size: 0.95rem;
+font-weight: 600;
+}
+
+.header-linha2 {
+margin: 2px 0 0;
+font-size: 0.9rem;
+color: #d8d8d8;
+}
+
 main {
 max-width: var(--max);
 margin: 0 auto;
 padding: 36px 20px 60px;
 }
 
-.voltar-manual {
+.voltar-inicio {
 margin: 0 0 20px;
 }
 
-.voltar-manual a {
-color: #0056b3;
+.voltar-inicio a {
+color: var(--link);
 text-decoration: underline;
 font-family: Arial, Helvetica, sans-serif;
 font-size: 1rem;
@@ -45,202 +91,207 @@ font-weight: 600;
 }
 
 h1 {
-margin: 0 0 20px;
+margin: 0 0 12px;
 font-size: 2.1rem;
-line-height: 1.2;
 }
 
-h2 {
-margin-top: 28px;
-font-size: 1.3rem;
+.abertura {
+margin: 0 0 30px;
+font-size: 1.1rem;
+line-height: 1.6;
 }
 
-ol { padding-left: 24px; }
-li { margin-bottom: 12px; }
-
-.nota {
-margin: 20px 0;
-padding: 14px 16px;
-background: #f0eee8;
-border-left: 4px solid var(--gold);
+.indice {
+background: var(--paper);
+border: 1px solid var(--line);
+border-radius: 10px;
+padding: 24px;
 }
 
-.atencao {
-margin: 24px 0;
-padding: 16px 18px;
-border-left: 4px solid var(--gold);
-background: #fff8dc;
+.indice h2 {
+margin-top: 0;
+margin-bottom: 18px;
+}
+
+.lista-assuntos {
+display: grid;
+gap: 12px;
+}
+
+.assunto-link,
+.assunto-pendente {
+display: block;
+padding: 15px 17px;
+border: 1px solid var(--line);
+border-radius: 8px;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 1.05rem;
+}
+
+.assunto-link {
+color: var(--link);
+background: white;
+text-decoration: none;
+font-weight: 600;
+}
+
+.assunto-link:hover,
+.assunto-link:focus {
+text-decoration: underline;
+}
+
+.assunto-pendente {
+color: var(--muted);
+background: #f7f4ed;
 }
 
 @media (max-width: 700px) {
-main { padding: 26px 16px 44px; }
-h1 { font-size: 1.75rem; }
+.header-inner {
+padding: 8px 14px;
+gap: 12px;
+}
+
+.header-logo {
+width: 62px;
+}
+
+.header-linha1 {
+font-size: 0.9rem;
+}
+
+.header-linha2 {
+font-size: 0.82rem;
+}
+
+main {
+padding: 26px 16px 44px;
+}
+
+h1 {
+font-size: 1.75rem;
+}
+
+.abertura {
+font-size: 1.05rem;
+}
 }
 </style>
 </head>
 
 <body>
 
-<!-- ===== CABEÇALHO PADRÃO EFMN 74 ===== -->
-<style>
-.site-header {
-width: 100%;
-background: #000;
-border-bottom: 1px solid #c9a227;
-margin: 0;
-padding: 8px 16px;
-box-sizing: border-box;
-}
-
-.header-inner {
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 14px;
-max-width: 1100px;
-margin: 0 auto;
-}
-
-.header-logo {
-width: 72px;
-height: auto;
-display: block;
-flex: 0 0 auto;
-}
-
-.header-text {
-color: #fff;
-line-height: 1.25;
-text-align: left;
-font-family: Arial, Helvetica, sans-serif;
-}
-
-.header-title {
-margin: 0;
-font-size: 1.05rem;
-font-weight: 700;
-}
-
-.header-subtitle {
-margin: 2px 0 0;
-font-size: 0.88rem;
-font-weight: 400;
-}
-
-@media (max-width: 600px) {
-.site-header {
-padding: 7px 10px;
-}
-
-.header-inner {
-gap: 10px;
-}
-
-.header-logo {
-width: 72px;
-}
-
-.header-title {
-font-size: 0.98rem;
-}
-
-.header-subtitle {
-font-size: 0.80rem;
-}
-}
-</style>
-
-<header class="site-header">
+<header>
 <div class="header-inner">
-<img
-src="logo-efmn74.PNG"
-alt="Logomarca da Ferrovia EFMN 74"
-class="header-logo"
->
-
-<div class="header-text">
-<p class="header-title">Ferrovia EFMN 74 - Escala HO</p>
-<p class="header-subtitle">Construção, automação, memória e documentação</p>
+<img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo">
+<div class="header-texto">
+<p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p>
+<p class="header-linha2">Construção, automação, memória e documentação</p>
 </div>
 </div>
 </header>
-<!-- ===== FIM DO CABEÇALHO PADRÃO ===== -->
 
 <main>
 
-<p class="voltar-manual">
-<a href="manual-indice.html">← Voltar ao índice</a>
+<p class="voltar-inicio">
+<a href="index.html">← Voltar à página principal</a>
 </p>
 
-<h1>Qual é o fio positivo e qual é o negativo?</h1>
+<h1>Manual de Construção</h1>
 
-<p>
-Embora não seja uma situação muito comum, pode acontecer de uma fonte ter o plug de saída
-danificado ou removido.
+<p class="abertura">
+Nesta página estão reunidos os assuntos do Manual de Construção da Ferrovia EFMN 74.
+Clique no título desejado para abrir a página correspondente.
 </p>
 
-<p>
-Considere uma fonte ligada à rede de 127 V CA (corrente alternada), que reduz e retifica essa
-tensão para fornecer 12 V CC (corrente contínua). Com o plug de saída danificado, ficam apenas
-os dois fios, sem identificação clara de polaridade.
-</p>
+<section class="indice">
+<h2>Como fazer...</h2>
 
-<h2>Como identificar o positivo (+) e o negativo (−)?</h2>
+<div class="lista-assuntos">
 
-<p>A forma mais segura é utilizar um multímetro:</p>
+<a class="assunto-link" href="relevo-realista.html">
+Um relevo bem realista
+</a>
 
-<ol>
-<li>
-Coloque o multímetro na função de medição de tensão contínua, indicada pelo símbolo
-V⎓, utilizando uma escala superior a 12 V.
-</li>
+<a class="assunto-link" href="telhado-de-zinco.html">
+Um telhado de zinco
+</a>
 
-<li>
-Antes de ligar a fonte, separe bem os dois fios da saída e mantenha as pontas desencapadas
-afastadas uma da outra, de modo que não possam se encostar. Isso evita um curto-circuito
-acidental durante o teste.
-</li>
+<a class="assunto-link" href="preparacao-do-terreno.html">
+A preparação do terreno
+</a>
 
-<li>
-Ligue a fonte à tomada.
-</li>
+<a class="assunto-link" href="envelhecimento-de-pecas-metalicas.html">
+O envelhecimento de peças metálicas
+</a>
 
-<li>
-Encoste a ponta preta do multímetro em um dos fios e a ponta vermelha no outro.
-</li>
+<a class="assunto-link" href="como-fazer-grama-verde.html">
+Uma grama bem verdinha
+</a>
 
-<li>
-Observe o valor indicado no multímetro:
-<ul>
-<li>
-Se aparecer aproximadamente +12 V, o fio em contato com a ponta vermelha é o
-positivo (+), e o fio em contato com a ponta preta é o negativo (−).
-</li>
-<li>
-Se aparecer aproximadamente −12 V, a polaridade está invertida: o fio em contato
-com a ponta vermelha é o negativo (−), e o fio em contato com a ponta preta é o
-positivo (+).
-</li>
-</ul>
-</li>
-</ol>
+<a class="assunto-link" href="assentamento-de-trilhos.html">
+O assentamento de trilhos
+</a>
 
-<div class="nota">
-Depois de identificar os fios, é recomendável marcá-los imediatamente, por exemplo,
-com fita vermelha para o positivo e fita preta para o negativo.
+<a class="assunto-link" href="como-fazer-capim.html">
+Tufos de capim em diversas cores
+</a>
+
+<a class="assunto-link" href="curral.html">
+A preparação do piso do curral
+</a>
+
+<a class="assunto-link" href="bananeiras.html">
+Bananeiras e bananal
+</a>
+
+<a class="assunto-link" href="cabine-de-sinalizacao.html">
+O posicionamento de uma cabine de sinalização
+</a>
+
+<a class="assunto-link" href="cabine-sinalizacao.html">
+O envelhecimento de uma cabine de sinalização
+</a>
+
+<a class="assunto-link" href="preparar-tinta-cor-cobre.html">
+Tinta na cor cobre
+</a>
+
+<a class="assunto-link" href="aplicacao-verniz.html">
+Aplicação de verniz
+</a>
+
+<a class="assunto-link" href="arbustos-moitas.html">
+Arbustos e moitas
+</a>
+
+<a class="assunto-link" href="acionamento-desvios.html">
+O acionamento dos desvios
+</a>
+
+<a class="assunto-link" href="musgo.htlm">
+Preservação de musgo para maquetes
+</a>
+
+<a class="assunto-link" href="gesso.html">
+Preparação do gesso sem stress
+</a>
+
+<a class="assunto-link" href="instalacao-hall.html">
+Instalação dos sensores Hall nas 19 posições de detecção e automação
+</a>
+
+<a class="assunto-link" href="positivo-ou-negativo.html">
+Qual é o fio positivo e qual é o negativo?
+</a>
+
+<a class="assunto-link" href="onde-comprar.html">
+Onde comprar artigos na escala HO
+</a>
+
 </div>
-
-<div class="atencao">
-<strong>Atenção:</strong> não confie apenas na cor original dos fios. Algumas fontes e cabos
-não seguem um padrão de cores, principalmente quando houve reparo ou substituição do plug.
-</div>
-
-<p class="voltar-manual">
-<a href="manual-indice.html">← Voltar ao índice</a>
-</p>
+</section>
 
 </main>
 
 </body>
 </html>
-
