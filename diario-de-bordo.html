@@ -128,6 +128,7 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <li><a href="#energia">Alimentação elétrica e proteção</a></li>
 <li><a href="#gavetas">Gavetas de controle e eletrônica</a></li>
 <li><a href="#esp32">ESP32, Arduino e programação</a></li>
+<li><a href="#sequencias">Sequências operacionais por sensores e desvios</a></li>
 <li><a href="#desvios">Desvios e segurança de rotas</a></li>
 <li><a href="#sensores">Sensores de presença</a></li>
 <li><a href="#velocidade">Locomotivas, composições e velocidade</a></li>
@@ -207,6 +208,72 @@ loading="lazy">
 <p>Esquema geral atualizado dos desvios, sensores de presença e divisão das Áreas 1, 2 e 3. O layout poderá sofrer pequenos ajustes e revisões após o início da operação da ferrovia, em função dos testes e das necessidades operacionais observadas.</p>
 </div>
 
+<article id="sequencias">
+<h2>Sequências operacionais por sensores e desvios</h2>
+<p>As sequências operacionais passam a constituir um registro específico do Diário de Bordo por sua importância para a futura elaboração do software de controle. O objetivo é registrar não apenas o que cada sensor detecta, mas também a ordem das decisões que o sistema deverá tomar a partir dessa detecção, permitindo que essas definições sejam posteriormente transformadas em requisitos, funções e rotinas do programa em C++.</p>
+
+<h3>Estrutura obrigatória de cada sequência</h3>
+<p>Para cada sensor S deverá existir, quando o detalhamento do layout estiver consolidado, uma sequência operacional própria. Essa sequência deverá registrar, sempre que aplicável:</p>
+<ol>
+<li>qual sensor detectou a composição;</li>
+<li>qual composição ou locomotiva está associada à detecção, quando essa identificação estiver disponível;</li>
+<li>a área ou o trecho em que a composição se encontrava antes da detecção;</li>
+<li>a nova área ou o novo trecho associado à passagem pelo sensor;</li>
+<li>o sentido de circulação;</li>
+<li>a rota em execução ou, no modo manual, o percurso autorizado pelo operador;</li>
+<li>quais desvios são relevantes à frente da composição naquele momento;</li>
+<li>qual posição, DI ou AC, é exigida de cada um desses desvios para a continuidade segura do percurso;</li>
+<li>qual posição está registrada pelo sistema como posição comandada para cada desvio;</li>
+<li>se existe incompatibilidade entre a posição comandada e a posição necessária para a rota;</li>
+<li>quais desvios deverão ser corrigidos automaticamente;</li>
+<li>o tempo necessário para que o servo conclua o movimento comandado;</li>
+<li>se a tração deve ser mantida, reduzida ou temporariamente impedida enquanto a condição de segurança não estiver atendida;</li>
+<li>qual é o sensor seguinte esperado para aquela composição, considerando rota, sentido e trecho;</li>
+<li>quais ações adicionais deverão ocorrer no trecho, como redução de velocidade, parada, acionamento de sino, buzina, sinalização, estacionamento ou finalização;</li>
+<li>como será atualizada a posição lógica conhecida da composição após a detecção;</li>
+<li>quais condições caracterizam uma sequência incompatível ou inesperada;</li>
+<li>qual ação de segurança deverá ser executada quando ocorrer uma inconsistência.</li>
+</ol>
+
+<h3>Sequência geral de processamento</h3>
+<p>Como regra geral, o acionamento de um sensor deverá iniciar uma cadeia de verificações. O sistema deverá identificar o sensor acionado e relacioná-lo à composição que está sendo acompanhada. Em seguida, deverá determinar o trecho ou área correspondente, o sentido de circulação quando possível e a rota em execução. A partir dessas informações, deverá selecionar somente os desvios relevantes à frente da composição, evitando verificar desnecessariamente todos os desvios da ferrovia.</p>
+<p>Para cada desvio relevante, o sistema deverá comparar a posição necessária para a rota com a posição registrada como comandada. Se a posição for compatível, a verificação daquele desvio será considerada atendida. Se estiver incompatível ou indefinida, a ESP32 deverá comandar o servo para a posição correta, aguardar o tempo necessário ao movimento e atualizar o registro da posição comandada.</p>
+<p>Enquanto existir uma condição de rota ainda não atendida, a composição não deverá ser liberada para prosseguir normalmente. Conforme o trecho e a situação, o sistema poderá reduzir a velocidade, manter a composição parada ou impedir temporariamente a alimentação de tração. A liberação somente deverá ocorrer quando a rota imediata estiver coerente com as condições de segurança registradas pelo sistema.</p>
+<p>Concluída a preparação do trecho, o sistema deverá definir qual é o próximo sensor esperado. Quando esse sensor for acionado, a sequência deverá ser comparada com a previsão. Uma passagem coerente confirmará a continuidade lógica do percurso e permitirá atualizar a posição conhecida da composição. Uma passagem por sensor diferente do esperado, a ausência de detecção quando ela deveria ocorrer ou uma sequência incompatível com a rota deverá ser tratada como inconsistência.</p>
+
+<h3>Posição comandada dos desvios</h3>
+<p>A posição DI ou AC dos desvios constitui informação complementar de segurança e não substitui os sensores de presença. Como não haverá inicialmente sensores Hall dedicados para confirmar fisicamente DI ou AC em todos os desvios, a ESP32 comandará o servo, aguardará o tempo previsto de movimentação e registrará a posição como “comandada”, e não como “confirmada”.</p>
+<p>Essa posição comandada será utilizada pelo software para verificar a coerência da rota antes da passagem da composição. Caso algum desvio apresente comportamento problemático durante a operação real, poderá ser instalada posteriormente confirmação específica próxima à entrada e/ou à saída desse desvio, sem necessidade de instrumentar todos os desvios desde o início.</p>
+<p>Assim, a segurança será baseada na combinação entre a posição comandada dos desvios, a rota prevista e a passagem real da composição pelos sensores. Nenhuma dessas informações, isoladamente, deverá ser considerada suficiente para representar toda a situação operacional.</p>
+
+<h3>S1 e S2 — sensores de fronteira</h3>
+<p>S1 permanece definido como sensor de fronteira entre as Áreas 1 e 2, e S2 como sensor de fronteira entre as Áreas 1 e 3. Por essa razão, o acionamento de S1 ou S2 deverá ter tratamento específico no software.</p>
+<p>Quando S1 for acionado, o sistema deverá interpretar a passagem como uma transição entre a Área 1 — Serviços e a Área 2 — Túnel, determinando qual das duas áreas está sendo deixada e qual está sendo ocupada a partir do sentido e da rota da composição. De forma equivalente, quando S2 for acionado, o sistema deverá interpretar a transição entre a Área 1 — Serviços e a Área 3 — Armazéns.</p>
+<p>Além de registrar a passagem física, S1 e S2 deverão atualizar formalmente a área operacional conhecida da composição. Após essa atualização, as verificações seguintes deverão utilizar a nova área como referência para selecionar os sensores esperados, os desvios relevantes à frente e as regras aplicáveis ao trecho seguinte.</p>
+<p>Se um sensor de fronteira for acionado em situação incompatível com a área anteriormente conhecida, com o sentido, com a rota em execução ou com a sequência de sensores esperada, o sistema deverá registrar a ocorrência como inconsistência e aplicar a regra de segurança definida para o caso.</p>
+
+<h3>Validação da sequência de sensores</h3>
+<p>Os sensores não deverão ser tratados apenas como entradas independentes. O software deverá acompanhar a ordem em que são acionados. Para cada composição em circulação deverá existir uma expectativa de sequência baseada na posição anterior, no sentido e na rota.</p>
+<p>Quando o sensor esperado for acionado, o sistema deverá atualizar a posição lógica da composição e preparar as verificações referentes ao trecho seguinte. Quando um sensor inesperado for acionado, o sistema deverá registrar pelo menos a identificação do sensor, a composição envolvida quando conhecida, a área, a rota, o sentido, o sensor que era esperado e a condição encontrada.</p>
+<p>A ausência de acionamento do sensor esperado também deverá ser considerada uma condição relevante. O critério de tempo ou distância para caracterizar essa ausência ainda deverá ser definido com base nos testes reais da ferrovia e nas velocidades de operação; portanto, esse parâmetro não fica fixado neste momento.</p>
+
+<h3>Tratamento das inconsistências</h3>
+<p>Uma inconsistência poderá resultar de sensor acionado fora da sequência prevista, ausência de sensor esperado, posição comandada de desvio incompatível com a rota, estado indefinido de um desvio relevante ou qualquer combinação de informações que indique que a posição conhecida da composição deixou de ser confiável.</p>
+<p>Nessas situações, o sistema deverá registrar o evento, identificar a região e os equipamentos envolvidos, informar o operador e aplicar a ação de segurança adequada. A ação poderá variar conforme a gravidade e o trecho, desde redução controlada até bloqueio da tração. A definição exata de cada resposta será detalhada nas sequências específicas de cada sensor e rota.</p>
+<p>O sistema não deverá tentar ocultar uma inconsistência apenas atualizando silenciosamente a posição lógica da composição. Quando houver divergência entre o esperado e o detectado, o evento deverá permanecer registrado para diagnóstico e revisão operacional.</p>
+
+<h3>Passagem pela Estação</h3>
+<p>Na passagem direta pela Estação, em qualquer sentido, a composição deverá entrar com velocidade reduzida. A detecção pelos sensores associados à entrada e à saída deverá permitir acompanhar a passagem e aplicar as verificações de rota correspondentes. Depois do sensor de saída, o sistema apenas devolverá ao operador a faixa normal de velocidade permitida, sem acelerar automaticamente a locomotiva.</p>
+<p>Quando houver parada na Estação, a sequência deverá distinguir aproximação, redução, parada, permanência e partida. Na partida permanece a regra já definida: acionar o sino, aguardar 5 segundos e somente então energizar a locomotiva para iniciar o movimento.</p>
+
+<h3>Finalização e estacionamento</h3>
+<p>Quando uma rota receber o comando FINALIZAR, o percurso em andamento deverá ser concluído antes do encerramento. Trem de passageiros deverá estacionar na Estação e trem de carga na Linha L6, situada entre D1 e D7.</p>
+<p>No estacionamento de carga no sentido Leste → Oeste, D7 deverá encaminhar a composição para L6; no sentido Oeste → Leste, D1 deverá executar esse encaminhamento. Em ambos os sentidos permanecem válidas as regras já registradas de segurança da rota, verificação dos desvios pertinentes e parada após a detecção correspondente.</p>
+
+<h3>Uso futuro no software</h3>
+<p>Estas sequências deverão ser utilizadas futuramente como uma das bases para a programação das ESP32. O objetivo não é transformar o Diário de Bordo diretamente em código, mas preservar as decisões operacionais com detalhe suficiente para que possam ser convertidas, sem perda de contexto, em requisitos, estados, funções, verificações, mensagens, registros de eventos e rotinas de segurança em C++.</p>
+<p>À medida que a posição final dos sensores e os testes reais da ferrovia forem consolidados, deverão ser acrescentadas neste item as sequências específicas de S1, S2 e dos demais sensores, indicando explicitamente o sensor anterior esperado, o sensor seguinte esperado, os desvios envolvidos, as posições DI ou AC exigidas e as ações correspondentes para cada sentido e rota.</p>
+</article>
 <article id="desvios">
 <h2>Desvios e segurança de rotas</h2>
 <p>Padronizado o acionamento dos desvios para integração com a ESP32 e definida a substituição dos acionamentos por bobinas ainda existentes pelos mesmos motores utilizados nos demais desvios.</p>
@@ -225,7 +292,7 @@ loading="lazy">
 
 <article id="sensores">
 <h2>Sensores de presença</h2>
-<p>Adotados sensores Hall A3144 para detecção, com vermelho para alimentação, preto para GND e amarelo para o sinal individual enviado à ESP32.</p>
+<p>Adotados sensores Hall A3144 para detecção, com vermelho para alimentação, preto para GND e verde para o sinal individual enviado à ESP32.</p>
 <p>Reavaliado o posicionamento dos sensores no layout para reduzir pontos desnecessários sem comprometer segurança e automação.</p>
 <p>Definido o padrão de identificação dos sensores como Sx, indicando o número do sensor.</p>
 <p>Após revisão da numeração, foi reorganizada a sequência prevista para instalação.</p>
@@ -265,7 +332,7 @@ loading="lazy">
 <article id="identificacao">
 <h2>Identificação das locomotivas</h2>
 <p>Desenvolvido o conceito de cadastro individual das locomotivas com seus parâmetros de operação.</p>
-<p>Cada locomotiva terá um ímã fixado na parte inferior para permitir sua detecção pelos sensores de presença S durante a circulação. O ímã informa a passagem ou presença da composição, mas não identifica sozinho qual locomotiva foi detectada.</p>
+<p>Cada locomotiva terá um ímã ou dois fixado na parte inferior para permitir sua detecção pelos sensores de presença S durante a circulação. O ímã informa a passagem ou presença da composição, mas não identifica sozinho qual locomotiva foi detectada.</p>
 <p>Estudada a identificação automática por tag eletrônica RFID/NFC passiva com UID próprio, associando a leitura ao cadastro da locomotiva no software.</p>
 <p>Mantida também a possibilidade de identificação ou seleção manual da locomotiva pelo tablet antes do início da operação.</p>
 <p>Os dois métodos deverão utilizar o mesmo cadastro e permitir o carregamento do perfil operacional da locomotiva.</p>
@@ -280,7 +347,7 @@ loading="lazy">
 <p>Para estacionamento de carga no sentido LO, D7 encaminha a composição à L6; no sentido OL, D1 executa esse encaminhamento. Em ambos os casos, a locomotiva passa pelo S18 e para 40 cm depois dele.</p>
 <p>Na partida da Estação, a sequência operacional prevê acionamento do sino, espera de 5 segundos e somente depois energização da locomotiva.</p>
 <p>O modo manual mantém a decisão de movimentação nas mãos do operador, enquanto o sistema continua controlando automaticamente desvios, sensores, alarmes e segurança.</p>
-<p>A composição poderá ser posicionada manualmente em qualquer ponto da ferrovia, que passa a ser considerado o ponto inicial válido. O sistema deverá identificar a posição, determinar o sentido quando possível, apresentar somente rotas compatíveis e bloquear as incompatíveis.</p>
+<p>A composição poderá ser posicionada manualmente em qualquer ponto da ferrovia, que passa a ser considerado o ponto inicial válido. O operador deverá identificar a posição, determinar o sentido, apresentar somente rotas compatíveis e bloquear as incompatíveis.</p>
 <p>Após confirmação da rota, o sistema posicionará automaticamente os desvios, executará a verificação final de segurança e somente então iniciará a circulação.</p>
 <p>Ficou decidido que novas rotas somente serão estudadas após a construção completa da ferrovia e os testes operacionais das rotas R1 a R7.</p>
 <p>Definida a regra de transição do modo Analógico para o modo Digital: ao selecionar Digital, o sistema deverá desenergizar momentaneamente a tração, confirmar a seleção do sistema Digital/DCC e retirar o travamento especial dos desvios imposto pelo modo Analógico.</p>
@@ -316,20 +383,20 @@ loading="lazy">
 
 <article id="site">
 <h2>Site, Manual e documentação</h2>
-<p>Ampliados e padronizados o Manual de Construção, a Galeria e as páginas internas do site.</p>
+<p>Ampliados e padronizados o Técnicas de Construção, a Galeria e as páginas internas do site.</p>
 <p>Uniformizados cabeçalhos e realizados ajustes de links, fotografias, legendas e apresentação em computador e smartphone.</p>
 <p>Implantada a alternância automática das fotografias da capa e ajustado para 4 segundos o tempo de exibição.</p>
 <p>Revisado o formulário de Contato e ajustado o envio das mensagens.</p>
 <p>O Diário de Bordo deixa de ter a data como estrutura principal e passa a reunir as informações por tema, permitindo que cada assunto seja consultado isoladamente.</p>
 <p>Quando tiver início o desenvolvimento do software, este Diário deverá ser utilizado como uma das fontes para separar as decisões registradas em requisitos, rotinas, regras de segurança e exceções operacionais.</p>
-<p>Definido um conjunto de documentos técnicos do projeto, incluindo Especificação Funcional, Procedimento de Inicialização e Operação, manuais do Operador, Manutenção e Instalação, projetos Elétrico, Eletrônico e de Cabeamento, Tabela Mestre de Componentes, Lista de Materiais, manuais de Software e Interface Web, Plano e Relatório de Testes, Registro de Decisões, Plano de Manutenção Preventiva, Plano de Recuperação de Falhas e Índice Geral da Documentação.</p>
+<p>Definido um conjunto de documentos técnicos do projeto, incluindo Especificação Funcional, Procedimento de Inicialização e Operação, Manuais do Operador, Manutenção e Instalação, Projetos Elétrico, Eletrônico e de Cabeamento, Tabela Mestre de Componentes, Lista de Materiais, Manuais de Software e Interface Web, Plano e Relatório de Testes, Registro de Decisões, Plano de Manutenção Preventiva, Plano de Recuperação de Falhas e Índice Geral da Documentação.</p>
 <p>O projeto será documentado de modo a permitir divulgação futura com site oficial, documentação técnica, vídeos, materiais para a comunidade e eventual disponibilização do software e dos esquemas.</p>
 <p>O banner da capa do site deverá também ser reproduzido fisicamente na maquete, na região entre Armazéns e Chiqueirinho.</p>
 <p>Elaborado o conteúdo “Pintura com aerógrafo”, com orientações para aplicação de primer, uso de luvas e máscara, trabalho em ambiente ventilado e pressão de 25 psi.</p>
-<p>Criado o arquivo pintura-com-aerografo.html no padrão visual do Manual de Construção e prevista sua inclusão no índice antes de “Onde comprar…”.</p>
-<p>Registrada para avaliação futura a revisão do título “Manual de Construção”, pois o conteúdo passou a abranger também técnicas e procedimentos de utilização; uma seção específica de operação será considerada quando a ferrovia estiver operacional.</p>
+<p>Revisado o título “Manual de Construção” para “Técnicas de Construção”, pois o conteúdo passou a abranger também técnicas e procedimentos de utilização; uma seção específica de operação será considerada quando a ferrovia estiver operacional.</p>
+<p>Criado o arquivo pintura-com-aerografo.html e prevista sua inclusão no índice antes de “Onde comprar…”.</p>
 
-<p>Estruturado o curso “Automação da Ferrovia com Arduino e C++”, dividido em três níveis: Básico, Intermediário e Avançado, com conteúdo direcionado à aplicação prática na própria ferrovia.</p>
+<p>Estruturado o curso “Automação com Arduino e C++”, dividido em três níveis: Básico, Intermediário e Avançado, com conteúdo direcionado à aplicação prática na própria ferrovia.</p>
 <p>Definido que cada capítulo do curso será disponibilizado em PDF, contendo introdução, objetivo, meta e exercício prático relacionado a situações da ferrovia; os primeiros capítulos do nível Básico passaram a ser preparados no padrão visual adotado para o projeto.</p>
 <p>Na abertura do curso, adotada a proposta de aprendizado do tipo “faça você mesmo”, registrando que a automação foi desenvolvida passo a passo mesmo sem conhecimento inicial de Arduino e C++, com orientação da inteligência artificial GPT.</p>
 </article>
