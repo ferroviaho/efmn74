@@ -145,6 +145,7 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 
 <article id="arquitetura">
 <h2>Arquitetura geral e automação</h2>
+<p><strong>Critério de registro:</strong> este item reúne a filosofia e as decisões de arquitetura que orientam toda a automação. A distribuição exata de entradas, saídas, rotinas e parâmetros de cada ESP32 será consolidada posteriormente na documentação técnica e no software específico da EFMN 74.</p>
 <p>Definida a arquitetura de automação com duas ESP32 destinadas ao controle dos desvios, sensores e demais funções da ferrovia.</p>
 <p>Estruturados os modos de operação Analógico e DCC, mantendo-se os dois sistemas para permitir a utilização das locomotivas analógicas existentes, a futura incorporação de locomotivas digitais DCC e possibilitar que amigos e visitantes possam operar a EFMN 74 de forma simples pelo modo analógico, sem as restrições e configurações próprias da operação digital; definidos também os conceitos dos painéis de controle, tablets e sinótico.</p>
 <p>Estruturadas rotas automáticas e estabelecidas regras para impedir rotas conflitantes.</p>
@@ -155,6 +156,7 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 
 <article id="energia">
 <h2>Alimentação elétrica e proteção</h2>
+<p><strong>Filosofia adotada:</strong> a alimentação deverá ser organizada de forma segura, protegida, setorizada e de fácil manutenção. Sequências exatas de ligação, cores, bitolas, bornes, terminais e demais detalhes físicos pertencem ao Projeto Elétrico e ao Projeto de Cabeamento da EFMN 74; quando citados neste Diário, permanecem como registro das decisões e experiências de montagem.</p>
 <p>Incorporado nobreak de 600 VA para aumentar a segurança da alimentação elétrica e adotado DPS antes do nobreak como proteção adicional.</p>
 <p>Instalados e organizados os barramentos de L1, L2, +5 V e GND.</p>
 <p>Instaladas barras duplas, abaixo da mesa, de conectores Sindal nos barramentos de L1 e L2 para melhorar a distribuição da alimentação, reduzir mau contato e facilitar derivações e manutenção.</p>
@@ -166,6 +168,7 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 
 <article id="gavetas">
 <h2>Gavetas de controle e eletrônica</h2>
+<p><strong>Filosofia adotada:</strong> as funções da ferrovia serão distribuídas em gavetas especializadas para facilitar organização, manutenção, testes e futuras alterações. Dimensões, tensões, fusíveis, conectores, módulos e disposição física registrados a seguir são características específicas da EFMN 74 e deverão ser consolidados nos projetos elétrico, eletrônico e mecânico correspondentes.</p>
 <p>Definida a arquitetura com seis gavetas de controle, todas com dimensões externas de 50 × 40 cm e placa interna de montagem de 48 × 38 cm:</p>
 <ul>
 <li>GCP — Gaveta de Controle Principal: alimentação, proteção, distribuição de energia, seleção dos modos Analógico/DCC e funções centrais de controle.</li>
@@ -183,6 +186,7 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 
 <article id="esp32">
 <h2>ESP32, Arduino e programação</h2>
+<p><strong>Filosofia adotada:</strong> a lógica de controle será desenvolvida de forma modular, com responsabilidades claramente distribuídas entre as ESP32 e firmware próprio para cada placa. Informações de bancada, portas de comunicação, testes e procedimentos de gravação permanecem no Diário como histórico de desenvolvimento; a estrutura definitiva do programa será descrita na documentação de software.</p>
 <p>Adotada a plataforma Arduino como ambiente de desenvolvimento para a programação das ESP32 utilizadas na automação da ferrovia.</p>
 <p>A programação será desenvolvida em C++, linguagem utilizada no ambiente Arduino para a criação das rotinas de controle, leitura dos sensores, acionamento dos desvios, controle das locomotivas, áudio e demais funções do sistema.</p>
 <p>O estudo da linguagem C contribuiu para a compreensão dos conceitos fundamentais de programação, como variáveis, condições, comandos, funções e estruturas de controle, facilitando posteriormente o entendimento da programação em C++ aplicada à plataforma Arduino.</p>
@@ -210,10 +214,11 @@ loading="lazy">
 
 <article id="sequencias">
 <h2>Sequências operacionais por sensores e desvios</h2>
+<p><strong>Filosofia adotada:</strong> cada detecção deverá provocar uma sequência coerente de decisões de localização, sentido, rota, segurança, preparação dos desvios e continuidade da circulação. O Diário registra essa filosofia geral. O detalhamento individual de S1 a S19, D1 a D20, sensores anteriores e seguintes, posições DI/AC, tempos, distâncias e ações específicas de cada rota será mantido em documento técnico próprio da EFMN 74, a ser elaborado quando o layout operacional estiver suficientemente estabilizado.</p>
 <p>As sequências operacionais passam a constituir um registro específico do Diário de Bordo por sua importância para a futura elaboração do software de controle. O objetivo é registrar não apenas o que cada sensor detecta, mas também a ordem das decisões que o sistema deverá tomar a partir dessa detecção, permitindo que essas definições sejam posteriormente transformadas em requisitos, funções e rotinas do programa em C++.</p>
 
-<h3>Estrutura obrigatória de cada sequência</h3>
-<p>Para cada sensor S deverá existir, quando o detalhamento do layout estiver consolidado, uma sequência operacional própria. Essa sequência deverá registrar, sempre que aplicável:</p>
+<h3>Estrutura prevista para o documento operacional específico</h3>
+<p>Quando o detalhamento do layout estiver consolidado, será criada uma Especificação Operacional própria da EFMN 74. Para cada sensor S, esse documento deverá registrar, sempre que aplicável:</p>
 <ol>
 <li>qual sensor detectou a composição;</li>
 <li>qual composição ou locomotiva está associada à detecção, quando essa identificação estiver disponível;</li>
@@ -276,6 +281,7 @@ loading="lazy">
 </article>
 <article id="desvios">
 <h2>Desvios e segurança de rotas</h2>
+<p><strong>Filosofia adotada:</strong> o operador define a intenção de movimento, enquanto o sistema protege a circulação verificando somente os desvios pertinentes ao trecho imediato da rota. A posição DI/AC registrada pelo sistema é inicialmente uma posição comandada e atua como informação complementar de segurança, sem substituir a detecção física da composição pelos sensores. Numeração, posição normal de cada desvio e combinações específicas de cada rota são parâmetros da EFMN 74 e serão consolidados na Especificação Operacional.</p>
 <p>Padronizado o acionamento dos desvios para integração com a ESP32 e definida a substituição dos acionamentos por bobinas ainda existentes pelos mesmos motores utilizados nos demais desvios.</p>
 <p>Definido o padrão de identificação dos desvios como Dx, indicando o número do desvio.</p>
 <p>Após aprovação dos testes de inicialização, a configuração automática prevista é D1 a D9 em DI, D10 em AC e D11 a D20 em DI.</p>
@@ -292,6 +298,7 @@ loading="lazy">
 
 <article id="sensores">
 <h2>Sensores de presença</h2>
+<p><strong>Filosofia adotada:</strong> os sensores não servem apenas para indicar presença ou passagem; cada detecção deverá atualizar a posição lógica da composição e iniciar as verificações de rota e segurança aplicáveis ao trecho seguinte. O papel individual de cada sensor e suas relações com rotas e desvios serão detalhados na Especificação Operacional da EFMN 74. S1 e S2 permanecem registrados no Diário por exercerem a função conceitual de sensores de fronteira entre áreas.</p>
 <p>Adotados sensores Hall A3144 para detecção, com vermelho para alimentação, preto para GND e verde para o sinal individual enviado à ESP32.</p>
 <p>Reavaliado o posicionamento dos sensores no layout para reduzir pontos desnecessários sem comprometer segurança e automação.</p>
 <p>Definido o padrão de identificação dos sensores como Sx, indicando o número do sensor.</p>
@@ -312,6 +319,7 @@ loading="lazy">
 
 <article id="velocidade">
 <h2>Locomotivas, composições e velocidade</h2>
+<p><strong>Filosofia adotada:</strong> a velocidade permitida deverá resultar sempre da condição mais restritiva aplicável entre locomotiva, composição/carga, trecho e situação operacional. Valores individuais e tabelas de limites serão tratados como dados de cadastro e parâmetros específicos da EFMN 74, e não como regras gerais do Diário.</p>
 <p>Definidos critérios para o futuro controle de velocidade considerando simultaneamente os limites da locomotiva, da composição ou carga e do trecho percorrido.</p>
 <p>A velocidade efetiva deverá respeitar sempre o menor limite aplicável, inclusive em Estação, pátios, desvios e demais trechos especiais.</p>
 <p>Na passagem direta pela Estação, em qualquer sentido, a composição deve entrar com velocidade reduzida. Depois do sensor de saída, o sistema apenas libera novamente ao operador a faixa normal permitida, sem acelerar automaticamente a locomotiva.</p>
@@ -320,6 +328,7 @@ loading="lazy">
 
 <article id="audio">
 <h2>Áudio e efeitos sonoros</h2>
+<p><strong>Filosofia adotada:</strong> os sons deverão acompanhar a situação operacional de cada composição sem interferir indevidamente nas demais. A regra funcional pertence ao Diário; escolha de mixers, amplificadores, módulos, caixas e arquitetura física de áudio será definida na documentação técnica do sistema de som.</p>
 <p>Definido que buzina, apito, sino e demais efeitos sonoros poderão ser reproduzidos pelos alto-falantes das regiões de acordo com o tipo de locomotiva e a situação operacional.</p>
 <p>Na partida da Estação, o sino deve ser acionado e, após 5 segundos, a locomotiva pode ser energizada.</p>
 <p>Regra de operação simultânea de áudio: cada comando de áudio deve ser associado à composição, à linha e ao AF que o acionou.</p>
@@ -331,6 +340,7 @@ loading="lazy">
 
 <article id="identificacao">
 <h2>Identificação das locomotivas</h2>
+<p><strong>Filosofia adotada:</strong> antes de uma operação que dependa de características individuais, o sistema deverá conhecer qual locomotiva está sendo controlada e carregar seu perfil operacional. RFID/NFC, seleção manual ou outra tecnologia são meios de implementação e poderão evoluir sem alterar essa regra central.</p>
 <p>Desenvolvido o conceito de cadastro individual das locomotivas com seus parâmetros de operação.</p>
 <p>Cada locomotiva terá um ímã ou dois fixado na parte inferior para permitir sua detecção pelos sensores de presença S durante a circulação. O ímã informa a passagem ou presença da composição, mas não identifica sozinho qual locomotiva foi detectada.</p>
 <p>Estudada a identificação automática por tag eletrônica RFID/NFC passiva com UID próprio, associando a leitura ao cadastro da locomotiva no software.</p>
@@ -340,6 +350,7 @@ loading="lazy">
 
 <article id="operacao">
 <h2>Operação da Estação e rotas</h2>
+<p><strong>Filosofia adotada:</strong> o operador escolhe a operação desejada, mas o sistema somente libera a circulação depois de validar posição, sentido, compatibilidade da rota, condições de segurança e preparação dos desvios necessários. As rotas R1 a R7, os desvios, sensores, distâncias e pontos de parada citados a seguir são parâmetros específicos da EFMN 74 e serão consolidados na Especificação Operacional.</p>
 <p>Foram oficializadas sete rotas operacionais, R1 a R7. R1 e R2 operam no sentido Leste → Oeste, R4 e R5 no sentido Oeste → Leste, R3 executa R1 seguida de R2 e R6 executa R4 seguida de R5.</p>
 <p>A R7 foi definida como Modo Aleatório Inteligente, em execução contínua até o comando FINALIZAR.</p>
 <p>As rotas R1 a R7 executam continuamente e somente encerram após FINALIZAR, concluindo antes o percurso em andamento.</p>
@@ -352,10 +363,14 @@ loading="lazy">
 <p>Ficou decidido que novas rotas somente serão estudadas após a construção completa da ferrovia e os testes operacionais das rotas R1 a R7.</p>
 <p>Definida a regra de transição do modo Analógico para o modo Digital: ao selecionar Digital, o sistema deverá desenergizar momentaneamente a tração, confirmar a seleção do sistema Digital/DCC e retirar o travamento especial dos desvios imposto pelo modo Analógico.</p>
 <p>Na mudança para o modo Digital, os desvios deverão permanecer fisicamente na posição em que se encontravam, sem retorno automático às posições normais; após a confirmação do modo Digital, ficam liberados para operação normal conforme as regras de segurança vigentes.</p>
+<p>No modo Digital/DCC, deverá existir um travamento de segurança que impeça a partida enquanto o operador não definir qual locomotiva será utilizada, sua posição inicial e o sentido de movimento. Somente depois dessa identificação o sistema poderá carregar o perfil operacional da locomotiva e avaliar as condições para movimentação.</p>
+<p>Se a composição estiver fora da Estação, o sistema deverá preparar seu retorno automático à Estação, verificando sensores, sentido, desvios pertinentes e demais condições de segurança. Concluído o retorno, a composição permanecerá parada enquanto o sistema executa as verificações necessárias. Somente então serão apresentadas ao operador as rotas compatíveis para escolha e posterior comando de partida.</p>
+<p>Essa regra representa a filosofia de liberação de uma composição no modo DCC. O percurso exato de retorno, sensores envolvidos, desvios e posições DI/AC serão definidos na Especificação Operacional da EFMN 74.</p>
 </article>
 
 <article id="interfaces">
 <h2>Tablets, TV e sinótico</h2>
+<p><strong>Filosofia adotada:</strong> as interfaces deverão apresentar ao operador somente comandos e informações coerentes com o estado real da ferrovia, mantendo separadas as funções de operação, visualização, diagnóstico e segurança. Quantidade de telas, distribuição de botões e desenho final pertencem à Especificação da Interface e poderão evoluir durante o desenvolvimento.</p>
 <p>A interface do Tablet de Controle de Mão será composta por duas telas.</p>
 <p>A Tela 1 exibirá o desenho da ferrovia, LEDs indicadores e os comandos D1 a D20 para acionamento manual dos desvios, seguindo a identificação visual simplificada adotada no layout.</p>
 <p>A Tela 2 concentrará seleção de rotas, Emergência, Teste/Rearme, Silenciar Alarme, Finalizar, seleção Passageiros/Carga, comandos manuais futuros, diagnósticos, configurações e histórico de eventos. A navegação entre as telas será feita por ← e →.</p>
@@ -365,6 +380,7 @@ loading="lazy">
 
 <article id="sinaleiros">
 <h2>Sinaleiros e iluminação</h2>
+<p><strong>Filosofia adotada:</strong> a sinalização deverá refletir as condições de rota e segurança, enquanto a iluminação deverá ser controlável de forma setorizada e independente das funções críticas de circulação. Quantidades de sinais, resistores, módulos e ligações registradas permanecem como detalhes específicos do projeto eletrônico da EFMN 74.</p>
 <p>Adotada a sigla SI para identificação dos sinaleiros, com identificação vinculada à região, como SI01ES, SI02AG e SI01TU.</p>
 <p>Os AMVs de transição entre L1 e L2, nos sentidos LO e OL, utilizarão inicialmente quatro sinais por AMV, totalizando oito sinais principais no trecho do Túnel.</p>
 <p>Os LEDs utilizarão barramento local de +5 V e GND, resistor de 330 Ω em série e um fio individual de comando.</p>
@@ -373,23 +389,26 @@ loading="lazy">
 
 <article id="inicializacao">
 <h2>Inicialização, testes e liberação</h2>
+<p><strong>Filosofia adotada:</strong> energizar o sistema de controle não significa liberar imediatamente a circulação. Antes da liberação da via, o sistema deverá executar verificações de segurança, distinguir falhas bloqueantes das não bloqueantes e somente permitir a operação quando as condições necessárias estiverem atendidas. A lista exata de testes, limites e critérios será consolidada no Procedimento de Inicialização e Operação e no Plano de Testes da EFMN 74.</p>
 <p>Na inicialização, o nobreak energizará apenas o sistema de controle; os trilhos permanecerão desenergizados até a aprovação dos testes.</p>
 <p>Os testes automáticos incluirão ESP32, comunicações previstas, sensores, servos SG90, alimentações, curto entre trilhos e sobrecorrente, de acordo com os componentes efetivamente instalados.</p>
 <p>Cada desvio, identificado no padrão Dx, deverá ser comandado para DI e AC durante o teste, aguardando-se o tempo necessário ao movimento e registrando-se a posição como comandada. Não haverá, inicialmente, sensores Hall dedicados para confirmação física de DI ou AC em todos os desvios. Falhas bloqueantes impedirão a operação.</p>
 <p>Também serão testados painel, mensagens, alarmes, TESTE/REARME e EMERGÊNCIA. Falha do botão EMERGÊNCIA impede a operação; falhas de LEDs, indicadores, alto-falantes e alarmes sonoros serão registradas, mas são classificadas como não críticas.</p>
 <p>Antes de energizar a via, o sistema verificará ausência de curto e sobrecorrente, o estado dos sensores disponíveis e a coerência das posições comandadas dos desvios com as condições de segurança conhecidas pelo sistema. Somente após aprovação completa os trilhos serão energizados e será apresentada a mensagem “FERROVIA LIBERADA PARA OPERAÇÃO”.</p>
+<p>No modo Digital/DCC, a aprovação dos testes gerais da ferrovia não elimina o travamento específico de partida da composição: locomotiva, posição inicial e sentido deverão estar definidos e, quando a composição estiver fora da Estação, deverá ser concluído o retorno seguro à Estação antes da apresentação das rotas disponíveis.</p>
 <p>Todos os eventos relevantes serão registrados com data, hora, região, equipamento, descrição e resultado da operação.</p>
 </article>
 
 <article id="site">
 <h2>Site, Manual e documentação</h2>
+<p><strong>Critério documental:</strong> o Diário de Bordo registra a evolução, as decisões e a filosofia do projeto — o que foi decidido e por quê. A Especificação Operacional da EFMN 74 deverá registrar exatamente como esta ferrovia deve se comportar; os Projetos Elétrico, Eletrônico e de Cabeamento registrarão como está fisicamente ligada; e a documentação de software descreverá como as regras serão implementadas em C++.</p>
 <p>Ampliados e padronizados o Técnicas de Construção, a Galeria e as páginas internas do site.</p>
 <p>Uniformizados cabeçalhos e realizados ajustes de links, fotografias, legendas e apresentação em computador e smartphone.</p>
 <p>Implantada a alternância automática das fotografias da capa e ajustado para 4 segundos o tempo de exibição.</p>
 <p>Revisado o formulário de Contato e ajustado o envio das mensagens.</p>
 <p>O Diário de Bordo deixa de ter a data como estrutura principal e passa a reunir as informações por tema, permitindo que cada assunto seja consultado isoladamente.</p>
 <p>Quando tiver início o desenvolvimento do software, este Diário deverá ser utilizado como uma das fontes para separar as decisões registradas em requisitos, rotinas, regras de segurança e exceções operacionais.</p>
-<p>Definido um conjunto de documentos técnicos do projeto, incluindo Especificação Funcional, Procedimento de Inicialização e Operação, Manuais do Operador, Manutenção e Instalação, Projetos Elétrico, Eletrônico e de Cabeamento, Tabela Mestre de Componentes, Lista de Materiais, Manuais de Software e Interface Web, Plano e Relatório de Testes, Registro de Decisões, Plano de Manutenção Preventiva, Plano de Recuperação de Falhas e Índice Geral da Documentação.</p>
+<p>Definido um conjunto de documentos técnicos do projeto, incluindo a Especificação Operacional da Ferrovia EFMN 74, Especificação Funcional, Procedimento de Inicialização e Operação, Manuais do Operador, Manutenção e Instalação, Projetos Elétrico, Eletrônico e de Cabeamento, Tabela Mestre de Componentes, Lista de Materiais, Manuais de Software e Interface Web, Plano e Relatório de Testes, Registro de Decisões, Plano de Manutenção Preventiva, Plano de Recuperação de Falhas e Índice Geral da Documentação.</p>
 <p>O projeto será documentado de modo a permitir divulgação futura com site oficial, documentação técnica, vídeos, materiais para a comunidade e eventual disponibilização do software e dos esquemas.</p>
 <p>O banner da capa do site deverá também ser reproduzido fisicamente na maquete, na região entre Armazéns e Chiqueirinho.</p>
 <p>Elaborado o conteúdo “Pintura com aerógrafo”, com orientações para aplicação de primer, uso de luvas e máscara, trabalho em ambiente ventilado e pressão de 25 psi.</p>
