@@ -180,6 +180,8 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <p>Previstos bornes para reed switches de confirmação DI/AC, sensores Hall SP, expansões futuras, pontos de teste, capacitores de desacoplamento, proteção contra inversão de polaridade, conectores destacáveis, laço de serviço e separação entre cabos de potência, comandos e sensores.</p>
 <p>Padronizado o uso de barras de pinos macho de 2,54 mm nos módulos eletrônicos, sempre que aplicável, para facilitar montagem, substituição e manutenção.</p>
 <p>Definido que os módulos DRV8871 não deverão ser instalados diretamente na protoboard. Sua montagem deverá permitir fixação mecânica firme e conexões confiáveis, evitando pinos ou módulos bambos.</p>
+
+<p>Finalizada a GAR reserva, equipada com reostatos Frateschi, destinada a servir como alternativa temporária ao controle analógico principal em caso de necessidade.</p>
 </article>
 
 <article id="esp32">
@@ -197,6 +199,8 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <p>Cada ESP32 terá seu próprio firmware e será gravada individualmente. Alterações que afetem apenas uma placa não exigem regravação das demais.</p>
 <p>Planejada, para etapa futura, a automação do processo de compilação, upload, abertura opcional do monitor serial e teste inicial por meio de ferramenta como Arduino CLI ou PlatformIO.</p>
 <p>Prosseguiram os testes de bancada da ESP32 e dos componentes associados, incluindo a identificação das ligações do servo SG90 e do seu conector padrão de três vias.</p>
+
+<p>Realizado teste individual dos 19 motores dos desvios com rotina carregada pela Arduino IDE, sendo todos aprovados no teste de acionamento.</p>
 </article>
 
 <div style="margin: 24px 0 30px;">
@@ -219,6 +223,10 @@ loading="lazy">
 <p>Regra central de segurança: sempre que uma locomotiva ou composição se aproximar de um trecho que envolva desvios, o sistema deverá conferir a rota prevista e a posição dos desvios pertinentes antes de permitir a passagem; a verificação abrange somente os desvios relacionados à rota imediata da composição, e não todos os desvios da ferrovia.</p>
 <p>A composição somente pode prosseguir normalmente quando os desvios necessários estiverem confirmados na posição correta. Caso algum esteja incorreto, indefinido ou sem confirmação, o sistema deve comandar seu posicionamento e reduzir ou impedir a alimentação da locomotiva.</p>
 <p>Não basta enviar o comando de posicionamento ao desvio. A liberação da composição depende da confirmação real de posição. Se a confirmação não ocorrer, a composição deve parar antes de alcançar o desvio, evitando risco de descarrilamento.</p>
+
+<p>Revisada a estratégia de confirmação de posição dos desvios: inicialmente, os desvios operarão sem sensores Hall dedicados para confirmar DI ou AC. A ESP32 comandará o servo, aguardará o movimento e registrará a posição como “comandada”, e não como “confirmada”.</p>
+<p>Caso algum desvio apresente comportamento problemático durante a operação real, poderá ser instalada posteriormente confirmação específica próxima à entrada e/ou à saída desse desvio, evitando a instrumentação de todos os desvios desde o início.</p>
+<p>A posição DI ou AC dos desvios será utilizada como informação complementar de segurança da rota, sem substituir os sensores de presença. Quando uma composição for detectada por um sensor, o sistema deverá verificar os desvios relevantes à frente e, se algum estiver em posição incompatível com a rota prevista, comandar sua correção ou impedir o prosseguimento até que a condição de segurança seja atendida.</p>
 </article>
 
 <article id="sensores">
@@ -328,6 +336,10 @@ loading="lazy">
 <p>Elaborado o conteúdo “Pintura com aerógrafo”, com orientações para aplicação de primer, uso de luvas e máscara, trabalho em ambiente ventilado e pressão de 25 psi.</p>
 <p>Criado o arquivo pintura-com-aerografo.html no padrão visual do Manual de Construção e prevista sua inclusão no índice antes de “Onde comprar…”.</p>
 <p>Registrada para avaliação futura a revisão do título “Manual de Construção”, pois o conteúdo passou a abranger também técnicas e procedimentos de utilização; uma seção específica de operação será considerada quando a ferrovia estiver operacional.</p>
+
+<p>Estruturado o curso “Automação da Ferrovia com Arduino e C++”, dividido em três níveis: Básico, Intermediário e Avançado, com conteúdo direcionado à aplicação prática na própria ferrovia.</p>
+<p>Definido que cada capítulo do curso será disponibilizado em PDF, contendo introdução, objetivo, meta e exercício prático relacionado a situações da ferrovia; os primeiros capítulos do nível Básico passaram a ser preparados no padrão visual adotado para o projeto.</p>
+<p>Na abertura do curso, adotada a proposta de aprendizado do tipo “faça você mesmo”, registrando que a automação foi desenvolvida passo a passo mesmo sem conhecimento inicial de Arduino e C++, com orientação da inteligência artificial GPT.</p>
 </article>
 
 <article id="materiais">
