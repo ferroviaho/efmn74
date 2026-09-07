@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automação da Ferrovia com Arduino e C++</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #222;
+      background: #fff;
+      line-height: 1.6;
+    }
+
+    /* ===== Cabeçalho padrão das páginas internas ===== */
+    .topo-efmn {
+      width: 100%;
+      background: #0b0b0b;
+      color: #fff;
+      border-bottom: 2px solid #b08d2f;
+    }
+
+    .topo-conteudo {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 8px 18px 7px;
+    }
+
+    .topo-identidade {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .topo-logo {
+      width: 72px;
+      height: auto;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .topo-textos {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.2;
+    }
+
+    .topo-titulo {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .topo-subtitulo {
+      margin: 3px 0 0;
+      font-size: 0.9rem;
+      color: #d6d6d6;
+    }
+
+    .pagina {
+      max-width: 1000px;
+      margin: 10px auto;
+      padding: 24px 18px 36px;
+    }
+
+    .voltar {
+      display: inline-block;
+      margin: 0 0 18px;
+      color: #0056b3;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .voltar-final {
+      margin-top: 28px;
+      margin-bottom: 0;
+    }
+
+    .voltar:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      margin: 0 0 4px;
+      font-size: 1.8rem;
+      line-height: 1.25;
+      text-align: left;
+    }
+
+    .chamada {
+      margin: 0 0 22px;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    h2 {
+      margin: 30px 0 12px;
+      font-size: 1.4rem;
+      line-height: 1.3;
+    }
+
+    h3 {
+      margin: 24px 0 10px;
+      font-size: 1.2rem;
+      line-height: 1.3;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    .niveis {
+      margin: 8px 0 18px 22px;
+      padding: 0;
+    }
+
+    .niveis li {
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    ol {
+      margin: 8px 0 20px 28px;
+      padding: 0;
+    }
+
+    ol li {
+      margin-bottom: 7px;
+      padding-left: 3px;
+    }
+
+    .assinatura {
+      margin-top: 26px;
+    }
+
+    .assinatura p {
+      margin-bottom: 2px;
+    }
+
+    .assinatura .nome {
+      font-weight: 700;
+    }
+
+    .programa {
+      margin-top: 34px;
+      padding-top: 22px;
+      border-top: 1px solid #d8d8d8;
+    }
+
+    @media (max-width: 700px) {
+      .topo-conteudo {
+        padding: 8px 12px 7px;
+      }
+
+      .topo-identidade {
+        gap: 12px;
+      }
+
+      .topo-logo {
+        width: 72px;
+      }
+
+      .topo-titulo {
+        font-size: 0.92rem;
+      }
+
+      .topo-subtitulo {
+        font-size: 0.78rem;
+      }
+
+      .pagina {
+        width: calc(100% - 20px);
+        margin: 10px auto;
+        padding: 24px 18px 30px;
+      }
+
+      h1 {
+        font-size: 1.65rem;
+      }
+
+      h2 {
+        font-size: 1.3rem;
+      }
+
+      p,
+      li {
+        font-size: 1rem;
+      }
+
+      .chamada {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topo-efmn">
+    <div class="topo-conteudo">
+      <div class="topo-identidade">
+        <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="topo-logo">
+        <div class="topo-textos">
+          <p class="topo-titulo">Ferrovia EFMN 74 - Escala HO</p>
+          <p class="topo-subtitulo">Construção, automação, memória e documentação</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="pagina">
+
+    <a class="voltar" href="index.html">&larr; Voltar ao índice</a>
+
+    <h1>Automação da Ferrovia com Arduino e C++</h1>
+    <p class="chamada">Faça você mesmo.</p>
+
+    <p>Esta área foi criada para mostrar que é possível iniciar a automação de uma ferrovia em escala mesmo sem conhecimento prévio de Arduino ou C++.</p>
+
+    <p>Quando comecei esta etapa da Ferrovia EFMN 74, eu não conhecia Arduino nem programação em C++. Fui aprendendo aos poucos, realizando testes práticos e seguindo orientações da inteligência artificial ChatGPT.</p>
+
+    <p>A proposta é repetir esse mesmo caminho de forma organizada: aprender apenas o necessário em cada etapa e aplicar imediatamente o conhecimento na própria ferrovia.</p>
+
+    <p>Por isso, o conteúdo será apresentado como um curso prático, dividido em três níveis:</p>
+
+    <ul class="niveis">
+      <li>Básico</li>
+      <li>Intermediário</li>
+      <li>Avançado</li>
+    </ul>
+
+    <p>Não é um curso de programação apenas pela programação. Cada conceito será aprendido com uma finalidade concreta dentro da Ferrovia EFMN 74.</p>
+
+    <p>A ideia é simples: começar sem experiência, aprender passo a passo e construir você mesmo a automação da sua ferrovia.</p>
+
+    <p>Cada capítulo estará disponível em PDF, organizado com introdução, objetivo, meta de aprendizagem e exercício prático. Os exercícios serão sempre direcionados a situações e assuntos relacionados à ferrovia, permitindo aplicar imediatamente o conteúdo estudado ao projeto.</p>
+
+    <div class="assinatura">
+      <p class="nome">Eduardo Carvalhaes Nobre</p>
+      <p>Ferromodelista e aprendiz de programador C++</p>
+    </div>
+
+    <section class="programa">
+      <h2>Programa do curso</h2>
+
+      <h3>Básico</h3>
+      <ol>
+        <li>Introdução ao Arduino, ESP32 e C++</li>
+        <li>Preparação do ambiente de programação</li>
+        <li>Estrutura básica de um programa em C++</li>
+        <li>Variáveis, constantes e tipos de dados</li>
+        <li>Entradas e saídas digitais</li>
+        <li>Temporização e uso de millis()</li>
+        <li>Acionamento simples de LEDs</li>
+        <li>Leitura de botões e sensores</li>
+        <li>Primeiro acionamento de um desvio</li>
+        <li>Exercícios práticos aplicados à ferrovia</li>
+      </ol>
+
+      <h3>Intermediário</h3>
+      <ol>
+        <li>Funções em C++</li>
+        <li>Estruturas condicionais e de repetição</li>
+        <li>Organização do programa em módulos</li>
+        <li>Controle de vários desvios</li>
+        <li>Leitura de vários sensores</li>
+        <li>Identificação da posição dos trens</li>
+        <li>Controle de sinais ferroviários</li>
+        <li>Controle de passagens de nível</li>
+        <li>Controle de velocidade</li>
+        <li>Introdução às rotas ferroviárias</li>
+        <li>Regras de segurança para os desvios</li>
+        <li>Integração entre sensores, desvios e tração</li>
+        <li>Sonorização da ferrovia</li>
+      </ol>
+
+      <h3>Avançado</h3>
+      <ol>
+        <li>Automação completa de rotas</li>
+        <li>Controle simultâneo de várias composições</li>
+        <li>Gerenciamento das Áreas 1, 2 e 3</li>
+        <li>Identificação das locomotivas</li>
+        <li>Cadastro de características e limites de cada locomotiva</li>
+        <li>Controle automático de velocidade por trecho</li>
+        <li>Intertravamento e confirmação de posição dos desvios</li>
+        <li>Tratamento de falhas e situações de emergência</li>
+        <li>Integração entre os dois ESP32</li>
+        <li>Comunicação com tablet e demais interfaces</li>
+        <li>Exibição de informações operacionais na TV</li>
+        <li>Integração do sistema de áudio</li>
+        <li>Operação nos modos Manual e Automático</li>
+        <li>Desenvolvimento do programa completo da Ferrovia EFMN 74</li>
+      </ol>
+    </section>
+
+    <a class="voltar voltar-final" href="index.html">&larr; Voltar ao índice</a>
+
+  </main>
+
+</body>
+</html>
