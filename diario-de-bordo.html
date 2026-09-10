@@ -82,6 +82,34 @@ main { padding: 26px 16px 44px; }
 h1 { font-size: 1.75rem; }
 .intro { font-size: 1.05rem; }
 }
+
+.sensores-conteudo {
+display: flex;
+align-items: flex-start;
+gap: 24px;
+}
+.sensores-imagem {
+width: 260px;
+max-width: 34%;
+height: auto;
+display: block;
+flex: 0 0 auto;
+}
+.sensores-texto {
+flex: 1 1 auto;
+min-width: 0;
+}
+@media (max-width: 700px) {
+.sensores-conteudo {
+display: block;
+}
+.sensores-imagem {
+width: 100%;
+max-width: 320px;
+margin: 0 0 18px 0;
+}
+}
+
 </style>
 </head>
 <body>
@@ -305,6 +333,9 @@ loading="lazy">
 
 <article id="sensores">
 <h2>Sensores de presença</h2>
+<div class="sensores-conteudo">
+<img src="hall.png" alt="Sensor Hall A3144" class="sensores-imagem">
+<div class="sensores-texto">
 <p><strong>Filosofia adotada:</strong> este item registra os aspectos físicos e técnicos dos sensores de presença — tecnologia adotada, identificação, alimentação, cabeamento, instalação, testes e manutenção. A lógica operacional desencadeada por cada detecção, incluindo atualização da posição da composição, sequência esperada, verificação de desvios e tratamento de inconsistências, é registrada no item “Sequências operacionais por sensores e desvios”.</p>
 <p>Adotados sensores Hall A3144 para detecção, com vermelho para alimentação, preto para GND e verde para o sinal individual enviado à ESP32.</p>
 <p>Reavaliado o posicionamento dos sensores no layout para reduzir pontos desnecessários sem comprometer segurança e automação.</p>
@@ -319,7 +350,8 @@ loading="lazy">
 <p>Realizados testes práticos do sensor Hall A3144, com revisão das ligações de alimentação, GND e sinal, uso do resistor de pull-up e verificação por multímetro da mudança de estado provocada pela aproximação do ímã.</p>
 <p>Confirmado que a orientação do polo do ímã não danifica o sensor; o teste deve ser feito aproximando o ímã da face sensível até identificar a posição de maior resposta.</p>
 <p>Estudada a instalação física do sensor Hall entre os dormentes, preferencialmente deitado e próximo da parte inferior da locomotiva, para garantir detecção segura da passagem.</p>
-
+</div>
+</div>
 </article>
 
 <article id="vocidade">
