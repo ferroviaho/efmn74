@@ -1,318 +1,319 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Posicionamento das cabines de sinalizaÃ§Ã£o da Ferrovia EFMN 74 em escala HO.">
-  <title>O posicionamento de uma cabine de sinalizaÃ§Ã£o â€” EFMN 74</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Posicionamento das cabines de sinaliza&#231;&#227;o da Ferrovia EFMN 74 em escala HO.">
+<title>O posicionamento de uma cabine de sinaliza&#231;&#227;o &#8212; EFMN 74</title>
 
-  <style>
-    :root {
-      --bg: #f4f1ea;
-      --paper: #fffdf8;
-      --ink: #222;
-      --muted: #68635a;
-      --gold: #c89b2b;
-      --line: #ded7c8;
-      --blue: #0056b3;
-      --max: 1000px;
-    }
+<style>
+:root {
+--bg: #f4f1ea;
+--paper: #fffdf8;
+--ink: #222;
+--muted: #68635a;
+--gold: #c89b2b;
+--line: #ded7c8;
+--blue: #0056b3;
+--max: 1000px;
+}
 
-    * {
-      box-sizing: border-box;
-    }
+* {
+box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: Georgia, "Times New Roman", serif;
-      line-height: 1.6;
-    }
+body {
+margin: 0;
+background: var(--bg);
+color: var(--ink);
+font-family: Georgia, "Times New Roman", serif;
+line-height: 1.6;
+}
 
-    .site-header {
-      width: 100%;
-      background: #000;
-      border-bottom: 1px solid #c9a227;
-      margin: 0;
-      padding: 8px 16px;
-      box-sizing: border-box;
-    }
+.site-header {
+width: 100%;
+background: #000;
+border-bottom: 1px solid #c9a227;
+margin: 0;
+padding: 8px 16px;
+box-sizing: border-box;
+}
 
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+.header-inner {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 14px;
+max-width: 1100px;
+margin: 0 auto;
+}
 
-    .header-logo {
-      width: 72px;
-      height: auto;
-      display: block;
-      flex: 0 0 auto;
-    }
+.header-logo {
+width: 72px;
+height: auto;
+display: block;
+flex: 0 0 auto;
+}
 
-    .header-text {
-      color: #fff;
-      line-height: 1.25;
-      text-align: left;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+.header-text {
+color: #fff;
+line-height: 1.25;
+text-align: left;
+font-family: Arial, Helvetica, sans-serif;
+}
 
-    .header-title {
-      margin: 0;
-      font-size: 1.05rem;
-      font-weight: 700;
-    }
+.header-title {
+margin: 0;
+font-size: 1.05rem;
+font-weight: 700;
+}
 
-    .header-subtitle {
-      margin: 2px 0 0;
-      font-size: 0.88rem;
-      font-weight: 400;
-    }
+.header-subtitle {
+margin: 2px 0 0;
+font-size: 0.88rem;
+font-weight: 400;
+}
 
-    main {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 34px 20px 56px;
-    }
+main {
+max-width: var(--max);
+margin: 0 auto;
+padding: 34px 20px 56px;
+}
 
-    .voltar-indice {
-      margin: 0 0 22px;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+.voltar-indice {
+margin: 0 0 22px;
+font-family: Arial, Helvetica, sans-serif;
+}
 
-    .voltar-indice a {
-      color: var(--blue);
-      text-decoration: none;
-      font-weight: 600;
-    }
+.voltar-indice a {
+color: var(--blue);
+text-decoration: none;
+font-weight: 600;
+}
 
-    .voltar-indice a:hover {
-      text-decoration: underline;
-    }
+.voltar-indice a:hover {
+text-decoration: underline;
+}
 
-    h1 {
-      margin: 0 0 14px;
-      line-height: 1.2;
-      font-size: 2.25rem;
-    }
+h1 {
+margin: 0 0 14px;
+line-height: 1.2;
+font-size: 2.25rem;
+}
 
-    .abertura {
-      margin: 0 0 26px;
-      font-size: 1.08rem;
-    }
+.abertura {
+margin: 0 0 26px;
+font-size: 1.08rem;
+}
 
-    .cabine,
-    .marcacao,
-    .resumo {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 22px 26px;
-      margin: 0 0 24px;
-    }
+.cabine,
+.marcacao,
+.resumo {
+background: var(--paper);
+border: 1px solid var(--line);
+border-radius: 10px;
+padding: 22px 26px;
+margin: 0 0 24px;
+}
 
-    .cabine h2,
-    .marcacao h2,
-    .resumo h2 {
-      margin-top: 0;
-      font-size: 1.35rem;
-    }
+.cabine h2,
+.marcacao h2,
+.resumo h2 {
+margin-top: 0;
+font-size: 1.35rem;
+}
 
-    .cabine p:last-child,
-    .marcacao p:last-child {
-      margin-bottom: 0;
-    }
+.cabine p:last-child,
+.marcacao p:last-child {
+margin-bottom: 0;
+}
 
-    .marcacao ol {
-      margin-bottom: 16px;
-      padding-left: 24px;
-    }
+.marcacao ol {
+margin-bottom: 16px;
+padding-left: 24px;
+}
 
-    .marcacao li {
-      margin: 8px 0;
-    }
+.marcacao li {
+margin: 8px 0;
+}
 
-    .table-wrap {
-      overflow-x: auto;
-    }
+.table-wrap {
+overflow-x: auto;
+}
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-      background: #fff;
-    }
+table {
+width: 100%;
+border-collapse: collapse;
+margin-top: 10px;
+background: #fff;
+}
 
-    th,
-    td {
-      border: 1px solid var(--line);
-      padding: 11px 12px;
-      text-align: left;
-      vertical-align: top;
-    }
+th,
+td {
+border: 1px solid var(--line);
+padding: 11px 12px;
+text-align: left;
+vertical-align: top;
+}
 
-    th {
-      background: #eee8dc;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+th {
+background: #eee8dc;
+font-family: Arial, Helvetica, sans-serif;
+}
 
-    @media (max-width: 700px) {
-      .site-header {
-        padding: 7px 10px;
-      }
+@media (max-width: 700px) {
+.site-header {
+padding: 7px 10px;
+}
 
-      .header-inner {
-        gap: 10px;
-      }
+.header-inner {
+gap: 10px;
+}
 
-      .header-title {
-        font-size: 0.98rem;
-      }
+.header-title {
+font-size: 0.98rem;
+}
 
-      .header-subtitle {
-        font-size: 0.80rem;
-      }
+.header-subtitle {
+font-size: 0.80rem;
+}
 
-      main {
-        padding: 26px 16px 44px;
-      }
+main {
+padding: 26px 16px 44px;
+}
 
-      h1 {
-        font-size: 1.75rem;
-      }
+h1 {
+font-size: 1.75rem;
+}
 
-      .cabine,
-      .marcacao,
-      .resumo {
-        padding: 18px 20px;
-      }
-    }
-  </style>
+.cabine,
+.marcacao,
+.resumo {
+padding: 18px 20px;
+}
+}
+</style>
 </head>
 
 <body>
 
-  <!-- ===== CABEÃ‡ALHO PADRÃƒO EFMN 74 ===== -->
-  <header class="site-header">
-    <div class="header-inner">
-      <img
-        src="logo-efmn74.PNG"
-        alt="Logomarca da Ferrovia EFMN 74"
-        class="header-logo"
-      >
+<!-- ===== CABE&#199;ALHO PADR&#195;O EFMN 74 ===== -->
+<header class="site-header">
+<div class="header-inner">
+<img
+src="logo-efmn74.PNG"
+alt="Logomarca da Ferrovia EFMN 74"
+class="header-logo"
+>
 
-      <div class="header-text">
-        <p class="header-title">Ferrovia EFMN 74 - Escala HO</p>
-        <p class="header-subtitle">ConstruÃ§Ã£o, automaÃ§Ã£o, memÃ³ria e documentaÃ§Ã£o</p>
-      </div>
-    </div>
-  </header>
-  <!-- ===== FIM DO CABEÃ‡ALHO PADRÃƒO ===== -->
+<div class="header-text">
+<p class="header-title">Ferrovia EFMN 74 - Escala HO</p>
+<p class="header-subtitle">Constru&#231;&#227;o, automa&#231;&#227;o, mem&#243;ria e documenta&#231;&#227;o</p>
+</div>
+</div>
+</header>
+<!-- ===== FIM DO CABE&#199;ALHO PADR&#195;O ===== -->
 
-  <main>
+<main>
 
-    <p class="voltar-indice">
-      <a href="manual-indice.html">â† Voltar ao Ã­ndice</a>
-    </p>
+<p class="voltar-indice">
+<a href="manual-indice.html">&#8592; Voltar ao &#237;ndice</a>
+</p>
 
-    <h1>O posicionamento de uma cabine de sinalizaÃ§Ã£o</h1>
+<h1>O posicionamento de uma cabine de sinaliza&#231;&#227;o</h1>
 
-    <p class="abertura">
-      Na EFMN74, as cabines de sinalizaÃ§Ã£o terÃ£o <strong>funÃ§Ã£o exclusivamente cenogrÃ¡fica</strong>.
-      NÃ£o participarÃ£o diretamente do controle eletrÃ´nico da maquete, mas representarÃ£o visualmente
-      os pontos de controle e seguranÃ§a existentes em uma ferrovia real.
-    </p>
+<p class="abertura">
+Na EFMN74, as cabines de sinaliza&#231;&#227;o ter&#227;o <strong>fun&#231;&#227;o exclusivamente cenogr&#225;fica</strong>.
+N&#227;o participar&#227;o diretamente do controle eletr&#244;nico da maquete, mas representar&#227;o visualmente
+os pontos de controle e seguran&#231;a existentes em uma ferrovia real.
+</p>
 
-    <p class="abertura">
-      SerÃ£o utilizadas <strong>3 cabines</strong>, posicionadas nos principais pontos operacionais da maquete.
-    </p>
+<p class="abertura">
+Ser&#227;o utilizadas <strong>3 cabines</strong>, posicionadas nos principais pontos operacionais da maquete.
+</p>
 
-    <section class="cabine">
-      <h2>1. Cabine C1 â€“ EstaÃ§Ã£o</h2>
+<section class="cabine">
+<h2>1. Cabine C1 &#8211; Esta&#231;&#227;o</h2>
 
-      <p><strong>Local sugerido:</strong> proximidades da EstaÃ§Ã£o, com boa visÃ£o dos principais AMVs de entrada e saÃ­da.</p>
+<p><strong>Local sugerido:</strong> proximidades da Esta&#231;&#227;o, com boa vis&#227;o dos principais AMVs de entrada e sa&#237;da.</p>
 
-      <p>
-        Na EFMN74, essa cabine representarÃ¡ o controle da circulaÃ§Ã£o dos trens na EstaÃ§Ã£o e dos desvios envolvidos
-        nas rotas, especialmente <strong>D1, D2 e demais AMVs da regiÃ£o</strong>.
-      </p>
+<p>
+Na EFMN74, essa cabine representar&#225; o controle da circula&#231;&#227;o dos trens na Esta&#231;&#227;o e dos desvios envolvidos
+nas rotas, especialmente <strong>D1, D2 e demais AMVs da regi&#227;o</strong>.
+</p>
 
-      <p><strong>Objetivo cenogrÃ¡fico:</strong> representar o controle de entrada, saÃ­da e formaÃ§Ã£o das rotas.</p>
-    </section>
+<p><strong>Objetivo cenogr&#225;fico:</strong> representar o controle de entrada, sa&#237;da e forma&#231;&#227;o das rotas.</p>
+</section>
 
-    <section class="cabine">
-      <h2>2. Cabine C2 â€“ Ãrea 2</h2>
+<section class="cabine">
+<h2>2. Cabine C2 &#8211; &#193;rea 2</h2>
 
-      <p>
-        <strong>Local sugerido:</strong> a cabine deverÃ¡ ser instalada na <strong>Ãrea 2</strong>.
-      </p>
+<p>
+<strong>Local sugerido:</strong> a cabine dever&#225; ser instalada na <strong>&#193;rea 2</strong>.
+</p>
 
-      <p>
-        Essa Ã¡rea possui uma grande concentraÃ§Ã£o de desvios, o que torna a cabine cenograficamente adequada
-        para representar um ponto de controle e seguranÃ§a da circulaÃ§Ã£o ferroviÃ¡ria.
-      </p>
+<p>
+Essa &#225;rea possui uma grande concentra&#231;&#227;o de desvios, o que torna a cabine cenograficamente adequada
+para representar um ponto de controle e seguran&#231;a da circula&#231;&#227;o ferrovi&#225;ria.
+</p>
 
-      <p>
-        <strong>Objetivo cenogrÃ¡fico:</strong> representar o controle de uma regiÃ£o com grande concentraÃ§Ã£o de desvios.
-      </p>
-    </section>
+<p>
+<strong>Objetivo cenogr&#225;fico:</strong> representar o controle de uma regi&#227;o com grande concentra&#231;&#227;o de desvios.
+</p>
+</section>
 
-    <section class="cabine">
-      <h2>3. Cabine C3 â€“ Ãrea 3</h2>
+<section class="cabine">
+<h2>3. Cabine C3 &#8211; &#193;rea 3</h2>
 
-      <p>
-        <strong>Local sugerido:</strong> a cabine serÃ¡ instalada na <strong>Ãrea 3</strong>.
-      </p>
+<p>
+<strong>Local sugerido:</strong> a cabine ser&#225; instalada na <strong>&#193;rea 3</strong>.
+</p>
 
-      <p>
-        Essa Ã¡rea possui uma grande concentraÃ§Ã£o de desvios, o que torna a cabine cenograficamente adequada
-        para representar um ponto de controle da circulaÃ§Ã£o ferroviÃ¡ria.
-      </p>
+<p>
+Essa &#225;rea possui uma grande concentra&#231;&#227;o de desvios, o que torna a cabine cenograficamente adequada
+para representar um ponto de controle da circula&#231;&#227;o ferrovi&#225;ria.
+</p>
 
-      <p>
-        <strong>Objetivo cenogrÃ¡fico:</strong> representar o controle de uma regiÃ£o com grande concentraÃ§Ã£o de desvios e rotas.
-      </p>
-    </section>
+<p>
+<strong>Objetivo cenogr&#225;fico:</strong> representar o controle de uma regi&#227;o com grande concentra&#231;&#227;o de desvios e rotas.
+</p>
+</section>
 
-    <section class="resumo">
-      <h2>Resumo</h2>
+<section class="resumo">
+<h2>Resumo</h2>
 
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Cabine</th>
-              <th>Local</th>
-              <th>RepresentaÃ§Ã£o</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>C1</strong></td>
-              <td>EstaÃ§Ã£o</td>
-              <td>Controle de entrada e saÃ­da</td>
-            </tr>
-            <tr>
-              <td><strong>C2</strong></td>
-              <td>Ãrea 2</td>
-              <td>Controle de regiÃ£o com grande concentraÃ§Ã£o de desvios</td>
-            </tr>
-            <tr>
-              <td><strong>C3</strong></td>
-              <td>Ãrea 3</td>
-              <td>Controle de regiÃ£o com grande concentraÃ§Ã£o de desvios</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Cabine</th>
+<th>Local</th>
+<th>Representa&#231;&#227;o</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>C1</strong></td>
+<td>Esta&#231;&#227;o</td>
+<td>Controle de entrada e sa&#237;da</td>
+</tr>
+<tr>
+<td><strong>C2</strong></td>
+<td>&#193;rea 2</td>
+<td>Controle de regi&#227;o com grande concentra&#231;&#227;o de desvios</td>
+</tr>
+<tr>
+<td><strong>C3</strong></td>
+<td>&#193;rea 3</td>
+<td>Controle de regi&#227;o com grande concentra&#231;&#227;o de desvios</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 
-  </main>
+</main>
 
 </body>
 </html>
+
