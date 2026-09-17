@@ -1,10 +1,10 @@
-=<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Posicionamento das cabines de sinalização da Ferrovia EFMN 74 em escala HO.">
-<title>O posicionamento de uma cabine de sinalização — EFMN 74</title>
+<meta name="description" content="Posicionamento das cabines de sinaliza&#231;&#227;o da Ferrovia EFMN 74 em escala HO.">
+<title>O posicionamento de uma cabine de sinaliza&#231;&#227;o &#8212; EFMN 74</title>
 
 <style>
 :root {
@@ -106,6 +106,32 @@ margin: 0 0 26px;
 font-size: 1.08rem;
 }
 
+.cabines-layout {
+display: grid;
+grid-template-columns: minmax(280px, 38%) minmax(0, 1fr);
+gap: 24px;
+align-items: start;
+margin: 0 0 24px;
+}
+
+.cabines-pdf {
+position: sticky;
+top: 20px;
+}
+
+.cabines-pdf iframe {
+display: block;
+width: 100%;
+height: 760px;
+border: 1px solid var(--line);
+border-radius: 10px;
+background: #fff;
+}
+
+.cabines-texto .cabine:last-child {
+margin-bottom: 0;
+}
+
 .cabine,
 .marcacao,
 .resumo {
@@ -162,6 +188,18 @@ font-family: Arial, Helvetica, sans-serif;
 }
 
 @media (max-width: 700px) {
+.cabines-layout {
+grid-template-columns: 1fr;
+}
+
+.cabines-pdf {
+position: static;
+}
+
+.cabines-pdf iframe {
+height: 560px;
+}
+
 .site-header {
 padding: 7px 10px;
 }
@@ -197,7 +235,7 @@ padding: 18px 20px;
 
 <body>
 
-<!-- ===== CABEÇALHO PADRÃO EFMN 74 ===== -->
+<!-- ===== CABE&#199;ALHO PADR&#195;O EFMN 74 ===== -->
 <header class="site-header">
 <div class="header-inner">
 <img
@@ -208,76 +246,89 @@ class="header-logo"
 
 <div class="header-text">
 <p class="header-title">Ferrovia EFMN 74 - Escala HO</p>
-<p class="header-subtitle">Construção, automação, memória e documentação</p>
+<p class="header-subtitle">Constru&#231;&#227;o, automa&#231;&#227;o, mem&#243;ria e documenta&#231;&#227;o</p>
 </div>
 </div>
 </header>
-<!-- ===== FIM DO CABEÇALHO PADRÃO ===== -->
+<!-- ===== FIM DO CABE&#199;ALHO PADR&#195;O ===== -->
 
 <main>
 
 <p class="voltar-indice">
-<a href="manual-indice.html">← Voltar ao índice</a>
+<a href="manual-indice.html">&#8592; Voltar ao &#237;ndice</a>
 </p>
 
-<h1>O posicionamento de uma cabine de sinalização</h1>
+<h1>O posicionamento de uma cabine de sinaliza&#231;&#227;o</h1>
 
 <p class="abertura">
-Na EFMN74, as cabines de sinalização terão <strong>função exclusivamente cenográfica</strong>.
-Não participarão diretamente do controle eletrônico da maquete, mas representarão visualmente
-os pontos de controle e segurança existentes em uma ferrovia real.
+Na EFMN74, as cabines de sinaliza&#231;&#227;o ter&#227;o <strong>fun&#231;&#227;o exclusivamente cenogr&#225;fica</strong>.
+N&#227;o participar&#227;o diretamente do controle eletr&#244;nico da maquete, mas representar&#227;o visualmente
+os pontos de controle e seguran&#231;a existentes em uma ferrovia real.
 </p>
 
 <p class="abertura">
-Serão utilizadas <strong>3 cabines</strong>, posicionadas nos principais pontos operacionais da maquete.
+Ser&#227;o utilizadas <strong>3 cabines</strong>, posicionadas nos principais pontos operacionais da maquete.
 </p>
 
-<section class="cabine">
-<h2>1. Cabine C1 – Estação</h2>
+<div class="cabines-layout">
+<div class="cabines-pdf">
+<iframe
+src="cabines-de-sinaliza&#231;&#227;o.pdf"
+title="Cabines de sinaliza&#231;&#227;o da Ferrovia EFMN 74"
+loading="lazy"
+></iframe>
+</div>
 
-<p><strong>Local sugerido:</strong> proximidades da Estação, com boa visão dos principais AMVs de entrada e saída.</p>
+<div class="cabines-texto">
+<section class="cabine">
+<h2>1. Cabine C1 &#8211; Esta&#231;&#227;o</h2>
+
+<p><strong>Local sugerido:</strong> proximidades da Esta&#231;&#227;o, com boa vis&#227;o dos principais AMVs de entrada e sa&#237;da.</p>
 
 <p>
-Na EFMN74, essa cabine representará o controle da circulação dos trens na Estação e dos desvios envolvidos
-nas rotas, especialmente <strong>D1, D2 e demais AMVs da região</strong>.
+Na EFMN74, essa cabine representar&#225; o controle da circula&#231;&#227;o dos trens na Esta&#231;&#227;o e dos desvios envolvidos
+nas rotas, especialmente <strong>D1, D2 e demais AMVs da regi&#227;o</strong>.
 </p>
 
-<p><strong>Objetivo cenográfico:</strong> representar o controle de entrada, saída e formação das rotas.</p>
+<p><strong>Objetivo cenogr&#225;fico:</strong> representar o controle de entrada, sa&#237;da e forma&#231;&#227;o das rotas.</p>
 </section>
 
 <section class="cabine">
-<h2>2. Cabine C2 – Área 2</h2>
+<h2>2. Cabine C2 &#8211; &#193;rea 2</h2>
 
 <p>
-<strong>Local sugerido:</strong> a cabine deverá ser instalada na <strong>Área 2</strong>.
+<strong>Local sugerido:</strong> a cabine dever&#225; ser instalada na <strong>&#193;rea 2</strong>.
 </p>
 
 <p>
-Essa área possui uma grande concentração de desvios, o que torna a cabine cenograficamente adequada
-para representar um ponto de controle e segurança da circulação ferroviária.
+Essa &#225;rea possui uma grande concentra&#231;&#227;o de desvios, o que torna a cabine cenograficamente adequada
+para representar um ponto de controle e seguran&#231;a da circula&#231;&#227;o ferrovi&#225;ria.
 </p>
 
 <p>
-<strong>Objetivo cenográfico:</strong> representar o controle de uma região com grande concentração de desvios.
+<strong>Objetivo cenogr&#225;fico:</strong> representar o controle de uma regi&#227;o com grande concentra&#231;&#227;o de desvios.
 </p>
 </section>
 
 <section class="cabine">
-<h2>3. Cabine C3 – Área 3</h2>
+<h2>3. Cabine C3 &#8211; &#193;rea 3</h2>
 
 <p>
-<strong>Local sugerido:</strong> a cabine será instalada na <strong>Área 3</strong>.
+<strong>Local sugerido:</strong> a cabine ser&#225; instalada na <strong>&#193;rea 3</strong>.
 </p>
 
 <p>
-Essa área possui uma grande concentração de desvios, o que torna a cabine cenograficamente adequada
-para representar um ponto de controle da circulação ferroviária.
+Essa &#225;rea possui uma grande concentra&#231;&#227;o de desvios, o que torna a cabine cenograficamente adequada
+para representar um ponto de controle da circula&#231;&#227;o ferrovi&#225;ria.
 </p>
 
 <p>
-<strong>Objetivo cenográfico:</strong> representar o controle de uma região com grande concentração de desvios e rotas.
+<strong>Objetivo cenogr&#225;fico:</strong> representar o controle de uma regi&#227;o com grande concentra&#231;&#227;o de desvios e rotas.
 </p>
 </section>
+
+</div>
+</div>
 
 <section class="resumo">
 <h2>Resumo</h2>
@@ -288,24 +339,24 @@ para representar um ponto de controle da circulação ferroviária.
 <tr>
 <th>Cabine</th>
 <th>Local</th>
-<th>Representação</th>
+<th>Representa&#231;&#227;o</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>C1</strong></td>
-<td>Estação</td>
-<td>Controle de entrada e saída</td>
+<td>Esta&#231;&#227;o</td>
+<td>Controle de entrada e sa&#237;da</td>
 </tr>
 <tr>
 <td><strong>C2</strong></td>
-<td>Área 2</td>
-<td>Controle de região com grande concentração de desvios</td>
+<td>&#193;rea 2</td>
+<td>Controle de regi&#227;o com grande concentra&#231;&#227;o de desvios</td>
 </tr>
 <tr>
 <td><strong>C3</strong></td>
-<td>Área 3</td>
-<td>Controle de região com grande concentração de desvios</td>
+<td>&#193;rea 3</td>
+<td>Controle de regi&#227;o com grande concentra&#231;&#227;o de desvios</td>
 </tr>
 </tbody>
 </table>
