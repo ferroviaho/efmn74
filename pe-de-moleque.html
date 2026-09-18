@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Como reproduzir um piso pé-de-moleque em uma maquete ferroviária na escala HO.">
+  <title>Piso pé-de-moleque | Ferrovia EFMN 74</title>
+ 
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --paper: #fffdf8;
+      --ink: #222;
+      --gold: #c89b2b;
+      --line: #ded7c8;
+      --blue: #0056b3;
+      --max: 1000px;
+    }
+ 
+    * {
+      box-sizing: border-box;
+    }
+ 
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+ 
+    /* ===== CABEÇALHO PADRÃO EFMN 74 ===== */
+    .site-header {
+      width: 100%;
+      background: #000;
+      border-bottom: 1px solid var(--gold);
+      margin: 0;
+      padding: 8px 16px;
+    }
+ 
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+ 
+    .header-logo {
+      width: 72px;
+      height: auto;
+      display: block;
+      flex: 0 0 auto;
+    }
+ 
+    .header-text {
+      color: #fff;
+      line-height: 1.25;
+      text-align: left;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+ 
+    .header-title {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+ 
+    .header-subtitle {
+      margin: 2px 0 0;
+      font-size: 0.88rem;
+      font-weight: 400;
+    }
+ 
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 34px 20px 56px;
+    }
+ 
+    .voltar-indice {
+      margin: 0 0 22px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+ 
+    .voltar-indice a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+ 
+    .voltar-indice a:hover {
+      text-decoration: underline;
+    }
+ 
+    h1 {
+      margin: 0 0 14px;
+      line-height: 1.2;
+      font-size: 2.25rem;
+    }
+ 
+    .abertura {
+      margin: 0 0 26px;
+      font-size: 1.08rem;
+    }
+ 
+    .etapas {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin: 0 0 30px;
+    }
+ 
+    .etapas h2 {
+      margin-top: 0;
+      font-size: 1.35rem;
+    }
+ 
+    .etapas ol {
+      margin-bottom: 0;
+      padding-left: 24px;
+    }
+ 
+    .etapas li {
+      margin: 10px 0;
+    }
+ 
+    .dica {
+      background: var(--paper);
+      border-left: 4px solid var(--gold);
+      padding: 18px 20px;
+      border-radius: 6px;
+    }
+ 
+    .dica h2 {
+      margin: 0 0 8px;
+      font-size: 1.3rem;
+    }
+ 
+    .dica p {
+      margin: 0;
+    }
+ 
+    @media (max-width: 700px) {
+      .site-header {
+        padding: 7px 10px;
+      }
+ 
+      .header-inner {
+        gap: 10px;
+      }
+ 
+      .header-title {
+        font-size: 0.98rem;
+      }
+ 
+      .header-subtitle {
+        font-size: 0.80rem;
+      }
+ 
+      main {
+        padding: 26px 16px 44px;
+      }
+ 
+      h1 {
+        font-size: 1.75rem;
+      }
+ 
+      .etapas {
+        padding: 18px 20px;
+      }
+    }
+  </style>
+</head>
+ 
+<body>
+ 
+  <!-- ===== CABEÇALHO PADRÃO EFMN 74 ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <img
+        src="logo-efmn74.PNG"
+        alt="Logomarca da Ferrovia EFMN 74"
+        class="header-logo"
+      >
+ 
+      <div class="header-text">
+        <p class="header-title">Ferrovia EFMN 74 - Escala HO</p>
+        <p class="header-subtitle">Construção, automação, memória e documentação</p>
+      </div>
+    </div>
+  </header>
+  <!-- ===== FIM DO CABEÇALHO PADRÃO ===== -->
+ 
+  <main>
+ 
+    <p class="voltar-indice">
+      <a href="manual-indice.html">← Voltar ao índice</a>
+    </p>
+ 
+    <h1>Como fazer um piso pé-de-moleque</h1>
+ 
+    <p class="abertura">
+      Já ouviu falar em piso pé-de-moleque? Trata-se de um antigo tipo de pavimentação,
+      feito com pedras irregulares assentadas lado a lado. Embora atualmente seja comum
+      o uso de asfalto ou de blocos intertravados de concreto, esse acabamento é uma ótima
+      opção para representar ruas antigas e áreas históricas em uma maquete ferroviária.
+    </p>
+ 
+    <section class="etapas">
+      <h2>Como fazer</h2>
+      <ol>
+        <li>Recorte um pedaço de papelão ou uma placa fina de Depron no formato da rua que receberá o acabamento.</li>
+        <li>Pinte toda a base com tinta preta fosca. A cor escura aparecerá entre as pedras e ajudará a representar as juntas.</li>
+        <li>Espere a tinta secar completamente e aplique uma mistura de 70% de cola branca e 30% de água.</li>
+        <li>Adquira pequenas pedras brancas e arredondadas, do tipo utilizado em aquários.</li>
+        <li>Quebre as pedras em fragmentos bem pequenos, adequados à escala da maquete. Use óculos de proteção durante esse trabalho.</li>
+        <li>Espalhe os fragmentos sobre a superfície já pintada e coberta com cola.</li>
+        <li>Com o auxílio de um palito, distribua e alinhe as pedras, evitando que algumas fiquem sobre as outras.</li>
+        <li>Prepare outra mistura, agora com 30% de cola branca e 70% de água.</li>
+        <li>Derrame a mistura lentamente sobre as pedras para reforçar a fixação. Aplique pequenas quantidades para não deslocar as peças.</li>
+        <li>Deixe secar completamente antes de movimentar ou instalar o piso na maquete.</li>
+      </ol>
+    </section>
+ 
+    <section class="dica">
+      <h2>Uma dica</h2>
+      <p>
+        Antes de colar todas as pedras, faça um pequeno trecho de teste. Observe se o tamanho
+        dos fragmentos está proporcional à escala HO e se a distância entre eles produz o efeito
+        visual desejado.
+      </p>
+    </section>
+ 
+  </main>
+ 
+</body>
+</html>
