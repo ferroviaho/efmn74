@@ -171,7 +171,7 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <article id="gavetas">
 <h2>Gavetas de controle e eletrônica</h2>
 <p><strong>Filosofia adotada:</strong> as funções da ferrovia serão distribuídas em gavetas especializadas para facilitar organização, manutenção, testes e futuras alterações. Dimensões, tensões, fusíveis, conectores, módulos e disposição física registrados a seguir são características específicas da EFMN 74 e deverão ser consolidados nos projetos elétrico, eletrônico e mecânico correspondentes.</p>
-<p>Revisada a arquitetura física para cinco gavetas funcionais:</p>
+<p>As gavetas foram definidas e dsitribuidas de acorddo com as áreas da maquete e são:</p>
 <ul>
 <li>GCP — Gaveta de Controle Principal: alimentação, proteção, distribuição de energia, seleção dos modos Analógico/DCC, ESP32 principal, comunicação com as ESP32 das áreas e funções centrais de controle, incluindo a integração das interfaces de tablet, TV e sinótico.</li>
 <li>GA1 — Gaveta Área 1: atende a Área 1 — Serviços, incluindo Estação, pátio de cargas, manutenção e rotunda; concentra a ESP32 da área, os sinais dos sensores, o acionamento dos desvios e as funções de iluminação e som correspondentes à Área 1.</li>
@@ -181,15 +181,15 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 </ul>
 <p>Em 17/09/2026 foi iniciada a montagem física da GA3, com o corte da base de MDF nas dimensões de 34 × 45 cm.</p>
 <p>Para reduzir os gastos nesta etapa, será utilizada inicialmente a ESP32 da bancada de testes.</p>
-<p>Foram adquiridos uma protoboard de 830 pontos, 30 metros de fio 22 AWG e uma fonte chaveada provisória de 5 V e 10 A para a montagem e os testes da gaveta.</p>
+<p>Foram adquiridos uma protoboard de 830 pontos, 30 metros de fio 22 AWG e uma fonte chaveada provisória de 5 V e 10 A para a montagem e os testes da gaveta. Após conclusão da gaveta de controle esta fonte será guardada como sobressalente</p>
 <p>Na GA3, a ESP32 e os componentes eletrônicos de conexão serão instalados na protoboard durante a fase de testes e validação.</p>
 <p>Os módulos MOSFET e o buzzer serão fixados diretamente na base da gaveta. Os MOSFETs serão utilizados no comando das cargas de iluminação e som.</p>
 <p>A alimentação dos servos será fornecida pelo barramento de +5 V comutado, mantendo os fios de sinal ligados à ESP32 da GA3.</p>
 <p>A antiga GIS/GCI — Gaveta de Iluminação e Som foi cancelada. Seus componentes e funções serão distribuídos e setorizados entre GA1, GA2 e GA3 conforme a área correspondente. A GAR permanece como está e não recebe essa redistribuição.</p>
-<p>As dimensões de 50 × 40 cm, com placa de montagem de 48 × 38 cm, permanecem como referência das gavetas já estudadas. Em 08/09/2026 foi adquirido um rack deslizante do tipo utilizado para teclado para avaliar uma solução de suporte mais simples, com largura ajustável e altura útil de aproximadamente 15 cm, evitando depender da fabricação de gavetas por marceneiro. A adoção definitiva desse suporte ainda depende da avaliação prática de montagem.</p>
+<p>As dimensões de 50 × 40 cm, com placa de montagem de 48 × 38 cm, permanecem como referência das gavetas já estudadas.</p> 
+  <p>Em 08/09/2026 foi adquirido um rack deslizante do tipo utilizado para teclado para avaliar uma solução de suporte mais simples, com largura ajustável e altura útil de aproximadamente 15 cm, evitando depender da fabricação de gavetas por marceneiro. A adoção definitiva desse suporte ainda depende da avaliação prática de montagem.</p>
 <p>O painel frontal das gavetas deve conter chave liga/desliga, LED verde de indicação de energização e fusível de proteção, com valor definitivo a ser estabelecido conforme a carga de cada módulo no projeto elétrico.</p>
 <p>O barramento de +5 V e GND já instalado em toda a ferrovia será utilizado como alimentação comum dos sensores e servos, proveniente da fonte localizada na GCP. Os sinais individuais permanecem setorizados e seguem para a ESP32 da área correspondente.</p>
-<p>A entrada de alimentação de cada gaveta deverá manter proteção e seccionamento local por fusível, chave frontal e indicação por LED, com o detalhamento definitivo de corrente, conectores e distribuição consolidado no Projeto Elétrico.</p>
 <p>Finalizada a GAR reserva, equipada com reostatos Frateschi, destinada a servir como alternativa temporária ao controle analógico principal em caso de necessidade.</p>
 <p>Também foram revisadas as ligações entre fonte, reostato e chave de comando do conjunto analógico, com identificação dos bornes de entrada e saída e da polaridade correspondente.</p>
 </article>
