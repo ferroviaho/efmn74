@@ -57,7 +57,7 @@ padding: 36px 20px 60px;
 .voltar-final { margin-top: 30px; }
 .voltar-inicio a, .voltar-final a {
 color: var(--link);
-text-decoration: underline;
+text-decoration: none;
 font-family: Arial, Helvetica, sans-serif;
 font-size: 1rem;
 font-weight: 600;
@@ -105,7 +105,7 @@ h1 { font-size: 1.75rem; }
 
 <div class="intro">
 <p>
-Este Diário de Bordo registra a evolução da Ferrovia EFMN 74 por temas.
+Este Diário de Bordo registra a construção da Ferrovia EFMN 74 e as decisões que impactam o projeto.
 A organização temática permite consultar diretamente um assunto específico,
 reunindo em um mesmo local as decisões, experiências, dificuldades e avanços relacionados. </p>
 <p>Este documento também será utilizado quando for escrito o software que irá operacionalizar esta ferrovia</p>
@@ -179,6 +179,12 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <li>GA3 — Gaveta Área 3: atende a Área 3 — Armazéns; concentra a ESP32 da área, os sinais dos sensores, o acionamento dos desvios e as funções de iluminação e som correspondentes à Área 3.</li>
 <li>GAR — Gaveta Analógica e Rotunda: controle da alimentação e operação analógica das linhas, incluindo fonte CC, reostato/PWM e seleção de sentido dos trilhos, além das funções relacionadas à Rotunda.</li>
 </ul>
+<p>Em 17/09/2026 foi iniciada a montagem física da GA3, com o corte da base de MDF nas dimensões de 34 × 45 cm.</p>
+<p>Para reduzir os gastos nesta etapa, será utilizada inicialmente a ESP32 da bancada de testes.</p>
+<p>Foram adquiridos uma protoboard de 830 pontos, 30 metros de fio 22 AWG e uma fonte chaveada provisória de 5 V e 10 A para a montagem e os testes da gaveta.</p>
+<p>Na GA3, a ESP32 e os componentes eletrônicos de conexão serão instalados na protoboard durante a fase de testes e validação.</p>
+<p>Os módulos MOSFET e o buzzer serão fixados diretamente na base da gaveta. Os MOSFETs serão utilizados no comando das cargas de iluminação e som.</p>
+<p>A alimentação dos servos será fornecida pelo barramento de +5 V comutado, mantendo os fios de sinal ligados à ESP32 da GA3.</p>
 <p>A antiga GIS/GCI — Gaveta de Iluminação e Som foi cancelada. Seus componentes e funções serão distribuídos e setorizados entre GA1, GA2 e GA3 conforme a área correspondente. A GAR permanece como está e não recebe essa redistribuição.</p>
 <p>As dimensões de 50 × 40 cm, com placa de montagem de 48 × 38 cm, permanecem como referência das gavetas já estudadas. Em 08/09/2026 foi adquirido um rack deslizante do tipo utilizado para teclado para avaliar uma solução de suporte mais simples, com largura ajustável e altura útil de aproximadamente 15 cm, evitando depender da fabricação de gavetas por marceneiro. A adoção definitiva desse suporte ainda depende da avaliação prática de montagem.</p>
 <p>O painel frontal das gavetas deve conter chave liga/desliga, LED verde de indicação de energização e fusível de proteção, com valor definitivo a ser estabelecido conforme a carga de cada módulo no projeto elétrico.</p>
@@ -400,6 +406,15 @@ loading="lazy">
 <p><strong>Filosofia adotada:</strong> energizar o sistema de controle não significa liberar imediatamente a circulação. Antes da liberação da via, o sistema deverá executar verificações de segurança, distinguir falhas bloqueantes das não bloqueantes e somente permitir a operação quando as condições necessárias estiverem atendidas. A lista exata de testes, limites e critérios será consolidada no Procedimento de Inicialização e Operação e no Plano de Testes da EFMN 74.</p>
 <p>Na inicialização, o nobreak energizará apenas o sistema de controle; os trilhos permanecerão desenergizados até a aprovação dos testes.</p>
 <p>Os testes automáticos incluirão ESP32, comunicações previstas, sensores, servos SG90, alimentações, curto entre trilhos e sobrecorrente, de acordo com os componentes efetivamente instalados.</p>
+<p>Para a GA3 foram planejados cinco testes específicos:</p>
+<ol>
+<li>acionamento repetido dos desvios em sequência durante aproximadamente 20 ciclos;</li>
+<li>teste individual de cada desvio na sequência DI → AC → DI, avançando depois para o desvio seguinte;</li>
+<li>passagem de um ímã por um sensor para provocar a mudança de posição de um ou dois desvios;</li>
+<li>permanência do ímã sobre o sensor Hall, simulando uma locomotiva parada sobre o sensor, para verificar a rotina de segurança e o aviso sonoro pelo buzzer;</li>
+<li>teste de carga com três desvios acionados simultaneamente, juntamente com uma carga de LEDs e o sistema de som.</li>
+</ol>
+<p>Esses cinco testes também poderão ser utilizados posteriormente como sugestões de procedimentos em um dos manuais técnicos da EFMN 74.</p>
 <p>Cada desvio, identificado no padrão Dx, deverá ser comandado para DI e AC durante o teste, aguardando-se o tempo necessário ao movimento e registrando-se a posição como comandada. Não haverá, inicialmente, sensores Hall dedicados para confirmação física de DI ou AC em todos os desvios. Falhas bloqueantes impedirão a operação.</p>
 <p>Também serão testados painel, mensagens, alarmes, TESTE/REARME e EMERGÊNCIA. Falha do botão EMERGÊNCIA impede a operação; falhas de LEDs, indicadores, alto-falantes e alarmes sonoros serão registradas, mas são classificadas como não críticas.</p>
 <p>Antes de energizar a via, o sistema verificará ausência de curto e sobrecorrente, o estado dos sensores disponíveis e a coerência das posições comandadas dos desvios com as condições de segurança conhecidas pelo sistema. Somente após aprovação completa os trilhos serão energizados e será apresentada a mensagem “FERROVIA LIBERADA PARA OPERAÇÃO”.</p>
@@ -410,8 +425,6 @@ loading="lazy">
 <article id="site">
 <h2>Site, Manual e documentação</h2>
 <p><strong>Critério documental:</strong> o Diário de Bordo registra a evolução, as decisões e a filosofia do projeto — o que foi decidido e por quê. A Especificação Operacional da EFMN 74 deverá registrar exatamente como esta ferrovia deve se comportar; os Projetos Elétrico, Eletrônico e de Cabeamento registrarão como está fisicamente ligada; e a documentação de software descreverá como as regras serão implementadas em C++.</p>
-<p>Ampliados e padronizados o Técnicas de Construção, a Galeria e as páginas internas do site.</p>
-<p>Uniformizados cabeçalhos e realizados ajustes de links, fotografias, legendas e apresentação em computador e smartphone.</p>
 <p>Implantada a alternância automática das fotografias da capa e ajustado para 4 segundos o tempo de exibição.</p>
 <p>Revisado o formulário de Contato e ajustado o envio das mensagens.</p>
 <p>Registrado o domínio próprio efmn74.com.br, ficando sua configuração para acesso ao site sem o endereço do GitHub como etapa de implantação.</p>
