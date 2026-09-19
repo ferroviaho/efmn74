@@ -201,8 +201,36 @@
 
     <p>
       Nos desvios Frateschi que ainda possuem as bobinas originais, a orientação é
-      retirar essas bobinas e instalar o mesmo tipo de motor utilizado nos demais
+      retirar essas bobinas e instalar o microservo SG90 padronizado, utilizado nos demais
       desvios da EFMN 74.
+    </p>
+
+    <h2>Servo adotado</h2>
+
+    <p>
+      O acionamento padronizado dos desvios da Ferrovia EFMN 74 será realizado com
+      microservo SG90 de 9 g. As especificações usuais desse modelo são:
+    </p>
+
+    <ul>
+      <li><strong>alimentação:</strong> de 4,8 a 6 Vcc, com utilização nominal de 5 Vcc na ferrovia;</li>
+      <li><strong>comando:</strong> sinal PWM enviado pela ESP32;</li>
+      <li><strong>curso:</strong> até aproximadamente 180°, limitado por programação;</li>
+      <li><strong>torque típico:</strong> aproximadamente 1,8 kgf·cm em 4,8 V;</li>
+      <li><strong>ligação:</strong> três fios para alimentação positiva, GND e sinal de controle.</li>
+    </ul>
+
+    <p>
+      As cores mais comuns são vermelho para +5 V, marrom ou preto para GND e laranja
+      ou amarelo para o sinal. Como as cores podem variar conforme o fabricante, a
+      identificação deverá ser conferida antes da ligação.
+    </p>
+
+    <p>
+      Nos testes iniciais, foram utilizados os ângulos de 67° e 97°. Esses valores são
+      apenas uma referência: cada desvio deverá ser calibrado individualmente depois da
+      instalação, considerando a posição do servo, o comprimento da haste e o curso
+      necessário das agulhas.
     </p>
 
     <div class="destaque">
@@ -232,12 +260,12 @@
     <p>
       Antes da instalação definitiva de cada desvio, verificar se ele ainda utiliza o
       acionamento original por bobinas. Quando isso ocorrer, retirar cuidadosamente o
-      conjunto de bobinas e preparar o desvio para receber o motor padronizado.
+      conjunto de bobinas e preparar o desvio para receber o microservo SG90 padronizado.
     </p>
 
     <p>
       Depois da adaptação, o conjunto deverá seguir o mesmo procedimento de testes dos
-      demais desvios: primeiro o motor isolado, depois os sensores e, finalmente, o
+      demais desvios: primeiro o servo isolado, depois os sensores e, finalmente, o
       conjunto completo montado antes da instalação definitiva na ferrovia.
     </p>
 
