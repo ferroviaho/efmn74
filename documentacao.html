@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Documentação técnica da Ferrovia EFMN 74.">
+  <title>Documentação | Ferrovia EFMN 74</title>
+<style>
+    :root {
+      --bg: #f4f1ea;
+      --paper: #fffdf8;
+      --ink: #222;
+      --gold: #c89b2b;
+      --gold-dark: #8a6517;
+      --line: #ded7c8;
+      --blue: #0056b3;
+      --max: 1000px;
+    }
+ 
+    * { box-sizing: border-box; }
+ 
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+ 
+    .site-header {
+      width: 100%;
+      background: #000;
+      border-bottom: 3px solid var(--gold);
+      padding: 8px 16px;
+    }
+ 
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+ 
+    .header-logo { width: 72px; height: auto; display: block; }
+ 
+    .header-text {
+      color: #fff;
+      line-height: 1.25;
+      text-align: left;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+ 
+    .header-title { margin: 0; font-size: 1.05rem; font-weight: 700; }
+    .header-subtitle { margin: 2px 0 0; font-size: .88rem; }
+ 
+    main { max-width: var(--max); margin: 0 auto; padding: 34px 20px 56px; }
+ 
+    .voltar { margin: 0 0 22px; font-family: Arial, Helvetica, sans-serif; }
+    .voltar a, .card a { color: var(--blue); text-decoration: none; font-weight: 600; }
+    .voltar a:hover, .card a:hover { text-decoration: underline; }
+ 
+    h1 { margin: 0 0 14px; line-height: 1.2; font-size: 2.25rem; }
+    h2 { margin-top: 0; font-size: 1.35rem; }
+    .abertura { margin: 0 0 26px; font-size: 1.08rem; }
+ 
+    .aviso {
+      background: #fff7dc;
+      border-left: 5px solid var(--gold);
+      border-radius: 6px;
+      padding: 16px 18px;
+      margin: 0 0 28px;
+    }
+ 
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+ 
+    .card, .conteudo, .exemplo {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 22px 24px;
+    }
+ 
+    .card h2 { margin-bottom: 8px; }
+    .card p { margin: 0 0 12px; }
+    .conteudo { margin-bottom: 24px; }
+    .conteudo ul, .exemplo ul { margin-bottom: 0; padding-left: 24px; }
+    .conteudo li, .exemplo li { margin: 8px 0; }
+ 
+    .exemplo {
+      border-left: 5px solid var(--gold);
+      margin-bottom: 26px;
+    }
+ 
+    .exemplo .rotulo {
+      color: var(--gold-dark);
+      font: 700 .82rem Arial, Helvetica, sans-serif;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin: 0 0 6px;
+    }
+ 
+    .convite {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+ 
+    .convite p { margin: 0; }
+ 
+    @media (max-width: 700px) {
+      .site-header { padding: 7px 10px; }
+      .header-inner { gap: 10px; }
+      .header-title { font-size: .98rem; }
+      .header-subtitle { font-size: .80rem; }
+      main { padding: 26px 16px 44px; }
+      h1 { font-size: 1.75rem; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo">
+      <div class="header-text">
+        <p class="header-title">Ferrovia EFMN 74 - Escala HO</p>
+        <p class="header-subtitle">Construção, automação, memória e documentação</p>
+      </div>
+    </div>
+  </header>
+ 
+  <main>
+    <p class="voltar"><a href="index.html">← Voltar ao índice</a></p>
+    <h1>Documentação</h1>
+    <p class="abertura">Esta área apresentará documentos técnicos elaborados durante o planejamento, a montagem e os testes da Ferrovia EFMN 74.</p>
+    <div class="aviso">A documentação será publicada gradualmente, sempre depois da montagem prática, da conferência das ligações e da atualização das informações.</div>
+ 
+    <div class="grid">
+      <section class="card">
+        <h2>Gavetas de controle</h2>
+        <p>Descrição das funções, componentes e ligações das gavetas GA1, GA2 e GA3.</p>
+      </section>
+      <section class="card">
+        <h2>Desvios e servos</h2>
+        <p>Instalação dos servos SG90, preparação das hastes, ajustes de movimento e testes.</p>
+      </section>
+      <section class="card">
+        <h2>Sensores</h2>
+        <p>Posicionamento, instalação, ligação e uso dos sensores na segurança das rotas.</p>
+      </section>
+      <section class="card">
+        <h2>Alimentação elétrica</h2>
+        <p>Fontes, proteções, barramentos, relés, aterramento comum e distribuição de energia.</p>
+      </section>
+      <section class="card">
+        <h2>Testes e segurança</h2>
+        <p>Procedimentos de conferência, testes por etapas, avisos sonoros e rotinas para detectar falhas.</p>
+      </section>
+    </div>
+ 
+    <section class="exemplo" style="margin-top: 26px;">
+      <p class="rotulo">Exemplo de futura documentação</p>
+      <h2>Montagem da gaveta GA3, passo a passo</h2>
+      <p>Documento mostrando a montagem desde o Sindal de entrada até os sensores, servos, iluminação e som, acompanhado de fotografias reais e desenhos das ligações.</p>
+    </section>
+ 
+    <section class="convite">
+      <p>Novos documentos serão acrescentados conforme a ferrovia avançar. Volte ao site para acompanhar as próximas etapas ou sugerir um assunto que gostaria de ver explicado.</p>
+    </section>
+  </main>
+</body>
+</html>
