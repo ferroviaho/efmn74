@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Diário de Bordo temático da Ferrovia EFMN 74 em escala HO.">
+<meta name="description" content="Acompanhe a construção da Ferrovia EFMN 74 em escala HO: decisões sobre trilhos, desvios, sensores, automação com ESP32, gavetas de controle e cenários.">
 <title>Diário de Bordo — EFMN 74</title>
 <style>
 :root {
@@ -171,7 +171,7 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <article id="gavetas">
 <h2>Gavetas de controle e eletrônica</h2>
 <p><strong>Filosofia adotada:</strong> as funções da ferrovia serão distribuídas em gavetas especializadas para facilitar organização, manutenção, testes e futuras alterações. Dimensões, tensões, fusíveis, conectores, módulos e disposição física registrados a seguir são características específicas da EFMN 74 e deverão ser consolidados nos projetos elétrico, eletrônico e mecânico correspondentes.</p>
-<p>As gavetas foram definidas e dsitribuidas de acorddo com as áreas da maquete e são:</p>
+<p>As gavetas foram definidas e distribuídas de acordo com as áreas da maquete e são:</p>
 <ul>
 <li>GCP — Gaveta de Controle Principal: alimentação, proteção, distribuição de energia, seleção dos modos Analógico/DCC, ESP32 principal, comunicação com as ESP32 das áreas e funções centrais de controle, incluindo a integração das interfaces de tablet, TV e sinótico.</li>
 <li>GA1 — Gaveta Área 1: atende a Área 1 — Serviços, incluindo Estação, pátio de cargas, manutenção e rotunda; concentra a ESP32 da área, os sinais dos sensores, o acionamento dos desvios e as funções de iluminação e som correspondentes à Área 1.</li>
@@ -181,10 +181,10 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 </ul>
 <p>Em 17/09/2026 foi iniciada a montagem física da GA3, com o corte da base de MDF nas dimensões de 34 × 45 cm.</p>
 <p>Para reduzir os gastos nesta etapa, será utilizada inicialmente a ESP32 da bancada de testes.</p>
-<p>Foram adquiridos uma protoboard de 830 pontos, 30 metros de fio 22 AWG e uma fonte chaveada provisória de 5 V e 10 A para a montagem e os testes da gaveta. Após conclusão da gaveta de controle esta fonte será guardada como sobressalente</p>
+<p>Foram adquiridos uma protoboard de 830 pontos, 30 metros de fio 22 AWG e uma fonte chaveada provisória de 5 V e 10 A para a montagem e os testes da gaveta. Após a conclusão da gaveta de controle, esta fonte será guardada como sobressalente.</p>
 <p>Na GA3, a ESP32 e os componentes eletrônicos de conexão serão instalados na protoboard durante a fase de testes e validação.</p>
-<p>Os módulos MOSFET e o buzzer serão fixados diretamente na base da gaveta. Os MOSFETs serão utilizados no comando das cargas de iluminação e som.</p>
-<p>A alimentação dos servos será fornecida pelo barramento de +5 V comutado, mantendo os fios de sinal ligados à ESP32 da GA3.</p>
+<p>Os módulos MOSFET serão usados no comando de iluminação e outras cargas. O buzzer foi incluído para avisos sonoros durante os testes e a operação.</p>
+<p>Na GA3, a alimentação de +5 V dos servos será comutada por relé; o GND permanece comum e os sinais de controle seguem para a ESP32. Os módulos MOSFET adquiridos ficam destinados à iluminação e a outras cargas.</p>
 <p>A antiga GIS/GCI — Gaveta de Iluminação e Som foi cancelada. Seus componentes e funções serão distribuídos e setorizados entre GA1, GA2 e GA3 conforme a área correspondente. A GAR permanece como está e não recebe essa redistribuição.</p>
 <p>As dimensões de 50 × 40 cm, com placa de montagem de 48 × 38 cm, permanecem como referência das gavetas já estudadas.</p> 
   <p>Em 08/09/2026 foi adquirido um rack deslizante do tipo utilizado para teclado para avaliar uma solução de suporte mais simples, com largura ajustável e altura útil de aproximadamente 15 cm, evitando depender da fabricação de gavetas por marceneiro. A adoção definitiva desse suporte ainda depende da avaliação prática de montagem.</p>
@@ -209,6 +209,7 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <p>Na arquitetura distribuída, haverá um programa C++ específico para a ESP32 principal e um programa próprio para cada ESP32 de GA1, GA2 e GA3. A comunicação entre as placas deverá ocorrer através da ESP32 principal, que coordenará as informações globais e as interfaces de operação.</p>
 <p>Para a fase de implantação foi adotado o uso de protoboard e jumpers nas gavetas regionais, facilitando testes, alterações e validação das ligações antes de uma eventual substituição futura por montagem definitiva.</p>
 <p>Planejada, para etapa futura, a automação do processo de compilação, upload, abertura opcional do monitor serial e teste inicial por meio de ferramenta como Arduino CLI ou PlatformIO.</p>
+<p>Na montagem da GA3, foram instalados resistores e jumpers na protoboard. As conexões foram conferidas com multímetro antes da energização da fonte. Foi adquirida uma placa de expansão para facilitar o acesso aos pinos da ESP32.</p>
 <p>Prosseguiram os testes de bancada da ESP32 e dos componentes associados, incluindo a identificação das ligações do servo SG90 e do seu conector padrão de três vias.</p>
 
 <p>Realizado teste individual dos 19 motores dos desvios com rotina carregada pela Arduino IDE, sendo todos aprovados no teste de acionamento.</p>
@@ -331,7 +332,7 @@ loading="lazy">
 
 </article>
 
-<article id="vocidade">
+<article id="velocidade">
 <h2>Locomotivas, composições e velocidade</h2>
 <p><strong>Filosofia adotada:</strong> a velocidade permitida deverá resultar sempre da condição mais restritiva aplicável entre locomotiva, composição/carga, trecho e situação operacional. Valores individuais e tabelas de limites serão tratados como dados de cadastro e parâmetros específicos da EFMN 74, e não como regras gerais do Diário.</p>
 <p>Definidos critérios para o futuro controle de velocidade considerando simultaneamente os limites da locomotiva, da composição ou carga e do trecho percorrido.</p>
@@ -426,8 +427,10 @@ loading="lazy">
 <h2>Site, Manual e documentação</h2>
 <p><strong>Critério documental:</strong> o Diário de Bordo registra a evolução, as decisões e a filosofia do projeto — o que foi decidido e por quê. A Especificação Operacional da EFMN 74 deverá registrar exatamente como esta ferrovia deve se comportar; os Projetos Elétrico, Eletrônico e de Cabeamento registrarão como está fisicamente ligada; e a documentação de software descreverá como as regras serão implementadas em C++.</p>
 <p>Implantada a alternância automática das fotografias da capa e ajustado para 4 segundos o tempo de exibição.</p>
+<p>O site passou a ser acompanhado pelo Google Search Console. Foi discutido o uso do sitemap para facilitar a descoberta das páginas e planejada a revisão gradual das descrições de cada página para os resultados de busca. A descrição da página “Pintura com aerógrafo” foi revisada.</p>
 <p>Revisado o formulário de Contato e ajustado o envio das mensagens.</p>
-<p>Registrado o domínio próprio efmn74.com.br, ficando sua configuração para acesso ao site sem o endereço do GitHub como etapa de implantação.</p>
+<p>Foram acrescentados à página inicial os links para Documentação e Downloads. As duas páginas foram preparadas para apresentar os materiais disponíveis e previstos.</p>
+<p>Configurado o domínio próprio ferroviaho.com.br para acesso ao site, incluindo a versão com www.</p>
 <p>O Diário de Bordo deixa de ter a data como estrutura principal e passa a reunir as informações por tema, permitindo que cada assunto seja consultado isoladamente.</p>
 <p>Quando tiver início o desenvolvimento do software, este Diário deverá ser utilizado como uma das fontes para separar as decisões registradas em requisitos, rotinas, regras de segurança e exceções operacionais.</p>
 <p>Definido um conjunto de documentos técnicos do projeto, incluindo a Especificação Operacional da Ferrovia EFMN 74, Especificação Funcional, Procedimento de Inicialização e Operação, Manuais do Operador, Manutenção e Instalação, Projetos Elétrico, Eletrônico e de Cabeamento, Tabela Mestre de Componentes, Lista de Materiais, Manuais de Software e Interface Web, Plano e Relatório de Testes, Registro de Decisões, Plano de Manutenção Preventiva, Plano de Recuperação de Falhas e Índice Geral da Documentação.</p>
@@ -449,7 +452,7 @@ loading="lazy">
 <p>O ambiente onde está sendo montada a ferrovia possui 20 m² e o comprimento de trilhos instalado até o momento é de aproximadamente 47 metros lineares.</p>
 </article>
 
-<!-- Revisão geral incorporando decisões até 09/09/2026 -->
+<!-- Diário atualizado em 23/09/2026 -->
 <!-- ===== INSERIR NOVAS DECISÕES NO TEMA CORRESPONDENTE ===== -->
 
 <p class="voltar-final">
@@ -461,4 +464,3 @@ loading="lazy">
 </body>
 </html>
 
-Página 27 de 27
