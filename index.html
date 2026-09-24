@@ -293,6 +293,15 @@ height: auto;
 display: block;
 margin: 0 auto;
 }
+.instagram-link {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+margin-top: 14px;
+color: #fff;
+text-decoration: none;
+}
+.instagram-link:hover, .instagram-link:focus-visible { text-decoration: underline; }
 #apresentacao {
 padding-top: 20px;
 }
@@ -433,6 +442,10 @@ Ferrovia EFMN 74
 </div>
 <footer>
 <img src="logo-efmn74.PNG" alt="Ferrovia EFMN 74">
+<a class="instagram-link" href="https://www.instagram.com/efmn74/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da Ferrovia EFMN 74">
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+<span>Instagram</span>
+</a>
 </footer>
 <script>
 const heroSlides = document.querySelectorAll('.hero-slide');
