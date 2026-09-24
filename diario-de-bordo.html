@@ -146,13 +146,13 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <article id="arquitetura">
 <h2>Arquitetura geral e automação</h2>
 <p><strong>Critério de registro:</strong> este item reúne a filosofia e as decisões de arquitetura que orientam toda a automação. A distribuição exata de entradas, saídas, rotinas e parâmetros de cada ESP32 será consolidada posteriormente na documentação técnica e no software específico da EFMN 74.</p>
-<p>Revisada a arquitetura de automação para uma estrutura distribuída: a GCP — Gaveta de Controle Principal mantém a ESP32 principal e as funções centrais de supervisão e comunicação, enquanto GA1, GA2 e GA3 passam a possuir uma ESP32 própria para executar localmente os comandos e leituras de sua respectiva área.</p>
-<p>As ESP32 regionais deverão se comunicar com a ESP32 principal, evitando a concentração de toda a fiação de sensores e servos na GCP. Essa distribuição reduz o comprimento dos condutores de sinal, simplifica a manutenção e permite que cada área tenha firmware C++ próprio.</p>
+<p>Foi definida a arquitetura de automação para uma estrutura distribuída: a GCP — Gaveta de Controle Principal mantém a ESP32 principal e as funções centrais de supervisão e comunicação, enquanto GA1, GA2 e GA3 passam a possuir uma ESP32 própria para executar localmente os comandos e leituras de sua respectiva área.</p>
+<p>As ESP32 regionais deverão se comunicar com a ESP32 principal, evitando a concentração de toda a fiação de sensores e servos na GCP. Essa distribuição reduz a quantidade e o comprimento dos condutores de sinal, simplifica a manutenção e permite que cada área tenha firmware C++ próprio.</p>
 <p>Estruturados os modos de operação Analógico e DCC, mantendo-se os dois sistemas para permitir a utilização das locomotivas analógicas existentes, a futura incorporação de locomotivas digitais DCC e possibilitar que amigos e visitantes possam operar a EFMN 74 de forma simples pelo modo analógico, sem as restrições e configurações próprias da operação digital; definidos também os conceitos dos painéis de controle, tablets e sinótico.</p>
 <p>Estruturadas rotas automáticas e estabelecidas regras para impedir rotas conflitantes.</p>
 <p>A maquete foi dividida em três áreas operacionais para simplificar a lógica de detecção: Área 1 — Serviços, compreendendo Estação, pátio de cargas, manutenção e rotunda; Área 2 — Túnel; Área 3 — Armazéns. O S1 atua como fronteira entre as Áreas 1 e 2 e o S2 como fronteira entre as Áreas 1 e 3.</p>
 <p>A localização de GA1, GA2 e GA3 deverá aproveitar a proximidade física com os desvios e sensores de cada área, reduzindo a quantidade e o comprimento da fiação de sinal e tornando testes, ajustes e manutenção mais simples.</p>
-<p>Durante a fase atual, todas as decisões operacionais, de segurança e de automação devem ser registradas. A separação posterior em rotinas de software será feita quando começar o desenvolvimento do programa.</p>
+<p>Durante a fase atual, todas as decisões operacionais, de segurança e de automação foram registradas. A separação posterior em rotinas de software será feita quando começar o desenvolvimento do programa.</p>
 <p>Definida a separação entre documentação técnica e sistema de controle: os documentos oficiais poderão ser fechados em DOCX/PDF, enquanto as interfaces operacionais serão desenvolvidas em HTML, CSS, JavaScript e SVG, comunicando-se com a lógica em C++ das ESP32.</p>
 </article>
 
@@ -161,8 +161,7 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <p><strong>Filosofia adotada:</strong> a alimentação deverá ser organizada de forma segura, protegida, setorizada e de fácil manutenção. Sequências exatas de ligação, cores, bitolas, bornes, terminais e demais detalhes físicos pertencem ao Projeto Elétrico e ao Projeto de Cabeamento da EFMN 74; quando citados neste Diário, permanecem como registro das decisões e experiências de montagem.</p>
 <p>Incorporado nobreak de 600 VA para aumentar a segurança da alimentação elétrica e adotado DPS antes do nobreak como proteção adicional.</p>
 <p>Instalados e organizados os barramentos de L1, L2, +5 V e GND.</p>
-<p>Instaladas barras duplas, abaixo da mesa, de conectores Sindal nos barramentos de L1 e L2 para melhorar a distribuição da alimentação, reduzir mau contato e facilitar derivações e manutenção.</p>
-<p>Iniciado o detalhamento da alimentação elétrica das gavetas, partindo da tomada de energia e do nobreak.</p>
+<p>Instaladas barras Sindal abaixo da mesa para melhorar a distribuição da alimentação das linhas L1 e L2, reduzir mau contato e facilitar derivações e manutenção.</p>
 <p>Mantido em estudo o detalhamento definitivo do percurso de alimentação entre nobreak, proteção, chave geral, indicação, fontes e ESP32; a sequência final deverá ser consolidada no projeto elétrico antes de ser adotada como referência de montagem.</p>
 <p>Definido barramento principal em corrente contínua para distribuir alimentação às gavetas, com derivações individuais de positivo e negativo.</p>
 <p>Detalhadas cores e bitolas dos condutores, utilização de terminais tipo garfo nos bornes das fontes e procedimento de crimpagem.</p>
