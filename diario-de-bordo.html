@@ -170,7 +170,7 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <article id="gavetas">
 <h2>Gavetas de controle e eletrônica</h2>
 <p><strong>Filosofia adotada:</strong> as funções da ferrovia serão distribuídas em gavetas especializadas para facilitar organização, manutenção, testes e futuras alterações. Dimensões, tensões, fusíveis, conectores, módulos e disposição física registrados a seguir são características específicas da EFMN 74 e deverão ser consolidados nos projetos elétrico, eletrônico e mecânico correspondentes.</p>
-<p>As gavetas foram definidas e dsitribuidas de acorddo com as áreas da maquete e são:</p>
+<p>As gavetas foram definidas e distribuidas de acorddo com as áreas da maquete e são:</p>
 <ul>
 <li>GCP — Gaveta de Controle Principal: alimentação, proteção, distribuição de energia, seleção dos modos Analógico/DCC, ESP32 principal, comunicação com as ESP32 das áreas e funções centrais de controle, incluindo a integração das interfaces de tablet, TV e sinótico.</li>
 <li>GA1 — Gaveta Área 1: atende a Área 1 — Serviços, incluindo Estação, pátio de cargas, manutenção e rotunda; concentra a ESP32 da área, os sinais dos sensores, o acionamento dos desvios e as funções de iluminação e som correspondentes à Área 1.</li>
@@ -184,30 +184,28 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <p>Na GA3, a ESP32 e os componentes eletrônicos de conexão serão instalados na protoboard durante a fase de testes e validação.</p>
 <p>Os módulos MOSFET e o buzzer serão fixados diretamente na base da gaveta. Os MOSFETs serão utilizados no comando das cargas de iluminação e som.</p>
 <p>A alimentação dos servos será fornecida pelo barramento de +5 V comutado, mantendo os fios de sinal ligados à ESP32 da GA3.</p>
-<p>A antiga GIS/GCI — Gaveta de Iluminação e Som foi cancelada. Seus componentes e funções serão distribuídos e setorizados entre GA1, GA2 e GA3 conforme a área correspondente. A GAR permanece como está e não recebe essa redistribuição.</p>
+<p>A antiga GIS — Gaveta de Iluminação e Som foi cancelada. Seus componentes e funções serão distribuídos e setorizados entre GA1, GA2 e GA3 conforme a área correspondente. A GAR permanece como está e não recebe essa redistribuição.</p>
 <p>As dimensões de 50 × 40 cm, com placa de montagem de 48 × 38 cm, permanecem como referência das gavetas já estudadas.</p> 
   <p>Em 08/09/2026 foi adquirido um rack deslizante do tipo utilizado para teclado para avaliar uma solução de suporte mais simples, com largura ajustável e altura útil de aproximadamente 15 cm, evitando depender da fabricação de gavetas por marceneiro. A adoção definitiva desse suporte ainda depende da avaliação prática de montagem.</p>
 <p>O painel frontal das gavetas deve conter chave liga/desliga, LED verde de indicação de energização e fusível de proteção, com valor definitivo a ser estabelecido conforme a carga de cada módulo no projeto elétrico.</p>
 <p>O barramento de +5 V e GND já instalado em toda a ferrovia será utilizado como alimentação comum dos sensores e servos, proveniente da fonte localizada na GCP. Os sinais individuais permanecem setorizados e seguem para a ESP32 da área correspondente.</p>
 <p>Finalizada a GAR reserva, equipada com reostatos Frateschi, destinada a servir como alternativa temporária ao controle analógico principal em caso de necessidade.</p>
-<p>Também foram revisadas as ligações entre fonte, reostato e chave de comando do conjunto analógico, com identificação dos bornes de entrada e saída e da polaridade correspondente.</p>
 </article>
 
 <article id="esp32">
 <h2>ESP32, Arduino e programação</h2>
-<p><strong>Filosofia adotada:</strong> a lógica de controle será desenvolvida de forma modular, com responsabilidades claramente distribuídas entre as ESP32 e firmware próprio para cada placa. Informações de bancada, portas de comunicação, testes e procedimentos de gravação permanecem no Diário como histórico de desenvolvimento; a estrutura definitiva do programa será descrita na documentação de software.</p>
+<p><strong>Filosofia adotada:</strong> a lógica de controle será desenvolvida de forma modular, com responsabilidades claramente distribuídas entre as ESP32 e firmware próprio para cada placa. Informações de bancada, portas de comunicação, testes e procedimentos de gravação permanecem no Diário como histórico de desenvolvimento. A estrutura definitiva do programa será descrita na documentação de software.</p>
 <p>Adotada a plataforma Arduino como ambiente de desenvolvimento para a programação das ESP32 utilizadas na automação da ferrovia.</p>
 <p>A programação será desenvolvida em C++, linguagem utilizada no ambiente Arduino para a criação das rotinas de controle, leitura dos sensores, acionamento dos desvios, controle das locomotivas, áudio e demais funções do sistema.</p>
-<p>O estudo da linguagem C contribuiu para a compreensão dos conceitos fundamentais de programação, como variáveis, condições, comandos, funções e estruturas de controle, facilitando posteriormente o entendimento da programação em C++ aplicada à plataforma Arduino.</p>
-<p>Desenvolvido o conceito do testador TTD-01 para motores e sensores.</p>
+<p>O estudo da linguagem C, pelo ferromodelista, contribui para a compreensão dos conceitos fundamentais de programação, como variáveis, condições, comandos, funções e estruturas de controle e facilita posteriormente o entendimento da programação em C++ aplicada à plataforma Arduino.</p>
+<p>Desenvolvido uma plataforma provisória pata testar motores e sensores.</p>
 <p>Realizados testes da ESP32 em protoboard, com reconhecimento pelo computador e verificação da saída digital pelo GPIO 25.</p>
 <p>O computador reconheceu a ESP32 como “USB-Enhanced-SERIAL CH9102 (COM3)”.</p>
 <p>Definidas as ligações do servo SG90 de três fios, distinguindo alimentação, GND e sinal de comando proveniente da ESP32; o acionamento do servo não utiliza módulo DRV8871.</p>
 <p>Definido o procedimento de atualização do firmware: salvar as alterações, compilar na IDE Arduino, fazer o upload na ESP32 correspondente, confirmar a gravação sem erros e executar teste funcional.</p>
+<p>Planejada, para etapa futura, a automação do processo de compilação, upload, abertura opcional do monitor serial e teste inicial por meio de ferramenta como Arduino CLI ou PlatformIO.</p>
 <p>Cada ESP32 terá seu próprio firmware e será gravada individualmente. Alterações que afetem apenas uma placa não exigem regravação das demais.</p>
 <p>Na arquitetura distribuída, haverá um programa C++ específico para a ESP32 principal e um programa próprio para cada ESP32 de GA1, GA2 e GA3. A comunicação entre as placas deverá ocorrer através da ESP32 principal, que coordenará as informações globais e as interfaces de operação.</p>
-<p>Para a fase de implantação foi adotado o uso de protoboard e jumpers nas gavetas regionais, facilitando testes, alterações e validação das ligações antes de uma eventual substituição futura por montagem definitiva.</p>
-<p>Planejada, para etapa futura, a automação do processo de compilação, upload, abertura opcional do monitor serial e teste inicial por meio de ferramenta como Arduino CLI ou PlatformIO.</p>
 <p>Prosseguiram os testes de bancada da ESP32 e dos componentes associados, incluindo a identificação das ligações do servo SG90 e do seu conector padrão de três vias.</p>
 
 <p>Realizado teste individual dos 19 motores dos desvios com rotina carregada pela Arduino IDE, sendo todos aprovados no teste de acionamento.</p>
