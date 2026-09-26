@@ -159,6 +159,8 @@
     }
 
     @media (max-width: 700px) {
+    .nota-odebate { display: grid; grid-template-columns: minmax(0, 44%) minmax(0, 56%); gap: 30px; align-items: start; }
+    .nota-odebate img { display: block; width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--line); }
       main {
         padding: 26px 16px 44px;
       }
@@ -172,6 +174,7 @@
         gap: 24px;
       }
 
+      .nota-odebate { grid-template-columns: 1fr; gap: 24px; }
       .text {
         font-size: 1rem;
       }
@@ -194,15 +197,15 @@
 
 <main>
   <p class="voltar-inicio">
-    <a href="galeria-indice.html">← Voltar ao índice</a>
+    <a href="galeria-indice.html">← Voltar ao índice da galeria</a>
   </p>
 
-  <h1>Saída dos túneis</h1>
+  <h1>Saída do túnel</h1>
   <div class="conteudo-galeria">
     <figure>
       <img src="saida-do-tunel.jpg" alt="Região do curral com maciço de pedra, saída do túnel e linha férrea na maquete EFMN 74">
       <figcaption>
-        Região do curral, com o grande maciço de pedra ao fundo e a saída dos túneis.
+        Região do curral, com o grande maciço de pedra ao fundo e a saída do túnel à direita.
       </figcaption>
     </figure>
 
@@ -230,6 +233,11 @@
         não permitia colocar esse cenário em outro local.
       </p>
 
+  <div class="nota-odebate">
+    <figure>
+      <img src="odebate.jpg" alt="Outdoor O Debate junto à vegetação da maquete EFMN 74">
+    </figure>
+    <section class="text">
       <p>
         Nota: um pequeno detalhe à direita guarda uma lembrança especial. Junto à vegetação
         encontra-se um antigo outdoor onde se lê “O Debate”, referência ao tradicional jornal de Belo Horizonte/MG
@@ -237,6 +245,8 @@
         O detalhe foi colocado na maquete como uma homenagem ao meu pai, o jornalista
         Oswaldo Nobre.
       </p>
+    </section>
+  </div>
     </section>
 </main>
 
