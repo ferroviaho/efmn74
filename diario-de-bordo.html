@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Diário de Bordo temático da Ferrovia EFMN 74 em escala HO.">
+<meta name="description" content="Acompanhe a construção da Ferrovia EFMN 74 em escala HO: decisões sobre trilhos, desvios, sensores, automação com ESP32, gavetas de controle e cenários.">
 <title>Diário de Bordo — EFMN 74</title>
 <style>
 :root {
@@ -146,13 +146,13 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <article id="arquitetura">
 <h2>Arquitetura geral e automação</h2>
 <p><strong>Critério de registro:</strong> este item reúne a filosofia e as decisões de arquitetura que orientam toda a automação. A distribuição exata de entradas, saídas, rotinas e parâmetros de cada ESP32 será consolidada posteriormente na documentação técnica e no software específico da EFMN 74.</p>
-<p>Foi definida a arquitetura de automação para uma estrutura distribuída: a GCP — Gaveta de Controle Principal mantém a ESP32 principal e as funções centrais de supervisão e comunicação, enquanto GA1, GA2 e GA3 passam a possuir uma ESP32 própria para executar localmente os comandos e leituras de sua respectiva área.</p>
-<p>As ESP32 regionais deverão se comunicar com a ESP32 principal, evitando a concentração de toda a fiação de sensores e servos na GCP. Essa distribuição reduz a quantidade e o comprimento dos condutores de sinal, simplifica a manutenção e permite que cada área tenha firmware C++ próprio.</p>
+<p>Revisada a arquitetura de automação para uma estrutura distribuída: a GCP — Gaveta de Controle Principal mantém a ESP32 principal e as funções centrais de supervisão e comunicação, enquanto GA1, GA2 e GA3 passam a possuir uma ESP32 própria para executar localmente os comandos e leituras de sua respectiva área.</p>
+<p>As ESP32 regionais deverão se comunicar com a ESP32 principal, evitando a concentração de toda a fiação de sensores e servos na GCP. Essa distribuição reduz o comprimento dos condutores de sinal, simplifica a manutenção e permite que cada área tenha firmware C++ próprio.</p>
 <p>Estruturados os modos de operação Analógico e DCC, mantendo-se os dois sistemas para permitir a utilização das locomotivas analógicas existentes, a futura incorporação de locomotivas digitais DCC e possibilitar que amigos e visitantes possam operar a EFMN 74 de forma simples pelo modo analógico, sem as restrições e configurações próprias da operação digital; definidos também os conceitos dos painéis de controle, tablets e sinótico.</p>
 <p>Estruturadas rotas automáticas e estabelecidas regras para impedir rotas conflitantes.</p>
 <p>A maquete foi dividida em três áreas operacionais para simplificar a lógica de detecção: Área 1 — Serviços, compreendendo Estação, pátio de cargas, manutenção e rotunda; Área 2 — Túnel; Área 3 — Armazéns. O S1 atua como fronteira entre as Áreas 1 e 2 e o S2 como fronteira entre as Áreas 1 e 3.</p>
 <p>A localização de GA1, GA2 e GA3 deverá aproveitar a proximidade física com os desvios e sensores de cada área, reduzindo a quantidade e o comprimento da fiação de sinal e tornando testes, ajustes e manutenção mais simples.</p>
-<p>Durante a fase atual, todas as decisões operacionais, de segurança e de automação foram registradas. A separação posterior em rotinas de software será feita quando começar o desenvolvimento do programa.</p>
+<p>Durante a fase atual, todas as decisões operacionais, de segurança e de automação devem ser registradas. A separação posterior em rotinas de software será feita quando começar o desenvolvimento do programa.</p>
 <p>Definida a separação entre documentação técnica e sistema de controle: os documentos oficiais poderão ser fechados em DOCX/PDF, enquanto as interfaces operacionais serão desenvolvidas em HTML, CSS, JavaScript e SVG, comunicando-se com a lógica em C++ das ESP32.</p>
 </article>
 
@@ -161,16 +161,19 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <p><strong>Filosofia adotada:</strong> a alimentação deverá ser organizada de forma segura, protegida, setorizada e de fácil manutenção. Sequências exatas de ligação, cores, bitolas, bornes, terminais e demais detalhes físicos pertencem ao Projeto Elétrico e ao Projeto de Cabeamento da EFMN 74; quando citados neste Diário, permanecem como registro das decisões e experiências de montagem.</p>
 <p>Incorporado nobreak de 600 VA para aumentar a segurança da alimentação elétrica e adotado DPS antes do nobreak como proteção adicional.</p>
 <p>Instalados e organizados os barramentos de L1, L2, +5 V e GND.</p>
-<p>Instaladas barras Sindal abaixo da mesa para melhorar a distribuição da alimentação das linhas L1 e L2, reduzir mau contato e facilitar derivações e manutenção.</p>
+<p>Instaladas barras duplas, abaixo da mesa, de conectores Sindal nos barramentos de L1 e L2 para melhorar a distribuição da alimentação, reduzir mau contato e facilitar derivações e manutenção.</p>
+<p>Iniciado o detalhamento da alimentação elétrica das gavetas, partindo da tomada de energia e do nobreak.</p>
 <p>Mantido em estudo o detalhamento definitivo do percurso de alimentação entre nobreak, proteção, chave geral, indicação, fontes e ESP32; a sequência final deverá ser consolidada no projeto elétrico antes de ser adotada como referência de montagem.</p>
 <p>Definido barramento principal em corrente contínua para distribuir alimentação às gavetas, com derivações individuais de positivo e negativo.</p>
 <p>Detalhadas cores e bitolas dos condutores, utilização de terminais tipo garfo nos bornes das fontes e procedimento de crimpagem.</p>
+<p>Em 28/09/2026 foi adotada a sigla PIP para identificar o Protetor de Inversão de Polaridade. O módulo foi instalado na GA3, com identificação dos bornes de entrada e saída e montagem afastada da base por espaçadores. Sua função é a proteção contra inversão de polaridade; a proteção contra curto e sobrecorrente deverá ser tratada separadamente no projeto elétrico.</p>
+<p>Em 02/10/2026 foram concluídas as ligações da saída positiva do PIP ao contato COM do relé e do contato NO ao Sindal de distribuição de +5 V dos servos. O fio vermelho de potência foi encaminhado por baixo da base para encurtar o percurso. A montagem permanece aguardando conferência elétrica antes da energização.</p>
 </article>
 
 <article id="gavetas">
 <h2>Gavetas de controle e eletrônica</h2>
 <p><strong>Filosofia adotada:</strong> as funções da ferrovia serão distribuídas em gavetas especializadas para facilitar organização, manutenção, testes e futuras alterações. Dimensões, tensões, fusíveis, conectores, módulos e disposição física registrados a seguir são características específicas da EFMN 74 e deverão ser consolidados nos projetos elétrico, eletrônico e mecânico correspondentes.</p>
-<p>As gavetas foram definidas e distribuidas de acorddo com as áreas da maquete e são:</p>
+<p>As gavetas foram definidas e distribuídas de acordo com as áreas da maquete e são:</p>
 <ul>
 <li>GCP — Gaveta de Controle Principal: alimentação, proteção, distribuição de energia, seleção dos modos Analógico/DCC, ESP32 principal, comunicação com as ESP32 das áreas e funções centrais de controle, incluindo a integração das interfaces de tablet, TV e sinótico.</li>
 <li>GA1 — Gaveta Área 1: atende a Área 1 — Serviços, incluindo Estação, pátio de cargas, manutenção e rotunda; concentra a ESP32 da área, os sinais dos sensores, o acionamento dos desvios e as funções de iluminação e som correspondentes à Área 1.</li>
@@ -180,36 +183,46 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 </ul>
 <p>Em 17/09/2026 foi iniciada a montagem física da GA3, com o corte da base de MDF nas dimensões de 34 × 45 cm.</p>
 <p>Para reduzir os gastos nesta etapa, será utilizada inicialmente a ESP32 da bancada de testes.</p>
-<p>Foram adquiridos uma protoboard de 830 pontos, 30 metros de fio 22 AWG e uma fonte chaveada provisória de 5 V e 10 A para a montagem e os testes da gaveta. Após conclusão da gaveta de controle esta fonte será guardada como sobressalente</p>
-<p>Na GA3, a ESP32 e os componentes eletrônicos de conexão serão instalados na protoboard durante a fase de testes e validação.</p>
-<p>Os módulos MOSFET e o buzzer serão fixados diretamente na base da gaveta. Os MOSFETs serão utilizados no comando das cargas de iluminação e som.</p>
-<p>A alimentação dos servos será fornecida pelo barramento de +5 V comutado, mantendo os fios de sinal ligados à ESP32 da GA3.</p>
-<p>A antiga GIS — Gaveta de Iluminação e Som foi cancelada. Seus componentes e funções serão distribuídos e setorizados entre GA1, GA2 e GA3 conforme a área correspondente. A GAR permanece como está e não recebe essa redistribuição.</p>
+<p>Foram adquiridos uma protoboard de 830 pontos, 30 metros de fio 22 AWG e uma fonte chaveada provisória de 5 V e 10 A para a montagem e os testes da gaveta. Após a conclusão da gaveta de controle, esta fonte será guardada como sobressalente.</p>
+<p>Após a revisão do layout da GA3 em 30/09/2026, a ESP32 passou a ser montada fora da protoboard, em posição elevada sobre a base, com os pinos voltados para baixo e espaço para conectar os jumpers. A protoboard permanece destinada aos resistores, jumpers, buzzer e conexões de sinal durante a fase de testes e validação.</p>
+<p>Os módulos MOSFET serão usados no comando de iluminação e outras cargas. O buzzer foi incluído para avisos sonoros durante os testes e a operação.</p>
+<p>Na revisão de 30/09/2026 foi definido um único módulo relé para ligar e desligar em conjunto a alimentação de +5 V dos cinco servos da GA3. O GND permanece comum e cada servo mantém seu sinal individual de comando proveniente da ESP32. O relé comuta a alimentação, enquanto os GPIOs comandam individualmente os movimentos. Os módulos MOSFET ficam destinados à iluminação e a outras cargas.</p>
+<p>A antiga GIS/GCI — Gaveta de Iluminação e Som foi cancelada. Seus componentes e funções serão distribuídos e setorizados entre GA1, GA2 e GA3 conforme a área correspondente. A GAR permanece como está e não recebe essa redistribuição.</p>
 <p>As dimensões de 50 × 40 cm, com placa de montagem de 48 × 38 cm, permanecem como referência das gavetas já estudadas.</p> 
   <p>Em 08/09/2026 foi adquirido um rack deslizante do tipo utilizado para teclado para avaliar uma solução de suporte mais simples, com largura ajustável e altura útil de aproximadamente 15 cm, evitando depender da fabricação de gavetas por marceneiro. A adoção definitiva desse suporte ainda depende da avaliação prática de montagem.</p>
 <p>O painel frontal das gavetas deve conter chave liga/desliga, LED verde de indicação de energização e fusível de proteção, com valor definitivo a ser estabelecido conforme a carga de cada módulo no projeto elétrico.</p>
-<p>O barramento de +5 V e GND já instalado em toda a ferrovia será utilizado como alimentação comum dos sensores e servos, proveniente da fonte localizada na GCP. Os sinais individuais permanecem setorizados e seguem para a ESP32 da área correspondente.</p>
+<p>O barramento de +5 V e GND já instalado em toda a ferrovia será utilizado como origem da alimentação dos sensores e servos, proveniente da fonte localizada na GCP. Na GA3, a derivação de +5 V destinada aos cinco servos passa pelo conjunto de proteção e pelo contato do relé antes da distribuição local; o GND permanece comum. Os sinais individuais permanecem setorizados e seguem para a ESP32 da área correspondente.</p>
 <p>Finalizada a GAR reserva, equipada com reostatos Frateschi, destinada a servir como alternativa temporária ao controle analógico principal em caso de necessidade.</p>
+<p>Também foram revisadas as ligações entre fonte, reostato e chave de comando do conjunto analógico, com identificação dos bornes de entrada e saída e da polaridade correspondente.</p>
+<p>O layout da GA3 foi reorganizado com os conectores Sindal na parte frontal, o PIP do lado da entrada de alimentação e o relé próximo do percurso de alimentação dos servos. Foram separados os pontos de entrada de energia, os sinais dos sensores, os sinais individuais dos servos e a distribuição de alimentação.</p>
+<p>Durante a montagem foi avaliada uma protoboard maior, de aproximadamente 1.660 pontos. A mudança do suporte da ESP32 passou a permitir sua instalação fora da protoboard; a quantidade de pontos necessária deverá ser avaliada conforme as conexões efetivamente utilizadas, sem tratar a placa maior como exigência geral para as demais gavetas.</p>
+<p>A GA3 atenderá os cinco desvios D5, D6, D8, D9 e D10 e os cinco sensores S10 a S14. Os sinais dos sensores e dos servos chegam aos conectores locais e são interligados à ESP32 por meio das conexões da protoboard e dos jumpers correspondentes.</p>
+<p>Em 02/10/2026 avançaram as ligações entre a protoboard e a ESP32, incluindo as conexões de GND. A montagem foi pausada antes da conferência completa e dos testes funcionais do conjunto.</p>
 </article>
 
 <article id="esp32">
 <h2>ESP32, Arduino e programação</h2>
-<p><strong>Filosofia adotada:</strong> a lógica de controle será desenvolvida de forma modular, com responsabilidades claramente distribuídas entre as ESP32 e firmware próprio para cada placa. Informações de bancada, portas de comunicação, testes e procedimentos de gravação permanecem no Diário como histórico de desenvolvimento. A estrutura definitiva do programa será descrita na documentação de software.</p>
+<p><strong>Filosofia adotada:</strong> a lógica de controle será desenvolvida de forma modular, com responsabilidades claramente distribuídas entre as ESP32 e firmware próprio para cada placa. Informações de bancada, portas de comunicação, testes e procedimentos de gravação permanecem no Diário como histórico de desenvolvimento; a estrutura definitiva do programa será descrita na documentação de software.</p>
 <p>Adotada a plataforma Arduino como ambiente de desenvolvimento para a programação das ESP32 utilizadas na automação da ferrovia.</p>
 <p>A programação será desenvolvida em C++, linguagem utilizada no ambiente Arduino para a criação das rotinas de controle, leitura dos sensores, acionamento dos desvios, controle das locomotivas, áudio e demais funções do sistema.</p>
-<p>O estudo da linguagem C, pelo ferromodelista, contribui para a compreensão dos conceitos fundamentais de programação, como variáveis, condições, comandos, funções e estruturas de controle e facilita posteriormente o entendimento da programação em C++ aplicada à plataforma Arduino.</p>
-<p>Desenvolvido uma plataforma provisória pata testar motores e sensores.</p>
+<p>O estudo da linguagem C contribuiu para a compreensão dos conceitos fundamentais de programação, como variáveis, condições, comandos, funções e estruturas de controle, facilitando posteriormente o entendimento da programação em C++ aplicada à plataforma Arduino.</p>
+<p>Desenvolvido o conceito do testador TTD-01 para motores e sensores.</p>
 <p>Realizados testes da ESP32 em protoboard, com reconhecimento pelo computador e verificação da saída digital pelo GPIO 25.</p>
 <p>O computador reconheceu a ESP32 como “USB-Enhanced-SERIAL CH9102 (COM3)”.</p>
 <p>Definidas as ligações do servo SG90 de três fios, distinguindo alimentação, GND e sinal de comando proveniente da ESP32; o acionamento do servo não utiliza módulo DRV8871.</p>
 <p>Definido o procedimento de atualização do firmware: salvar as alterações, compilar na IDE Arduino, fazer o upload na ESP32 correspondente, confirmar a gravação sem erros e executar teste funcional.</p>
-<p>Planejada, para etapa futura, a automação do processo de compilação, upload, abertura opcional do monitor serial e teste inicial por meio de ferramenta como Arduino CLI ou PlatformIO.</p>
 <p>Cada ESP32 terá seu próprio firmware e será gravada individualmente. Alterações que afetem apenas uma placa não exigem regravação das demais.</p>
 <p>Na arquitetura distribuída, haverá um programa C++ específico para a ESP32 principal e um programa próprio para cada ESP32 de GA1, GA2 e GA3. A comunicação entre as placas deverá ocorrer através da ESP32 principal, que coordenará as informações globais e as interfaces de operação.</p>
+<p>Para a fase de implantação foi adotado o uso de protoboard e jumpers nas gavetas regionais, facilitando testes, alterações e validação das ligações antes de uma eventual substituição futura por montagem definitiva.</p>
+<p>Planejada, para etapa futura, a automação do processo de compilação, upload, abertura opcional do monitor serial e teste inicial por meio de ferramenta como Arduino CLI ou PlatformIO.</p>
+<p>Na etapa anterior da montagem da GA3 foram instalados resistores e jumpers na protoboard e realizadas conferências com multímetro. Essas verificações pertencem à montagem anterior e não substituem a conferência completa das ligações após a revisão do layout. A placa de expansão adquirida para facilitar o acesso aos pinos da ESP32 apresentou incompatibilidade de encaixe e não foi adotada na montagem atual.</p>
 <p>Prosseguiram os testes de bancada da ESP32 e dos componentes associados, incluindo a identificação das ligações do servo SG90 e do seu conector padrão de três vias.</p>
 
 <p>Realizado teste individual dos 19 motores dos desvios com rotina carregada pela Arduino IDE, sendo todos aprovados no teste de acionamento.</p>
 <p>Nos testes de ajuste do servo SG90 instalado em um desvio, confirmou-se que os valores de posição não devem ser considerados universais. Cada desvio deverá ser calibrado individualmente após a instalação, porque o curso necessário depende da geometria da haste de acionamento, da distância entre servo e desvio e da posição/orientação do braço acoplado ao eixo. Em um dos testes, a faixa 67–97 produziu acionamento adequado, permanecendo como referência apenas daquele conjunto específico.</p>
+<p>A ESP32 utilizada na montagem atual da GA3 é uma placa de 30 pinos. Foi adotado suporte elevado com espaçadores, para permitir acesso aos conectores fêmea dos jumpers por baixo da placa.</p>
+<p>Em 02/10/2026 foi definida a ligação da entrada IN1 do módulo relé ao pino D13, correspondente ao GPIO 13 da ESP32. A execução dessa ligação ainda deverá ser confirmada. Essa atribuição deverá constar do mapeamento da GA3 e do firmware, depois da conferência da montagem.</p>
+<p>O registro definitivo de cada ligação deverá distinguir o número do furo da protoboard da identificação do GPIO da ESP32, incluindo origem, destino, função e cor do condutor, para evitar ambiguidades durante os testes e a manutenção.</p>
 </article>
 
 <div style="margin: 24px 0 30px;">
@@ -326,9 +339,10 @@ loading="lazy">
 <p>Estudada a instalação física do sensor Hall entre os dormentes, preferencialmente deitado e próximo da parte inferior da locomotiva, para garantir detecção segura da passagem.</p>
 <p>Nota: para detalhes sobre a instalação física dos sensores Hall procurar o item “Instalação dos sensores Hall nas 19 posições de detecção e automação”, disponível em “Técnicas de Construção”.</p>
 
+<p>Na montagem da GA3 foram utilizados resistores de pull-up de 4,7 kΩ para os sinais dos cinco sensores. O pull-up dos sinais destinados à ESP32 deve ter como referência 3,3 V, mantendo separada a alimentação de +5 V dos sensores. As ligações e a ausência de contato indevido com +5 V serão conferidas antes da energização.</p>
 </article>
 
-<article id="vocidade">
+<article id="velocidade">
 <h2>Locomotivas, composições e velocidade</h2>
 <p><strong>Filosofia adotada:</strong> a velocidade permitida deverá resultar sempre da condição mais restritiva aplicável entre locomotiva, composição/carga, trecho e situação operacional. Valores individuais e tabelas de limites serão tratados como dados de cadastro e parâmetros específicos da EFMN 74, e não como regras gerais do Diário.</p>
 <p>Definidos critérios para o futuro controle de velocidade considerando simultaneamente os limites da locomotiva, da composição ou carga e do trecho percorrido.</p>
@@ -387,6 +401,7 @@ loading="lazy">
 <p>Os comandos e a comunicação com o Tablet de Controle de Mão e com a TV permanecem centralizados na GCP, por meio da ESP32 principal e da lógica de supervisão do sistema.</p>
 <p>A TV poderá ser ligada a qualquer momento. O sistema deverá identificá-la, testar a comunicação e enviar automaticamente o painel sinótico. Falha de comunicação com a TV será registrada e informada ao operador, mas não impedirá a operação.</p>
 <p>O desenho do sinótico será preparado em SVG, com elementos identificáveis para linhas, desvios, sensores, regiões, indicadores e botões, permitindo alteração dinâmica de estados e destaque da rota selecionada.</p>
+<p>Em 24/09/2026 foi informada a falha do tablet Apple utilizado no projeto. A escolha de um substituto de menor custo, adequado ao painel de operação, permanece pendente.</p>
 </article>
 
 <article id="sinaleiros">
@@ -396,6 +411,7 @@ loading="lazy">
 <p>Os AMVs de transição entre L1 e L2, nos sentidos LO e OL, utilizarão inicialmente quatro sinais por AMV, totalizando oito sinais principais no trecho do Túnel.</p>
 <p>Os LEDs utilizarão barramento local de +5 V e GND, resistor de 330 Ω em série e um fio individual de comando.</p>
 <p>Previsto o uso do módulo PCA9685 para iluminação de casas, galpões, postes, efeitos de iluminação e controle de brilho por PWM. Com o cancelamento da gaveta dedicada de Iluminação e Som, os componentes de iluminação serão distribuídos entre GA1, GA2 e GA3 conforme a área física correspondente.</p>
+<p>Em 02/10/2026 foram recebidos dez módulos anunciados como Dual MOSFET, destinados ao comando da iluminação. A etiqueta informa alimentação de 5 a 36 V. A identificação dos bornes, a compatibilidade da entrada de comando com 3,3 V da ESP32 e a capacidade efetiva para as cargas previstas ainda serão verificadas antes da utilização; os valores anunciados não constituem resultado de teste.</p>
 </article>
 
 <article id="inicializacao">
@@ -417,14 +433,19 @@ loading="lazy">
 <p>Antes de energizar a via, o sistema verificará ausência de curto e sobrecorrente, o estado dos sensores disponíveis e a coerência das posições comandadas dos desvios com as condições de segurança conhecidas pelo sistema. Somente após aprovação completa os trilhos serão energizados e será apresentada a mensagem “FERROVIA LIBERADA PARA OPERAÇÃO”.</p>
 <p>No modo Digital/DCC, a aprovação dos testes gerais da ferrovia não elimina o travamento específico de partida da composição: locomotiva, posição inicial e sentido deverão estar definidos e, quando a composição estiver fora da Estação, deverá ser concluído o retorno seguro à Estação antes da apresentação das rotas disponíveis.</p>
 <p>Todos os eventos relevantes serão registrados com data, hora, região, equipamento, descrição e resultado da operação.</p>
+<p>Em 02/10/2026 foi decidido conferir a montagem atual da GA3 antes de acrescentar novas conexões ou ligar a fonte. A conferência será feita com a fonte e o USB da ESP32 desconectados, verificando uma ligação por vez com o multímetro, incluindo continuidade dos condutores, polaridade e possíveis curtos.</p>
+<p>A verificação sem alimentação permite conferir a fiação e procurar curtos, mas não comprova o funcionamento da ESP32, do relé, dos sensores ou dos servos. Após a aprovação dessa etapa, os testes energizados serão realizados progressivamente. Apitos momentâneos de continuidade deverão ser interpretados considerando os componentes conectados, sem concluir automaticamente que existe curto.</p>
+<p>A conferência completa e os testes funcionais da montagem atual da GA3 permanecem pendentes. O teste individual dos servos deverá começar pelo desvio D6, com as ligações previstas para a montagem, antes dos testes do conjunto.</p>
 </article>
 
 <article id="site">
 <h2>Site, Manual e documentação</h2>
 <p><strong>Critério documental:</strong> o Diário de Bordo registra a evolução, as decisões e a filosofia do projeto — o que foi decidido e por quê. A Especificação Operacional da EFMN 74 deverá registrar exatamente como esta ferrovia deve se comportar; os Projetos Elétrico, Eletrônico e de Cabeamento registrarão como está fisicamente ligada; e a documentação de software descreverá como as regras serão implementadas em C++.</p>
 <p>Implantada a alternância automática das fotografias da capa e ajustado para 4 segundos o tempo de exibição.</p>
+<p>O site passou a ser acompanhado pelo Google Search Console. Foi discutido o uso do sitemap para facilitar a descoberta das páginas e planejada a revisão gradual das descrições de cada página para os resultados de busca. A descrição da página “Pintura com aerógrafo” foi revisada.</p>
 <p>Revisado o formulário de Contato e ajustado o envio das mensagens.</p>
-<p>Registrado o domínio próprio efmn74.com.br, ficando sua configuração para acesso ao site sem o endereço do GitHub como etapa de implantação.</p>
+<p>Foram acrescentados à página inicial os links para Documentação e Downloads. As duas páginas foram preparadas para apresentar os materiais disponíveis e previstos.</p>
+<p>Configurado o domínio próprio ferroviaho.com.br para acesso ao site, incluindo a versão com www.</p>
 <p>O Diário de Bordo deixa de ter a data como estrutura principal e passa a reunir as informações por tema, permitindo que cada assunto seja consultado isoladamente.</p>
 <p>Quando tiver início o desenvolvimento do software, este Diário deverá ser utilizado como uma das fontes para separar as decisões registradas em requisitos, rotinas, regras de segurança e exceções operacionais.</p>
 <p>Definido um conjunto de documentos técnicos do projeto, incluindo a Especificação Operacional da Ferrovia EFMN 74, Especificação Funcional, Procedimento de Inicialização e Operação, Manuais do Operador, Manutenção e Instalação, Projetos Elétrico, Eletrônico e de Cabeamento, Tabela Mestre de Componentes, Lista de Materiais, Manuais de Software e Interface Web, Plano e Relatório de Testes, Registro de Decisões, Plano de Manutenção Preventiva, Plano de Recuperação de Falhas e Índice Geral da Documentação.</p>
@@ -437,6 +458,12 @@ loading="lazy">
 <p>Estruturado o curso “Automação da Ferrovia com Arduino e C++”, dividido em três níveis: Básico, Intermediário e Avançado, com conteúdo direcionado à aplicação prática na própria ferrovia.</p>
 <p>Definido que cada capítulo do curso será disponibilizado em PDF, contendo introdução, objetivo, meta e exercício prático relacionado a situações da ferrovia; os primeiros capítulos do nível Básico passaram a ser preparados no padrão visual adotado para o projeto.</p>
 <p>Na abertura do curso, adotada a proposta de aprendizado do tipo “faça você mesmo”, registrando que a automação foi desenvolvida passo a passo mesmo sem conhecimento inicial de Arduino e C++, com orientação da inteligência artificial GPT.</p>
+<p>Criada a conta de divulgação no Instagram, com identificação @efmn74, e incluído seu link no rodapé da página inicial. Foi adotada a proposta de divulgação simples, com fotografias e resumos das técnicas e dos avanços da construção, em intervalos de aproximadamente três a quatro dias.</p>
+<p>Criado o estudo preliminar dos sensores e incluído seu acesso na página Documentação. Também foi criada a página sobre piso de pedra tipo pé-de-moleque.</p>
+<p>Prosseguiram as revisões das páginas sobre posicionamento da cabine de sinalização, construção da cabine, saída do túnel, instalação dos sensores Hall e curso de automação, com ajustes de fotografias, legendas, disposição dos textos e navegação. Na ilustração da instalação Hall foi indicada a ressalva de que o trilho não deve ser cortado.</p>
+<p>Ampliada a revisão de metadados e descrições das páginas do site, incluindo os conteúdos técnicos e o telhado de zinco. A automatização da atualização do sitemap permanece prevista para uma etapa futura.</p>
+<p>Prosseguiram os estudos do painel panorâmico para impressão atrás da maquete, com composição de fotografias, ajustes de montanhas e céu e divisão em três partes com continuidade visual. A proposta foi ampliada para aproximadamente 2,40 m de largura por 0,70 m de altura, com resolução prevista de 150 dpi.</p>
+<p>Em 30/09/2026 foi decidido reescrever o documento de montagem da GA3 após a revisão de seu layout. O detalhamento de bornes, furos, GPIOs, cores e percursos será consolidado nesse documento técnico, mantendo o Diário como registro da evolução e das decisões do projeto.</p>
 </article>
 
 <article id="materiais">
@@ -444,9 +471,10 @@ loading="lazy">
 <p>Adquirido desumidificador para reduzir a umidade e auxiliar na proteção da maquete e dos componentes.</p>
 <p>Atualizada a página “Onde comprar” com novos fornecedores e realizadas pesquisas de desvios em escala HO, incluindo modelos Frateschi, Peco e Atlas.</p>
 <p>O ambiente onde está sendo montada a ferrovia possui 20 m² e o comprimento de trilhos instalado até o momento é de aproximadamente 47 metros lineares.</p>
+<p>Foi recebido o módulo relé de 3,3 V destinado à montagem da GA3. Em 02/10/2026 também foram recebidos dez módulos MOSFET para os estudos e a implantação da iluminação setorizada.</p>
 </article>
 
-<!-- Revisão geral incorporando decisões até 09/09/2026 -->
+<!-- Diário atualizado em 02/10/2026 -->
 <!-- ===== INSERIR NOVAS DECISÕES NO TEMA CORRESPONDENTE ===== -->
 
 <p class="voltar-final">
@@ -457,5 +485,3 @@ loading="lazy">
 
 </body>
 </html>
-
-Página 27 de 27
