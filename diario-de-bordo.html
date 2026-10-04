@@ -159,15 +159,15 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 
 <article id="energia">
 <h2>Alimentação elétrica e proteção</h2>
-<p><strong>Filosofia adotada:</strong> a alimentação deverá ser organizada de forma segura, protegida, setorizada e de fácil manutenção. Sequências exatas de ligação, cores, bitolas, bornes, terminais e demais detalhes físicos pertencem ao Projeto Elétrico e ao Projeto de Cabeamento da EFMN 74; quando citados neste Diário, permanecem como registro das decisões e experiências de montagem.</p>
+<p><strong>Filosofia adotada:</strong> a alimentação deverá ser organizada de forma segura, protegida, setorizada e de fácil manutenção. Sequências exatas de ligação, cores, bitolas, bornes, terminais e demais detalhes físicos pertencem ao Projeto Elétrico e ao Projeto de Cabeamento da EFMN 74. Quando citados neste Diário, permanecem como registro das decisões e experiências de montagem.</p>
 <p>Incorporado nobreak de 600 VA para aumentar a segurança da alimentação elétrica e adotado DPS antes do nobreak como proteção adicional.</p>
 <p>Instalados e organizados os barramentos de L1, L2, +5 V e GND.</p>
 <p>Instaladas barras duplas, abaixo da mesa, de conectores Sindal nos barramentos de L1 e L2 para melhorar a distribuição da alimentação, reduzir mau contato e facilitar derivações e manutenção.</p>
-<p>Iniciado o detalhamento da alimentação elétrica das gavetas, partindo da tomada de energia e do nobreak.</p>
+
 <p>Mantido em estudo o detalhamento definitivo do percurso de alimentação entre nobreak, proteção, chave geral, indicação, fontes e ESP32; a sequência final deverá ser consolidada no projeto elétrico antes de ser adotada como referência de montagem.</p>
-<p>Definido barramento principal em corrente contínua para distribuir alimentação às gavetas, com derivações individuais de positivo e negativo.</p>
+
 <p>Detalhadas cores e bitolas dos condutores, utilização de terminais tipo garfo nos bornes das fontes e procedimento de crimpagem.</p>
-<p>Em 28/09/2026 foi adotada a sigla PIP para identificar o Protetor de Inversão de Polaridade. O módulo foi instalado na GA3. Sua função é a proteção contra inversão de polaridade; a proteção contra curto e sobrecorrente deverá ser tratada separadamente no projeto elétrico.</p>
+<p>Em 28/09/2026 foi adotada a sigla PIP para identificar o Protetor de Inversão de Polaridade. O módulo foi instalado na GA3. Sua função é a proteção contra inversão de polaridade. A proteção contra curto e sobrecorrente deverá ser tratada separadamente no projeto elétrico.</p>
 <p>Em 02/10/2026 avançou a montagem do circuito de alimentação dos servos da GA3. A montagem permanece aguardando conferência elétrica antes da energização.</p>
 </article>
 
@@ -177,29 +177,25 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <p>As gavetas foram definidas e distribuídas de acordo com as áreas da maquete e são:</p>
 <ul>
 <li>GCP — Gaveta de Controle Principal: alimentação, proteção, distribuição de energia, seleção dos modos Analógico/DCC, ESP32 principal, comunicação com as ESP32 das áreas e funções centrais de controle, incluindo a integração das interfaces de tablet, TV e sinótico.</li>
-<li>GA1 — Gaveta Área 1: atende a Área 1 — Serviços, incluindo Estação, pátio de cargas, manutenção e rotunda; concentra a ESP32 da área, os sinais dos sensores, o acionamento dos desvios e as funções de iluminação e som correspondentes à Área 1.</li>
-<li>GA2 — Gaveta Área 2: atende a Área 2 — Túnel; concentra a ESP32 da área, os sinais dos sensores, o acionamento dos desvios e as funções de iluminação e som correspondentes à Área 2.</li>
-<li>GA3 — Gaveta Área 3: atende a Área 3 — Armazéns; concentra a ESP32 da área, os sinais dos sensores, o acionamento dos desvios e as funções de iluminação e som correspondentes à Área 3.</li>
+<li>GA1 — Gaveta Área 1: atende a Área 1 — Serviços, incluindo Estação, pátio de cargas, manutenção e rotunda. Concentra a ESP32 da área, os sinais dos sensores, o acionamento dos desvios e as funções de iluminação e som correspondentes à Área 1.</li>
+<li>GA2 — Gaveta Área 2: atende a Área 2 — Túnel. Concentra a ESP32 da área, os sinais dos sensores, o acionamento dos desvios e as funções de iluminação e som correspondentes à Área 2.</li>
+<li>GA3 — Gaveta Área 3: atende a Área 3 — Armazéns. Concentra a ESP32 da área, os sinais dos sensores, o acionamento dos desvios e as funções de iluminação e som correspondentes à Área 3.</li>
 <li>GAR — Gaveta Analógica e Rotunda: controle da alimentação e operação analógica das linhas, incluindo fonte CC, reostato/PWM e seleção de sentido dos trilhos, além das funções relacionadas à Rotunda.</li>
 </ul>
-<p>Em 17/09/2026 foi iniciada a montagem física da GA3, com o corte da base de MDF nas dimensões de 34 × 45 cm.</p>
-<p>Para reduzir os gastos nesta etapa, será utilizada inicialmente a ESP32 da bancada de testes.</p>
-<p>Foram adquiridos uma protoboard de 830 pontos, 30 metros de fio 22 AWG e uma fonte chaveada provisória de 5 V e 10 A para a montagem e os testes da gaveta. Após a conclusão da gaveta de controle, esta fonte será guardada como sobressalente.</p>
+<p>Em 17/09/2026 foi iniciada a montagem física da GA3.</p>
 <p>Após a revisão do layout da GA3 em 30/09/2026, a ESP32 passou a ser montada fora da protoboard.</p>
-<p>Os módulos MOSFET serão usados no comando de iluminação e outras cargas. O buzzer foi incluído para avisos sonoros durante os testes e a operação.</p>
 <p>Na revisão de 30/09/2026 foi definido um único módulo relé para ligar e desligar em conjunto a alimentação de +5 V dos cinco servos da GA3. Os módulos MOSFET ficam destinados à iluminação e a outras cargas.</p>
 <p>A antiga GIS/GCI — Gaveta de Iluminação e Som foi cancelada. Seus componentes e funções serão distribuídos e setorizados entre GA1, GA2 e GA3 conforme a área correspondente. A GAR permanece como está e não recebe essa redistribuição.</p>
-<p>As dimensões de 50 × 40 cm, com placa de montagem de 48 × 38 cm, permanecem como referência das gavetas já estudadas.</p> 
+
   <p>Em 08/09/2026 foi adquirido um rack deslizante do tipo utilizado para teclado para avaliar uma solução de suporte mais simples, com largura ajustável e altura útil de aproximadamente 15 cm, evitando depender da fabricação de gavetas por marceneiro. A adoção definitiva desse suporte ainda depende da avaliação prática de montagem.</p>
 <p>Em 02/10/2026 foi definido que todas as gavetas serão energizadas simultaneamente pela GCP, onde já existem a chave geral e o LED de indicação de energização. As gavetas de área não precisam de chave liga/desliga nem de LED próprios para essa função. A proteção por fusível permanece prevista, com valor definitivo a ser estabelecido conforme a carga e os condutores de cada circuito no projeto elétrico.</p>
 <p>O barramento de +5 V e GND já instalado em toda a ferrovia será utilizado como origem da alimentação dos sensores e servos, proveniente da fonte localizada na GCP.</p>
 <p>Finalizada a GAR reserva, equipada com reostatos Frateschi, destinada a servir como alternativa temporária ao controle analógico principal em caso de necessidade.</p>
-<p>Também foram revisadas as ligações entre fonte, reostato e chave de comando do conjunto analógico, com identificação dos bornes de entrada e saída e da polaridade correspondente.</p>
+
 <p>O layout da GA3 foi reorganizado para facilitar as conexões, a conferência e a manutenção.
 </p>
 <p>Os detalhes da montagem e da conferência da GA3 serão apresentados no documento “Um passo-a-passo para montar a GA3”, atualmente em elaboração.</p>
-<p>Durante a montagem foi avaliada uma protoboard maior, de aproximadamente 1.660 pontos. A mudança do suporte da ESP32 passou a permitir sua instalação fora da protoboard; a quantidade de pontos necessária deverá ser avaliada conforme as conexões efetivamente utilizadas, sem tratar a placa maior como exigência geral para as demais gavetas.</p>
-<p>A GA3 atenderá os cinco desvios D5, D6, D8, D9 e D10 e os cinco sensores S10 a S14.</p>
+
 <p>Em 02/10/2026 avançaram as ligações entre a protoboard e a ESP32, incluindo as conexões de GND. A montagem foi pausada antes da conferência completa e dos testes funcionais do conjunto.</p>
 </article>
 
@@ -208,7 +204,7 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <p><strong>Filosofia adotada:</strong> a lógica de controle será desenvolvida de forma modular, com responsabilidades claramente distribuídas entre as ESP32 e firmware próprio para cada placa. Informações de bancada, portas de comunicação, testes e procedimentos de gravação permanecem no Diário como histórico de desenvolvimento; a estrutura definitiva do programa será descrita na documentação de software.</p>
 <p>Adotada a plataforma Arduino como ambiente de desenvolvimento para a programação das ESP32 utilizadas na automação da ferrovia.</p>
 <p>A programação será desenvolvida em C++, linguagem utilizada no ambiente Arduino para a criação das rotinas de controle, leitura dos sensores, acionamento dos desvios, controle das locomotivas, áudio e demais funções do sistema.</p>
-<p>O estudo da linguagem C contribuiu para a compreensão dos conceitos fundamentais de programação, como variáveis, condições, comandos, funções e estruturas de controle, facilitando posteriormente o entendimento da programação em C++ aplicada à plataforma Arduino.</p>
+<p>O estudo da linguagem C, pelo ferromodelista, contribui para a compreensão dos conceitos fundamentais de programação, como variáveis, condições, comandos, funções e estruturas de controle, facilitando posteriormente o entendimento da programação em C++ aplicada à plataforma Arduino.</p>
 <p>Desenvolvido o conceito do testador TTD-01 para motores e sensores.</p>
 <p>Realizados testes da ESP32 em protoboard, com reconhecimento pelo computador e verificação da saída digital pelo GPIO 25.</p>
 <p>O computador reconheceu a ESP32 como “USB-Enhanced-SERIAL CH9102 (COM3)”.</p>
@@ -218,12 +214,12 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <p>Na arquitetura distribuída, haverá um programa C++ específico para a ESP32 principal e um programa próprio para cada ESP32 de GA1, GA2 e GA3. A comunicação entre as placas deverá ocorrer através da ESP32 principal, que coordenará as informações globais e as interfaces de operação.</p>
 <p>Para a fase de implantação foi adotado o uso de protoboard e jumpers nas gavetas regionais, facilitando testes, alterações e validação das ligações antes de uma eventual substituição futura por montagem definitiva.</p>
 <p>Planejada, para etapa futura, a automação do processo de compilação, upload, abertura opcional do monitor serial e teste inicial por meio de ferramenta como Arduino CLI ou PlatformIO.</p>
-<p>Na etapa anterior da montagem da GA3 foram instalados resistores e jumpers na protoboard e realizadas conferências com multímetro. Essas verificações pertencem à montagem anterior e não substituem a conferência completa das ligações após a revisão do layout. A placa de expansão adquirida para facilitar o acesso aos pinos da ESP32 apresentou incompatibilidade de encaixe e não foi adotada na montagem atual.</p>
+
 <p>Prosseguiram os testes de bancada da ESP32 e dos componentes associados, incluindo a identificação das ligações do servo SG90 e do seu conector padrão de três vias.</p>
 
 <p>Realizado teste individual dos 19 motores dos desvios com rotina carregada pela Arduino IDE, sendo todos aprovados no teste de acionamento.</p>
 <p>Nos testes de ajuste do servo SG90 instalado em um desvio, confirmou-se que os valores de posição não devem ser considerados universais. Cada desvio deverá ser calibrado individualmente após a instalação, porque o curso necessário depende da geometria da haste de acionamento, da distância entre servo e desvio e da posição/orientação do braço acoplado ao eixo. Em um dos testes, a faixa 67–97 produziu acionamento adequado, permanecendo como referência apenas daquele conjunto específico.</p>
-<p>A ESP32 utilizada na montagem atual da GA3 é uma placa de 30 pinos.</p>
+
 
 
 </article>
@@ -307,9 +303,10 @@ loading="lazy">
 </article>
 <article id="desvios">
 <h2>Desvios e segurança de rotas</h2>
-<p><strong>Filosofia adotada:</strong> o operador define a intenção de movimento, enquanto o sistema protege a circulação verificando somente os desvios pertinentes ao trecho imediato da rota. A posição DI/AC registrada pelo sistema é inicialmente uma posição comandada e atua como informação complementar de segurança, sem substituir a detecção física da composição pelos sensores. Numeração, posição normal de cada desvio e combinações específicas de cada rota são parâmetros da EFMN 74 e serão consolidados na Especificação Operacional.</p>
-<p>Padronizado o acionamento dos desvios para integração com a ESP32 e definida a substituição dos acionamentos por bobinas ainda existentes pelos mesmos motores utilizados nos demais desvios.</p>
+<p><strong>Filosofia adotada:</strong> o operador define a intenção de movimento, enquanto o sistema protege a circulação verificando somente os desvios pertinentes ao trecho imediato da rota. A posição do desvio DI/AC (posição Direta ou ACionada)registrada pelo sistema é inicialmente uma posição comandada e atua como informação complementar de segurança, sem substituir a detecção física da composição pelos sensores. Numeração, posição normal de cada desvio e combinações específicas de cada rota são parâmetros da EFMN 74 e serão consolidados na Especificação Operacional.</p>
 <p>Definido o padrão de identificação dos desvios como Dx, indicando o número do desvio.</p>
+  <p>Padronizado o acionamento dos desvios para integração com a ESP32 e definida a substituição dos acionamentos por bobinas ainda existentes pelos mesmos motores utilizados nos demais desvios.</p>
+
 <p>Após aprovação dos testes de inicialização, a configuração automática prevista é D1 a D9 em DI, D10 em AC e D11 a D20 em DI.</p>
 <p>Estabelecido que o operador escolhe e comanda a movimentação, enquanto o sistema executa automaticamente o posicionamento e a proteção de segurança dos desvios necessários.</p>
 <p>Na Estação, D1 e D7 podem ser reposicionados automaticamente com a composição parada, inclusive para encaminhamento de trens de carga à L6.</p>
