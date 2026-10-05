@@ -236,16 +236,16 @@ loading="lazy">
 
 <article id="sensores">
 <h2>Sensores de presença</h2>
-<p><strong>Filosofia adotada:</strong> este item preserva o histórico das decisões, aquisições, instalação, cabeamento e testes dos sensores de presença. O detalhamento técnico e operacional está reunido no <a href="estudo-preliminar-sensores.html">Estudo preliminar dos sensores</a>; o item “Sequências operacionais por sensores e desvios” mantém um resumo das decisões e da evolução desse estudo.</p>
-<p>Adotados sensores Hall A3144 para detecção, com vermelho para alimentação, preto para GND e verde para o sinal individual enviado à ESP32.</p>
-<p>Reavaliado o posicionamento dos sensores no layout para reduzir pontos desnecessários sem comprometer segurança e automação.</p>
+<p><strong>Filosofia adotada:</strong> este item preserva o histórico das decisões, aquisições, instalação, cabeamento e testes dos sensores de presença. O detalhamento técnico e operacional está reunido no <a href="estudo-preliminar-sensores.html">Estudo preliminar dos sensores</a>. O item “Sequências operacionais por sensores e desvios” mantém um resumo das decisões e da evolução desse estudo.</p>
 <p>Definido o padrão de identificação dos sensores como Sx, indicando o número do sensor.</p>
+  <p>Adotados sensores Hall A3144 para detecção, com vermelho para alimentação, preto para GND e verde para o sinal individual enviado à ESP32.</p>
+<p>Reavaliado o posicionamento dos sensores no layout para reduzir pontos desnecessários sem comprometer segurança e automação.</p>
+
 <p>Após revisão da numeração, foi reorganizada a sequência prevista para instalação.</p>
 <p>Dos 40 sensores Hall disponíveis, 19 foram destinados à instalação inicial e os demais permanecerão como reserva técnica e para futuras melhorias da detecção.</p>
 <p>Em 07/09/2026 foram adquiridos 100 m de fio verde de 0,50 mm² para os sinais individuais dos sensores até a respectiva gaveta de controle.</p>
 <p>Em 08/09/2026 foram marcadas diretamente na maquete, com etiquetas, todas as posições previstas para instalação dos sensores, preparando o início da montagem física na semana seguinte.</p>
-<p>Foram lançados os fios verdes de controle dos sensores S5, S6, S10, S11, S12 e S13.</p>
-<p>Os sensores S7 e S14 estão localizados acima das gavetas; seus fios serão lançados quando essas gavetas forem posicionadas.</p>
+<p>Foram lançados os fios verdes de controle de todos os sensores.</p>
 <p>A definição definitiva de cores, bitolas e transições dos condutores dos sensores deverá constar do projeto de cabeamento, evitando tratar alternativas de montagem ainda em avaliação como requisito do software.</p>
 <p>Realizados testes práticos do sensor Hall A3144, com revisão das ligações de alimentação, GND e sinal, uso do resistor de pull-up e verificação por multímetro da mudança de estado provocada pela aproximação do ímã.</p>
 <p>Estudada a instalação física do sensor Hall entre os dormentes, preferencialmente deitado e próximo da parte inferior da locomotiva, para garantir detecção segura da passagem.</p>
@@ -262,7 +262,7 @@ loading="lazy">
 </article>
 <article id="desvios">
 <h2>Desvios e segurança de rotas</h2>
-<p><strong>Filosofia adotada:</strong> o operador define a intenção de movimento, enquanto o sistema protege a circulação verificando somente os desvios pertinentes ao trecho imediato da rota. A posição do desvio DI/AC (posição Direta ou ACionada)registrada pelo sistema é inicialmente uma posição comandada e atua como informação complementar de segurança, sem substituir a detecção física da composição pelos sensores. Numeração, posição normal de cada desvio e combinações específicas de cada rota são parâmetros da EFMN 74 e serão consolidados na Especificação Operacional.</p>
+<p><strong>Filosofia adotada:</strong> o operador define a intenção de movimento, enquanto o sistema protege a circulação verificando somente os desvios pertinentes ao trecho imediato da rota. A posição do desvio DI/AC (posição DIreta ou ACionada)registrada pelo sistema é inicialmente uma posição comandada e atua como informação complementar de segurança, sem substituir a detecção física da composição pelos sensores. Numeração, posição normal de cada desvio e combinações específicas de cada rota são parâmetros da EFMN 74 e serão consolidados na Especificação Operacional.</p>
 <p>Definido o padrão de identificação dos desvios como Dx, indicando o número do desvio.</p>
   <p>Padronizado o acionamento dos desvios para integração com a ESP32 e definida a substituição dos acionamentos por bobinas ainda existentes pelos mesmos motores utilizados nos demais desvios.</p>
 
