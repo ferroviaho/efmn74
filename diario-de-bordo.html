@@ -236,7 +236,7 @@ loading="lazy">
 
 <article id="sensores">
 <h2>Sensores de presença</h2>
-<p><strong>Filosofia adotada:</strong> este item registra os aspectos físicos e técnicos dos sensores de presença — tecnologia adotada, identificação, alimentação, cabeamento, instalação, testes e manutenção. A lógica operacional desencadeada por cada detecção, incluindo atualização da posição da composição, sequência esperada, verificação de desvios e tratamento de inconsistências, é registrada no item “Sequências operacionais por sensores e desvios”.</p>
+<p><strong>Filosofia adotada:</strong> este item preserva o histórico das decisões, aquisições, instalação, cabeamento e testes dos sensores de presença. O detalhamento técnico e operacional está reunido no <a href="estudo-preliminar-sensores.html">Estudo preliminar dos sensores</a>; o item “Sequências operacionais por sensores e desvios” mantém um resumo das decisões e da evolução desse estudo.</p>
 <p>Adotados sensores Hall A3144 para detecção, com vermelho para alimentação, preto para GND e verde para o sinal individual enviado à ESP32.</p>
 <p>Reavaliado o posicionamento dos sensores no layout para reduzir pontos desnecessários sem comprometer segurança e automação.</p>
 <p>Definido o padrão de identificação dos sensores como Sx, indicando o número do sensor.</p>
@@ -247,10 +247,7 @@ loading="lazy">
 <p>Foram lançados os fios verdes de controle dos sensores S5, S6, S10, S11, S12 e S13.</p>
 <p>Os sensores S7 e S14 estão localizados acima das gavetas; seus fios serão lançados quando essas gavetas forem posicionadas.</p>
 <p>A definição definitiva de cores, bitolas e transições dos condutores dos sensores deverá constar do projeto de cabeamento, evitando tratar alternativas de montagem ainda em avaliação como requisito do software.</p>
-<p>Na inicialização, os sensores S serão verificados eletricamente quanto à alimentação, integridade da fiação, circuito aberto ou curto quando detectáveis, comunicação com a ESP32 e estado lógico da entrada.</p>
-<p>Como os sensores Hall somente mudam de estado com a passagem do ímã da locomotiva, sua validação funcional ocorrerá durante a circulação. Cada acionamento deverá ser conferido quanto à mudança de estado e tempo de resposta; a coerência operacional com rota, sentido e sequência prevista será tratada conforme as regras do item “Sequências operacionais por sensores e desvios”.</p>
 <p>Realizados testes práticos do sensor Hall A3144, com revisão das ligações de alimentação, GND e sinal, uso do resistor de pull-up e verificação por multímetro da mudança de estado provocada pela aproximação do ímã.</p>
-<p>Confirmado que a orientação do polo do ímã não danifica o sensor; o teste deve ser feito aproximando o ímã da face sensível até identificar a posição de maior resposta.</p>
 <p>Estudada a instalação física do sensor Hall entre os dormentes, preferencialmente deitado e próximo da parte inferior da locomotiva, para garantir detecção segura da passagem.</p>
 <p>Nota: para detalhes sobre a instalação física dos sensores Hall procurar o item “Instalação dos sensores Hall nas 19 posições de detecção e automação”, disponível em “Técnicas de Construção”.</p>
 
@@ -258,70 +255,10 @@ loading="lazy">
 </article>
 <article id="sequencias">
 <h2>Sequências operacionais por sensores e desvios</h2>
-<p><strong>Filosofia adotada:</strong> cada detecção deverá provocar uma sequência coerente de decisões de localização, sentido, rota, segurança, preparação dos desvios e continuidade da circulação. O Diário registra essa filosofia geral. O detalhamento individual de S1 a S19, D1 a D20, sensores anteriores e seguintes, posições DI/AC, tempos, distâncias e ações específicas de cada rota será mantido em documento técnico próprio da EFMN 74, a ser elaborado quando o layout operacional estiver suficientemente estabilizado.</p>
-<p>As sequências operacionais passam a constituir um registro específico do Diário de Bordo por sua importância para a futura elaboração do software de controle. O objetivo é registrar não apenas o que cada sensor detecta, mas também a ordem das decisões que o sistema deverá tomar a partir dessa detecção, permitindo que essas definições sejam posteriormente transformadas em requisitos, funções e rotinas do programa em C++.</p>
-
-<h3>a) Estrutura prevista para o documento operacional específico</h3>
-<p>Quando o detalhamento do layout estiver consolidado, será criada uma Especificação Operacional própria da EFMN 74. Para cada sensor S, esse documento deverá registrar, sempre que aplicável:</p>
-<ol>
-<li>qual sensor detectou a composição;</li>
-<li>qual composição ou locomotiva está associada à detecção, quando essa identificação estiver disponível;</li>
-<li>a área ou o trecho em que a composição se encontrava antes da detecção;</li>
-<li>a nova área ou o novo trecho associado à passagem pelo sensor;</li>
-<li>o sentido de circulação;</li>
-<li>a rota em execução ou, no modo manual, o percurso autorizado pelo operador;</li>
-<li>quais desvios são relevantes à frente da composição naquele momento;</li>
-<li>qual posição, DI ou AC, é exigida de cada um desses desvios para a continuidade segura do percurso;</li>
-<li>qual posição está registrada pelo sistema como posição comandada para cada desvio;</li>
-<li>se existe incompatibilidade entre a posição comandada e a posição necessária para a rota;</li>
-<li>quais desvios deverão ser corrigidos automaticamente;</li>
-<li>o tempo necessário para que o servo conclua o movimento comandado;</li>
-<li>se a tração deve ser mantida, reduzida ou temporariamente impedida enquanto a condição de segurança não estiver atendida;</li>
-<li>qual é o sensor seguinte esperado para aquela composição, considerando rota, sentido e trecho;</li>
-<li>quais ações adicionais deverão ocorrer no trecho, como redução de velocidade, parada, acionamento de sino, buzina, sinalização, estacionamento ou finalização;</li>
-<li>como será atualizada a posição lógica conhecida da composição após a detecção;</li>
-<li>quais condições caracterizam uma sequência incompatível ou inesperada;</li>
-<li>qual ação de segurança deverá ser executada quando ocorrer uma inconsistência.</li>
-</ol>
-
-<h3>b) Sequência geral de processamento</h3>
-<p>Como regra geral, o acionamento de um sensor deverá iniciar uma cadeia de verificações. O sistema deverá identificar o sensor acionado e relacioná-lo à composição que está sendo acompanhada. Em seguida, deverá determinar o trecho ou área correspondente, o sentido de circulação quando possível e a rota em execução. A partir dessas informações, deverá selecionar somente os desvios relevantes à frente da composição, evitando verificar desnecessariamente todos os desvios da ferrovia.</p>
-<p>Para cada desvio relevante, o sistema deverá comparar a posição necessária para a rota com a posição registrada como comandada. Se a posição for compatível, a verificação daquele desvio será considerada atendida. Se estiver incompatível ou indefinida, a ESP32 deverá comandar o servo para a posição correta, aguardar o tempo necessário ao movimento e atualizar o registro da posição comandada.</p>
-<p>Enquanto existir uma condição de rota ainda não atendida, a composição não deverá ser liberada para prosseguir normalmente. Conforme o trecho e a situação, o sistema poderá reduzir a velocidade, manter a composição parada ou impedir temporariamente a alimentação de tração. A liberação somente deverá ocorrer quando a rota imediata estiver coerente com as condições de segurança registradas pelo sistema.</p>
-<p>Concluída a preparação do trecho, o sistema deverá definir qual é o próximo sensor esperado. Quando esse sensor for acionado, a sequência deverá ser comparada com a previsão. Uma passagem coerente confirmará a continuidade lógica do percurso e permitirá atualizar a posição conhecida da composição. Uma passagem por sensor diferente do esperado, a ausência de detecção quando ela deveria ocorrer ou uma sequência incompatível com a rota deverá ser tratada como inconsistência.</p>
-
-<h3>c) Posição comandada dos desvios</h3>
-<p>A posição DI ou AC dos desvios constitui informação complementar de segurança e não substitui os sensores de presença. Como não haverá inicialmente sensores Hall dedicados para confirmar fisicamente DI ou AC em todos os desvios, a ESP32 comandará o servo, aguardará o tempo previsto de movimentação e registrará a posição como “comandada”, e não como “confirmada”.</p>
-<p>Essa posição comandada será utilizada pelo software para verificar a coerência da rota antes da passagem da composição. Caso algum desvio apresente comportamento problemático durante a operação real, poderá ser instalada posteriormente confirmação específica próxima à entrada e/ou à saída desse desvio, sem necessidade de instrumentar todos os desvios desde o início.</p>
-<p>Assim, a segurança será baseada na combinação entre a posição comandada dos desvios, a rota prevista e a passagem real da composição pelos sensores. Nenhuma dessas informações, isoladamente, deverá ser considerada suficiente para representar toda a situação operacional.</p>
-
-<h3>d) S1 e S2 — sensores de fronteira</h3>
-<p>S1 permanece definido como sensor de fronteira entre as Áreas 1 e 2, e S2 como sensor de fronteira entre as Áreas 1 e 3. Por essa razão, o acionamento de S1 ou S2 deverá ter tratamento específico no software.</p>
-<p>Quando S1 for acionado, o sistema deverá interpretar a passagem como uma transição entre a Área 1 — Serviços e a Área 2 — Túnel, determinando qual das duas áreas está sendo deixada e qual está sendo ocupada a partir do sentido e da rota da composição. De forma equivalente, quando S2 for acionado, o sistema deverá interpretar a transição entre a Área 1 — Serviços e a Área 3 — Armazéns.</p>
-<p>Além de registrar a passagem física, S1 e S2 deverão atualizar formalmente a área operacional conhecida da composição. Após essa atualização, as verificações seguintes deverão utilizar a nova área como referência para selecionar os sensores esperados, os desvios relevantes à frente e as regras aplicáveis ao trecho seguinte.</p>
-<p>Se um sensor de fronteira for acionado em situação incompatível com a área anteriormente conhecida, com o sentido, com a rota em execução ou com a sequência de sensores esperada, o sistema deverá registrar a ocorrência como inconsistência e aplicar a regra de segurança definida para o caso.</p>
-
-<h3>e) Validação da sequência de sensores</h3>
-<p>Os sensores não deverão ser tratados apenas como entradas independentes. O software deverá acompanhar a ordem em que são acionados. Para cada composição em circulação deverá existir uma expectativa de sequência baseada na posição anterior, no sentido e na rota.</p>
-<p>Quando o sensor esperado for acionado, o sistema deverá atualizar a posição lógica da composição e preparar as verificações referentes ao trecho seguinte. Quando um sensor inesperado for acionado, o sistema deverá registrar pelo menos a identificação do sensor, a composição envolvida quando conhecida, a área, a rota, o sentido, o sensor que era esperado e a condição encontrada.</p>
-<p>A ausência de acionamento do sensor esperado também deverá ser considerada uma condição relevante. O critério de tempo ou distância para caracterizar essa ausência ainda deverá ser definido com base nos testes reais da ferrovia e nas velocidades de operação; portanto, esse parâmetro não fica fixado neste momento.</p>
-
-<h3>f) Tratamento das inconsistências</h3>
-<p>Uma inconsistência poderá resultar de sensor acionado fora da sequência prevista, ausência de sensor esperado, posição comandada de desvio incompatível com a rota, estado indefinido de um desvio relevante ou qualquer combinação de informações que indique que a posição conhecida da composição deixou de ser confiável.</p>
-<p>Nessas situações, o sistema deverá registrar o evento, identificar a região e os equipamentos envolvidos, informar o operador e aplicar a ação de segurança adequada. A ação poderá variar conforme a gravidade e o trecho, desde redução controlada até bloqueio da tração. A definição exata de cada resposta será detalhada nas sequências específicas de cada sensor e rota.</p>
-<p>O sistema não deverá tentar ocultar uma inconsistência apenas atualizando silenciosamente a posição lógica da composição. Quando houver divergência entre o esperado e o detectado, o evento deverá permanecer registrado para diagnóstico e revisão operacional.</p>
-
-<h3>g) Passagem pela Estação</h3>
-<p>Na passagem direta pela Estação, em qualquer sentido, a composição deverá entrar com velocidade reduzida. A detecção pelos sensores associados à entrada e à saída deverá permitir acompanhar a passagem e aplicar as verificações de rota correspondentes. Depois do sensor de saída, o sistema apenas devolverá ao operador a faixa normal de velocidade permitida, sem acelerar automaticamente a locomotiva.</p>
-<p>Quando houver parada na Estação, a sequência deverá distinguir aproximação, redução, parada, permanência e partida. Na partida permanece a regra já definida: acionar o sino, aguardar 5 segundos e somente então energizar a locomotiva para iniciar o movimento.</p>
-
-<h3>h) Finalização e estacionamento</h3>
-<p>Quando uma rota receber o comando FINALIZAR, o percurso em andamento deverá ser concluído antes do encerramento. Trem de passageiros deverá estacionar na Estação e trem de carga na Linha L6, situada entre D1 e D7.</p>
-<p>No estacionamento de carga no sentido Leste → Oeste, D7 deverá encaminhar a composição para L6; no sentido Oeste → Leste, D1 deverá executar esse encaminhamento. Em ambos os sentidos permanecem válidas as regras já registradas de segurança da rota, verificação dos desvios pertinentes e parada após a detecção correspondente.</p>
-
-<h3>i) Uso futuro no software</h3>
-<p>Estas sequências deverão ser utilizadas futuramente como uma das bases para a programação das ESP32. O objetivo não é transformar o Diário de Bordo diretamente em código, mas preservar as decisões operacionais com detalhe suficiente para que possam ser convertidas, sem perda de contexto, em requisitos, estados, funções, verificações, mensagens, registros de eventos e rotinas de segurança em C++.</p>
-<p>À medida que a posição final dos sensores e os testes reais da ferrovia forem consolidados, deverão ser acrescentadas neste item as sequências específicas de S1, S2 e dos demais sensores, indicando explicitamente o sensor anterior esperado, o sensor seguinte esperado, os desvios envolvidos, as posições DI ou AC exigidas e as ações correspondentes para cada sentido e rota.</p>
+<p>Definido que a detecção de uma composição deverá orientar a atualização de sua posição lógica e as verificações de sentido, rota, desvios pertinentes e segurança antes da continuidade da circulação.</p>
+<p>Mantida a decisão de utilizar inicialmente a posição comandada dos desvios, em conjunto com a passagem pelos sensores de presença, sem confirmação física individual de DI ou AC por sensores Hall em todos os desvios.</p>
+<p>Em 05/10/2026, as sequências de processamento, o tratamento dos sensores de fronteira S1 e S2, as verificações de sequência, as respostas às inconsistências e o detalhamento preliminar de S1 a S19 foram reunidos no <a href="estudo-preliminar-sensores.html">Estudo preliminar dos sensores</a>, disponível em Documentação.</p>
+<p>O estudo servirá de base para a futura Especificação Operacional e para a programação em C++. O mapeamento definitivo por rota e sentido, os tempos, as distâncias e as ações de cada sensor continuam sujeitos à conferência do layout e aos testes reais da ferrovia.</p>
 </article>
 <article id="desvios">
 <h2>Desvios e segurança de rotas</h2>
@@ -466,7 +403,7 @@ loading="lazy">
 <p>Foi recebido o módulo relé de 3,3 V destinado à montagem da GA3. Em 02/10/2026 também foram recebidos dez módulos MOSFET para os estudos e a implantação da iluminação setorizada.</p>
 </article>
 
-<!-- Diário atualizado em 04/10/2026 -->
+<!-- Diário atualizado em 05/10/2026 -->
 <!-- ===== INSERIR NOVAS DECISÕES NO TEMA CORRESPONDENTE ===== -->
 
 <p class="voltar-final">
