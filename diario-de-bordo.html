@@ -129,9 +129,9 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <li><a href="#energia">Alimentação elétrica e proteção</a></li>
 <li><a href="#gavetas">Gavetas de controle e eletrônica</a></li>
 <li><a href="#esp32">ESP32, Arduino e programação</a></li>
+<li><a href="#sensores">Sensores de presença</a></li>
 <li><a href="#sequencias">Sequências operacionais por sensores e desvios</a></li>
 <li><a href="#desvios">Desvios e segurança de rotas</a></li>
-<li><a href="#sensores">Sensores de presença</a></li>
 <li><a href="#velocidade">Locomotivas, composições e velocidade</a></li>
 <li><a href="#audio">Áudio e efeitos sonoros</a></li>
 <li><a href="#identificacao">Identificação das locomotivas</a></li>
@@ -234,6 +234,28 @@ loading="lazy">
 <p>Esquema geral atualizado dos desvios, sensores de presença e divisão das Áreas 1, 2 e 3. O layout poderá sofrer pequenos ajustes e revisões após o início da operação da ferrovia, em função dos testes e das necessidades operacionais observadas.</p>
 </div>
 
+<article id="sensores">
+<h2>Sensores de presença</h2>
+<p><strong>Filosofia adotada:</strong> este item registra os aspectos físicos e técnicos dos sensores de presença — tecnologia adotada, identificação, alimentação, cabeamento, instalação, testes e manutenção. A lógica operacional desencadeada por cada detecção, incluindo atualização da posição da composição, sequência esperada, verificação de desvios e tratamento de inconsistências, é registrada no item “Sequências operacionais por sensores e desvios”.</p>
+<p>Adotados sensores Hall A3144 para detecção, com vermelho para alimentação, preto para GND e verde para o sinal individual enviado à ESP32.</p>
+<p>Reavaliado o posicionamento dos sensores no layout para reduzir pontos desnecessários sem comprometer segurança e automação.</p>
+<p>Definido o padrão de identificação dos sensores como Sx, indicando o número do sensor.</p>
+<p>Após revisão da numeração, foi reorganizada a sequência prevista para instalação.</p>
+<p>Dos 40 sensores Hall disponíveis, 19 foram destinados à instalação inicial e os demais permanecerão como reserva técnica e para futuras melhorias da detecção.</p>
+<p>Em 07/09/2026 foram adquiridos 100 m de fio verde de 0,50 mm² para os sinais individuais dos sensores até a respectiva gaveta de controle.</p>
+<p>Em 08/09/2026 foram marcadas diretamente na maquete, com etiquetas, todas as posições previstas para instalação dos sensores, preparando o início da montagem física na semana seguinte.</p>
+<p>Foram lançados os fios verdes de controle dos sensores S5, S6, S10, S11, S12 e S13.</p>
+<p>Os sensores S7 e S14 estão localizados acima das gavetas; seus fios serão lançados quando essas gavetas forem posicionadas.</p>
+<p>A definição definitiva de cores, bitolas e transições dos condutores dos sensores deverá constar do projeto de cabeamento, evitando tratar alternativas de montagem ainda em avaliação como requisito do software.</p>
+<p>Na inicialização, os sensores S serão verificados eletricamente quanto à alimentação, integridade da fiação, circuito aberto ou curto quando detectáveis, comunicação com a ESP32 e estado lógico da entrada.</p>
+<p>Como os sensores Hall somente mudam de estado com a passagem do ímã da locomotiva, sua validação funcional ocorrerá durante a circulação. Cada acionamento deverá ser conferido quanto à mudança de estado e tempo de resposta; a coerência operacional com rota, sentido e sequência prevista será tratada conforme as regras do item “Sequências operacionais por sensores e desvios”.</p>
+<p>Realizados testes práticos do sensor Hall A3144, com revisão das ligações de alimentação, GND e sinal, uso do resistor de pull-up e verificação por multímetro da mudança de estado provocada pela aproximação do ímã.</p>
+<p>Confirmado que a orientação do polo do ímã não danifica o sensor; o teste deve ser feito aproximando o ímã da face sensível até identificar a posição de maior resposta.</p>
+<p>Estudada a instalação física do sensor Hall entre os dormentes, preferencialmente deitado e próximo da parte inferior da locomotiva, para garantir detecção segura da passagem.</p>
+<p>Nota: para detalhes sobre a instalação física dos sensores Hall procurar o item “Instalação dos sensores Hall nas 19 posições de detecção e automação”, disponível em “Técnicas de Construção”.</p>
+
+
+</article>
 <article id="sequencias">
 <h2>Sequências operacionais por sensores e desvios</h2>
 <p><strong>Filosofia adotada:</strong> cada detecção deverá provocar uma sequência coerente de decisões de localização, sentido, rota, segurança, preparação dos desvios e continuidade da circulação. O Diário registra essa filosofia geral. O detalhamento individual de S1 a S19, D1 a D20, sensores anteriores e seguintes, posições DI/AC, tempos, distâncias e ações específicas de cada rota será mantido em documento técnico próprio da EFMN 74, a ser elaborado quando o layout operacional estiver suficientemente estabilizado.</p>
@@ -319,28 +341,6 @@ loading="lazy">
 <p>A posição DI ou AC dos desvios será utilizada como informação complementar de segurança da rota, sem substituir os sensores de presença. Quando uma composição for detectada por um sensor, o sistema deverá verificar os desvios relevantes à frente e, se algum estiver em posição incompatível com a rota prevista, comandar sua correção ou impedir o prosseguimento até que a condição de segurança seja atendida.</p>
 </article>
 
-<article id="sensores">
-<h2>Sensores de presença</h2>
-<p><strong>Filosofia adotada:</strong> este item registra os aspectos físicos e técnicos dos sensores de presença — tecnologia adotada, identificação, alimentação, cabeamento, instalação, testes e manutenção. A lógica operacional desencadeada por cada detecção, incluindo atualização da posição da composição, sequência esperada, verificação de desvios e tratamento de inconsistências, é registrada no item “Sequências operacionais por sensores e desvios”.</p>
-<p>Adotados sensores Hall A3144 para detecção, com vermelho para alimentação, preto para GND e verde para o sinal individual enviado à ESP32.</p>
-<p>Reavaliado o posicionamento dos sensores no layout para reduzir pontos desnecessários sem comprometer segurança e automação.</p>
-<p>Definido o padrão de identificação dos sensores como Sx, indicando o número do sensor.</p>
-<p>Após revisão da numeração, foi reorganizada a sequência prevista para instalação.</p>
-<p>Dos 40 sensores Hall disponíveis, 19 foram destinados à instalação inicial e os demais permanecerão como reserva técnica e para futuras melhorias da detecção.</p>
-<p>Em 07/09/2026 foram adquiridos 100 m de fio verde de 0,50 mm² para os sinais individuais dos sensores até a respectiva gaveta de controle.</p>
-<p>Em 08/09/2026 foram marcadas diretamente na maquete, com etiquetas, todas as posições previstas para instalação dos sensores, preparando o início da montagem física na semana seguinte.</p>
-<p>Foram lançados os fios verdes de controle dos sensores S5, S6, S10, S11, S12 e S13.</p>
-<p>Os sensores S7 e S14 estão localizados acima das gavetas; seus fios serão lançados quando essas gavetas forem posicionadas.</p>
-<p>A definição definitiva de cores, bitolas e transições dos condutores dos sensores deverá constar do projeto de cabeamento, evitando tratar alternativas de montagem ainda em avaliação como requisito do software.</p>
-<p>Na inicialização, os sensores S serão verificados eletricamente quanto à alimentação, integridade da fiação, circuito aberto ou curto quando detectáveis, comunicação com a ESP32 e estado lógico da entrada.</p>
-<p>Como os sensores Hall somente mudam de estado com a passagem do ímã da locomotiva, sua validação funcional ocorrerá durante a circulação. Cada acionamento deverá ser conferido quanto à mudança de estado e tempo de resposta; a coerência operacional com rota, sentido e sequência prevista será tratada conforme as regras do item “Sequências operacionais por sensores e desvios”.</p>
-<p>Realizados testes práticos do sensor Hall A3144, com revisão das ligações de alimentação, GND e sinal, uso do resistor de pull-up e verificação por multímetro da mudança de estado provocada pela aproximação do ímã.</p>
-<p>Confirmado que a orientação do polo do ímã não danifica o sensor; o teste deve ser feito aproximando o ímã da face sensível até identificar a posição de maior resposta.</p>
-<p>Estudada a instalação física do sensor Hall entre os dormentes, preferencialmente deitado e próximo da parte inferior da locomotiva, para garantir detecção segura da passagem.</p>
-<p>Nota: para detalhes sobre a instalação física dos sensores Hall procurar o item “Instalação dos sensores Hall nas 19 posições de detecção e automação”, disponível em “Técnicas de Construção”.</p>
-
-
-</article>
 
 <article id="velocidade">
 <h2>Locomotivas, composições e velocidade</h2>
