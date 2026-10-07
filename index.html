@@ -40,18 +40,13 @@ position: relative;
 overflow: hidden;
 }
 
-.hero-slide {
+.hero-video {
 position: absolute;
 inset: 0;
-background-position: center center;
-background-size: contain;
-background-repeat: no-repeat;
-opacity: 0;
-transition: opacity 4s ease-in-out;
-}
-
-.hero-slide.active {
-opacity: 1;
+width: 100%;
+height: 100%;
+object-fit: contain;
+object-position: center center;
 }
 
 /* Faixa lateral esquerda: identificação */
@@ -310,9 +305,9 @@ padding-top: 20px;
 .hero {
 height: 58vh;
 }
-.hero-slide {
-background-size: cover;
-background-position: center center;
+.hero-video {
+object-fit: cover;
+object-position: center center;
 }
 .hero-text {
 padding-top: 12px;
@@ -380,8 +375,9 @@ color: #68635a;
 </head>
 <body>
 <header class="hero" id="inicio">
-<div class="hero-slide active" style="background-image: url('capa.png');"></div>
-<div class="hero-slide" style="background-image: url('capa2.png');"></div>
+<video class="hero-video" autoplay muted loop playsinline preload="auto" poster="capa.png" aria-label="Ferrovia EFMN 74 com água em movimento">
+<source src="videos/capa-agua-correnteza.MP4" type="video/mp4">
+</video>
 <div class="hero-inner">
 <h1>EFMN 74</h1>
 <p class="hero-text">Ferrovia em escala HO<br/>
@@ -448,15 +444,6 @@ Ferrovia EFMN 74
 </a>
 </footer>
 <script>
-const heroSlides = document.querySelectorAll('.hero-slide');
-let heroAtual = 0;
-
-setInterval(() => {
-heroSlides[heroAtual].classList.remove('active');
-heroAtual = (heroAtual + 1) % heroSlides.length;
-heroSlides[heroAtual].classList.add('active');
-}, 4000);
-
 const abrirContato = document.getElementById('abrir-contato');
 const fecharContato = document.getElementById('fechar-contato');
 const contato = document.getElementById('contato');
