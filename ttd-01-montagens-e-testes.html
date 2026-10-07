@@ -324,13 +324,15 @@ void loop() {
 <li>Se o servo já estiver ligado ao circuito definitivo, desconectar seus três fios — positivo, GND e sinal. Se ainda não estiver ligado, conectá-lo diretamente ao TTD-01. Em ambos os casos, ligar somente esse servo ao testador, conforme o item 2. Usar extensões, se necessário, para alcançar o servo sob a maquete. Não unir o positivo do testador ao barramento da maquete. Durante o teste, não conectar o fio de sinal do servo à ESP32 da gaveta GA3; o sinal deve ficar ligado somente à ESP32 do TTD-01.</li>
 <li>Se os valores anteriores forem conhecidos e o mecanismo estiver livre, colocá-los em <code>DIRECT_POSITION</code> e <code>ACCESS_POSITION</code> e gravar o testador com o servo desconectado. Reconectar o servo com o USB desligado. Ao energizar, começar enviando o valor numérico correspondente à posição em que o desvio estava; não começar com <code>C</code> ou com os valores padrão de 80° e 100° sem verificar se são adequados à montagem.</li>
 <li>Na primeira instalação, as posições finais ainda precisam ser encontradas. Se não houver valores de ajuste conhecidos para esse conjunto instalado, desacoplar a haste do braço do servo antes de comandar qualquer movimento. Com o servo livre, enviar <code>C</code>. Desligar o USB, recolocar o braço e a haste com as agulhas aproximadamente no meio do percurso e sem esforço, e então religar. Não girar o eixo do servo à força.</li>
+</ol>
+</div>
+<ol start="5">
 <li>Partindo do valor conhecido ou do centro preparado na etapa anterior, variar um grau por vez até obter o assentamento correto em DI. Anotar o valor. Depois, percorrer gradualmente o outro sentido até obter AC e anotar o segundo valor. Observar as agulhas por cima e a haste e o braço por baixo da maquete.</li>
 <li>Se a haste raspar, entortar excessivamente ou travar, desligar o USB e corrigir o alinhamento ou a fixação antes de continuar. Aumentar o ângulo não corrige uma obstrução mecânica.</li>
 <li>Atualizar os dois valores no código do TTD-01 e gravar novamente com o servo desconectado. Religar conforme o item 3 e repetir DI → AC → DI, verificando o assentamento nas duas posições.</li>
 <li>Ao terminar, desconectar o USB e, com a maquete ainda desligada, retirar as ligações do testador e reconectar os três fios do servo ao circuito definitivo. Atualizar no programa da ESP32 da gaveta GA3 os valores de DI e AC desse desvio. Usar a mesma configuração de pulsos do servo para que os valores correspondam ao ajuste feito no TTD-01.</li>
 <li>Religar a maquete e comandar esse desvio pelo controle definitivo. Conferir novamente DI e AC antes de liberar a circulação.</li>
 </ol>
-</div>
 <p>Registrar os valores encontrados para esse desvio antes de passar ao próximo: não copiar automaticamente o ajuste de outro conjunto. Os valores 67° e 97° utilizados na EFMN 74 são referências; cada desvio precisa de ajuste próprio.</p>
 <p>O ajuste termina somente depois dessa conferência pelo controle definitivo. O comando <code>S</code> interrompe os pulsos de controle, mas não corta a alimentação do servo; para alterar ligações ou o mecanismo, desconectar o USB.</p>
 </section>
