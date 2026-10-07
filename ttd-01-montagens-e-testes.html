@@ -58,10 +58,13 @@
       a { color:#000; }
       pre { white-space:pre-wrap; overflow:visible; font-size:9pt; }
     }
-    .video-box { margin:24px 0 0; padding:18px; background:#fff; border:1px solid var(--line); border-radius:8px; break-inside:avoid; }
-    .video-box video { display:block; width:100%; max-width:720px; max-height:70vh; margin:auto; background:#000; border-radius:4px; }
+    .adjustment-layout { display:grid; grid-template-columns:240px minmax(0,1fr); gap:24px; align-items:start; margin-top:18px; }
+    .adjustment-layout > ol { margin:0; padding-left:24px; }
+    .video-box { width:100%; margin:0; padding:8px; background:#fff; border:1px solid var(--line); border-radius:8px; break-inside:avoid; }
+    .video-box video { display:block; width:100%; height:auto; aspect-ratio:512 / 910; object-fit:contain; background:#000; border-radius:4px; }
     .video-box figcaption { margin-top:10px; text-align:center; font-size:.95rem; }
-    @media print { .video-box video { display:none; } }
+    @media (max-width:700px) { .adjustment-layout { grid-template-columns:1fr; } .video-box { max-width:240px; margin:0 auto 12px; } }
+    @media print { .adjustment-layout { display:block; } .video-box { display:none; } }
   </style>
 </head>
 <body>
@@ -308,6 +311,14 @@ void loop() {
 <section><h2>5. Ajustar cada desvio logo após a instalação</h2>
 <p>Assim que um desvio, seu motor, braço e haste forem instalados na maquete, usar o TTD-01 para ajustar o movimento daquele conjunto. Fazer isso em cada instalação, mesmo que o motor tenha sido aprovado na bancada. A posição e a fixação da haste determinam o curso necessário para as agulhas.</p>
 <p>O desvio permanece nos trilhos e o TTD-01 comanda temporariamente seu motor. Após concluir o ajuste e a conferência desse desvio, instalar e ajustar o próximo.</p>
+<div class="adjustment-layout">
+<figure class="video-box">
+  <video controls playsinline preload="metadata" aria-label="Vídeo do desvio em funcionamento">
+    <source src="videos/ttd-01-desvio.mp4" type="video/mp4">
+    Seu navegador não permite reproduzir este vídeo. <a href="videos/ttd-01-desvio.mp4">Abrir o vídeo</a>.
+  </video>
+  <figcaption>Vídeo do desvio em funcionamento.</figcaption>
+</figure>
 <ol>
 <li>Retirar as locomotivas da região do teste, desligar a alimentação da maquete e desconectar o USB do testador. Identificar o desvio e anotar os valores de DI e AC já usados, se estiverem disponíveis.</li>
 <li>Se o servo já estiver ligado ao circuito definitivo, desconectar seus três fios — positivo, GND e sinal. Se ainda não estiver ligado, conectá-lo diretamente ao TTD-01. Em ambos os casos, ligar somente esse servo ao testador, conforme o item 2. Usar extensões, se necessário, para alcançar o servo sob a maquete. Não unir o positivo do testador ao barramento da maquete. Durante o teste, não conectar o fio de sinal do servo à ESP32 da gaveta GA3; o sinal deve ficar ligado somente à ESP32 do TTD-01.</li>
@@ -319,16 +330,11 @@ void loop() {
 <li>Ao terminar, desconectar o USB e, com a maquete ainda desligada, retirar as ligações do testador e reconectar os três fios do servo ao circuito definitivo. Atualizar no programa da ESP32 da gaveta GA3 os valores de DI e AC desse desvio. Usar a mesma configuração de pulsos do servo para que os valores correspondam ao ajuste feito no TTD-01.</li>
 <li>Religar a maquete e comandar esse desvio pelo controle definitivo. Conferir novamente DI e AC antes de liberar a circulação.</li>
 </ol>
+</div>
 <p>Registrar os valores encontrados para esse desvio antes de passar ao próximo: não copiar automaticamente o ajuste de outro conjunto. Os valores 67° e 97° utilizados na EFMN 74 são referências; cada desvio precisa de ajuste próprio.</p>
 <p>O ajuste termina somente depois dessa conferência pelo controle definitivo. O comando <code>S</code> interrompe os pulsos de controle, mas não corta a alimentação do servo; para alterar ligações ou o mecanismo, desconectar o USB.</p>
 </section>
-<figure class="video-box">
-  <video controls playsinline preload="metadata" aria-label="Vídeo do desvio em funcionamento">
-    <source src="videos/ttd-01-desvio.mp4" type="video/mp4">
-    Seu navegador não permite reproduzir este vídeo. <a href="videos/ttd-01-desvio.mp4">Abrir o vídeo</a>.
-  </video>
-  <figcaption>Vídeo do desvio em funcionamento.</figcaption>
-</figure>
+
 <section><h2>6. Resultado e registro</h2>
 <p>Antes da instalação, aprovar cada motor quando apresentar movimento regular e repetível, sem travamento, vibração contínua, aquecimento anormal ou reinicialização da ESP32. Registrar sua identificação, os valores angulares usados no teste, os ciclos realizados e o resultado.</p>
 <p>Após cada instalação, aprovar o desvio quando suas agulhas assentarem corretamente em DI e AC, sem esforço contínuo, e o movimento se repetir tanto no TTD-01 quanto no controle definitivo. Registrar a identificação do desvio, os valores finais de DI e AC, os ciclos realizados e o resultado. Confirmar que os valores foram atualizados no programa da ESP32 da gaveta GA3.</p>
