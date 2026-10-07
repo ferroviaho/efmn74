@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Montagem do testador TTD-01 da Ferrovia EFMN 74 e procedimentos de teste de servos SG90, sensores Hall e desvios comandados por ESP32.">
-  <title>TTD-01 — Montagem e testes de desvios e sensores | Ferrovia EFMN 74</title>
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="TTD-01: teste individual de todos os motores antes da instalação e ajuste do movimento das agulhas após instalar cada desvio na Ferrovia EFMN 74.">
+<title>TTD-01 — Teste e ajuste de desvios | Ferrovia EFMN 74</title>
+<style>
     :root { --bg:#f4f1ea; --ink:#222; --dark:#151515; --gold:#c89b2b; --line:#ded7c8; --link:#0056b3; }
     * { box-sizing:border-box; }
     body { margin:0; background:var(--bg); color:var(--ink); font-family:Georgia,"Times New Roman",serif; line-height:1.65; }
@@ -58,6 +58,10 @@
       a { color:#000; }
       pre { white-space:pre-wrap; overflow:visible; font-size:9pt; }
     }
+    .video-box { margin:24px 0 0; padding:18px; background:#fff; border:1px solid var(--line); border-radius:8px; break-inside:avoid; }
+    .video-box video { display:block; width:100%; max-width:720px; max-height:70vh; margin:auto; background:#000; border-radius:4px; }
+    .video-box figcaption { margin-top:10px; text-align:center; font-size:.95rem; }
+    @media print { .video-box video { display:none; } }
   </style>
 </head>
 <body>
@@ -196,148 +200,31 @@ tRo7KQhtppAShCR2AA4A120tLQLS0tLQf//Z
   </div>
 </header>
 <main>
-  <p class="voltar"><a href="index.html">← Voltar à página principal</a></p>
-  <h1>TTD-01 — Montagem e testes de desvios e sensores</h1>
-  <p class="intro">Este documento reúne a montagem de bancada e os procedimentos para verificar servos SG90, ímãs, sensores Hall e o acionamento dos desvios pela ESP32 antes da instalação definitiva na Ferrovia EFMN 74.</p>
-  <p>TTD-01 significa Testador Temporário de Desvios. A bancada também permite testar, separadamente, os sensores Hall de presença das composições. Os desvios não possuem sensores Hall; o ajuste e a conferência de suas agulhas são visuais.</p>
-  <p class="edicao">Edição de 04/10/2026</p>
-  <p class="acoes"><button type="button" onclick="window.print()">Imprimir ou salvar em PDF</button></p>
-
-  <section id="principio">
-    <h2>1. Como funciona o testador</h2>
-    <p>A ESP32 executa um programa de teste e envia o sinal de posição ao servo. O servo movimenta seu braço e, quando instalado, a haste que desloca as agulhas do desvio. O sensor Hall muda o estado de sua saída quando um polo adequado do ímã se aproxima de sua face sensível.</p>
-    <p>São separados três circuitos: alimentação de 5 V dos componentes, referência comum de GND e sinais de comando ou leitura da ESP32. A separação permite localizar se uma dificuldade está na alimentação, na fiação, no programa ou na montagem mecânica.</p>
-    <p>Esta versão utiliza servos SG90 de três fios. A fonte de 15 V e a chave reversora estudadas na proposta inicial para motores de corrente contínua não fazem parte da ligação descrita aqui. O SG90 recebe comando diretamente da ESP32, sem módulo DRV8871.</p>
-  </section>
-
-  <section id="materiais">
-    <h2>2. Componentes e ferramentas</h2>
-    <ul>
-      <li>ESP32, cabo USB de dados e computador com Arduino IDE.</li>
-      <li>Protoboard, jumpers e conectores para organizar as ligações.</li>
-      <li>Notebook com porta USB e cabo de dados para alimentar a bancada e gravar os programas, sem fonte externa no teste descrito.</li>
-      <li>Servo SG90, braço e parafuso de fixação fornecidos com o servo.</li>
-      <li>Sensor Hall A3144 de três terminais e ímã.</li>
-      <li>Resistor de pull-up de 4,7 kΩ para a ligação de referência do sensor à ESP32.</li>
-      <li>Multímetro para medir tensão e conferir continuidade.</li>
-      <li>Base de MDF, cortiça, desvio, haste de acionamento e elementos de fixação para o teste mecânico.</li>
-    </ul>
-    <p>Testar um servo por vez, sem esforço mecânico excessivo. O USB do notebook fornece a alimentação nesta montagem. Se a placa reiniciar ou a tensão cair ao movimentar o servo, interromper o teste e conferir o cabo, a porta USB e a capacidade do caminho de alimentação da placa. O tamanho da base e a quantidade de pontos da protoboard dependem dos componentes montados, sem exigência de uma dimensão única.</p>
-  </section>
-
-  <section id="base">
-    <h2>3. Preparação da bancada</h2>
-    <ol>
-      <li>Escolher uma base firme, com espaço para a ESP32, a protoboard e os conectores.</li>
-      <li>Fixar os componentes para evitar deslocamentos durante os testes. Manter a parte inferior da ESP32 sem contato com condutores ou peças metálicas.</li>
-      <li>Identificar os pontos de 5 V, GND, sinal do servo e sinal do sensor.</li>
-      <li>Conferir a continuidade das fileiras e dos barramentos da protoboard. Algumas placas têm interrupções nos barramentos de alimentação.</li>
-      <li>Deixar o USB desconectado enquanto as ligações forem montadas ou alteradas.</li>
-    </ol>
-    <p>O número de um furo da protoboard não é o número de um GPIO. Registrar separadamente origem, destino e função de cada ligação. Os GPIOs dos sinais devem coincidir com os definidos no programa efetivamente carregado.</p>
-  </section>
-
-  <section id="ligacoes">
-    <h2>4. Ligações elétricas</h2>
-    <h3>4.1 Alimentação e GND comum</h3>
-    <p>Conectar a ESP32 ao notebook por um cabo USB de dados. No teste de um servo, usar o ponto de 5 V da placa alimentado pelo USB e o GND da própria ESP32. O sensor Hall, quando testado separadamente, utiliza o mesmo ponto de 5 V e o GND comum.</p>
-    <p>Antes de ligar o componente, confirmar na placa que o terminal identificado como 5 V, VBUS ou VIN está conectado à alimentação USB e medir sua tensão em relação ao GND. A identificação e o circuito variam entre modelos. Não usar 3V3 para alimentar o servo. A capacidade disponível depende da porta USB, do cabo e do circuito da placa; esta ligação destina-se ao teste de um servo por vez.</p>
-    <h3>4.2 Servo SG90</h3>
-    <div class="table-wrap">
-      <table>
-        <caption>Ligações do servo</caption>
-        <thead><tr><th scope="col">Condutor</th><th scope="col">Destino</th><th scope="col">Função</th></tr></thead>
-        <tbody>
-          <tr><td>Vermelho</td><td>Ponto de 5 V da ESP32 alimentado pelo USB</td><td>Alimentação do servo</td></tr>
-          <tr><td>Marrom ou preto</td><td>GND comum</td><td>Retorno da alimentação</td></tr>
-          <tr><td>Laranja ou amarelo</td><td>GPIO 18 no código de exemplo deste documento</td><td>Comando de posição</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p>Confirmar a identificação do conector do servo utilizado. Para mudar de posição, o programa altera o sinal de comando; não se inverte a polaridade da alimentação.</p>
-    <h3>4.3 Sensor Hall A3144 de presença</h3>
-    <p>Esta ligação é usada somente no teste separado do sensor de presença. O Hall não é instalado no desvio e não confirma a posição DI ou AC.</p>
-    <div class="table-wrap">
-      <table>
-        <caption>Ligações de referência para o sensor sem placa auxiliar</caption>
-        <thead><tr><th scope="col">Terminal</th><th scope="col">Ligação</th></tr></thead>
-        <tbody>
-          <tr><td>VCC</td><td>+5 V, identificado em vermelho</td></tr>
-          <tr><td>GND</td><td>GND comum, identificado em preto</td></tr>
-          <tr><td>OUT</td><td>GPIO 32 no exemplo de teste do Hall, identificado em verde</td></tr>
-          <tr><td>Resistor de 4,7 kΩ</td><td>Entre OUT e 3V3 da ESP32</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p>Identificar os terminais pela folha técnica do componente e pela orientação do encapsulamento. O resistor de pull-up mantém o sinal em nível alto quando a saída do sensor está aberta. Quando acionado, o sensor conduz a saída para GND.</p>
-    <p>A alimentação do A3144 é de 5 V nesta montagem, enquanto o pull-up do sinal usa 3,3 V. Não ligar o pull-up a 5 V nem aplicar 5 V ao GPIO. Se o sensor estiver em um módulo com placa auxiliar, conferir seu circuito antes de usar esta ligação, pois pode existir um pull-up interno.</p>
-  </section>
-
-  <section id="conferencia">
-    <h2>5. Conferência antes da energização</h2>
-    <ol>
-      <li>Com o USB desconectado, comparar cada fio com a tabela de ligações.</li>
-      <li>Conferir a continuidade do GND comum e dos condutores de alimentação e sinal.</li>
-      <li>Procurar contatos indevidos entre positivo, GND e sinais. Um apito momentâneo do multímetro, com componentes conectados, exige análise e não comprova sozinho um curto permanente.</li>
-      <li>Confirmar que OUT está ligado ao pull-up de 3,3 V e ao GPIO de entrada correto.</li>
-      <li>Conferir se o servo está livre para se movimentar e se os fios não podem prender seu braço.</li>
-      <li>Após a conferência sem energia, conectar somente a ESP32 ao USB e medir o ponto de 5 V. Desconectar o USB novamente antes de ligar o componente.</li>
-    </ol>
-    <p>A conferência sem alimentação verifica a montagem elétrica. O funcionamento dos componentes será verificado nos testes energizados, executados um por vez.</p>
-  </section>
-
-  <section id="programa">
-    <h2>6. Arduino IDE no notebook passo a passo</h2>
-    <p>A Arduino IDE é o programa usado para escrever, conferir e gravar o código na ESP32. O notebook transmite o programa pelo USB e também alimenta a bancada durante este teste.</p>
-    <h3>6.1 Instalar e preparar a IDE</h3>
-    <ol>
-      <li>Baixar a Arduino IDE pelo <a href="https://www.arduino.cc/en/software/">site oficial do Arduino</a>, instalar e abrir o programa. Este roteiro usa a IDE 2.</li>
-      <li>Se o suporte à ESP32 ainda não estiver instalado, abrir Arquivo → Preferências (File → Preferences). Em URLs adicionais para Gerenciadores de Placas, acrescentar <code>https://espressif.github.io/arduino-esp32/package_esp32_index.json</code>, preservando outras URLs já existentes.</li>
-      <li>Abrir Ferramentas → Placa → Gerenciador de Placas (Tools → Board → Boards Manager), procurar esp32 e instalar o pacote da Espressif Systems. Para estes exemplos, utilizar a série 3.x do pacote.</li>
-      <li>Para o teste do servo, abrir o Gerenciador de Bibliotecas (Library Manager), procurar ESP32Servo e instalar a biblioteca. O exemplo do Hall não precisa dessa biblioteca.</li>
-      <li>Conectar somente a ESP32 ao notebook usando um cabo USB que transmita dados.</li>
-      <li>Em Ferramentas → Placa, selecionar o modelo correspondente. Para uma placa genérica com ESP32 clássico, usar ESP32 Dev Module; modelos C3, S2 e S3 exigem a seleção de seu próprio modelo e revisão da pinagem.</li>
-      <li>Em Ferramentas → Porta, selecionar a porta que aparece ao conectar a ESP32. Não presumir que será sempre COM3.</li>
-    </ol>
-    <h3>6.2 Inserir e salvar o código</h3>
-    <ol>
-      <li>Abrir Arquivo → Novo Sketch (File → New Sketch).</li>
-      <li>Clicar na área do código, pressionar Ctrl+A e substituir todo o conteúdo por um dos exemplos abaixo. Não juntar os dois programas na mesma janela.</li>
-      <li>Salvar com Ctrl+S, usando TTD01_Servo para o servo ou TTD01_Hall para o sensor. A IDE organiza o arquivo .ino em uma pasta com o mesmo nome.</li>
-      <li>Alternativamente, usar o botão de download do exemplo, salvar o arquivo e abri-lo na IDE. Se a IDE pedir para criar uma pasta com o mesmo nome, aceitar.</li>
-      <li>Conferir a ligação: sinal do servo no GPIO 18 ou OUT do Hall no GPIO 32, conforme o exemplo escolhido. Esses números são a configuração dos exemplos deste documento.</li>
-    </ol>
-    <h3>6.3 Compilar e depurar erros de código</h3>
-    <ol>
-      <li>Clicar no botão Verificar (Verify), identificado pelo símbolo de conferência. Ele compila o código sem gravá-lo na ESP32.</li>
-      <li>Aguardar o término. Se houver erro, ler a primeira mensagem que descreve o problema na área Saída (Output); a mensagem final exit status apenas informa que a compilação falhou.</li>
-      <li>Se aparecer ESP32Servo.h: No such file or directory, instalar a biblioteca ESP32Servo. Se houver erro de sintaxe, conferir se o código foi copiado inteiro, incluindo chaves, aspas e ponto e vírgula.</li>
-      <li>Corrigir, salvar e clicar novamente em Verificar. Avançar quando a compilação terminar sem erros.</li>
-    </ol>
-    <h3>6.4 Gravar na ESP32</h3>
-    <ol>
-      <li>Manter o servo desacoplado ou desconectado durante a primeira gravação.</li>
-      <li>Clicar no botão Carregar (Upload), identificado pela seta para a direita. A IDE compila e transfere o programa para a ESP32.</li>
-      <li>Se a gravação parar em Connecting, manter BOOT pressionado até a transferência começar e então soltar. Usar esse procedimento somente quando a placa não entrar automaticamente no modo de gravação.</li>
-      <li>Aguardar a mensagem de conclusão sem erros. A placa reinicia e executa o programa gravado.</li>
-      <li>Desconectar o USB para montar as ligações do componente. Depois de conferir a montagem, reconectar para iniciar o teste.</li>
-    </ol>
-    <p>Download é baixar o arquivo de código para o notebook. Upload é gravar esse código na ESP32. Depois da gravação, o programa fica na placa e volta a executar quando ela é reiniciada.</p>
-    <h3>6.5 Verificar o funcionamento pelo Monitor Serial</h3>
-    <ol>
-      <li>Abrir Ferramentas → Monitor Serial (Tools → Serial Monitor).</li>
-      <li>Selecionar 115200 baud. No teste do servo, selecionar Nova linha (Newline) como final de linha.</li>
-      <li>Se a mensagem inicial não aparecer, pressionar brevemente EN/RESET com o servo livre para eventual movimento. O exemplo do servo aguarda um comando antes de iniciar o controle.</li>
-      <li>No exemplo do servo, digitar C e enviar. Depois enviar D e A, um comando por vez. Comparar a mensagem mostrada com o movimento observado.</li>
-      <li>No exemplo do Hall, aproximar e afastar o ímã e observar MAGNET DETECTED e NO MAGNET. O programa registra mudanças do sinal.</li>
-      <li>Se algo estiver diferente do esperado, interromper o movimento, desconectar o USB e conferir uma ligação por vez antes de repetir.</li>
-    </ol>
-    <p>A depuração deste roteiro usa as mensagens do Monitor Serial, as medições e a observação do componente. Não é necessário usar o botão de depurador com pontos de parada da IDE.</p>
-    <h3>6.6 Código de exemplo para um servo</h3>
-    <p>Este exemplo foi preparado para acompanhar o documento; não é uma reprodução do código histórico dos testes. Foi configurado para o ESP32 clássico, com sinal no GPIO 18. D comanda 80, A comanda 100 e C comanda 90. Os valores 80 e 100 são exemplos, a serem ajustados para cada conjunto. S interrompe os pulsos de controle, mas não corta a alimentação USB.</p>
-    <p>Para ajustar gradualmente, enviar um número entre 60 e 120 pelo Monitor Serial, por exemplo 90, depois 91. O intervalo foi limitado para este teste. Antes de acoplar a haste, testar o servo livre. O valor mostrado é o valor comandado, sem medição da posição física.</p>
-    <p class="acoes"><button type="button" onclick="downloadCode('servo-code','TTD01_Servo.ino')">Baixar código do servo</button></p>
-    <pre><code id="servo-code">#include &lt;ESP32Servo.h&gt;
+<p class="voltar"><a href="index.html">← Voltar à página principal</a></p>
+<h1>TTD-01 — Teste e ajuste de desvios</h1>
+<p>O Testador Temporário de Desvios (TTD-01) é usado em duas etapas: primeiro, testar todos os motores (servos SG90), um por vez, antes de qualquer instalação; depois, assim que cada desvio e seu motor forem instalados na maquete, fazer um novo ajuste do movimento das agulhas naquele conjunto.</p>
+<p>A sequência é: testar todos os motores → instalar um desvio com seu motor → ajustar esse desvio → repetir a instalação e o ajuste nos demais. O teste do motor na bancada verifica seu funcionamento; as posições finais DI e AC são definidas individualmente após a instalação.</p>
+<p>Nos dois casos, o notebook envia os comandos para uma ESP32 usada como testador, que movimenta um servo por vez. Os desvios não possuem sensores Hall: a conferência do assentamento das agulhas é visual.</p>
+<section><h2>1. Material necessário</h2>
+<p>ESP32, notebook com Arduino IDE, cabo USB de dados, motores SG90, jumpers e protoboard. Conectar somente um motor por vez. Para o ajuste após a instalação: desvio com seu motor, braço e haste montados, além de extensões para os fios, se necessário.</p></section>
+<section><h2>2. Ligações</h2>
+<p>Montar ou alterar as ligações com o USB desconectado e a alimentação da maquete desligada. Testar um servo por vez. Se ele já estiver instalado, desligar seus três fios do circuito definitivo antes de ligá-los ao TTD-01.</p>
+<table><thead><tr><th>Fio do servo</th><th>Ligação</th></tr></thead><tbody>
+<tr><td>Vermelho</td><td>5 V da ESP32 alimentado pelo USB</td></tr>
+<tr><td>Marrom ou preto</td><td>GND da ESP32</td></tr>
+<tr><td>Laranja ou amarelo</td><td>GPIO 18 da ESP32</td></tr></tbody></table>
+<p>Confirmar que o ponto de 5 V da placa recebe alimentação pelo USB; não usar 3V3 para o servo. No teste individual, o notebook pode alimentar a bancada, dispensando fonte externa se a alimentação permanecer estável. Se a ESP32 reiniciar ao mover o servo, interromper o teste e conferir a alimentação.</p></section>
+<section><h2>3. Preparar e gravar o programa</h2><ol>
+<li>Na Arduino IDE, instalar o pacote <code>esp32</code> da Espressif pelo Gerenciador de Placas e a biblioteca <code>ESP32Servo</code> pelo Gerenciador de Bibliotecas. Se necessário, acrescentar nas Preferências a URL: <code>https://espressif.github.io/arduino-esp32/package_esp32_index.json</code>.</li>
+<li>Conectar a ESP32 ao notebook, selecionar a placa correspondente e a porta USB. Para a ESP32 clássica genérica deste exemplo, selecionar <code>ESP32 Dev Module</code>.</li>
+<li>Abrir um novo sketch, substituir o conteúdo pelo código abaixo e salvar como <code>TTD01_Servo</code>.</li>
+<li>Clicar em Verificar. Se houver erro, conferir a primeira mensagem e corrigir antes de prosseguir.</li>
+<li>Com o servo desconectado, clicar em Carregar para gravar na ESP32. Se ficar em <code>Connecting</code>, manter BOOT pressionado até iniciar a transferência.</li>
+<li>Desconectar o USB, ligar o servo conforme a tabela e reconectar. Abrir o Monitor Serial em <code>115200 baud</code>, com final de linha <code>Nova linha</code>.</li>
+</ol>
+<details><summary>Código do teste — clicar para abrir</summary>
+<p>Enviar C para 90°, D para 80° ou A para 100°. Também é possível enviar um número de 60 a 120 para ajustar aos poucos. Esses valores são apenas um ponto de partida.</p>
+<pre><code>#include &lt;ESP32Servo.h&gt;
 
 constexpr int SERVO_PIN = 18;
 constexpr int DIRECT_POSITION = 80;
@@ -406,152 +293,47 @@ void loop() {
     }
   }
 }
-</code></pre>
-    <p>Para gravar os ajustes definitivos do conjunto, alterar DIRECT_POSITION e ACCESS_POSITION no início do código, salvar, verificar e fazer novo upload. A faixa 67–97 funcionou em um teste da EFMN 74, mas não é um ajuste universal.</p>
-    <h3>6.7 Código de exemplo para o Hall de presença</h3>
-    <p>Executar este teste separadamente. Ligar OUT ao GPIO 32 e manter o resistor externo de 4,7 kΩ entre OUT e 3V3. O programa somente lê o sensor de presença; ele não comanda o servo e não confirma a posição do desvio.</p>
-    <p class="acoes"><button type="button" onclick="downloadCode('hall-code','TTD01_Hall.ino')">Baixar código do sensor</button></p>
-    <pre><code id="hall-code">constexpr int HALL_PIN = 32;
-int previousState = -1;
-
-void setup() {
-  Serial.begin(115200);
-  pinMode(HALL_PIN, INPUT);
-  Serial.println(&quot;TTD-01 presence sensor test. Input: GPIO 32.&quot;);
-}
-
-void loop() {
-  int state = digitalRead(HALL_PIN);
-  if (state != previousState) {
-    Serial.println(state == LOW ? &quot;MAGNET DETECTED&quot; : &quot;NO MAGNET&quot;);
-    previousState = state;
-  }
-  delay(20);
-}
-</code></pre>
-  </section>
-
-  <section id="testes">
-    <h2>7. Procedimentos de teste</h2>
-    <h3>7.1 Servo isolado</h3>
-    <ol>
-      <li>Manter o servo desacoplado do desvio e identificar a unidade testada.</li>
-      <li>Energizar a bancada e comandar duas posições próximas, dentro de uma faixa moderada.</li>
-      <li>Observar se o servo inicia, para e muda de posição de forma repetível.</li>
-      <li>Repetir o movimento e verificar tremores persistentes, ruídos de esforço, aquecimento anormal ou reinicialização da ESP32.</li>
-      <li>Desligar a alimentação antes de substituir o servo e registrar o resultado.</li>
-    </ol>
-    <p>Aprovar a unidade quando ela responde aos comandos de forma regular. Se houver falha, conferir alimentação, GND e sinal antes de atribuir o problema ao servo.</p>
-    <h3>7.2 Ímã e orientação de detecção</h3>
-    <ol>
-      <li>Usar o sensor ligado como detector e aproximar uma face do ímã da face sensível.</li>
-      <li>Observar a mudança de estado no Monitor Serial ou no multímetro.</li>
-      <li>Inverter a face do ímã e repetir a aproximação para identificar a orientação que aciona o sensor.</li>
-      <li>Marcar a orientação adequada e verificar a distância de detecção na posição prevista para a locomotiva.</li>
-    </ol>
-    <p>O teste do ímã depende da resposta do sensor. A aproximação de um polo que não aciona o A3144 não caracteriza, por si só, defeito do ímã ou do sensor.</p>
-    <h3>7.3 Sensor Hall isolado</h3>
-    <ol>
-      <li>Sem o ímã próximo, medir OUT em relação ao GND: o sinal deve ficar próximo de 3,3 V.</li>
-      <li>Aproximar o polo que provoca a detecção: o sinal deve cair para próximo de 0 V.</li>
-      <li>Afastar o ímã e verificar o retorno ao estado inicial.</li>
-      <li>Repetir a aproximação e o afastamento, conferindo se o programa registra cada mudança.</li>
-      <li>Manter o ímã parado na região de detecção e verificar se a leitura permanece estável.</li>
-    </ol>
-    <p>Aprovar o sensor quando as mudanças são repetíveis. Se o sinal permanecer fixo, conferir alimentação, orientação do ímã, pinagem, resistor e GPIO antes de substituir o componente.</p>
-    <h3>7.4 Servo instalado no desvio</h3>
-    <ol>
-      <li>Assentar o desvio sobre a cortiça e o MDF, reproduzindo a montagem prevista.</li>
-      <li>Posicionar o servo e preparar a passagem da haste, garantindo movimento livre.</li>
-      <li>Com o servo comandado para uma posição intermediária, desligar e montar o braço e a haste.</li>
-      <li>Religar e ajustar gradualmente as duas posições. Interromper o teste se houver travamento ou esforço contínuo.</li>
-      <li>Identificar qual valor corresponde a DI e qual corresponde a AC nesse conjunto.</li>
-      <li>Conferir visualmente o assentamento das agulhas em ambas as posições, sem pressioná-las além do necessário.</li>
-      <li>Registrar os dois valores de ajuste junto à identificação do desvio.</li>
-    </ol>
-    <p>DI identifica a posição direta e AC a posição de acesso adotadas no projeto. A correspondência entre posição e valor do programa depende da orientação do servo, do braço e da geometria da haste.</p>
-    <h3>7.5 Conjunto comandado pela ESP32</h3>
-    <ol>
-      <li>No Monitor Serial, enviar D, depois A e depois D, aguardando a conclusão de cada movimento e conferindo visualmente as agulhas.</li>
-      <li>Para repetição, executar uma série de 50 ciclos e acompanhar o movimento. Considerar um ciclo completo a sequência DI → AC → DI.</li>
-      <li>Ao final, conferir fixações, haste, assentamento das agulhas e estabilidade da alimentação.</li>
-    </ol>
-    <p>A série de 50 ciclos é um procedimento de repetição deste roteiro. A quantidade efetivamente realizada e eventuais interrupções devem ser anotadas na ficha do teste.</p>
-    <p>Os desvios não possuem sensores Hall. A mensagem do programa registra a posição comandada; a posição física das agulhas é conferida visualmente.</p>
-  </section>
-
-  <section id="resultados">
-    <h2>8. Resultados registrados na EFMN 74</h2>
-    <p>Em 05/09/2026 foram testados individualmente 19 servos SG90, com rotina carregada pela Arduino IDE. Todos foram aprovados no teste de acionamento.</p>
-    <p>Também foram realizados testes do sensor Hall, verificando sua mudança de estado pela aproximação do ímã e por medições com multímetro. Os ajustes mecânicos demonstraram a necessidade de calibrar cada desvio individualmente.</p>
-    <p>A montagem e a etapa de testes com o TTD-01 foram consideradas concluídas. A aprovação nessa bancada permite avançar para a instalação, mas cada conjunto instalado deve ser novamente conferido e ajustado em sua posição definitiva.</p>
-  </section>
-
-  <section id="registro">
-    <h2>9. Ficha para registrar novos testes</h2>
-    <p>Preencher uma ficha por componente ou conjunto. Registrar o resultado observado e as correções realizadas, inclusive quando a unidade precisar ser testada novamente.</p>
-    <div class="table-wrap">
-      <table>
-        <caption>Registro de teste do TTD-01</caption>
-        <tbody>
-          <tr><th scope="row">Data e responsável</th><td>________________________________</td></tr>
-          <tr><th scope="row">Componente ou desvio</th><td>________________________________</td></tr>
-          <tr><th scope="row">Programa e versão</th><td>________________________________</td></tr>
-          <tr><th scope="row">GPIOs utilizados</th><td>________________________________</td></tr>
-          <tr><th scope="row">Tensão medida</th><td>________________________________</td></tr>
-          <tr><th scope="row">Valores de DI e AC</th><td>________________________________</td></tr>
-          <tr><th scope="row">Ciclos executados</th><td>________________________________</td></tr>
-          <tr><th scope="row">Resultado e observações</th><td>________________________________</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section id="falhas">
-    <h2>10. Identificação de dificuldades</h2>
-    <div class="table-wrap">
-      <table>
-        <caption>Verificações por sintoma</caption>
-        <thead><tr><th scope="col">Sintoma</th><th scope="col">O que conferir</th></tr></thead>
-        <tbody>
-          <tr><td>Servo não se movimenta</td><td>5 V, GND comum, conector, GPIO e programa carregado.</td></tr>
-          <tr><td>ESP32 reinicia ao mover o servo</td><td>Queda de tensão no USB, cabo, porta do notebook, capacidade do circuito da placa e mau contato na alimentação.</td></tr>
-          <tr><td>Servo força ou vibra no fim do movimento</td><td>Curso excessivo, haste presa, braço mal posicionado ou esforço nas agulhas.</td></tr>
-          <tr><td>Hall não muda de estado</td><td>Pinagem, alimentação, pull-up, orientação e distância do ímã.</td></tr>
-          <tr><td>Multímetro mostra mudança, mas o programa não</td><td>GPIO de entrada, configuração da rotina e velocidade do Monitor Serial.</td></tr>
-          <tr><td>Acionamentos inesperados</td><td>Contatos intermitentes, estabilidade do sinal e tratamento de mudanças no programa.</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p>Desligar a bancada antes de corrigir ligações ou ajustar a fixação do braço. Repetir o teste afetado depois de cada correção.</p>
-  </section>
-
-  <section id="referencias">
-    <h2>11. Referências técnicas</h2>
-    <p>O histórico da montagem e dos resultados integra o Diário de Bordo da Ferrovia EFMN 74. As características elétricas dos componentes devem ser conferidas nas folhas técnicas do fabricante.</p>
-    <ul>
-      <li><a href="https://www.allegromicro.com/~/media/Files/Datasheets/A3141-2-3-4-Datasheet.ashx?la=en">Allegro MicroSystems — sensores A3141, A3142, A3143 e A3144</a>.</li>
-      <li><a href="https://documentation.espressif.com/esp32_datasheet_en.html">Espressif Systems — folha técnica do ESP32</a>.</li>
-      <li><a href="https://docs.espressif.com/projects/arduino-esp32/en/latest/installing.html">Espressif — instalação do suporte à ESP32 na Arduino IDE</a>.</li>
-      <li><a href="https://support.arduino.cc/hc/en-us/articles/4733418441116-Upload-a-sketch-in-Arduino-IDE">Arduino — compilação e gravação de sketches</a>.</li>
-      <li><a href="https://docs.arduino.cc/software/ide/">Arduino — IDE e Monitor Serial</a>.</li>
-      <li><a href="https://github.com/madhephaestus/ESP32Servo">ESP32Servo — biblioteca utilizada no exemplo</a>.</li>
-    </ul>
-  </section>
-  <footer><p class="voltar"><a href="index.html">← Voltar à página principal</a></p></footer>
+</code></pre></details></section>
+<section><h2>4. Testar todos os motores antes da instalação</h2>
+<p>Antes de iniciar as instalações, testar todos os motores individualmente na bancada. Nesta etapa, o motor fica livre, sem ligação às agulhas de um desvio.</p>
+<ol>
+<li>Identificar o primeiro motor. Com o USB desconectado, ligar seus três fios ao TTD-01 conforme a tabela do item 2.</li>
+<li>Conectar o USB e abrir o Monitor Serial. Enviar <code>C</code> para 90°, depois <code>D</code> e <code>A</code>, um comando por vez. Conferir se o eixo se movimenta nos dois sentidos.</li>
+<li>Alternar <code>D</code> → <code>A</code> → <code>D</code> várias vezes. O movimento deve ser regular e repetível, sem travamento, vibração contínua, aquecimento anormal ou reinicialização da ESP32. Nesta etapa, D e A são apenas posições de teste do motor livre.</li>
+<li>Enviar <code>C</code> para deixar o motor em 90° e desconectar o USB. Registrar a identificação do motor, os valores angulares usados no teste, os ciclos realizados e o resultado. Com o código inicial, os valores são C = 90°, D = 80° e A = 100°; se forem alterados, anotar os valores efetivamente utilizados. Separar os aprovados dos que precisam de nova conferência.</li>
+<li>Retirar o motor testado, conectar o próximo com o USB desligado e repetir o procedimento até testar todos os motores.</li>
+</ol>
+<p>Concluído o teste de todos os motores, iniciar as instalações usando os aprovados. Guardar as anotações de cada motor para acompanhar a instalação. A posição de 90° facilita a montagem inicial do braço; os valores usados na bancada são referências e as posições finais DI e AC devem ser ajustadas e anotadas após instalar cada desvio.</p>
+</section>
+<section><h2>5. Ajustar cada desvio logo após a instalação</h2>
+<p>Assim que um desvio, seu motor, braço e haste forem instalados na maquete, usar o TTD-01 para ajustar o movimento daquele conjunto. Fazer isso em cada instalação, mesmo que o motor tenha sido aprovado na bancada. A posição e a fixação da haste determinam o curso necessário para as agulhas.</p>
+<p>O desvio permanece nos trilhos e o TTD-01 comanda temporariamente seu motor. Após concluir o ajuste e a conferência desse desvio, instalar e ajustar o próximo.</p>
+<ol>
+<li>Retirar as locomotivas da região do teste, desligar a alimentação da maquete e desconectar o USB do testador. Identificar o desvio e anotar os valores de DI e AC já usados, se estiverem disponíveis.</li>
+<li>Se o servo já estiver ligado ao circuito definitivo, desconectar seus três fios — positivo, GND e sinal. Se ainda não estiver ligado, conectá-lo diretamente ao TTD-01. Em ambos os casos, ligar somente esse servo ao testador, conforme o item 2. Usar extensões, se necessário, para alcançar o servo sob a maquete. Não unir o positivo do testador ao barramento da maquete. Durante o teste, não conectar o fio de sinal do servo à ESP32 da gaveta GA3; o sinal deve ficar ligado somente à ESP32 do TTD-01.</li>
+<li>Se os valores anteriores forem conhecidos e o mecanismo estiver livre, colocá-los em <code>DIRECT_POSITION</code> e <code>ACCESS_POSITION</code> e gravar o testador com o servo desconectado. Reconectar o servo com o USB desligado. Ao energizar, começar enviando o valor numérico correspondente à posição em que o desvio estava; não começar com <code>C</code> ou com os valores padrão de 80° e 100° sem verificar se são adequados à montagem.</li>
+<li>Na primeira instalação, as posições finais ainda precisam ser encontradas. Se não houver valores de ajuste conhecidos para esse conjunto instalado, desacoplar a haste do braço do servo antes de comandar qualquer movimento. Com o servo livre, enviar <code>C</code>. Desligar o USB, recolocar o braço e a haste com as agulhas aproximadamente no meio do percurso e sem esforço, e então religar. Não girar o eixo do servo à força.</li>
+<li>Partindo do valor conhecido ou do centro preparado na etapa anterior, variar um grau por vez até obter o assentamento correto em DI. Anotar o valor. Depois, percorrer gradualmente o outro sentido até obter AC e anotar o segundo valor. Observar as agulhas por cima e a haste e o braço por baixo da maquete.</li>
+<li>Se a haste raspar, entortar excessivamente ou travar, desligar o USB e corrigir o alinhamento ou a fixação antes de continuar. Aumentar o ângulo não corrige uma obstrução mecânica.</li>
+<li>Atualizar os dois valores no código do TTD-01 e gravar novamente com o servo desconectado. Religar conforme o item 3 e repetir DI → AC → DI, verificando o assentamento nas duas posições.</li>
+<li>Ao terminar, desconectar o USB e, com a maquete ainda desligada, retirar as ligações do testador e reconectar os três fios do servo ao circuito definitivo. Atualizar no programa da ESP32 da gaveta GA3 os valores de DI e AC desse desvio. Usar a mesma configuração de pulsos do servo para que os valores correspondam ao ajuste feito no TTD-01.</li>
+<li>Religar a maquete e comandar esse desvio pelo controle definitivo. Conferir novamente DI e AC antes de liberar a circulação.</li>
+</ol>
+<p>Registrar os valores encontrados para esse desvio antes de passar ao próximo: não copiar automaticamente o ajuste de outro conjunto. Os valores 67° e 97° utilizados na EFMN 74 são referências; cada desvio precisa de ajuste próprio.</p>
+<p>O ajuste termina somente depois dessa conferência pelo controle definitivo. O comando <code>S</code> interrompe os pulsos de controle, mas não corta a alimentação do servo; para alterar ligações ou o mecanismo, desconectar o USB.</p>
+</section>
+<figure class="video-box">
+  <video controls playsinline preload="metadata" aria-label="Vídeo do desvio em funcionamento">
+    <source src="videos/ttd-01-desvio.mp4" type="video/mp4">
+    Seu navegador não permite reproduzir este vídeo. <a href="videos/ttd-01-desvio.mp4">Abrir o vídeo</a>.
+  </video>
+  <figcaption>Vídeo do desvio em funcionamento.</figcaption>
+</figure>
+<section><h2>6. Resultado e registro</h2>
+<p>Antes da instalação, aprovar cada motor quando apresentar movimento regular e repetível, sem travamento, vibração contínua, aquecimento anormal ou reinicialização da ESP32. Registrar sua identificação, os valores angulares usados no teste, os ciclos realizados e o resultado.</p>
+<p>Após cada instalação, aprovar o desvio quando suas agulhas assentarem corretamente em DI e AC, sem esforço contínuo, e o movimento se repetir tanto no TTD-01 quanto no controle definitivo. Registrar a identificação do desvio, os valores finais de DI e AC, os ciclos realizados e o resultado. Confirmar que os valores foram atualizados no programa da ESP32 da gaveta GA3.</p>
+</section>
+<footer><a href="documentacao.html">← Voltar à documentação</a></footer>
 </main>
-<script>
-function downloadCode(id, filename) {
-  const content = document.getElementById(id).textContent;
-  const url = URL.createObjectURL(new Blob([content], {type:'text/plain;charset=utf-8'}));
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = filename;
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-}
-</script>
 </body>
 </html>
