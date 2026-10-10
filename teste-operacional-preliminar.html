@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Roteiro preliminar de teste da Ferrovia EFMN 74 com a gaveta de controle principal GCP e a GA3: sensores S10 a S14, cinco desvios e circulação supervisionada.">
+<title>Teste operacional preliminar - GCP e GA3 | Ferrovia EFMN 74</title>
+<style>
+ :root { --bg:#f4f1ea; --ink:#222; --dark:#151515; --gold:#c89b2b; --line:#ded7c8; --link:#0056b3; }
+ * { box-sizing:border-box; }
+ body { margin:0; background:var(--bg); color:var(--ink); font-family:Georgia,"Times New Roman",serif; line-height:1.65; }
+ header { background:var(--dark); color:#fff; border-bottom:4px solid var(--gold); }
+ .header-inner { max-width:1000px; margin:auto; padding:8px 20px; display:flex; align-items:center; justify-content:center; gap:16px; font-family:Arial,Helvetica,sans-serif; }
+ .header-logo { width:72px; height:auto; flex:0 0 auto; }
+ .header-text p { margin:0; font-size:.95rem; }
+ .header-text p + p { margin-top:2px; font-size:.9rem; color:#d8d8d8; }
+ main { max-width:1000px; margin:auto; padding:36px 20px 60px; }
+ h1 { font-size:2rem; line-height:1.25; margin:0 0 14px; }
+ h2 { font-size:1.35rem; line-height:1.35; margin:0 0 12px; }
+ h3 { font-size:1.1rem; margin:22px 0 8px; }
+ h1,h2,h3 { font-weight:normal; }
+ p { margin:.7em 0; }
+ a { color:var(--link); }
+ .voltar { margin:0 0 24px; font-family:Arial,Helvetica,sans-serif; }
+ .edicao { font-family:Arial,Helvetica,sans-serif; font-size:.9rem; color:#555; }
+ section { border-top:1px solid var(--line); margin-top:26px; padding-top:22px; }
+ @media (max-width:700px) {
+ main { padding:26px 16px 40px; }
+ .header-inner { padding:12px 16px; gap:12px; }
+ .header-text p { font-size:.9rem; }
+ .header-text p + p { font-size:.8rem; }
+ h1 { font-size:1.65rem; }
+ }
+ @media print {
+ body { background:#fff; color:#000; font-size:11pt; }
+ main { max-width:none; padding:20px 0 0; }
+ .voltar { display:none; }
+ h1,h2,h3 { break-after:avoid; }
+ a { color:#000; }
+ }
+ footer { margin-top:32px; padding-top:16px; border-top:1px solid var(--line); }
+</style>
+</head>
+<body>
+<header>
+<div class="header-inner">
+<img src="data:image/jpeg;base64,
+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
+" alt="Logomarca da Ferrovia EFMN 74" class="header-logo">
+<div class="header-text">
+<p>Ferrovia EFMN 74 - Escala HO</p>
+<p>Construção, automação, memória e documentação</p>
+</div>
+</div>
+</header>
+<main>
+<p class="voltar"><a href="documentacao.html">&larr; Voltar à documentação</a></p>
+<h1>Teste operacional preliminar - GCP e GA3</h1>
+<p>Registro: 09/10/2026</p>
+<p>Situação: roteiro preliminar para publicação; execução e lógica automática ainda não validadas.</p>
+<p>Referência: <a href="layout-e-componentes.pdf">Layout e componentes da ferrovia</a>.</p>
+<section>
+<h2>1. Objetivo</h2>
+<p>Testar a comunicação entre a gaveta de controle principal (GCP) e a ESP32 da gaveta GA3, a leitura dos sensores e o acionamento dos desvios da GA3, antes de concluir as demais gavetas.</p>
+<p>O ensaio de circulação será supervisionado, em baixa velocidade, com parada manual. Não representa validação da segurança de toda a ferrovia.</p>
+</section>
+<section>
+<h2>2. Componentes abrangidos</h2>
+<p>Desvios da GA3: D5, D6, D8, D9 e D10.</p>
+<p>Sensores da GA3: S10, S11, S12, S13 e S14.</p>
+<p>No desenho: S10 fica na L2 junto aos viadutos; S13 na L2 junto às pontes; S11 na L1 junto aos viadutos; S12 na L1 abaixo das pontes; S14 no trecho entre D10 e D8.</p>
+<p>S2 está no acesso à área da estação e pertence à GA1. S8 e S9 ficam no lado da GA2. Esses sensores não serão tratados como disponíveis neste ensaio.</p>
+<p>O desenho mostra um desvio marcado como Inoperante na L1: manter sua posição conferida e não incluí-lo como comando ativo.</p>
+</section>
+<section>
+<h2>3. Condições para começar</h2>
+<p>Conferir as ligações e alimentação antes de energizar. Confirmar que o comando de parada corta efetivamente a tração. Se a alimentação de tração depender de outra gaveta, disponibilizar esse circuito: GCP e GA3, sozinhas, não garantem alimentação dos trilhos.</p>
+<p>Usar locomotiva com ímã instalado para os sensores Hall. Conferir folga do ímã e funcionamento nos dois sentidos.</p>
+<p>Manter o percurso livre, escolher previamente os limites de ida e volta e deixar espaço para parar antes de qualquer desvio ou trecho fora do ensaio.</p>
+<p>Não executar inversão de sentido com o trem em movimento.</p>
+<p>No programa de teste, habilitar apenas as entradas disponíveis; entradas ausentes não devem ser interpretadas como confirmação de trecho livre.</p>
+</section>
+<section>
+<h2>4. Testes sem circulação</h2>
+<p>A. Comandar D5, D6, D8, D9 e D10 individualmente pela GCP. Conferir fisicamente as duas posições e o retorno da indicação, quando implementado. Sugestão: 20 ciclos por desvio, observando esforço e movimento indevido dos demais.</p>
+<p>B. Acionar S10 a S14, um por vez, com um ímã. Conferir identificação correta na GCP, acionamento e liberação. A numeração deve corresponder ao sensor físico.</p>
+<p>C. Manter um sensor acionado e verificar o comportamento previsto no programa. Se houver aviso por permanência, conferir o aviso; a simples permanência sobre um Hall não demonstra ocupação de todo o trecho.</p>
+<p>D. Confirmar parada da tração e comportamento diante de perda de comunicação, caso essa proteção esteja implementada. Sem proteção validada, manter supervisão direta.</p>
+</section>
+<section>
+<h2>5. Percursos preliminares com locomotiva</h2>
+<h3>Percurso A - L2, viadutos e pontes</h3>
+<p>Posicionar a locomotiva antes de S10, voltada para as pontes. Percorrer S10 -&gt; S13. Parar manualmente após S13, com folga antes de D8. Com a locomotiva parada, inverter o sentido e retornar, conferindo S13 -&gt; S10. Não seguir além de D8 nesta primeira etapa.</p>
+<p>Sensores indispensáveis para verificar esse percurso: S10 e S13.</p>
+<h3>Percurso B - L1, viadutos e pontes</h3>
+<p>Posicionar a locomotiva antes de S11, voltada para as pontes. Percorrer S11 -&gt; S12. Parar manualmente após S12, antes do desvio marcado Inoperante. Retornar com a locomotiva parada antes da inversão, conferindo S12 -&gt; S11.</p>
+<p>Sensores indispensáveis para verificar esse percurso: S11 e S12.</p>
+<h3>Percurso C - ramal com S14</h3>
+<p>Primeiro testar S14 com ímã. Depois, se houver espaço suficiente e os desvios estiverem ajustados, fazer passagem supervisionada da locomotiva por S14 no trecho entre D10 e D8. Definir no local os limites de parada, sem avançar para a área da GA2. Não movimentar D10 ou D8 enquanto a composição estiver sobre eles.</p>
+<p>Sensor indispensável para verificar esse trecho: S14.</p>
+<p>Os pontos exatos de início e parada dependem do comprimento da composição e da distância real de frenagem; o esquema não fornece essas medidas. O acionamento de um Hall não confirma que o último vagão liberou um desvio.</p>
+</section>
+<section>
+<h2>6. Limites desta fase</h2>
+<p>Para conferir todos os sensores da GA3, alimentar e habilitar S10 a S14. Cada percurso usa apenas os sensores indicados acima.</p>
+<p>Uma volta completa pelas linhas L1 ou L2 passa também pela área da GA2. Não incluir essa volta como teste restrito à GA3.</p>
+<p>Os acessos por D5, D6 e D9 podem levar à GA1 ou GA2. Nesta fase, testar esses desvios individualmente; circulação e sequências automáticas nesses acessos exigem roteiro específico e os sensores externos necessários.</p>
+<p>Não definir ainda comandos automáticos de desvios ou paradas por sensor: o desenho mostra as posições dos componentes, mas não estabelece a lógica de circulação nem as condições de liberação.</p>
+</section>
+<section>
+<h2>7. Registro dos resultados</h2>
+<p>Para cada teste, anotar: data; desvio, sensor ou percurso; comando executado; resposta observada; aprovado ou pendente; ajuste necessário.</p>
+<p>Considerar esta etapa concluída quando os cinco desvios responderem corretamente, os cinco sensores forem identificados sem trocas e os percursos autorizados forem realizados com controle de parada e sem falhas observadas.</p>
+<p>A aprovação desta etapa não autoriza operação automática sem supervisão.</p>
+</section>
+<section>
+<h2>8. Onde documentar</h2>
+<p>Publicar este roteiro em Documentação, no item Testes e segurança, com o título Teste operacional preliminar - GCP e GA3.</p>
+<p>No Diário de Bordo, registrar preparação, execução, resultados e ajustes, com link para o roteiro. Manter este documento como preliminar até os testes serem executados.</p>
+</section>
+<footer><a href="documentacao.html">&larr; Voltar à documentação</a></footer>
+</main>
+</body>
+</html>
