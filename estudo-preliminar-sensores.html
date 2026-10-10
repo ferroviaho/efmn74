@@ -88,7 +88,7 @@
         <li>R1 e R2 circulam no sentido Leste → Oeste; R4 e R5 no sentido Oeste → Leste; R3 executa R1 seguida de R2; R6 executa R4 seguida de R5; R7 é o Modo Aleatório Inteligente.</li>
         <li>GA1 recebe S1–S4 e S15–S19; GA2 recebe S5–S9; GA3 recebe S10–S14, conforme a distribuição ajustada de gavetas.</li>
         <li>A identificação dos desvios usa D1 a D20. Inicialmente não serão utilizados sensores Hall dedicados à confirmação física de DI ou AC nos desvios. A ESP32 comandará o servo, aguardará o tempo de movimento e registrará a posição como comandada, sem tratá-la como confirmação física. Neste estudo, DI significa posição Direta e AC, posição ACionada, conforme o Diário de Bordo.</li>
-        <li>No modo Analógico há travamento especial dos desvios; a passagem para Digital desenergiza a tração, confirma DCC e retira esse travamento, mantendo as posições dos desvios.</li>
+        <li>No modo Analógico há travamento especial dos desvios. A passagem para Digital desenergiza a tração, confirma DCC e retira esse travamento, mantendo as posições dos desvios.</li>
         <li>Áudio está identificado como AF1 a AF7 no layout. A relação entre cada detecção e os sons ainda será escolhida. Cada comando deverá ser associado à composição, à linha e ao AF correspondente; encerrar um som não deverá interromper o áudio de outra composição. O desligamento geral fica reservado à emergência, reinicialização ou falha.</li>
       </ul>
     </section>
@@ -96,9 +96,9 @@
       <p>As regras de segurança e acompanhamento abaixo orientam o projeto. Tempos de estabilização, permanência e percurso, prioridades de avisos e respostas específicas de cada sensor ainda precisam de validação.</p>
       <ul>
         <li>Confirmar a presença após um breve tempo de estabilização e gerar um único evento ao entrar no sensor. Enquanto o ímã estiver sobre o Hall, o sensor permanece ativo, sem repetir som ou comando continuamente. A liberação do Hall não comprova que o trem inteiro saiu do trecho.</li>
-        <li>Mostrar no sinóptico a detecção pontual ou o sensor ativo e, quando a rota estiver definida, a linha e o próximo trecho. Não chamar o trecho inteiro de livre ou ocupado apenas pela leitura pontual. Na TV, a mesma informação pode aparecer como texto ou imagem; esse recurso depende de definir a integração.</li>
+        <li>Mostrar no sinóptico a detecção pontual ou o sensor ativo e, quando a rota estiver definida, a linha e o próximo trecho. Não chamar o trecho inteiro de livre ou ocupado apenas pela leitura pontual. Na TV, a mesma informação pode aparecer como texto ou imagem. Esse recurso depende de definir a integração.</li>
         <li>Registrar data, hora, sensor, gaveta, rota ativa e evento. Se houver comando de desvio, registrar posição pedida e confirmação física somente onde existir sensor de confirmação.</li>
-        <li>Antes de mover um desvio, verificar rota ativa e sentido; a passagem pelo Hall não demonstra que o desvio está livre. Se a liberação não puder ser confirmada por procedimento ou por detecção complementar, manter o desvio parado e alertar.</li>
+        <li>Antes de mover um desvio, verificar rota ativa e sentido. A passagem pelo Hall não demonstra que o desvio está livre. Se a liberação não puder ser confirmada por procedimento ou por detecção complementar, manter o desvio parado e alertar.</li>
         <li>Avisos sonoros e buzzer devem ter prioridade definida para evitar alertas conflitantes, preservando a possibilidade prevista de sons simultâneos de composições diferentes. Um sensor retido por tempo além do esperado pode gerar alerta de permanência, mas uma locomotiva parada não é, por si, uma falha.</li>
       </ul>
     </section>
@@ -147,7 +147,7 @@
 <h3>e) Validação da sequência de sensores</h3>
 <p>Os sensores não deverão ser tratados apenas como entradas independentes. O software deverá acompanhar a ordem em que são acionados. Para cada composição em circulação deverá existir uma expectativa de sequência baseada na posição anterior, no sentido e na rota.</p>
 <p>Quando o sensor esperado for acionado, o sistema deverá atualizar a posição lógica da composição e preparar as verificações referentes ao trecho seguinte. Quando um sensor inesperado for acionado, o sistema deverá registrar pelo menos a identificação do sensor, a composição envolvida quando conhecida, a área, a rota, o sentido, o sensor que era esperado e a condição encontrada.</p>
-<p>A ausência de acionamento do sensor esperado também deverá ser considerada uma condição relevante. O critério de tempo ou distância para caracterizar essa ausência ainda deverá ser definido com base nos testes reais da ferrovia e nas velocidades de operação; portanto, esse parâmetro não fica fixado neste momento.</p>
+<p>A ausência de acionamento do sensor esperado também deverá ser considerada uma condição relevante. O critério de tempo ou distância para caracterizar essa ausência ainda deverá ser definido com base nos testes reais da ferrovia e nas velocidades de operação. Portanto, esse parâmetro não fica fixado neste momento.</p>
 
 <h3>f) Tratamento das inconsistências</h3>
 <p>Uma inconsistência poderá resultar de sensor acionado fora da sequência prevista, ausência de sensor esperado, posição comandada de desvio incompatível com a rota, estado indefinido de um desvio relevante ou qualquer combinação de informações que indique que a posição conhecida da composição deixou de ser confiável.</p>
@@ -160,23 +160,23 @@
 
 <h3>h) Finalização e estacionamento</h3>
 <p>Quando uma rota receber o comando FINALIZAR, o percurso em andamento deverá ser concluído antes do encerramento. Trem de passageiros deverá estacionar na Estação e trem de carga na Linha L6, situada entre D1 e D7.</p>
-<p>No estacionamento de carga no sentido Leste → Oeste, D7 deverá encaminhar a composição para L6; no sentido Oeste → Leste, D1 deverá executar esse encaminhamento. Em ambos os sentidos permanecem válidas as regras já registradas de segurança da rota, verificação dos desvios pertinentes e parada após a detecção correspondente.</p>
+<p>No estacionamento de carga no sentido Leste → Oeste, D7 deverá encaminhar a composição para L6. No sentido Oeste → Leste, D1 deverá executar esse encaminhamento. Em ambos os sentidos permanecem válidas as regras já registradas de segurança da rota, verificação dos desvios pertinentes e parada após a detecção correspondente.</p>
 
 <h3>i) Inicialização e modos de operação</h3>
 <p>Na inicialização, o sistema de controle é energizado, mas os trilhos permanecem desenergizados até a aprovação das verificações previstas. Após aprovação dos testes, a configuração automática inicial prevista é D1 a D9 em DI, D10 em AC e D11 a D20 em DI.</p>
-<p>No modo manual, o operador decide a movimentação, enquanto o sistema continua responsável pelos desvios pertinentes, sensores, alarmes e segurança. No modo DCC, a partida exige identificação da locomotiva, posição inicial e sentido. Se a composição estiver fora da Estação, deverá ser preparado o retorno seguro à Estação antes da apresentação das rotas disponíveis; o percurso e os sensores desse retorno ainda precisam ser detalhados.</p>
+<p>No modo manual, o operador decide a movimentação, enquanto o sistema continua responsável pelos desvios pertinentes, sensores, alarmes e segurança. No modo DCC, a partida exige identificação da locomotiva, posição inicial e sentido. Se a composição estiver fora da Estação, deverá ser preparado o retorno seguro à Estação antes da apresentação das rotas disponíveis. O percurso e os sensores desse retorno ainda precisam ser detalhados.</p>
 <h3>j) Consolidação para o software</h3>
 <p>As decisões aqui reunidas deverão ser convertidas em requisitos, estados, funções, mensagens e rotinas de segurança em C++ para as ESP32. A tabela individual de cada sensor deverá indicar sensor anterior e seguinte esperados, desvios envolvidos, posições DI/AC, condições de liberação, tempos e ações para cada sentido e rota. Esses parâmetros não ficam fixados nesta revisão.</p>
 </section>
 <section class="study-section" id="aspectos-fisicos"><h2>Aspectos físicos, instalação e testes</h2>
 <p>Foram adotados sensores Hall A3144, identificados de S1 a S19. O padrão registrado utiliza vermelho para alimentação, preto para GND e verde para o sinal individual enviado à ESP32 da área. O barramento de +5 V e GND sob a ferrovia é alimentado pela fonte da GCP. As entradas da ESP32 e seus resistores de pull-up deverão respeitar os níveis elétricos definidos no projeto eletrônico.</p>
-<p>Dos 40 sensores disponíveis, 19 foram destinados à instalação inicial; os demais constituem reserva técnica e possibilidade de melhorias futuras. Cores, bitolas, bornes e transições definitivas serão consolidados no projeto de cabeamento.</p>
+<p>Dos 40 sensores disponíveis, 19 foram destinados à instalação inicial. Os demais constituem reserva técnica e possibilidade de melhorias futuras. Cores, bitolas, bornes e transições definitivas serão consolidados no projeto de cabeamento.</p>
 <p>O Diário de Bordo registra testes de bancada do A3144 com resistor de pull-up e multímetro, verificando a mudança de estado por aproximação do ímã. Esses testes não representam aprovação de toda a montagem atual da GA3 nem de todas as sequências operacionais.</p>
 <p>Na inicialização, serão verificadas alimentação, estado lógico das entradas, comunicação com a ESP32 e falhas de fiação quando detectáveis pelos circuitos instalados. Uma leitura isolada não garante a integridade de toda a fiação. A validação funcional será feita por aproximação do ímã nos testes e por passagem real da locomotiva durante a circulação, conferindo mudança de estado, resposta e sequência.</p>
 <p>A instalação física entre os dormentes, próxima à parte inferior da locomotiva, deverá ser validada com o ímã efetivamente utilizado. As orientações de montagem estão em <a href="instalacao-hall.html">Instalação dos sensores Hall nas 19 posições de detecção e automação</a>, em Técnicas de Construção. A marcação das posições, o lançamento dos fios e os resultados de montagem permanecem registrados no <a href="diario-de-bordo.html#sensores">Diário de Bordo</a>.</p>
 </section>
 <section class="study-section" id="listagem-operacional-preliminar"><h2>Listagem operacional preliminar</h2>
-      <p>Na coluna “consequência proposta”, “indicar” significa mostrar e registrar a detecção do ímã naquele ponto, sem declarar a ocupação do trecho inteiro. O posicionamento automático dos desvios pertinentes à rota segue a filosofia já definida; cada comando dependerá da tabela de percursos e da validação das condições de segurança, incluindo a liberação do desvio antes de movimentá-lo. Áudio mencionado é apenas uma possibilidade pela proximidade no desenho.</p>
+      <p>Na coluna “consequência proposta”, “indicar” significa mostrar e registrar a detecção do ímã naquele ponto, sem declarar a ocupação do trecho inteiro. O posicionamento automático dos desvios pertinentes à rota segue a filosofia já definida: cada comando dependerá da tabela de percursos e da validação das condições de segurança, incluindo a liberação do desvio antes de movimentá-lo. Áudio mencionado é apenas uma possibilidade pela proximidade no desenho.</p>
       <div class="table-scroll" role="region" aria-label="Tabela Sensor" tabindex="0"><table><thead><tr>
         <th scope="col">Sensor</th>
         <th scope="col">Gaveta</th>
@@ -189,14 +189,14 @@
           <td>GA1</td>
           <td>Fronteira Área 2 ↔ Área 1</td>
           <td>Registrar a transição entre Áreas 1 e 2, conforme sentido e rota, atualizar a área lógica e preparar as verificações seguintes.</td>
-          <td>Rota ausente ou contraditória: alertar; sem comutação.</td>
+          <td>Rota ausente ou contraditória: alertar sem comutação.</td>
         </tr>
         <tr>
           <th scope="row">S2</th>
           <td>GA1</td>
           <td>Fronteira Área 3 ↔ Área 1</td>
           <td>Registrar a transição entre Áreas 1 e 3, conforme sentido e rota, atualizar a área lógica e preparar as verificações seguintes.</td>
-          <td>Rota ausente ou contraditória: alertar; sem comutação.</td>
+          <td>Rota ausente ou contraditória: alertar sem comutação.</td>
         </tr>
         <tr>
           <th scope="row">S3</th>
@@ -210,20 +210,20 @@
           <td>GA1</td>
           <td>L1 junto a D18 e D7</td>
           <td>Indicar circulação na ligação lateral da Área 1.</td>
-          <td>Sem confirmação de desvio livre: alertar; não mudar desvio sob trem.</td>
+          <td>Sem confirmação de desvio livre: alertar, não mudar desvio sob trem.</td>
         </tr>
         <tr>
           <th scope="row">S5</th>
           <td>GA2</td>
           <td>L1 na região dos túneis</td>
-          <td>Indicar passagem pelo túnel; avaliar som AF2.</td>
+          <td>Indicar passagem pelo túnel. Avaliar som AF2.</td>
           <td>Tempo de percurso excedido: alertar após limite aprovado.</td>
         </tr>
         <tr>
           <th scope="row">S6</th>
           <td>GA2</td>
           <td>L2 na região dos túneis</td>
-          <td>Indicar passagem pelo túnel; avaliar som AF2.</td>
+          <td>Indicar passagem pelo túnel. Avaliar som AF2.</td>
           <td>Tempo de percurso excedido: alertar após limite aprovado.</td>
         </tr>
         <tr>
@@ -237,7 +237,7 @@
           <th scope="row">S8</th>
           <td>GA2</td>
           <td>L2, região de D10 e D11</td>
-          <td>Indicar circulação na L2; consultar rota antes de agir.</td>
+          <td>Indicar circulação na L2. Consultar rota antes de agir.</td>
           <td>D10 tem regra própria de repouso; conferir qualquer comando.</td>
         </tr>
         <tr>
@@ -251,7 +251,7 @@
           <th scope="row">S10</th>
           <td>GA3</td>
           <td>L2 junto aos viadutos</td>
-          <td>Indicar passagem pela L2; avaliar som AF3.</td>
+          <td>Indicar passagem pela L2. Avaliar som AF3.</td>
           <td>Não atribuir passagem à L1 sem evidência de S11.</td>
         </tr>
         <tr>
@@ -272,7 +272,7 @@
           <th scope="row">S13</th>
           <td>GA3</td>
           <td>L2 na região das pontes</td>
-          <td>Indicar passagem pela L2; avaliar som AF4.</td>
+          <td>Indicar passagem pela L2. Avaliar som AF4.</td>
           <td>Sequência de sensores incoerente: registrar e alertar.</td>
         </tr>
         <tr>
@@ -330,7 +330,7 @@
         </tr>
         <tr>
           <th scope="row">Dois sensores incompatíveis com a rota</th>
-          <td>Registrar sequência inesperada e alertar; preservar posições dos desvios até verificar a rota.</td>
+          <td>Registrar sequência inesperada e alertar, preservar posições dos desvios até verificar a rota.</td>
         </tr>
         <tr>
           <th scope="row">Sensor esperado não atua</th>
