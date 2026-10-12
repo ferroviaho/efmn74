@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Onde comprar materiais e componentes para a Ferrovia EFMN 74: lojas de ferromodelismo, miniaturas, maquetes e eletrônica consultadas no projeto.">
-  <title>Onde comprar | Ferrovia EFMN 74</title>
+  <title>Onde comprar artigos em escala HO | Ferrovia EFMN 74</title>
 
   <style>
     :root {
@@ -71,15 +71,35 @@
     }
 
     .lista-lojas {
-      list-style: none;
-      margin: 0;
-      padding: 0;
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
       border-top: 1px solid var(--line);
     }
 
-    .lista-lojas li {
-      padding: 14px 4px;
+    .lista-lojas th,
+    .lista-lojas td {
+      padding: 14px 8px;
       border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+      overflow-wrap: anywhere;
+    }
+
+    .lista-lojas th {
+      background: var(--bg);
+    }
+
+    .lista-lojas th:first-child {
+      width: 38%;
+    }
+
+    .lista-lojas th:nth-child(2) {
+      width: 22%;
+    }
+
+    .lista-lojas th:nth-child(3) {
+      width: 40%;
     }
 
     .lista-lojas a {
@@ -163,8 +183,14 @@
         font-size: 1.05rem;
       }
 
-      .lista-lojas li {
-        padding: 13px 2px;
+      .lista-lojas th,
+      .lista-lojas td {
+        padding: 13px 4px;
+        font-size: 0.85rem;
+      }
+
+      .lista-lojas a {
+        font-size: 0.85rem;
       }
 }
   
@@ -234,122 +260,38 @@
         <a href="manual-indice.html">← Voltar ao índice</a>
       </p>
 
-      <h1>Onde comprar</h1>
+      <h1>Onde comprar artigos em escala HO</h1>
 
       <p class="abertura">
         Relação de lojas e sites que costumo consultar para pesquisar e adquirir
         materiais, peças, acessórios e componentes utilizados na construção da maquete.
       </p>
 
-      <ul class="lista-lojas">
-        <li>
-          <a href="https://www.aliexpress.com/" target="_blank" rel="noopener noreferrer">
-            AliExpress
-          </a>
-        </li>
-
-        <li>
-          <a href="https://city3d.com.br/" target="_blank" rel="noopener noreferrer">
-            City 3D
-          </a>
-        </li>
-
-        <li>
-          <a href="https://www.estacaohobby.com.br/" target="_blank" rel="noopener noreferrer">
-            Estação Hobby
-          </a>
-        </li>
-
-        <li>
-          <a href="https://giltecmodelismo.com.br/" target="_blank" rel="noopener noreferrer">
-            Giltec Modelismo
-          </a>
-        </li>
-
-        <li>
-          <a href="https://loja.hangar18.com.br/" target="_blank" rel="noopener noreferrer">
-            Hangar 18
-          </a>
-        </li>
-
-        <li>
-          <a href="https://www.lojadafrateschi.com.br/" target="_blank" rel="noopener noreferrer">
-            Loja da Frateschi
-          </a>
-        </li>
-
-        <li>
-          <a href="https://lvlartes.com.br/" target="_blank" rel="noopener noreferrer">
-            LVL Artes
-          </a>
-        </li>
-
-        <li>
-          <a href="https://www.maismodelismo.com.br/" target="_blank" rel="noopener noreferrer">
-            Mais Modelismo
-          </a>
-        </li>
-
-        <li>
-          <a href="https://www.mercadolivre.com.br/" target="_blank" rel="noopener noreferrer">
-            Mercado Livre
-          </a>
-        </li>
-
-        <li>
-          <a href="https://www.minimundi.com.br/" target="_blank" rel="noopener noreferrer">
-            Minimundi
-          </a>
-        </li>
-
-        <li>
-          <a href="https://minitec.com.br/" target="_blank" rel="noopener noreferrer">
-            Minitec
-          </a>
-        </li>
-
-        <li>
-          <a href="https://modalmaquetes.com.br/" target="_blank" rel="noopener noreferrer">
-            Modal Maquetes
-          </a>
-        </li>
-
-        <li>
-          <a href="https://orangeboxminiaturas.com.br/" target="_blank" rel="noopener noreferrer">
-            Orange Box
-          </a>
-        </li>
-
-        <li>
-          <a href="https://www.riograndemodelismo.com.br/" target="_blank" rel="noopener noreferrer">
-            Rio Grande Modelismo
-          </a>
-        </li>
-
-        <li>
-          <a href="https://sarahnavarroferromodelismo.com.br/" target="_blank" rel="noopener noreferrer">
-            Sarah Navarro Ferromodelismo
-          </a>
-        </li>
-
-        <li>
-          <a href="https://shopferreo.com.br/" target="_blank" rel="noopener noreferrer">
-            ShopFerreo
-          </a>
-        </li>
-
-        <li>
-          <a href="https://soeiromodels.com.br/" target="_blank" rel="noopener noreferrer">
-            Soeiro Models
-          </a>
-        </li>
-
-        <li>
-          <a href="https://www.temu.com/" target="_blank" rel="noopener noreferrer">
-            Temu
-          </a>
-        </li>
-      </ul>
+      <table class="lista-lojas">
+        <thead>
+          <tr><th scope="col">Nome da loja</th><th scope="col">Site</th><th scope="col">Instagram</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>AliExpress</td><td><a href="https://www.aliexpress.com/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td>-</td></tr>
+          <tr><td>City 3D</td><td><a href="https://city3d.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td><a href="https://www.instagram.com/city3d.com.br/" target="_blank" rel="noopener noreferrer">@city3d.com.br</a></td></tr>
+          <tr><td>Estação Hobby</td><td><a href="https://www.estacaohobby.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td><a href="https://www.instagram.com/estacao_hobby.com.br/" target="_blank" rel="noopener noreferrer">@estacao_hobby.com.br</a></td></tr>
+          <tr><td>Giltec Modelismo</td><td><a href="https://giltecmodelismo.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td>-</td></tr>
+          <tr><td>Hangar 18</td><td><a href="https://loja.hangar18.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td>-</td></tr>
+          <tr><td>Loja da Frateschi</td><td><a href="https://www.lojadafrateschi.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td><a href="https://www.instagram.com/frateschitrens/" target="_blank" rel="noopener noreferrer">@frateschitrens</a></td></tr>
+          <tr><td>LVL Artes</td><td><a href="https://lvlartes.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td><a href="https://www.instagram.com/lvlartes.ofc/" target="_blank" rel="noopener noreferrer">@lvlartes.ofc</a></td></tr>
+          <tr><td>Mais Modelismo</td><td><a href="https://www.maismodelismo.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td>-</td></tr>
+          <tr><td>Mercado Livre</td><td><a href="https://www.mercadolivre.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td>-</td></tr>
+          <tr><td>Minimundi</td><td><a href="https://www.minimundi.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td>-</td></tr>
+          <tr><td>Minitec</td><td><a href="https://minitec.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td>-</td></tr>
+          <tr><td>Modal Maquetes</td><td><a href="https://modalmaquetes.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td>-</td></tr>
+          <tr><td>Orange Box</td><td><a href="https://orangeboxminiaturas.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td>-</td></tr>
+          <tr><td>Rio Grande Modelismo</td><td><a href="https://www.riograndemodelismo.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td><a href="https://www.instagram.com/riograndemodelismo/" target="_blank" rel="noopener noreferrer">@riograndemodelismo</a></td></tr>
+          <tr><td>Sarah Navarro Ferromodelismo</td><td><a href="https://sarahnavarroferromodelismo.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td><a href="https://www.instagram.com/sarah_navarro_ferromodelismo/" target="_blank" rel="noopener noreferrer">@sarah_navarro_ferromodelismo</a></td></tr>
+          <tr><td>ShopFerreo</td><td><a href="https://shopferreo.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td><a href="https://www.instagram.com/shopferreo" target="_blank" rel="noopener noreferrer">@shopferreo</a></td></tr>
+          <tr><td>Soeiro Models</td><td><a href="https://soeiromodels.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td>-</td></tr>
+          <tr><td>Temu</td><td><a href="https://www.temu.com/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td><a href="https://www.instagram.com/temu/" target="_blank" rel="noopener noreferrer">@temu</a></td></tr>
+        </tbody>
+      </table>
 
       <p class="observacao">
         Os links são apresentados apenas como referência das lojas e sites consultados.
