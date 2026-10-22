@@ -153,6 +153,7 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 
   <p>Revisada a arquitetura de automação para uma estrutura distribuída: a GCP — Gaveta de Controle Principal mantém a ESP32 principal e as funções centrais de supervisão e comunicação, enquanto GA1, GA2 e GA3 passam a possuir uma ESP32 própria para executar localmente os comandos e leituras de sua respectiva área.</p>
 <p>As ESP32 regionais deverão se comunicar com a ESP32 principal, evitando a concentração de toda a fiação de sensores e servos na GCP. Essa distribuição reduz o comprimento dos condutores de sinal, simplifica a manutenção e permite que cada área tenha firmware C++ próprio.</p>
+<p>A GES centralizará os efeitos sonoros ambientais e operacionais, com ESP32 e módulos próprios, integrada à supervisão da GCP. GA1, GA2 e GA3 deixam de executar a reprodução desses efeitos e mantêm sensores, desvios e iluminação de suas áreas. Os avisos locais por buzzer permanecem separados do sistema de efeitos sonoros.</p>
 <p>Estruturados os modos de operação Analógico e DCC, mantendo-se os dois sistemas para permitir a utilização das locomotivas analógicas existentes, a futura incorporação de locomotivas digitais DCC e possibilitar que amigos e visitantes possam operar a EFMN 74 de forma simples pelo modo analógico, sem as restrições e configurações próprias da operação digital; definidos também os conceitos dos painéis de controle, tablets e sinótico.</p>
 <p>Durante a fase atual, todas as decisões operacionais, de segurança e de automação devem ser registradas. A separação posterior em rotinas de software será feita quando começar o desenvolvimento do programa.</p>
 <p>Definida a separação entre documentação técnica e sistema de controle: os documentos oficiais poderão ser fechados em DOCX/PDF, enquanto as interfaces operacionais serão desenvolvidas em HTML, CSS, JavaScript e SVG, comunicando-se com a lógica em C++ das ESP32.</p>
@@ -182,11 +183,12 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <li>GA2 — Gaveta Área 2: atende a Área 2 — Túnel. Concentra a ESP32 da área, os sinais dos sensores, o acionamento dos desvios e as funções de iluminação correspondentes à Área 2.</li>
 <li>GA3 — Gaveta Área 3: atende a Área 3 — Armazéns. Concentra a ESP32 da área, os sinais dos sensores, o acionamento dos desvios e as funções de iluminação correspondentes à Área 3.</li>
 <li>GAR — Gaveta Analógica e Rotunda: controle da alimentação e operação analógica das linhas, incluindo fonte CC, reostato/PWM e seleção de sentido dos trilhos, além das funções relacionadas à Rotunda.</li>
+<li>GES (Gaveta de Efeitos Sonoros): gerenciamento dos efeitos sonoros de toda a ferrovia, com ESP32 própria e módulos de som. Será confeccionada por último. Sua posição física será definida futuramente, e suas dimensões ainda não foram definidas.</li>
 </ul>
 <p>Em 17/09/2026 foi iniciada a montagem física da GA3.</p>
 <p>Após a revisão do layout da GA3 em 30/09/2026, a ESP32 passou a ser montada fora da protoboard.</p>
 <p>Na revisão de 30/09/2026 foi definido um único módulo relé para ligar e desligar em conjunto a alimentação de +5 V dos cinco servos da GA3. Os módulos MOSFET ficam destinados à iluminação e a outras cargas.</p>
-<p>A antiga GIS/GCI — Gaveta de Iluminação e Som foi cancelada. A iluminação permanece distribuída entre GA1, GA2 e GA3 conforme a área correspondente. Em 21/10/2026 foi definida a GES (Gaveta de Efeitos Sonoros), com ESP32 própria e módulos de som, a ser confeccionada por último. A GAR permanece com suas funções anteriormente definidas.</p>
+<p>A antiga GIS/GCI — Gaveta de Iluminação e Som foi cancelada. A iluminação permanece distribuída entre GA1, GA2 e GA3 conforme a área correspondente. Com a criação da GES em 21/10/2026, as funções de reprodução e gerenciamento dos efeitos sonoros foram retiradas das demais gavetas e concentradas na GES. O buzzer de avisos locais da GA3 permanece independente desse sistema.</p>
 
   <p>Em 08/09/2026 foi adquirido um rack deslizante do tipo utilizado para teclado para avaliar uma solução de suporte mais simples, com largura ajustável e altura útil de aproximadamente 15 cm, evitando depender da fabricação de gavetas por marceneiro. A adoção definitiva desse suporte ainda depende da avaliação prática de montagem.</p>
 <p>Em 02/10/2026 foi definido que todas as gavetas serão energizadas simultaneamente pela GCP, onde já existem a chave geral e o LED de indicação de energização. As gavetas de área não precisam de chave liga/desliga nem de LED próprios para essa função. A proteção por fusível permanece prevista, com valor definitivo a ser estabelecido conforme a carga e os condutores de cada circuito no projeto elétrico.</p>
@@ -198,7 +200,7 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <p>Os detalhes da montagem e da conferência da GA3 serão apresentados no documento “Um passo-a-passo para montar a GA3”, atualmente em elaboração.</p>
 
 <p>Em 02/10/2026 avançaram as ligações entre a protoboard e a ESP32, incluindo as conexões de GND. A montagem foi pausada antes da conferência completa e dos testes funcionais do conjunto.</p>
-<p>Em 19 e 20/10/2026 foi revisada a identificação dos conectores Sindal da GA3. X0 possui dois bornes para entrada de +5 V e GND. X1 passou a utilizar um borne para receber o fio proveniente da junção dos cinco fios de +5 V dos servos sob a mesa. X2 passou a utilizar um borne para receber o fio proveniente da junção dos cinco GND dos servos. As identificações X3 a X5 deverão ser conferidas na relação específica de conectores antes de sua transcrição para este Diário.</p>
+<p>Em 19 e 20/10/2026 foi revisada a identificação dos conectores Sindal da GA3. X0 possui dois bornes para entrada de +5 V e GND. X1 e X2 passaram a utilizar um borne cada, sem pontes. Os cinco fios de +5 V dos servos foram unidos abaixo da mesa, em junção separada da união dos cinco fios de GND. Dessas junções seguem os condutores de alimentação para X1 (+5 V) e X2 (GND). Os cinco sinais de controle permanecem individuais. As identificações X3 a X5 deverão ser conferidas na relação específica de conectores antes de sua transcrição para este Diário.</p>
 <p>O percurso registrado para a alimentação dos servos é: X0 +5 V → fusível → entrada V1+ do PIP. A saída V0+ do PIP segue ao COM do relé, e o contato NO alimenta X1. O GND segue diretamente ao X2, comum ao circuito.</p>
 <p>Em 20/10/2026 foi realizada uma etapa de conferência das conexões da GA3, com resultados registrados no relatório parcial. A conclusão dessa etapa não representa aprovação dos testes funcionais completos.</p>
 <p>O buzzer instalado na protoboard da GA3 será acionado pela ESP32 para avisos locais. Sua função é independente dos efeitos sonoros ambientais previstos para a GES.</p>
@@ -216,7 +218,7 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <p>Definidas as ligações do servo SG90 de três fios, distinguindo alimentação, GND e sinal de comando proveniente da ESP32; o acionamento do servo não utiliza módulo DRV8871.</p>
 <p>Definido o procedimento de atualização do firmware: salvar as alterações, compilar na IDE Arduino, fazer o upload na ESP32 correspondente, confirmar a gravação sem erros e executar teste funcional.</p>
 <p>Cada ESP32 terá seu próprio firmware e será gravada individualmente. Alterações que afetem apenas uma placa não exigem regravação das demais.</p>
-<p>Na arquitetura distribuída, haverá um programa C++ específico para a ESP32 principal e um programa próprio para cada ESP32 de GA1, GA2 e GA3. A comunicação entre as placas deverá ocorrer através da ESP32 principal, que coordenará as informações globais e as interfaces de operação.</p>
+<p>Na arquitetura distribuída, haverá um programa C++ específico para a ESP32 principal e um programa próprio para cada ESP32 de GA1, GA2, GA3 e GES. A ESP32 da GES executará o gerenciamento e a reprodução dos efeitos sonoros, recebendo os comandos coordenados pela GCP. As ESP32 das áreas permanecem responsáveis pelos sensores, desvios e iluminação local. A ESP32 principal coordenará as informações globais e as interfaces de operação.</p>
 <p>Para a fase de implantação foi adotado o uso de protoboard e jumpers nas gavetas regionais, facilitando testes, alterações e validação das ligações antes de uma eventual substituição futura por montagem definitiva.</p>
 <p>Planejada, para etapa futura, a automação do processo de compilação, upload, abertura opcional do monitor serial e teste inicial por meio de ferramenta como Arduino CLI ou PlatformIO.</p>
 
@@ -302,7 +304,7 @@ loading="lazy">
 <p>O comando geral de desligamento de todos os AF fica reservado para emergência, reinicialização do sistema ou falha detectada.</p>
 <p>Para permitir sons simultâneos de composições diferentes pela mesma caixa acústica AF, ficou registrado para estudo futuro o uso de mixagem dos sinais de áudio antes da amplificação.</p>
 <p>Permanece em estudo a reprodução simultânea e a mixagem dos sons. Com a definição da GES em 21/10/2026, a escolha dos módulos, amplificadores, eventual mixer e distribuição dos sinais aos alto-falantes deverá ser detalhada no projeto de áudio antes da compra definitiva dos componentes.</p>
-<p>Em 21/10/2026 foi criada a GES — Gaveta de Efeitos Sonoros, com uma ESP32 e módulos de som. Sua confecção será a última etapa de montagem das gavetas.</p>
+<p>Em 21/10/2026 foi criada a GES, com uma ESP32 própria e módulos de som, para concentrar o gerenciamento e a reprodução dos efeitos sonoros antes atribuídos às demais gavetas. Sua confecção será a última etapa de montagem das gavetas. A posição física será definida futuramente. Os alto-falantes continuarão distribuídos pelas regiões da maquete, conforme o projeto de áudio.</p>
 <p>O repertório inicialmente previsto inclui apitos, buzinas, animais, música nas residências, ruídos de oficina, sons de estação, sinos de igreja, veículos, tratores, pássaros e outros efeitos. A combinação de sons permanece como requisito em estudo, sem arquitetura de mixagem definida.</p>
 <p>Em 21/10/2026 foram registradas as características do módulo buzzer da GA3, conforme a descrição do anúncio do fornecedor: tipo ativo, alimentação de 3,3 a 5 V, três pinos identificados como +B, GND e Sinal, dimensões de 38 × 13 mm, peso anunciado de 6 g, marca genérica e furo para fixação. A tabela do anúncio indica 5 V como tensão recomendada e 5,5 V como limite informado pelo vendedor. Estes dados são especificações anunciadas, ainda não validadas em teste.</p>
 <p>O buzzer ativo produz um tom fixo. O programa da ESP32 poderá controlar a duração, as pausas e a quantidade de bipes para diferenciar avisos. Sua função na GA3 será sinalizar testes e eventos locais, independentemente dos efeitos sonoros reproduzidos pelo sistema de áudio da ferrovia.</p>
@@ -373,17 +375,18 @@ loading="lazy">
 <p>Todos os eventos relevantes serão registrados com data, hora, região, equipamento, descrição e resultado da operação.</p>
 <p>Em 02/10/2026 foi decidido conferir a montagem atual da GA3 antes de acrescentar novas conexões ou ligar a fonte.</p>
 
-<p>A conferência da GA3 avançou até um relatório parcial em 20/10/2026. A conclusão da conferência completa e dos testes funcionais permanece pendente.</p>
+<p>Em 21/10/2026 foram reunidos o roteiro de testes e os resultados disponíveis no documento “GA3 — Sequência de testes e resultados”, organizado em tabela com item, descrição do teste, objetivo e critério esperado, resultado real e situação. O registro consolida 11 verificações concluídas em 20/10/2026, com fonte e USB desconectados. Foram conferidos a fixação dos fios de X1 e X2, os trechos de continuidade da alimentação, os contatos do relé em repouso e o GND comum com a ESP32. Não foram registrados valores numéricos de resistência ou tensão.</p>
+<p>A retomada será pelo item 12, para identificar o pino de alimentação da ESP32, sua inscrição e a origem do fio antes dos ensaios energizados. Permanecem pendentes as demais verificações, as medições com alimentação, o programa de diagnóstico e os testes funcionais. As aprovações parciais não representam liberação completa da GA3.</p>
 <p>Em 19 e 20/10/2026 foi preparada a sequência de testes da GA3, abrangendo conferência sem alimentação, medições com fonte energizada e testes por programa na ESP32 antes da conexão dos servos e sensores.</p>
 <p>Adotado acompanhamento item a item: cada teste será apresentado ao montador, executado e respondido antes do seguinte. Se houver dúvida, o procedimento será detalhado antes de prosseguir. A conclusão será registrada após cada item.</p>
-<p>Após aprovação das etapas preliminares, os servos serão instalados e testados individualmente. Em seguida serão avaliados acionamentos simultâneos de dois, três, quatro e cinco servos. Essa sequência está planejada e não constitui registro de testes já executados.</p>
-<p>Ao término, será emitido documento final comentado e detalhado, com resultados e orientações para repetir os testes. Após revisão, sua publicação está prevista em Documentação — Testes e segurança.</p>
+<p>Após aprovação das etapas preliminares, será testado um servo livre, sem ligação mecânica ao desvio, em cada uma das cinco saídas de comando da GA3. São cinco saídas, e não cinco posições angulares obrigatórias. Depois, os servos serão instalados e testados individualmente, começando pelo D6, com ajuste específico do curso de cada conjunto. Em seguida serão avaliados acionamentos simultâneos de dois, três, quatro e cinco servos e a integração dos sensores reais. Essa sequência está planejada e não constitui registro de testes já executados.</p>
+<p>O documento consolidado será atualizado após cada teste, preservando a distinção entre resultado confirmado e etapa pendente. Sua abertura foi reescrita e o nome do montador foi retirado para publicação como orientação ao público. Ao término dos ensaios e da revisão, sua publicação está prevista em Documentação — Testes e segurança.</p>
 </article>
 
 <article id="site">
 <h2>Site, Manual e documentação</h2>
 <p><strong>Critério documental:</strong> o Diário de Bordo registra a evolução, as decisões e a filosofia do projeto — o que foi decidido e por quê. A Especificação Operacional da EFMN 74 deverá registrar exatamente como esta ferrovia deve se comportar. Os Projetos Elétrico, Eletrônico e de Cabeamento registrarão como está fisicamente ligada; e a documentação de software descreverá como as regras serão implementadas em C++.</p>
-<p>Implantada o movimento da águas e a alternância automática das imagens da capa e ajustado para 4 segundos o tempo de exibição.</p>
+<p>Implantado o movimento das águas e a alternância automática das imagens da capa, com tempo de exibição ajustado para 4 segundos.</p>
 <p>O site passou a ser acompanhado pelo Google Search Console. Foi discutido o uso do sitemap para facilitar a descoberta das páginas e planejada a revisão gradual das descrições de cada página para os resultados de busca. A descrição da página “Pintura com aerógrafo” foi revisada.</p>
 <p>Revisado o formulário de Contato e ajustado o envio das mensagens.</p>
 <p>Foram acrescentados à página inicial os links para Documentação e Downloads. As duas páginas foram preparadas para apresentar os materiais disponíveis e previstos.</p>
@@ -416,7 +419,7 @@ loading="lazy">
 <p>Foi recebido o módulo relé de 3,3 V destinado à montagem da GA3. Em 02/10/2026 também foram recebidos dez módulos MOSFET para os estudos e a implantação da iluminação setorizada.</p>
 </article>
 
-<!-- Diário atualizado em 21/10/2026 -->
+<!-- Diário atualizado em 22/10/2026 -->
 <!-- ===== INSERIR NOVAS DECISÕES NO TEMA CORRESPONDENTE ===== -->
 
 <p class="voltar-final">
