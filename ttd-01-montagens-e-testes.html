@@ -205,8 +205,8 @@ tRo7KQhtppAShCR2AA4A120tLQLS0tLQf//Z
 <main>
 <p class="voltar"><a href="index.html">← Voltar à página principal</a></p>
 <h1>TTD-01 — Teste e ajuste de desvios</h1>
-<p>O Testador Temporário de Desvios (TTD-01) é usado em duas etapas: primeiro, testar todos os motores (servos SG90), um por vez, antes de qualquer instalação; depois, assim que cada desvio e seu motor forem instalados na maquete, fazer um novo ajuste do movimento das agulhas naquele conjunto.</p>
-<p>A sequência é: testar todos os motores → instalar um desvio com seu motor → ajustar esse desvio → repetir a instalação e o ajuste nos demais. O teste do motor na bancada verifica seu funcionamento; as posições finais DI e AC são definidas individualmente após a instalação.</p>
+<p>O Testador Temporário de Desvios (TTD-01) é usado em duas etapas: primeiro, testar todos os motores (servos SG90), um por vez, antes de qualquer instalação. Depois, assim que cada desvio e seu motor forem instalados na maquete, fazer um novo ajuste do movimento das agulhas naquele conjunto.</p>
+<p>A sequência é: testar todos os motores → instalar um desvio com seu motor → ajustar esse desvio → repetir a instalação e o ajuste nos demais. O teste do motor na bancada verifica seu funcionamento. As posições finais DI e AC são definidas individualmente após a instalação.</p>
 <p>Nos dois casos, o notebook envia os comandos para uma ESP32 usada como testador, que movimenta um servo por vez. Os desvios não possuem sensores Hall: a conferência do assentamento das agulhas é visual.</p>
 <section><h2>1. Material necessário</h2>
 <p>ESP32, notebook com Arduino IDE, cabo USB de dados, motores SG90, jumpers e protoboard. Conectar somente um motor por vez. Para o ajuste após a instalação: desvio com seu motor, braço e haste montados, além de extensões para os fios, se necessário.</p></section>
@@ -216,7 +216,7 @@ tRo7KQhtppAShCR2AA4A120tLQLS0tLQf//Z
 <tr><td>Vermelho</td><td>5 V da ESP32 alimentado pelo USB</td></tr>
 <tr><td>Marrom ou preto</td><td>GND da ESP32</td></tr>
 <tr><td>Laranja ou amarelo</td><td>GPIO 18 da ESP32</td></tr></tbody></table>
-<p>Confirmar que o ponto de 5 V da placa recebe alimentação pelo USB; não usar 3V3 para o servo. No teste individual, o notebook pode alimentar a bancada, dispensando fonte externa se a alimentação permanecer estável. Se a ESP32 reiniciar ao mover o servo, interromper o teste e conferir a alimentação.</p></section>
+<p>Confirmar que o ponto de 5 V da placa recebe alimentação pelo USB. Não usar 3V3 para o servo. No teste individual, o notebook pode alimentar a bancada, dispensando fonte externa se a alimentação permanecer estável. Se a ESP32 reiniciar ao mover o servo, interromper o teste e conferir a alimentação.</p></section>
 <section><h2>3. Preparar e gravar o programa</h2><ol>
 <li>Na Arduino IDE, instalar o pacote <code>esp32</code> da Espressif pelo Gerenciador de Placas e a biblioteca <code>ESP32Servo</code> pelo Gerenciador de Bibliotecas. Se necessário, acrescentar nas Preferências a URL: <code>https://espressif.github.io/arduino-esp32/package_esp32_index.json</code>.</li>
 <li>Conectar a ESP32 ao notebook, selecionar a placa correspondente e a porta USB. Para a ESP32 clássica genérica deste exemplo, selecionar <code>ESP32 Dev Module</code>.</li>
@@ -303,10 +303,10 @@ void loop() {
 <li>Identificar o primeiro motor. Com o USB desconectado, ligar seus três fios ao TTD-01 conforme a tabela do item 2.</li>
 <li>Conectar o USB e abrir o Monitor Serial. Enviar <code>C</code> para 90°, depois <code>D</code> e <code>A</code>, um comando por vez. Conferir se o eixo se movimenta nos dois sentidos.</li>
 <li>Alternar <code>D</code> → <code>A</code> → <code>D</code> várias vezes. O movimento deve ser regular e repetível, sem travamento, vibração contínua, aquecimento anormal ou reinicialização da ESP32. Nesta etapa, D e A são apenas posições de teste do motor livre.</li>
-<li>Enviar <code>C</code> para deixar o motor em 90° e desconectar o USB. Registrar a identificação do motor, os valores angulares usados no teste, os ciclos realizados e o resultado. Com o código inicial, os valores são C = 90°, D = 80° e A = 100°; se forem alterados, anotar os valores efetivamente utilizados. Separar os aprovados dos que precisam de nova conferência.</li>
+<li>Enviar <code>C</code> para deixar o motor em 90° e desconectar o USB. Registrar a identificação do motor, os valores angulares usados no teste, os ciclos realizados e o resultado. Com o código inicial, os valores são C = 90°, D = 80° e A = 100°. Se forem alterados, anotar os valores efetivamente utilizados. Separar os aprovados dos que precisam de nova conferência.</li>
 <li>Retirar o motor testado, conectar o próximo com o USB desligado e repetir o procedimento até testar todos os motores.</li>
 </ol>
-<p>Concluído o teste de todos os motores, iniciar as instalações usando os aprovados. Guardar as anotações de cada motor para acompanhar a instalação. A posição de 90° facilita a montagem inicial do braço; os valores usados na bancada são referências e as posições finais DI e AC devem ser ajustadas e anotadas após instalar cada desvio.</p>
+<p>Concluído o teste de todos os motores, iniciar as instalações usando os aprovados. Guardar as anotações de cada motor para acompanhar a instalação. A posição de 90° facilita a montagem inicial do braço. Os valores usados na bancada são referências e as posições finais DI e AC devem ser ajustadas e anotadas após instalar cada desvio.</p>
 </section>
 <section><h2>5. Ajustar cada desvio logo após a instalação</h2>
 <p>Assim que um desvio, seu motor, braço e haste forem instalados na maquete, usar o TTD-01 para ajustar o movimento daquele conjunto. Fazer isso em cada instalação, mesmo que o motor tenha sido aprovado na bancada. A posição e a fixação da haste determinam o curso necessário para as agulhas.</p>
@@ -322,7 +322,7 @@ void loop() {
 <ol>
 <li>Retirar as locomotivas da região do teste, desligar a alimentação da maquete e desconectar o USB do testador. Identificar o desvio e anotar os valores de DI e AC já usados, se estiverem disponíveis.</li>
 <li>Se o servo já estiver ligado ao circuito definitivo, desconectar seus três fios — positivo, GND e sinal. Se ainda não estiver ligado, conectá-lo diretamente ao TTD-01. Em ambos os casos, ligar somente esse servo ao testador, conforme o item 2. Usar extensões, se necessário, para alcançar o servo sob a maquete. Não unir o positivo do testador ao barramento da maquete. Durante o teste, não conectar o fio de sinal do servo à ESP32 da gaveta GA3; o sinal deve ficar ligado somente à ESP32 do TTD-01.</li>
-<li>Se os valores anteriores forem conhecidos e o mecanismo estiver livre, colocá-los em <code>DIRECT_POSITION</code> e <code>ACCESS_POSITION</code> e gravar o testador com o servo desconectado. Reconectar o servo com o USB desligado. Ao energizar, começar enviando o valor numérico correspondente à posição em que o desvio estava; não começar com <code>C</code> ou com os valores padrão de 80° e 100° sem verificar se são adequados à montagem.</li>
+<li>Se os valores anteriores forem conhecidos e o mecanismo estiver livre, colocá-los em <code>DIRECT_POSITION</code> e <code>ACCESS_POSITION</code> e gravar o testador com o servo desconectado. Reconectar o servo com o USB desligado. Ao energizar, começar enviando o valor numérico correspondente à posição em que o desvio estava. Não começar com <code>C</code> ou com os valores padrão de 80° e 100° sem verificar se são adequados à montagem.</li>
 <li>Na primeira instalação, as posições finais ainda precisam ser encontradas. Se não houver valores de ajuste conhecidos para esse conjunto instalado, desacoplar a haste do braço do servo antes de comandar qualquer movimento. Com o servo livre, enviar <code>C</code>. Desligar o USB, recolocar o braço e a haste com as agulhas aproximadamente no meio do percurso e sem esforço, e então religar. Não girar o eixo do servo à força.</li>
 </ol>
 </div>
@@ -334,7 +334,7 @@ void loop() {
 <li>Religar a maquete e comandar esse desvio pelo controle definitivo. Conferir novamente DI e AC antes de liberar a circulação.</li>
 </ol>
 <p>Registrar os valores encontrados para esse desvio antes de passar ao próximo: não copiar automaticamente o ajuste de outro conjunto. Os valores 67° e 97° utilizados na EFMN 74 são referências; cada desvio precisa de ajuste próprio.</p>
-<p>O ajuste termina somente depois dessa conferência pelo controle definitivo. O comando <code>S</code> interrompe os pulsos de controle, mas não corta a alimentação do servo; para alterar ligações ou o mecanismo, desconectar o USB.</p>
+<p>O ajuste termina somente depois dessa conferência pelo controle definitivo. O comando <code>S</code> interrompe os pulsos de controle, mas não corta a alimentação do servo. Para alterar ligações ou o mecanismo, desconectar o USB.</p>
 </section>
 
 <section><h2>6. Resultado e registro</h2>
