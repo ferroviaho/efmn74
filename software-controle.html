@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Decisões para implementação do software de controle da Ferrovia EFMN 74, módulos por gaveta, servos, comandos, falhas e rearme.">
+  <title>Software de controle | Ferrovia EFMN 74</title>
+<style>
+    :root {
+      --bg: #f4f1ea;
+      --paper: #fffdf8;
+      --ink: #222;
+      --gold: #c89b2b;
+      --gold-dark: #8a6517;
+      --line: #ded7c8;
+      --blue: #0056b3;
+      --max: 1000px;
+    }
+ 
+    * { box-sizing: border-box; }
+ 
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+ 
+    .site-header {
+      width: 100%;
+      background: #000;
+      border-bottom: 3px solid var(--gold);
+      padding: 8px 16px;
+    }
+ 
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+ 
+    .header-logo { width: 72px; height: auto; display: block; }
+ 
+    .header-text {
+      color: #fff;
+      line-height: 1.25;
+      text-align: left;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+ 
+    .header-title { margin: 0; font-size: 1.05rem; font-weight: 700; }
+    .header-subtitle { margin: 2px 0 0; font-size: .88rem; }
+ 
+    main { max-width: var(--max); margin: 0 auto; padding: 34px 20px 56px; }
+ 
+    .voltar { margin: 0 0 22px; font-family: Arial, Helvetica, sans-serif; }
+    .voltar a, .card a { color: var(--blue); text-decoration: none; font-weight: 600; }
+    .voltar a:hover, .card a:hover { text-decoration: underline; }
+ 
+    h1 { margin: 0 0 14px; line-height: 1.2; font-size: 2.25rem; }
+    h2 { margin-top: 0; font-size: 1.35rem; }
+    .abertura { margin: 0 0 26px; font-size: 1.08rem; }
+ 
+    .aviso {
+      background: #fff7dc;
+      border-left: 5px solid var(--gold);
+      border-radius: 6px;
+      padding: 16px 18px;
+      margin: 0 0 28px;
+    }
+ 
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+ 
+    .card, .conteudo, .exemplo {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 22px 24px;
+    }
+ 
+    .card h2 { margin-bottom: 8px; }
+    .card p { margin: 0 0 12px; }
+    .conteudo { margin-bottom: 24px; }
+    .conteudo ul, .exemplo ul { margin-bottom: 0; padding-left: 24px; }
+    .conteudo li, .exemplo li { margin: 8px 0; }
+ 
+    .exemplo {
+      border-left: 5px solid var(--gold);
+      margin-bottom: 26px;
+    }
+ 
+    .exemplo .rotulo {
+      color: var(--gold-dark);
+      font: 700 .82rem Arial, Helvetica, sans-serif;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin: 0 0 6px;
+    }
+ 
+    .convite {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+ 
+    .convite p { margin: 0; }
+ 
+    @media (max-width: 700px) {
+      .site-header { padding: 7px 10px; }
+      .header-inner { gap: 10px; }
+      .header-title { font-size: .98rem; }
+      .header-subtitle { font-size: .80rem; }
+      main { padding: 26px 16px 44px; }
+      h1 { font-size: 1.75rem; }
+      .grid { grid-template-columns: 1fr; }
+    }
+      .secao { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 22px 24px; margin-bottom: 24px; }
+    .secao h2 { margin-top: 26px; }
+    .secao h2:first-child { margin-top: 0; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #d9d9d9; padding: 12px; text-align: left; vertical-align: middle; }
+    th { background: #eee; text-align: center; }
+    .tabela { overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo">
+      <div class="header-text">
+        <p class="header-title">Ferrovia EFMN 74 - Escala HO</p>
+        <p class="header-subtitle">Construção, automação, memória e documentação</p>
+      </div>
+    </div>
+  </header>
+  <main>
+    <p class="voltar"><a href="documentacao.html">← Voltar à Documentação</a></p>
+    <h1>Software de controle da EFMN 74</h1>
+      <p>Relatório de decisões para implementação<br>Conversas de 26 de outubro de 2026 • Revisão de 27 de outubro de 2026</p>
+      <p>O software de controle será organizado em módulos por gaveta. A GA3 servirá de base para desenvolver e testar as funções comuns às GA1, GA2 e GA3. O sistema deverá validar comandos, informar impedimentos e oferecer uma sequência de teste e rearme após a correção de uma falha.</p>
+      <p>Este documento registra os requisitos definidos para o desenvolvimento. As funções descritas ainda precisam ser implementadas e verificadas. As escolhas que dependem da montagem ou de ensaios estão reunidas ao final.</p>
+    <section class="secao">
+      <h2>1 Como o software de cada gaveta integra o conjunto</h2>
+      <p>Cada ESP32 executará o programa correspondente à sua gaveta. Esse programa será um módulo do sistema geral da ferrovia. O conjunto deverá coordenar as ordens e os estados das gavetas conforme as regras de operação que forem implementadas.</p>
+      <p>Uma gaveta inteira não corresponde a uma única função de C++. O módulo reúne várias funções, como receber um comando, verificar se ele pode ser executado, acionar um servo, comandar o relé e informar o estado da gaveta.</p>
+      <h2>2 Como aproveitar os refinamentos da GA3</h2>
+      <p>As funções comuns, depois de testadas na GA3, poderão ser reutilizadas na GA1 e na GA2. Cada gaveta terá sua própria configuração de desvios, GPIOs, posições dos servos e tempos de movimento. Uma alteração comum deverá ser conferida em cada gaveta antes do uso operacional.</p>
+      <p>Exemplo: uma melhoria na validação de comandos pode ser aproveitada nas três gavetas. Os ângulos necessários para movimentar cada desvio continuam sendo ajustados individualmente.</p>
+      <h2>3 Etapa inicial de implantação</h2>
+      <p>A implantação começará pelo comando dos servos. Os testes serão progressivos, com um servo e depois dois, três, quatro e cinco, inicialmente fora dos desvios. O resultado desses ensaios deverá ser registrado antes da instalação nos mecanismos.</p>
+      <p>Enquanto os sensores de presença não estiverem implantados, o software não poderá verificar automaticamente a ocupação dos trechos. Nessa etapa, a supervisão da circulação e da posição dos desvios dependerá do operador.</p>
+    </section>
+    <section class="secao">
+      <h2>Alimentação e execução dos comandos</h2>
+      <h3>4 O que o relé faz</h3>
+      <p>Na GA3, o relé comuta o positivo de 5 V destinado ao grupo de cinco servos, pelo X1. O GND dos servos permanece comum pelo X2. Quando o contato do relé fecha, a alimentação fica disponível para todos os servos desse grupo.</p>
+      <p>Cada servo recebe seu sinal de posição por uma GPIO própria da ESP32. O programa escolhe o servo pelo pino correspondente e envia a posição desejada. Fechar o relé não é uma ordem para mudar todos os desvios.</p>
+      <h3>5 Quando o relé liga e desliga</h3>
+      <p>O programa deverá autorizar a alimentação dos servos somente quando houver condições de operação ou de teste. Antes de um acionamento, deverá verificar o estado da gaveta e os bloqueios aplicáveis.</p>
+      <p>Ainda não foi definido se o relé desligará após cada movimento. Essa escolha depende de ensaio para verificar se o desvio mantém a posição com o servo sem alimentação ou se precisa de força de sustentação. Portanto, não fica estabelecido neste relatório um tempo definitivo de desligamento.</p>
+      <p>Também deverão ser testados a energização conjunta dos servos, eventuais movimentos na partida e o comportamento em reinício da ESP32. O corte da alimentação dos servos não comprova que os desvios ficaram em posição correta.</p>
+      <h3>6 O que é um comando válido</h3>
+      <p>É uma ordem que o programa reconhece e que pode ser executada nas condições presentes. Antes de movimentar um servo, o software deverá verificar:</p>
+      <ul>
+        <li>Se o desvio solicitado pertence à gaveta e está configurado.</li>
+        <li>Se a posição solicitada é permitida para esse desvio.</li>
+        <li>Se a gaveta está pronta para executar a ordem.</li>
+        <li>Se não existe emergência ou bloqueio que impeça a ação.</li>
+        <li>Se as condições de ocupação e de rota permitem a ação, quando essas verificações estiverem implantadas.</li>
+      </ul>
+      <p>Exemplo: uma ordem para movimentar o D8 só poderá ser aceita pelo módulo que controla esse desvio, com posição reconhecida e sem impedimento aplicável. Se a ordem for recusada, o painel deverá explicar o motivo.</p>
+    </section>
+    <section class="secao">
+      <h2>Falhas e orientação ao operador</h2>
+      <h3>7 O que o sistema deverá informar</h3>
+      <p>Ao identificar uma falha ou impedimento pelos recursos disponíveis, o software deverá mostrar qual operação foi impedida, o que foi efetivamente observado e quais verificações o operador deve fazer.</p>
+      <p>Um mesmo sintoma pode ter várias causas. Por isso, o programa deverá distinguir uma falha confirmada de uma hipótese. A orientação ajuda a encontrar e corrigir o problema. O software não garante uma solução automática para toda falha.</p>
+      <h3>8 Limite dos servos instalados</h3>
+      <p>Os SG90 previstos na montagem atual não enviam à ESP32 uma confirmação da posição atingida. O programa pode saber que enviou a ordem, mas isso não prova que o servo ou o desvio completou o movimento.</p>
+      <p>Sem detecção adicional, uma pedra, uma haste solta ou um servo travado não serão identificados automaticamente apenas pelo envio do comando. Na fase inicial, o operador deverá observar o movimento e confirmar o resultado. Sensores de presença dos trens não substituem a confirmação da posição do desvio.</p>
+      <h3>9 Exemplo de obstáculo no desvio</h3>
+      <p>Se uma pedra impedir o movimento e o operador perceber o problema, a operação afetada deverá permanecer bloqueada até a correção e a verificação. O software não deverá apresentar “pedra no desvio” como diagnóstico automático sem um recurso que permita comprovar essa causa.</p>
+      <p>A mensagem poderá orientar a inspeção do mecanismo, da haste, da alimentação e das conexões. Essas são verificações possíveis, não causas automaticamente confirmadas.</p>
+      <h3>10 Botão para testar novamente</h3>
+      <p>Deverá existir no painel um botão “Testar novamente”. Após remover o obstáculo e conferir que o mecanismo está livre, o operador poderá solicitar uma única tentativa de movimentação do desvio.</p>
+      <p>O teste deverá respeitar os bloqueios aplicáveis e não iniciará tentativas repetidas automaticamente. Enquanto não houver retorno de posição, o painel deverá solicitar ao operador a confirmação “Movimento correto”. Se o movimento continuar incorreto, o bloqueio será mantido.</p>
+    </section>
+    <section class="secao">
+      <h2>Rearme e pontos a validar</h2>
+      <h3>11 Quando a circulação pode ser liberada</h3>
+      <p>Um teste aprovado permite seguir para o rearme. A circulação só poderá ser liberada se o impedimento corrigido for o único que ainda a bloqueava e se as demais condições de operação estiverem atendidas.</p>
+      <p>O painel deverá exigir uma ação explícita em “Rearmar” ou “Liberar”. A aprovação do teste e o rearme não iniciarão nem retomarão automaticamente o movimento do trem.</p>
+      <h3>12 Sequência prevista após uma falha</h3>
+      <ol>
+        <li>Identificar o impedimento e manter o bloqueio aplicável.</li>
+        <li>Inspecionar o local e corrigir a causa encontrada.</li>
+        <li>Acionar “Testar novamente” para uma tentativa.</li>
+        <li>Conferir o movimento e confirmar o resultado.</li>
+        <li>Verificar se ainda existem outros impedimentos.</li>
+        <li>Solicitar o rearme ou a liberação.</li>
+        <li>Retomar a operação por comando separado do operador.</li>
+      </ol>
+      <h3>13 Definições que ainda dependem de validação</h3>
+      <div class="tabela">
+        <table>
+          <thead>
+            <tr><th>Ponto</th><th>Validação necessária</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Relé e sustentação</td><td>Definir se os servos permanecerão alimentados ou se o relé poderá desligar após o movimento.</td></tr>
+            <tr><td>Partida e reinício</td><td>Verificar sinais iniciais, movimentos inesperados e estado da gaveta ao reiniciar.</td></tr>
+            <tr><td>Tempos e posições</td><td>Ajustar e testar individualmente os ângulos e os tempos de cada servo.</td></tr>
+            <tr><td>Comunicação</td><td>Definir a comunicação entre os módulos e o comportamento em caso de perda de comunicação.</td></tr>
+            <tr><td>Alcance do bloqueio</td><td>Definir quando uma falha bloqueia uma rota, uma área ou toda a ferrovia.</td></tr>
+            <tr><td>Confirmação de posição</td><td>Avaliar onde será necessária detecção adicional para confirmar a posição real dos desvios.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
