@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GA3 — Testes e resultados | Ferrovia EFMN 74</title>
+<meta name="description" content="Relatório da GA3 com testes de continuidade, acionamento do relé, medições sem carga e pendências de validação de 25 e 26 de outubro de 2026.">
+<style>
+ 
+    :root {
+      --bg: #f4f1ea;
+      --paper: #fffdf8;
+      --ink: #222;
+      --gold: #c89b2b;
+      --gold-dark: #8a6517;
+      --line: #ded7c8;
+      --blue: #0056b3;
+      --max: 1000px;
+    }
+ 
+    * { box-sizing: border-box; }
+ 
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+ 
+    .site-header {
+      width: 100%;
+      background: #000;
+      border-bottom: 3px solid var(--gold);
+      padding: 8px 16px;
+    }
+ 
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+ 
+    .header-logo { width: 72px; height: auto; display: block; }
+ 
+    .header-text {
+      color: #fff;
+      line-height: 1.25;
+      text-align: left;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+ 
+    .header-title { margin: 0; font-size: 1.05rem; font-weight: 700; }
+    .header-subtitle { margin: 2px 0 0; font-size: .88rem; }
+ 
+    main { max-width: var(--max); margin: 0 auto; padding: 34px 20px 56px; }
+ 
+    .voltar { margin: 0 0 22px; font-family: Arial, Helvetica, sans-serif; }
+    .voltar a, .card a { color: var(--blue); text-decoration: none; font-weight: 600; }
+    .voltar a:hover, .card a:hover { text-decoration: underline; }
+ 
+    h1 { margin: 0 0 14px; line-height: 1.2; font-size: 2.25rem; }
+    h2 { margin-top: 0; font-size: 1.35rem; }
+    .abertura { margin: 0 0 26px; font-size: 1.08rem; }
+ 
+    .aviso {
+      background: #fff7dc;
+      border-left: 5px solid var(--gold);
+      border-radius: 6px;
+      padding: 16px 18px;
+      margin: 0 0 28px;
+    }
+ 
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+ 
+    .card, .conteudo, .exemplo {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 22px 24px;
+    }
+ 
+    .card h2 { margin-bottom: 8px; }
+    .card p { margin: 0 0 12px; }
+    .conteudo { margin-bottom: 24px; }
+    .conteudo ul, .exemplo ul { margin-bottom: 0; padding-left: 24px; }
+    .conteudo li, .exemplo li { margin: 8px 0; }
+ 
+    .exemplo {
+      border-left: 5px solid var(--gold);
+      margin-bottom: 26px;
+    }
+ 
+    .exemplo .rotulo {
+      color: var(--gold-dark);
+      font: 700 .82rem Arial, Helvetica, sans-serif;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin: 0 0 6px;
+    }
+ 
+    .convite {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+ 
+    .convite p { margin: 0; }
+ 
+    @media (max-width: 700px) {
+      .site-header { padding: 7px 10px; }
+      .header-inner { gap: 10px; }
+      .header-title { font-size: .98rem; }
+      .header-subtitle { font-size: .80rem; }
+      main { padding: 26px 16px 44px; }
+      h1 { font-size: 1.75rem; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  
+    h2 { margin: 30px 0 12px; }
+    h3 { margin: 22px 0 8px; }
+    .table-scroll { overflow-x: auto; margin: 18px 0 24px; }
+    table { width: 100%; border-collapse: collapse; background: var(--paper); font: .94rem/1.5 Arial, sans-serif; }
+    th, td { border: 1px solid #d9d9d9; padding: 12px; vertical-align: middle; text-align: left; }
+    th { background: #e7e6e6; text-align: center; font-weight: 700; }
+    td:first-child { text-align: center; }
+    .status { color: #8a6517; font-family: Arial, sans-serif; }
+    footer { padding: 24px; text-align: center; border-top: 1px solid var(--line); }
+    @media (max-width: 700px) { table { min-width: 680px; } }
+    @media print { .voltar { display: none; } .table-scroll { overflow: visible; } table { min-width: 0; } tr { break-inside: avoid; } }
+ 
+</style>
+</head>
+<body>
+<header class="site-header">
+    <div class="header-inner">
+      <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo">
+      <div class="header-text">
+        <p class="header-title">Ferrovia EFMN 74 - Escala HO</p>
+        <p class="header-subtitle">Construção, automação, memória e documentação</p>
+      </div>
+    </div>
+  </header>
+<main>
+<p class="voltar"><a href="documentacao.html">← Voltar à documentação</a></p>
+<h1>GA3 — Testes e resultados</h1>
+<p>Registros de 25 e 26 de outubro de 2026. Revisão de 26/10/2026.</p>
+<p class="status">Validação parcial. Publicado com pendências, que serão atualizadas após as próximas conferências.</p>
+<p>O comando do relé pela ESP32 e o chaveamento de tensão sem carga funcionaram nos ensaios registrados. Os servos não estavam instalados. A aprovação se limita aos resultados abaixo e não libera a alimentação de cinco servos nem comprova o desempenho sob carga.</p>
+<p>Este relatório reúne os ensaios do relé e acrescenta os registros de continuidade de 25 e 26 de outubro de 2026 recuperados do histórico e do documento de montagem. Considera a montagem reiniciada do zero. Resultados da montagem antiga não validam esta montagem. Datas sem registro individual são indicadas como tal.</p>
+<h2>Como foram feitos os testes</h2>
+<p>Bipe é o aviso sonoro do multímetro no modo continuidade. Com USB e fonte externa desconectadas, as pontas são encostadas nos dois pontos a conferir. O bipe indica caminho de baixa resistência. Não se utiliza continuidade em circuito energizado. Nas medições energizadas foi usado o modo tensão contínua, com a fonte externa desconectada e alimentação pela USB.</p>
+<h2>Programa e acionamento</h2>
+<div class="table-scroll" role="region" aria-label="Tabela de testes" tabindex="0">
+<table>
+<thead>
+<tr>
+<th scope="col">Item</th>
+<th scope="col">Teste ou ligação</th>
+<th scope="col">Cor do fio</th>
+<th scope="col">Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Verificação do ga3_relay_test.ino</td>
+<td>Não se aplica</td>
+<td>Compilação sem erros. Não comprova fiação.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Gravação na ESP32 pela COM3</td>
+<td>Cabo USB sem cor registrada</td>
+<td>Primeira tentativa falhou por falta de porta selecionada. Após selecionar COM3, gravação concluída e dados verificados.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Monitor Serial e comando ?</td>
+<td>Cabo USB</td>
+<td>Comunicação confirmada em 115200 baud.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Configuração do disparo H</td>
+<td>Sinal IN1 verde na foto atual</td>
+<td>Resposta HIGH trigger selected. Configuração aceita.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Comando 1 para ligar</td>
+<td>IN1 verde, DC+ vermelho, DC− preto</td>
+<td>Clique confirmado e luz verde acesa.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Comando 0 para desligar</td>
+<td>Mesmas cores do item 5</td>
+<td>Clique confirmado e luz verde apagada.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Comando T para cinco ciclos</td>
+<td>Mesmas cores do item 5</td>
+<td>Usuário confirmou cinco ciclos de 2 s ligado e 2 s desligado, terminando desligado.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2>Contatos e medições sem carga</h2>
+<p>Cores do módulo confirmadas visualmente nas fotos recentes. A identificação dos bornes de contato foi informada durante as medições. Não foi documentada neste registro uma conferência independente da posição de cada borne de potência.</p>
+<div class="table-scroll" role="region" aria-label="Tabela de testes" tabindex="0">
+<table>
+<thead>
+<tr>
+<th scope="col">Item</th>
+<th scope="col">Teste ou ligação</th>
+<th scope="col">Cor do fio</th>
+<th scope="col">Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8</td>
+<td>COM → NO sem energia</td>
+<td>Pontas de prova, sem fio específico</td>
+<td>Sem bipe. Comportamento esperado em repouso.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>COM → NC sem energia</td>
+<td>Pontas de prova, sem fio específico</td>
+<td>Com bipe. Comportamento esperado em repouso.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>DC+ → DC− com USB</td>
+<td>Vermelho / Preto</td>
+<td>4,87 V. Alimentação do módulo presente.</td>
+</tr>
+<tr>
+<td>11</td>
+<td>COM → DC− com relé ligado</td>
+<td>Vermelho de potência / Preto</td>
+<td>4,53 V. Tensão presente no contato comum.</td>
+</tr>
+<tr>
+<td>12</td>
+<td>NO → DC− com relé ligado</td>
+<td>Vermelho de potência / Preto</td>
+<td>4,54 V. Praticamente igual à tensão do COM.</td>
+</tr>
+<tr>
+<td>13</td>
+<td>X1 → DC− com relé ligado</td>
+<td>Vermelho para X1 / Preto</td>
+<td>4,55 V. Tensão chega à distribuição positiva.</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Comando 0 após medição em X1</td>
+<td>IN1 verde</td>
+<td>Clique e luz verde apagada confirmados.</td>
+</tr>
+<tr>
+<td>15</td>
+<td>X1 → DC− com relé desligado</td>
+<td>Vermelho para X1 / Preto</td>
+<td>0 V. Corte de tensão confirmado sem carga.</td>
+</tr>
+<tr>
+<td>16</td>
+<td>X1 → X2 com relé ligado</td>
+<td>Vermelho / GND preto a reconfirmar no borne</td>
+<td>4,56 V. Diferença de potencial disponível entre as distribuições dos servos.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2>Referência de cores</h2>
+<p>Na montagem fotografada: DC+ vermelho, DC− preto e IN1 verde. Os condutores de potência visíveis no relé são vermelhos. O caminho completo até X1 e X2 não aparece nas fotos atuais, portanto a cor deve ser reconfirmada nos bornes. As cores das pontas do multímetro não devem ser confundidas com as cores dos fios da instalação.</p>
+<h2>Erros incoerências e pendências</h2>
+<h3>Cor do sinal do relé</h3>
+<p>Registros anteriores mencionam IN1 roxo. As fotos atuais mostram verde e o histórico de continuidade de 26/10 registra IN1 → D23 com fio verde e bipe. Atualizar o mapa para verde, mantendo a divergência histórica registrada. E17 ainda exige identificação da protoboard.</p>
+<h3>Tensão abaixo de 5 V</h3>
+<p>Foram medidos 4,87 V em DC+ e cerca de 4,53 a 4,56 V nos contatos e em X1. A diferença é de aproximadamente 0,31 a 0,34 V. As leituras não foram simultâneas e não localizam a causa. A alimentação pela USB pode alcançar caminhos da montagem. Não atribuir a queda ao relé ou ao PIP sem medições adicionais.</p>
+<h3>Variação entre leituras</h3>
+<p>NO, X1 e X1–X2 ficaram de 0,01 a 0,03 V acima do COM medido antes. São leituras sucessivas, compatíveis com variação de alimentação, contato das pontas e resolução do instrumento. Não indicam ganho de tensão.</p>
+<h3>Limite da aprovação</h3>
+<p>Clique e LED comprovam reação do módulo, mas isoladamente não comprovam os contatos. As medições reforçam o chaveamento sem carga. Faltam ensaio sob carga, queda de tensão sob carga e observação de aquecimento e reinicializações.</p>
+<h3>Interrupção da USB</h3>
+<p>A USB soltou durante a sessão. Foi reconectada, as luzes acenderam e H foi reenviado. O programa permaneceu gravado. Garantir encaixe estável no próximo ensaio.</p>
+<h3>Estado final não confirmado</h3>
+<p>Foi solicitado enviar 0 e desconectar a USB após a última medição. Não houve confirmação explícita de execução. Antes do próximo manuseio, confirmar USB e fonte externa desconectadas.</p>
+<h3>Alimentação no próximo teste</h3>
+<p>Antes de usar fonte externa e USB juntas, conferir o circuito de alimentação da placa e prevenir retorno entre as fontes. Não considerar aprovada a alimentação simultânea apenas porque o ensaio pela USB funcionou.</p>
+<h3>Servos pendentes</h3>
+<p>Nenhum servo foi testado nesta sessão. Ficou previsto testar na próxima etapa um servo solto e depois acrescentar até cinco, nos dois sentidos, sem ligação aos desvios. Preparar programa de movimento, confirmar pinos e alimentação antes das conexões.</p>
+<h2>Conclusão para avaliação</h2>
+<p>Aprovado o comando do relé e o chaveamento sem carga nos estados ensaiados. Permanecem pendentes a conferência das cores em todo o percurso, a análise da alimentação e os ensaios com servos. Não há resultado de movimento de servo a registrar nesta sessão.</p>
+<h2>Continuidade de 25 e 26 de outubro</h2>
+<p>Bipe indica caminho de baixa resistência, sem comprovar capacidade de corrente. Os ensaios de continuidade devem ser feitos sem USB e sem fonte externa. A data diária segue a sequência informada pelo usuário, pois nem todos os testes têm horário individual no registro recuperado.</p>
+<h3>25/10 — ponto de retomada da montagem</h3>
+<div class="table-scroll" role="region" aria-label="Tabela de testes" tabindex="0">
+<table>
+<thead>
+<tr>
+<th scope="col">Item</th>
+<th scope="col">Teste ou ligação</th>
+<th scope="col">Cor do fio</th>
+<th scope="col">Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C01</td>
+<td>E17 → D23 da ESP32</td>
+<td>Não confirmada</td>
+<td>Com bipe no registro de retomada. Falta identificar se E17 pertence à protoboard de cima ou de baixo.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Nesse ponto, IN1 roxo, origem e destino do verde, DC+ → A4 e 3V3 → H35 ainda estavam pendentes. A referência VIN em D40 foi substituída por VIN em D4. Não tratar posições antigas como válidas. Os jumpers já estavam montados, mas a confirmação consolidada de continuidade aparece na sequência de 26/10.</p>
+<h3>26/10 — ligações com bipe</h3>
+<div class="table-scroll" role="region" aria-label="Tabela de testes" tabindex="0">
+<table>
+<thead>
+<tr>
+<th scope="col">Item</th>
+<th scope="col">Teste ou ligação</th>
+<th scope="col">Cor do fio</th>
+<th scope="col">Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C02</td>
+<td>GND X0 → GND de saída do PIP</td>
+<td>Preto</td>
+<td>Com bipe. Percurso corrigido no histórico, ver ressalva abaixo.</td>
+</tr>
+<tr>
+<td>C03</td>
+<td>+5 V X0 → VIN+ de entrada do PIP</td>
+<td>Vermelho</td>
+<td>Com bipe.</td>
+</tr>
+<tr>
+<td>C04</td>
+<td>GND X0 → VIN− de entrada do PIP</td>
+<td>Preto</td>
+<td>Com bipe. Distinguir entrada e saída do PIP.</td>
+</tr>
+<tr>
+<td>C05</td>
+<td>VO+ do PIP → COM do relé</td>
+<td>Vermelho</td>
+<td>Com bipe.</td>
+</tr>
+<tr>
+<td>C06</td>
+<td>NO do relé → X1</td>
+<td>Vermelho</td>
+<td>Com bipe.</td>
+</tr>
+<tr>
+<td>C07</td>
+<td>VO− do PIP → X2</td>
+<td>Preto</td>
+<td>Com bipe.</td>
+</tr>
+<tr>
+<td>C08</td>
+<td>X2 → GND da ESP32</td>
+<td>Preto</td>
+<td>Com bipe.</td>
+</tr>
+<tr>
+<td>C09</td>
+<td>DC− do relé → X2</td>
+<td>Preto</td>
+<td>Com bipe.</td>
+</tr>
+<tr>
+<td>C10</td>
+<td>IN1 do relé → D23 / GPIO23</td>
+<td>Verde</td>
+<td>Com bipe. Atualiza a indicação anterior de roxo.</td>
+</tr>
+<tr>
+<td>C11</td>
+<td>DC+ do relé → VIN da ESP32</td>
+<td>Vermelho</td>
+<td>Com bipe.</td>
+</tr>
+<tr>
+<td>C12</td>
+<td>COM do relé → DC+ do relé</td>
+<td>Vermelho</td>
+<td>Com bipe. Não comprova a tensão correta de alimentação.</td>
+</tr>
+<tr>
+<td>C13</td>
+<td>3V3 da ESP32 → H35, protoboard de cima</td>
+<td>Branco</td>
+<td>Com bipe. Confirmado na consolidação posterior.</td>
+</tr>
+<tr>
+<td>C14</td>
+<td>G23 → G26, protoboard de cima</td>
+<td>Branco</td>
+<td>Com bipe.</td>
+</tr>
+<tr>
+<td>C15</td>
+<td>H26 → G29, protoboard de cima</td>
+<td>Amarelo</td>
+<td>Com bipe.</td>
+</tr>
+<tr>
+<td>C16</td>
+<td>H29 → G32, protoboard de cima</td>
+<td>Laranja</td>
+<td>Com bipe.</td>
+</tr>
+<tr>
+<td>C17</td>
+<td>H32 → G35, protoboard de cima</td>
+<td>Marrom</td>
+<td>Com bipe.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>26/10 — pares sem bipe</h3>
+<div class="table-scroll" role="region" aria-label="Tabela de testes" tabindex="0">
+<table>
+<thead>
+<tr>
+<th scope="col">Item</th>
+<th scope="col">Teste ou ligação</th>
+<th scope="col">Cor do fio</th>
+<th scope="col">Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C18</td>
+<td>+5 V X0 → GND X0</td>
+<td>Não se aplica</td>
+<td>Sem bipe.</td>
+</tr>
+<tr>
+<td>C19</td>
+<td>VIN da ESP32 → GND da ESP32</td>
+<td>Não se aplica</td>
+<td>Sem bipe. Display informado: 583, sem unidade ou escala confirmada.</td>
+</tr>
+<tr>
+<td>C20</td>
+<td>3V3 da ESP32 → GND da ESP32</td>
+<td>Não se aplica</td>
+<td>Sem bipe. Display informado: 1382, sem unidade ou escala confirmada.</td>
+</tr>
+<tr>
+<td>C21</td>
+<td>X1 → X2</td>
+<td>Não se aplica</td>
+<td>Sem bipe.</td>
+</tr>
+<tr>
+<td>C22</td>
+<td>VO+ → VO− do PIP</td>
+<td>Não se aplica</td>
+<td>Sem bipe.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>COM → NO sem bipe e COM → NC com bipe, ambos em repouso e sem energia, já constam nos itens 8 e 9 deste relatório. Os números 583 e 1382 não são registrados como ohms nem como tensão, porque o modo e a unidade do instrumento não foram preservados.</p>
+<h3>Ressalvas do complemento</h3>
+<p>Percurso do GND: um registro anterior cita ligação direta GND X0 → X2. A correção posterior informa GND X0 → GND de saída do PIP. A versão anterior não deve ser usada como mapa vigente. Conferir fisicamente os bornes VIN− e VO− antes de consolidar o esquema, pois continuidade entre pontos comuns de GND não identifica sozinha o trajeto do fio.</p>
+<p>Limites: os resultados com bipe foram recuperados de registros e resumos do histórico, sem foto individual de cada medição. Não equivalem a uma nova medição nesta edição. A data exata de cada jumper não foi preservada, por isso sua confirmação foi agrupada na consolidação de 26/10. Sem bipe não comprova isolação elétrica certificada. Não houve teste de movimento dos servos.</p>
+</main>
+<footer>Ferrovia EFMN 74 — Documentação técnica — GA3</footer>
+</body>
+</html>
+
