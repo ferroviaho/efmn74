@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GA3 — Testes e resultados | Ferrovia EFMN 74</title>
-<meta name="description" content="Relatório da GA3 com testes de continuidade, acionamento do relé, medições sem carga e pendências de validação de 25 e 26 de outubro de 2026.">
+<meta name="description" content="Relatório da GA3 com testes de continuidade, acionamento do 
+relé, medições sem carga e pendências de validação de 25 e 26 de outubro de 2026.">
 <style>
  
     :root {
@@ -128,14 +129,16 @@
     h2 { margin: 30px 0 12px; }
     h3 { margin: 22px 0 8px; }
     .table-scroll { overflow-x: auto; margin: 18px 0 24px; }
-    table { width: 100%; border-collapse: collapse; background: var(--paper); font: .94rem/1.5 Arial, sans-serif; }
+    table { width: 100%; border-collapse: collapse; background: var(--paper); font: .94rem/1.5 
+Arial, sans-serif; }
     th, td { border: 1px solid #d9d9d9; padding: 12px; vertical-align: middle; text-align: left; }
     th { background: #e7e6e6; text-align: center; font-weight: 700; }
     td:first-child { text-align: center; }
     .status { color: #8a6517; font-family: Arial, sans-serif; }
     footer { padding: 24px; text-align: center; border-top: 1px solid var(--line); }
     @media (max-width: 700px) { table { min-width: 680px; } }
-    @media print { .voltar { display: none; } .table-scroll { overflow: visible; } table { min-width: 0; } tr { break-inside: avoid; } }
+    @media print { .voltar { display: none; } .table-scroll { overflow: visible; } table { 
+min-width: 0; } tr { break-inside: avoid; } }
  
 </style>
 </head>
@@ -152,13 +155,24 @@
 <main>
 <p class="voltar"><a href="documentacao.html">← Voltar à documentação</a></p>
 <h1>GA3 — Testes e resultados</h1>
-<p>Registros de 25 e 26 de outubro de 2026. Revisão de 26/10/2026.</p>
-<p class="status">Validação parcial. Publicado com pendências, que serão atualizadas após as próximas conferências.</p>
-<p>O comando do relé pela ESP32 e o chaveamento de tensão sem carga funcionaram nos ensaios registrados. Os servos não estavam instalados. A aprovação se limita aos resultados abaixo e não libera a alimentação de cinco servos nem comprova o desempenho sob carga.</p>
-<p>Este relatório reúne os ensaios do relé e acrescenta os registros de continuidade de 25 e 26 de outubro de 2026 recuperados do histórico e do documento de montagem. Considera a montagem reiniciada do zero. Resultados da montagem antiga não validam esta montagem. Datas sem registro individual são indicadas como tal.</p>
+<p>Registros de 25 a 27 de outubro de 2026. Revisão de 27/10/2026.</p>
+<p class="status">Validação de bancada concluída nas condições ensaiadas. Permanecem pendentes a 
+instalação mecânica e a validação operacional.</p>
+<p>Em 27/10/2026, os cinco servos responderam individualmente, com todos conectados à ESP32. Foram
+ aprovados testes de pares aleatórios sem carga, dez ciclos automáticos, interrupção manual, 
+buzzer e uma sequência de falha simulada com bloqueio e liberação manual. A fonte dos servos 
+utilizada foi de 5 V e 2 A.</p>
+<p>Os registros de 25 e 26/10 abaixo são históricos e descrevem as condições dessas sessões. As 
+conclusões e pendências vigentes estão na atualização de 27/10. Nenhum servo foi ligado 
+mecanicamente a um desvio.</p>
 <h2>Como foram feitos os testes</h2>
-<p>Bipe é o aviso sonoro do multímetro no modo continuidade. Com USB e fonte externa desconectadas, as pontas são encostadas nos dois pontos a conferir. O bipe indica caminho de baixa resistência. Não se utiliza continuidade em circuito energizado. Nas medições energizadas foi usado o modo tensão contínua, com a fonte externa desconectada e alimentação pela USB.</p>
-<h2>Programa e acionamento</h2>
+<p>Bipe é o aviso sonoro do multímetro no modo continuidade. Com USB e fonte externa 
+desconectadas, as pontas são encostadas nos dois pontos a conferir. O bipe indica caminho de baixa
+ resistência. Não se utiliza continuidade em circuito energizado. Nas medições energizadas foi 
+usado o modo tensão contínua. Os ensaios históricos de 26/10 usaram USB. Em 27/10, os servos foram
+ alimentados pela fonte externa e a ESP32 pelo USB. O buzzer também foi testado somente com 
+USB.</p>
+<h2>Histórico de 26 de outubro — Programa e acionamento</h2>
 <div class="table-scroll" role="region" aria-label="Tabela de testes" tabindex="0">
 <table>
 <thead>
@@ -180,7 +194,8 @@
 <td>2</td>
 <td>Gravação na ESP32 pela COM3</td>
 <td>Cabo USB sem cor registrada</td>
-<td>Primeira tentativa falhou por falta de porta selecionada. Após selecionar COM3, gravação concluída e dados verificados.</td>
+<td>Primeira tentativa falhou por falta de porta selecionada. Após selecionar COM3, gravação 
+concluída e dados verificados.</td>
 </tr>
 <tr>
 <td>3</td>
@@ -216,7 +231,9 @@
 </table>
 </div>
 <h2>Contatos e medições sem carga</h2>
-<p>Cores do módulo confirmadas visualmente nas fotos recentes. A identificação dos bornes de contato foi informada durante as medições. Não foi documentada neste registro uma conferência independente da posição de cada borne de potência.</p>
+<p>Cores do módulo confirmadas visualmente nas fotos recentes. A identificação dos bornes de 
+contato foi informada durante as medições. Não foi documentada neste registro uma conferência 
+independente da posição de cada borne de potência.</p>
 <div class="table-scroll" role="region" aria-label="Tabela de testes" tabindex="0">
 <table>
 <thead>
@@ -286,28 +303,51 @@
 </table>
 </div>
 <h2>Referência de cores</h2>
-<p>Na montagem fotografada: DC+ vermelho, DC− preto e IN1 verde. Os condutores de potência visíveis no relé são vermelhos. O caminho completo até X1 e X2 não aparece nas fotos atuais, portanto a cor deve ser reconfirmada nos bornes. As cores das pontas do multímetro não devem ser confundidas com as cores dos fios da instalação.</p>
-<h2>Erros incoerências e pendências</h2>
+<p>Na montagem fotografada: DC+ vermelho, DC− preto e IN1 verde. Os condutores de potência 
+visíveis no relé são vermelhos. O caminho completo até X1 e X2 não aparece nas fotos atuais, 
+portanto a cor deve ser reconfirmada nos bornes. As cores das pontas do multímetro não devem ser 
+confundidas com as cores dos fios da instalação.</p>
+<h2>Ressalvas históricas de 26 de outubro</h2>
 <h3>Cor do sinal do relé</h3>
-<p>Registros anteriores mencionam IN1 roxo. As fotos atuais mostram verde e o histórico de continuidade de 26/10 registra IN1 → D23 com fio verde e bipe. Atualizar o mapa para verde, mantendo a divergência histórica registrada. E17 ainda exige identificação da protoboard.</p>
+<p>Registros anteriores mencionam IN1 roxo. As fotos atuais mostram verde e o histórico de 
+continuidade de 26/10 registra IN1 → D23 com fio verde e bipe. Atualizar o mapa para verde, 
+mantendo a divergência histórica registrada. E17 ainda exige identificação da protoboard.</p>
 <h3>Tensão abaixo de 5 V</h3>
-<p>Foram medidos 4,87 V em DC+ e cerca de 4,53 a 4,56 V nos contatos e em X1. A diferença é de aproximadamente 0,31 a 0,34 V. As leituras não foram simultâneas e não localizam a causa. A alimentação pela USB pode alcançar caminhos da montagem. Não atribuir a queda ao relé ou ao PIP sem medições adicionais.</p>
+<p>Foram medidos 4,87 V em DC+ e cerca de 4,53 a 4,56 V nos contatos e em X1. A diferença é de 
+aproximadamente 0,31 a 0,34 V. As leituras não foram simultâneas e não localizam a causa. A 
+alimentação pela USB pode alcançar caminhos da montagem. Não atribuir a queda ao relé ou ao PIP 
+sem medições adicionais.</p>
 <h3>Variação entre leituras</h3>
-<p>NO, X1 e X1–X2 ficaram de 0,01 a 0,03 V acima do COM medido antes. São leituras sucessivas, compatíveis com variação de alimentação, contato das pontas e resolução do instrumento. Não indicam ganho de tensão.</p>
+<p>NO, X1 e X1–X2 ficaram de 0,01 a 0,03 V acima do COM medido antes. São leituras sucessivas, 
+compatíveis com variação de alimentação, contato das pontas e resolução do instrumento. Não 
+indicam ganho de tensão.</p>
 <h3>Limite da aprovação</h3>
-<p>Clique e LED comprovam reação do módulo, mas isoladamente não comprovam os contatos. As medições reforçam o chaveamento sem carga. Faltam ensaio sob carga, queda de tensão sob carga e observação de aquecimento e reinicializações.</p>
+<p>Clique e LED comprovam reação do módulo, mas isoladamente não comprovam os contatos. As 
+medições reforçam o chaveamento sem carga. Faltam ensaio sob carga, queda de tensão sob carga e 
+observação de aquecimento e reinicializações.</p>
 <h3>Interrupção da USB</h3>
-<p>A USB soltou durante a sessão. Foi reconectada, as luzes acenderam e H foi reenviado. O programa permaneceu gravado. Garantir encaixe estável no próximo ensaio.</p>
+<p>A USB soltou durante a sessão. Foi reconectada, as luzes acenderam e H foi reenviado. O 
+programa permaneceu gravado. Garantir encaixe estável no próximo ensaio.</p>
 <h3>Estado final não confirmado</h3>
-<p>Foi solicitado enviar 0 e desconectar a USB após a última medição. Não houve confirmação explícita de execução. Antes do próximo manuseio, confirmar USB e fonte externa desconectadas.</p>
+<p>Foi solicitado enviar 0 e desconectar a USB após a última medição. Não houve confirmação 
+explícita de execução. Antes do próximo manuseio, confirmar USB e fonte externa desconectadas.</p>
 <h3>Alimentação no próximo teste</h3>
-<p>Antes de usar fonte externa e USB juntas, conferir o circuito de alimentação da placa e prevenir retorno entre as fontes. Não considerar aprovada a alimentação simultânea apenas porque o ensaio pela USB funcionou.</p>
+<p>Antes de usar fonte externa e USB juntas, conferir o circuito de alimentação da placa e 
+prevenir retorno entre as fontes. Não considerar aprovada a alimentação simultânea apenas porque o
+ ensaio pela USB funcionou.</p>
 <h3>Servos pendentes</h3>
-<p>Nenhum servo foi testado nesta sessão. Ficou previsto testar na próxima etapa um servo solto e depois acrescentar até cinco, nos dois sentidos, sem ligação aos desvios. Preparar programa de movimento, confirmar pinos e alimentação antes das conexões.</p>
-<h2>Conclusão para avaliação</h2>
-<p>Aprovado o comando do relé e o chaveamento sem carga nos estados ensaiados. Permanecem pendentes a conferência das cores em todo o percurso, a análise da alimentação e os ensaios com servos. Não há resultado de movimento de servo a registrar nesta sessão.</p>
+<p>Nenhum servo foi testado nesta sessão. Ficou previsto testar na próxima etapa um servo solto e 
+depois acrescentar até cinco, nos dois sentidos, sem ligação aos desvios. Preparar programa de 
+movimento, confirmar pinos e alimentação antes das conexões.</p>
+<h2>Conclusão histórica de 26 de outubro</h2>
+<p>Aprovado o comando do relé e o chaveamento sem carga nos estados ensaiados. Permanecem 
+pendentes a conferência das cores em todo o percurso, a análise da alimentação e os ensaios com 
+servos. Não há resultado de movimento de servo a registrar nesta sessão.</p>
 <h2>Continuidade de 25 e 26 de outubro</h2>
-<p>Bipe indica caminho de baixa resistência, sem comprovar capacidade de corrente. Os ensaios de continuidade devem ser feitos sem USB e sem fonte externa. A data diária segue a sequência informada pelo usuário, pois nem todos os testes têm horário individual no registro recuperado.</p>
+<p>Bipe indica caminho de baixa resistência, sem comprovar capacidade de corrente. Os ensaios de 
+continuidade devem ser feitos sem USB e sem fonte externa. A data diária segue a sequência 
+informada pelo usuário, pois nem todos os testes têm horário individual no registro 
+recuperado.</p>
 <h3>25/10 — ponto de retomada da montagem</h3>
 <div class="table-scroll" role="region" aria-label="Tabela de testes" tabindex="0">
 <table>
@@ -324,12 +364,16 @@
 <td>C01</td>
 <td>E17 → D23 da ESP32</td>
 <td>Não confirmada</td>
-<td>Com bipe no registro de retomada. Falta identificar se E17 pertence à protoboard de cima ou de baixo.</td>
+<td>Com bipe no registro de retomada. Falta identificar se E17 pertence à protoboard de cima ou de
+ baixo.</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Nesse ponto, IN1 roxo, origem e destino do verde, DC+ → A4 e 3V3 → H35 ainda estavam pendentes. A referência VIN em D40 foi substituída por VIN em D4. Não tratar posições antigas como válidas. Os jumpers já estavam montados, mas a confirmação consolidada de continuidade aparece na sequência de 26/10.</p>
+<p>Nesse ponto, IN1 roxo, origem e destino do verde, DC+ → A4 e 3V3 → H35 ainda estavam pendentes.
+ A referência VIN em D40 foi substituída por VIN em D4. Não tratar posições antigas como válidas. 
+Os jumpers já estavam montados, mas a confirmação consolidada de continuidade aparece na sequência
+ de 26/10.</p>
 <h3>26/10 — ligações com bipe</h3>
 <div class="table-scroll" role="region" aria-label="Tabela de testes" tabindex="0">
 <table>
@@ -486,11 +530,106 @@
 </tbody>
 </table>
 </div>
-<p>COM → NO sem bipe e COM → NC com bipe, ambos em repouso e sem energia, já constam nos itens 8 e 9 deste relatório. Os números 583 e 1382 não são registrados como ohms nem como tensão, porque o modo e a unidade do instrumento não foram preservados.</p>
+<p>COM → NO sem bipe e COM → NC com bipe, ambos em repouso e sem energia, já constam nos itens 8 e
+ 9 deste relatório. Os números 583 e 1382 não são registrados como ohms nem como tensão, porque o 
+modo e a unidade do instrumento não foram preservados.</p>
 <h3>Ressalvas do complemento</h3>
-<p>Percurso do GND: um registro anterior cita ligação direta GND X0 → X2. A correção posterior informa GND X0 → GND de saída do PIP. A versão anterior não deve ser usada como mapa vigente. Conferir fisicamente os bornes VIN− e VO− antes de consolidar o esquema, pois continuidade entre pontos comuns de GND não identifica sozinha o trajeto do fio.</p>
-<p>Limites: os resultados com bipe foram recuperados de registros e resumos do histórico, sem foto individual de cada medição. Não equivalem a uma nova medição nesta edição. A data exata de cada jumper não foi preservada, por isso sua confirmação foi agrupada na consolidação de 26/10. Sem bipe não comprova isolação elétrica certificada. Não houve teste de movimento dos servos.</p>
+<p>Percurso do GND: um registro anterior cita ligação direta GND X0 → X2. A correção posterior 
+informa GND X0 → GND de saída do PIP. A versão anterior não deve ser usada como mapa vigente. 
+Conferir fisicamente os bornes VIN− e VO− antes de consolidar o esquema, pois continuidade entre 
+pontos comuns de GND não identifica sozinha o trajeto do fio.</p>
+<p>Limites: os resultados com bipe foram recuperados de registros e resumos do histórico, sem foto
+ individual de cada medição. Não equivalem a uma nova medição nesta edição. A data exata de cada 
+jumper não foi preservada, por isso sua confirmação foi agrupada na consolidação de 26/10. Sem 
+bipe não comprova isolação elétrica certificada. Não houve teste de movimento dos servos.</p>
+<h2>Atualização de 27 de outubro de 2026</h2>
+<p>Ensaios de bancada com cinco servos SG90 conectados eletricamente, sem hastes e sem ligação aos
+ desvios. Limite operacional acordado: no máximo dois servos em movimento por vez, com comandos 
+adicionais em espera no software definitivo. Não foi considerado necessário exigir ensaio de cinco
+ simultâneos para a GA3.</p>
+<div class="table-scroll"><table><thead><tr><th>Item</th><th>Teste</th><th>Ligação ou 
+comando</th><th>Resultado</th></tr></thead><tbody>
+<tr><td>27-01</td><td>Servos individuais sem carga</td><td>D5 azul D18. D6 amarelo D19. D8 branco 
+D21. D9 marrom D22. D10 laranja D13.</td><td>Todos responderam aos comandos individuais. Sequência
+ de 70°, 110° e retorno a 90°. D10 também observado em vídeo.</td></tr>
+<tr><td>27-02</td><td>Seleção com os cinco sinais conectados</td><td>Mesmas cores e GPIOs do item 
+anterior</td><td>Comandos 5, 6, 8, 9 e 10 acionaram somente o servo correspondente.</td></tr>
+<tr><td>27-03</td><td>Pares aleatórios por comando T</td><td>Dois sinais selecionados por 
+teste</td><td>Várias repetições confirmadas sem anormalidades relatadas. Servos livres, sem carga 
+mecânica.</td></tr>
+<tr><td>27-04</td><td>Sequência automática por comando A</td><td>Dois servos por ciclo</td><td>Dez
+ testes confirmados. Pausa de 3 s entre ciclos. Os sorteios não garantem cobertura das dez 
+combinações possíveis.</td></tr>
+<tr><td>27-05</td><td>Interrupção durante o movimento</td><td>Comando P</td><td>Parada confirmada 
+conforme previsto. Nenhum novo par iniciou após a interrupção.</td></tr>
+<tr><td>27-06</td><td>Partida sem comando e contato em repouso</td><td>Contatos superior e central
+ do relé</td><td>Servos permaneceram parados. Sem fonte e sem USB, contato superior–central sem 
+bipe.</td></tr>
+<tr><td>27-07</td><td>Tensão entre X1 e X2</td><td>Positivo dos servos e GND 
+comum</td><td>Primeira leitura sem comando: 4,93 V, não explicada. Nova leitura: 0,33 V. Durante 
+teste: 4,80 V. Após: 0,53 V, caindo a 0,34–0,36 V. Confirma comutação nas condições repetidas, sem
+ esclarecer a primeira leitura.</td></tr>
+<tr><td>27-08</td><td>Reinicialização pelo botão EN</td><td>Sem comando serial</td><td>Servos 
+parados e tensão de 0,24 V entre X1 e X2. Aprovado nessa tentativa.</td></tr>
+<tr><td>27-09</td><td>Continuidade do buzzer</td><td>VCC vermelho. I/O amarelo D25. GND 
+preto.</td><td>VCC até 3V3, I/O até D25 e GND até o ponto inicialmente usado tiveram bipe. Entre 
+VCC e GND, sem bipe. Continuidade não comprova alimentação correta.</td></tr>
+<tr><td>27-10</td><td>Correção do GND do buzzer</td><td>GND transferido para V0− do 
+PIP</td><td>Inicialmente 2 V entre VCC e GND do buzzer, com 3,24 V entre VCC e GND da ESP32. Após 
+mudança para V0−, 3,24 V entre VCC e GND do buzzer e funcionamento confirmado. Verificar o trajeto
+ anterior antes de reutilizá-lo.</td></tr>
+<tr><td>27-11</td><td>Buzzer isolado pelo comando B</td><td>VCC em 3V3. I/O na D25. GND em 
+V0−.</td><td>Somente USB. Três bipes e silêncio ao terminar. Acionamento por nível baixo 
+confirmado.</td></tr>
+<tr><td>27-12</td><td>Movimento D5 e falha simulada</td><td>D5 azul D18. Relé D23. Buzzer amarelo 
+D25.</td><td>Primeira tentativa: fio de controle D5 solto, sem movimento e com alarme. Após 
+reconexão: movimento, corte comandado do relé e três bipes confirmados.</td></tr>
+<tr><td>27-13</td><td>Bloqueio após falha simulada</td><td>Comando T sem enviar R</td><td>Comando 
+recusado e nenhum movimento. Mensagem de bloqueio confirmada.</td></tr>
+<tr><td>27-14</td><td>Reconhecimento e liberação</td><td>Comando R</td><td>Mensagem de liberação 
+confirmada. D5 permaneceu parado, aguardando novo comando T. R não executa diagnóstico 
+físico.</td></tr>
+</tbody></table></div>
+<h2>Ligações vigentes confirmadas na sessão</h2>
+<p>Servos: D5 → GPIO18 azul. D6 → GPIO19 amarelo. D8 → GPIO21 branco. D9 → GPIO22 marrom. D10 → 
+GPIO13 laranja. Relé: IN1 → GPIO23, fio verde na montagem atual. Buzzer: I/O → GPIO25 amarelo, VCC
+ → 3V3 por fio vermelho e GND → V0− do PIP por fio preto.</p>
+<p>O 3V3 da ESP32 chega a H35 por fio branco. I35 foi usado como derivação para o VCC do buzzer. O
+ jumper antigo DC+ do relé → protoboard foi retirado, mantendo a alimentação externa do módulo. O 
+buzzer foi transferido para a outra protoboard, com posições propostas A50 a A52. A associação 
+final entre pinos e números de furos não foi reconfirmada por foto, portanto deve ser conferida 
+antes de usar coordenadas como referência.</p>
+<h2>Limites e pendências vigentes</h2>
+<ul>
+<li>Preparar fixações e hastes. Ajustar o curso de cada servo no respectivo desvio e testar com 
+carga mecânica real.</li>
+<li>Reavaliar a alimentação definitiva de 5 V e 10 A e medir o desempenho com a quantidade máxima 
+prevista de dois servos em movimento. Os testes atuais usaram a fonte de 2 A sem carga 
+mecânica.</li>
+<li>Investigar se reaparecer a leitura de 4,93 V sem comando. As repetições com tensão baixa não 
+explicam nem anulam a ocorrência inicial.</li>
+<li>Verificar o caminho anterior do GND do buzzer em V1−. A continuidade informada não foi 
+suficiente para garantir referência de tensão adequada durante o teste.</li>
+<li>Conferir a especificação de alimentação do módulo de relé antes da montagem definitiva. A 
+inscrição do componente fotografado é JQC3F-03VDC-C e o DC+ foi alimentado com cerca de 5 V. O 
+funcionamento observado não comprova compatibilidade nominal.</li>
+<li>O programa de falha simula o evento por tempo. Não detecta travamento, fio solto ou posição 
+real do desvio. O bloqueio é perdido ao reiniciar a ESP32. A versão definitiva deve tratar 
+reinicialização e liberação após falha.</li>
+<li>O reconhecimento R apenas libera novos comandos no teste. Não confirma correção de uma falha 
+física nem libera a ferrovia para circulação.</li>
+<li>Sensores Hall e operação ferroviária não foram validados nesta sessão.</li>
+</ul>
+<h2>Encerramento da sessão</h2>
+<p>Testes encerrados em 27/10/2026. Resultados funcionais aprovados somente nas condições 
+descritas. A simulação de falha, o alarme, o bloqueio e a liberação sem movimento automático foram
+ confirmados. O último programa gravado é o teste integrado de falha simulada do D5, com T para 
+testar, P para parar e bloquear e R para liberar. Não há confirmação de desligamento final no 
+registro.</p>
+<p>Para guardar ou alterar conexões: desligar a fonte e desconectar o USB. Nos ensaios realizados,
+ foi adotado conectar primeiro o USB e depois a fonte. A alimentação definitiva da ESP32 e a 
+prevenção de retorno entre fontes ainda dependem da conferência do circuito.</p>
 </main>
+<footer>Ferrovia EFMN 74 — Documentação técnica — GA3</footer>
 </body>
 </html>
-
