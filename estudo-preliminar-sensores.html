@@ -85,8 +85,8 @@
     <section class="study-section" id="decisoes-ja-registradas"><h2>Decisões já registradas</h2>
       <ul>
         <li>Os sensores de presença são identificados de S1 a S19. S1 e S2 são sensores de fronteira ligados à GA1.</li>
-        <li>R1 e R2 circulam no sentido Leste → Oeste. R4 e R5 no sentido Oeste → Leste. R3 executa R1 seguida de R2. R6 executa R4 seguida de R5. R7 é o Modo Aleatório Inteligente.</li>
-        <li>GA1 recebe S1–S4 e S15–S19. GA2 recebe S5–S9. GA3 recebe S10–S14, conforme a distribuição ajustada de gavetas.</li>
+        <li>R1 e R2 (Rotas 1 e 2) circulam no sentido Leste → Oeste. R4 e R5 no sentido Oeste → Leste. R3 executa R1 seguida de R2. R6 executa R4 seguida de R5. R7 é o Modo Aleatório Inteligente.</li>
+        <li>GA1 recebe S1 até S4 e S15 até S19. GA2 recebe S5 até S9. GA3 recebe S10 até S14, conforme a distribuição ajustada de gavetas.</li>
         <li>A identificação dos desvios usa D1 a D20. Inicialmente não serão utilizados sensores Hall dedicados à confirmação física de DI ou AC nos desvios. A ESP32 comandará o servo, aguardará o tempo de movimento e registrará a posição como comandada, sem tratá-la como confirmação física. Neste estudo, DI significa posição Direta e AC, posição ACionada, conforme o Diário de Bordo.</li>
         <li>No modo Analógico há travamento especial dos desvios. A passagem para Digital desenergiza a tração, confirma DCC e retira esse travamento, mantendo as posições dos desvios.</li>
         <li>Áudio está identificado como AF1 a AF7 no layout. A relação entre cada detecção e os sons ainda será escolhida. Cada comando deverá ser associado à composição, à linha e ao AF correspondente. Encerrar um som não deverá interromper o áudio de outra composição. O desligamento geral fica reservado à emergência, reinicialização ou falha.</li>
