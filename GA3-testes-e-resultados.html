@@ -158,6 +158,18 @@ min-width: 0; } tr { break-inside: avoid; } }
 <p>Os ensaios de bancada de 25 a 27/10/2026 foram aprovados com os cinco servos SG90 livres, sem ligação mecânica aos desvios. A instalação na maquete exige ajustar e conferir cada desvio sob carga.</p>
 
 <h2>1. Testes fundamentais</h2>
+<h3>Continuidade antes de testar os servos</h3>
+<p>Na instalação ou após mudar a fiação, desligar e desconectar as fontes e o USB. Desencaixar os cinco servos dos conectores, mantendo os cabos identificados. Confirmar ausência de tensão em X0 e entre X1 e X2. Selecionar continuidade no multímetro e encostar uma ponta na outra para conferir o bipe. Cada seta abaixo indica onde colocar as duas pontas de prova.</p>
+<ol>
+<li><strong>Entrada do PIP.</strong> X0 positivo → VIN+ do PIP e X0 negativo → VIN− do PIP. Deve haver bipe em cada ligação.</li>
+<li><strong>Positivo dos servos.</strong> VO+ do PIP → COM do relé, NO do relé → X1 e X1 → contato positivo de cada um dos cinco conectores. Cada trecho deve dar bipe.</li>
+<li><strong>Terra comum.</strong> VO− do PIP → X2, X2 → GND da ESP32, X2 → DC− do relé e X2 → contato GND de cada conector de servo. Cada ligação deve dar bipe.</li>
+<li><strong>Comando e contatos do relé.</strong> IN1 → GPIO23 deve dar bipe. Com o relé em repouso, COM → NC deve dar bipe e COM → NO deve ficar sem bipe.</li>
+<li><strong>Sinais individuais em X3.</strong> Para cada desvio, medir do GPIO ao borne correspondente de X3 e desse borne ao contato de sinal no conector do servo. Os dois trechos devem dar bipe. Usar o mapa da seção 3: D5 → GPIO13, D6 → GPIO18, D8 → GPIO19, D9 → GPIO21 e D10 → GPIO22.</li>
+<li><strong>Verificação de curto antes de energizar.</strong> Medir X0 positivo → X0 negativo, VO+ → VO− do PIP e X1 → X2. Nenhum par deve apresentar bipe contínuo. Se houver bipe persistente ou faltar bipe em um caminho esperado, manter a GA3 desligada, localizar a divergência e repetir o teste.</li>
+</ol>
+<p>Registrar os pontos medidos, o resultado e eventual correção. A continuidade aprovada permite passar à medição de tensão com o multímetro em tensão contínua. Conferir a polaridade e a tensão entre X1 e X2 com o relé em repouso e acionado antes de conectar os servos. Desligar novamente para encaixá-los.</p>
+<h3>Testes de funcionamento</h3>
 <ul>
 <li><strong>Seleção individual.</strong> Cada comando movimentou somente o servo selecionado. Como a numeração mudou em 30/10, conferir a identificação dos cinco servos pelo mapa da seção 3 antes de fixar as hastes.</li>
 <li><strong>Movimento em pares.</strong> Dois servos funcionaram juntos e a sequência de dez ciclos foi concluída. No software definitivo, testar também três pedidos seguidos: o terceiro deve aguardar uma vaga e executar uma única vez.</li>
