@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GA3 — Testes e resultados | Ferrovia EFMN 74</title>
-<meta name="description" content="Relatório da GA3 com testes de continuidade, acionamento do 
-relé, medições sem carga e pendências de validação de 25 e 26 de outubro de 2026.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Documentação da Ferrovia EFMN 74: estudos preliminares, sensores, desvios, gavetas de controle, alimentação elétrica, testes e segurança.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Documentação | Ferrovia EFMN 74">
+  <meta property="og:description" content="Acompanhe os estudos preliminares e a documentação técnica da Ferrovia EFMN 74, da montagem aos testes de segurança.">
+  <title>Documentação | Ferrovia EFMN 74</title>
 <style>
- 
     :root {
       --bg: #f4f1ea;
       --paper: #fffdf8;
@@ -125,25 +126,10 @@ relé, medições sem carga e pendências de validação de 25 e 26 de outubro d
       h1 { font-size: 1.75rem; }
       .grid { grid-template-columns: 1fr; }
     }
-  
-    h2 { margin: 30px 0 12px; }
-    h3 { margin: 22px 0 8px; }
-    .table-scroll { overflow-x: auto; margin: 18px 0 24px; }
-    table { width: 100%; border-collapse: collapse; background: var(--paper); font: .94rem/1.5 
-Arial, sans-serif; }
-    th, td { border: 1px solid #d9d9d9; padding: 12px; vertical-align: middle; text-align: left; }
-    th { background: #e7e6e6; text-align: center; font-weight: 700; }
-    td:first-child { text-align: center; }
-    .status { color: inherit; font-family: Arial, sans-serif; }
-    footer { padding: 24px; text-align: center; border-top: 1px solid var(--line); }
-    @media (max-width: 700px) { table { min-width: 680px; } }
-    @media print { .voltar { display: none; } .table-scroll { overflow: visible; } table { 
-min-width: 0; } tr { break-inside: avoid; } }
- 
-</style>
+  </style>
 </head>
 <body>
-<header class="site-header">
+  <header class="site-header">
     <div class="header-inner">
       <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo">
       <div class="header-text">
@@ -152,59 +138,54 @@ min-width: 0; } tr { break-inside: avoid; } }
       </div>
     </div>
   </header>
-<main>
-<p class="voltar"><a href="documentacao.html">← Voltar à documentação</a></p>
-<h1>GA3 — Testes, instalação e registros para o software</h1>
-<p>Os ensaios de bancada de 25 a 27/10/2026 foram aprovados com os cinco servos SG90 livres, sem ligação mecânica aos desvios. A instalação na maquete exige ajustar e conferir cada desvio sob carga.</p>
-
-<h2>1. Testes fundamentais</h2>
-<h3>Continuidade antes de testar os servos</h3>
-<p>Na instalação ou após mudar a fiação, desligar e desconectar as fontes e o USB. Desencaixar os cinco servos dos conectores, mantendo os cabos identificados. Confirmar ausência de tensão em X0 e entre X1 e X2. Selecionar continuidade no multímetro e encostar uma ponta na outra para conferir o bipe. Cada seta abaixo indica onde colocar as duas pontas de prova.</p>
-<ol>
-<li><strong>Entrada do PIP.</strong> X0 positivo → VIN+ do PIP e X0 negativo → VIN− do PIP. Deve haver bipe em cada ligação.</li>
-<li><strong>Positivo dos servos.</strong> VO+ do PIP → COM do relé, NO do relé → X1 e X1 → contato positivo de cada um dos cinco conectores. Cada trecho deve dar bipe.</li>
-<li><strong>Terra comum.</strong> VO− do PIP → X2, X2 → GND da ESP32, X2 → DC− do relé e X2 → contato GND de cada conector de servo. Cada ligação deve dar bipe.</li>
-<li><strong>Comando e contatos do relé.</strong> IN1 → GPIO23 deve dar bipe. Com o relé em repouso, COM → NC deve dar bipe e COM → NO deve ficar sem bipe.</li>
-<li><strong>Sinais individuais em X3.</strong> Para cada desvio, medir do GPIO ao borne correspondente de X3 e desse borne ao contato de sinal no conector do servo. Os dois trechos devem dar bipe. Usar o mapa da seção 3: D5 → GPIO13, D6 → GPIO18, D8 → GPIO19, D9 → GPIO21 e D10 → GPIO22.</li>
-<li><strong>Verificação de curto antes de energizar.</strong> Medir X0 positivo → X0 negativo, VO+ → VO− do PIP e X1 → X2. Nenhum par deve apresentar bipe contínuo. Se houver bipe persistente ou faltar bipe em um caminho esperado, manter a GA3 desligada, localizar a divergência e repetir o teste.</li>
-</ol>
-<p>Registrar os pontos medidos, o resultado e eventual correção. A continuidade aprovada permite passar à medição de tensão com o multímetro em tensão contínua. Conferir a polaridade e a tensão entre X1 e X2 com o relé em repouso e acionado antes de conectar os servos. Desligar novamente para encaixá-los.</p>
-<h3>Testes de funcionamento</h3>
-<ul>
-<li><strong>Seleção individual.</strong> Cada comando movimentou somente o servo selecionado. Como a numeração mudou em 30/10, conferir a identificação dos cinco servos pelo mapa da seção 3 antes de fixar as hastes.</li>
-<li><strong>Movimento em pares.</strong> Dois servos funcionaram juntos e a sequência de dez ciclos foi concluída. No software definitivo, testar também três pedidos seguidos: o terceiro deve aguardar uma vaga e executar uma única vez.</li>
-<li><strong>Partida, parada e alimentação.</strong> Os servos permaneceram parados na partida e após o reinício ensaiado. A parada interrompeu a sequência. Com a fonte definitiva, conferir se o relé corta a alimentação e se nenhum pedido pendente inicia após a parada.</li>
-<li><strong>Alarme e bloqueio.</strong> A falha simulada produziu três bipes e bloqueou novos comandos. O reconhecimento por R não iniciou movimento. Falta verificar, no software definitivo, que reiniciar a ESP32 durante uma falha mantém a operação bloqueada até nova verificação.</li>
-</ul>
-
-<h2>2. Procedimento de instalação na maquete</h2>
-<ol>
-<li><strong>Preparar a gaveta.</strong> Com a fonte e o USB desligados, conferir a identificação dos cabos. X0 recebe a alimentação, X1 distribui o positivo dos servos, X2 é o GND comum e X3 leva os sinais. Conferir a tensão nominal do módulo de relé antes de usar a fonte definitiva.</li>
-<li><strong>Identificar os servos.</strong> Com a tração desligada e as hastes soltas, comandar um desvio por vez. Conferir a etiqueta do servo que respondeu e preencher o mapa de instalação.</li>
-<li><strong>Acoplar e ajustar.</strong> Centralizar o servo, desligar a alimentação e fixar a haste. Energizar novamente e ajustar o curso aos poucos. Conferir visualmente o assentamento das agulhas nas posições direta (DI) e desviada (AC), sem forçar o mecanismo. Repetir nos cinco desvios.</li>
-<li><strong>Testar sob carga.</strong> Acionar primeiro cada desvio e depois um par. Medir entre X1 e X2 antes, durante e após o movimento. Se reaparecer a leitura de 4,93 V em repouso, esclarecer por que há tensão com o relé comandado para desligar antes de liberar a gaveta.</li>
-<li><strong>Concluir a instalação.</strong> Ainda com a tração desligada, testar parada, alarme e bloqueio. Registrar a posição observada de cada desvio. Enquanto os sensores não estiverem validados, a conferência de posição é visual.</li>
-</ol>
-
-<h2>3. Registros para escrever o software</h2>
-<p><strong>Mapa dos sinais em X3.</strong> Numeração informada em 30/10/2026.</p>
-<div class="table-scroll"><table>
-<thead><tr><th>Desvio</th><th>GPIO da ESP32</th><th>Cor do sinal</th></tr></thead>
-<tbody>
-<tr><td>D5</td><td>13</td><td>Laranja</td></tr>
-<tr><td>D6</td><td>18</td><td>Azul</td></tr>
-<tr><td>D8</td><td>19</td><td>Amarelo</td></tr>
-<tr><td>D9</td><td>21</td><td>Branco</td></tr>
-<tr><td>D10</td><td>22</td><td>Marrom</td></tr>
-</tbody></table></div>
-<ul>
-<li><strong>Configuração da gaveta.</strong> Relé no GPIO23, ativo em nível alto. Buzzer no GPIO25, ativo em nível baixo. Limite de dois servos em movimento.</li>
-<li><strong>Ficha de cada desvio.</strong> Registrar ângulos ajustados para DI e AC, tempo de movimento e forma de confirmação da posição. Preencher esses valores na instalação.</li>
-<li><strong>Histórico de comandos.</strong> Registrar horário, desvio, posição solicitada e resultado: em espera, iniciado, concluído, interrompido ou recusado. Manter campos separados para posição comandada e posição confirmada.</li>
-<li><strong>Histórico de falhas.</strong> Registrar evento observado, origem do alarme, bloqueio, ação do operador e resultado do novo teste. No ensaio do D5, o alarme foi simulado por tempo. O fio solto foi identificado por inspeção. O comando R reconhece o alarme. A liberação para circulação depende da verificação do desvio.</li>
-<li><strong>Registro de aprovação.</strong> Anotar data, versão do programa, fonte, condição do ensaio (bancada ou maquete), resultado esperado, resultado observado e pendência.</li>
-</ul>
-</main>
-<footer>Ferrovia EFMN 74 — Documentação técnica — GA3</footer>
+ 
+  <main>
+    <p class="voltar"><a href="index.html">← Voltar ao índice</a></p>
+    <h1>Documentação</h1>
+    <p class="abertura">Esta área apresentará documentos técnicos elaborados durante o planejamento, a montagem e os testes da Ferrovia.</p>
+    <div class="aviso">A documentação será publicada gradualmente, sempre depois da montagem prática, da conferência das ligações e da atualização das informações.</div>
+ 
+    <div class="grid">
+      <section class="card">
+        <h2>Estudos preliminares</h2>
+        <p>Propostas, decisões em análise e resultados de testes que orientam os procedimentos futuros. Cada estudo registra a data, a versão e os pontos ainda pendentes de validação.</p>
+        <p><a href="estudo-preliminar-sensores.html">Estudos dos sensores</a></p>
+        <p><a href="software-controle.html">Estudo preliminar de software</a></p>
+      </section>
+      <section class="card">
+        <h2>Gavetas de controle</h2>
+        <p>Descrição das funções, componentes e ligações das gavetas GA1, GA2 e GA3.</p>
+      </section>
+      <section class="card">
+        <h2>Desvios e servos</h2>
+        <p>Instalação dos servos SG90, preparação das hastes, ajustes de movimento e testes.</p>
+      </section>
+      <section class="card">
+        <h2>Sensores</h2>
+        <p>Posicionamento, instalação, ligação e uso dos sensores na segurança das rotas.</p>
+      </section>
+      <section class="card">
+        <h2>Alimentação elétrica</h2>
+        <p>Fontes, proteções, barramentos, relés, aterramento comum e distribuição de energia.</p>
+      </section>
+      <section class="card">
+        <h2>Testes e segurança</h2>
+        <p>Procedimentos de conferência, testes por etapas, avisos sonoros e rotinas para detectar falhas.</p>
+        <p><a href="ttd-01-montagens-e-testes.html">TTD-01 - Teste e ajuste de desvios</a></p>
+        <p><a href="teste-operacional-preliminar.html">Teste operacional preliminar</a></p>
+        <p><a href="GA3-testes-e-resultados.html">GA3 – Guia de instalação</a></p>
+      </section>
+    </div>
+ 
+    <section class="exemplo" style="margin-top: 26px;">
+      <p class="rotulo">Exemplo de futura documentação</p>
+      <h2>Montagem da gaveta GA3, passo a passo</h2>
+      <p>Documento mostrando a montagem desde o Sindal de entrada até os sensores, servos, iluminação e som, acompanhado de fotografias reais e desenhos das ligações.</p>
+    </section>
+ 
+    <section class="convite">
+      <p>Novos documentos serão acrescentados conforme a ferrovia avançar. Volte ao site para acompanhar as próximas etapas ou sugerir um assunto que gostaria de ver explicado.</p>
+    </section>
+  </main>
 </body>
 </html>
