@@ -134,7 +134,7 @@ Arial, sans-serif; }
     th, td { border: 1px solid #d9d9d9; padding: 12px; vertical-align: middle; text-align: left; }
     th { background: #e7e6e6; text-align: center; font-weight: 700; }
     td:first-child { text-align: center; }
-    .status { color: #8a6517; font-family: Arial, sans-serif; }
+    .status { color: inherit; font-family: Arial, sans-serif; }
     footer { padding: 24px; text-align: center; border-top: 1px solid var(--line); }
     @media (max-width: 700px) { table { min-width: 680px; } }
     @media print { .voltar { display: none; } .table-scroll { overflow: visible; } table { 
@@ -455,31 +455,31 @@ Os jumpers já estavam montados, mas a confirmação consolidada de continuidade
 <tr>
 <td>C13</td>
 <td>3V3 da ESP32 → H35, protoboard de cima</td>
-<td>Branco</td>
+<td>Vermelho</td>
 <td>Com bipe. Confirmado na consolidação posterior.</td>
 </tr>
 <tr>
 <td>C14</td>
 <td>G23 → G26, protoboard de cima</td>
-<td>Branco</td>
+<td>Roxo (jumper curto)</td>
 <td>Com bipe.</td>
 </tr>
 <tr>
 <td>C15</td>
 <td>H26 → G29, protoboard de cima</td>
-<td>Amarelo</td>
+<td>Roxo (jumper curto)</td>
 <td>Com bipe.</td>
 </tr>
 <tr>
 <td>C16</td>
 <td>H29 → G32, protoboard de cima</td>
-<td>Laranja</td>
+<td>Roxo (jumper curto)</td>
 <td>Com bipe.</td>
 </tr>
 <tr>
 <td>C17</td>
 <td>H32 → G35, protoboard de cima</td>
-<td>Marrom</td>
+<td>Roxo (jumper curto)</td>
 <td>Com bipe.</td>
 </tr>
 </tbody>
@@ -594,7 +594,7 @@ físico.</td></tr>
 <p>Servos: D5 → GPIO18 azul. D6 → GPIO19 amarelo. D8 → GPIO21 branco. D9 → GPIO22 marrom. D10 → 
 GPIO13 laranja. Relé: IN1 → GPIO23, fio verde na montagem atual. Buzzer: I/O → GPIO25 amarelo, VCC
  → 3V3 por fio vermelho e GND → V0− do PIP por fio preto.</p>
-<p>O 3V3 da ESP32 chega a H35 por fio branco. I35 foi usado como derivação para o VCC do buzzer. O
+<p>O 3V3 da ESP32 chega a H35 por fio vermelho. I35 foi usado como derivação para o VCC do buzzer. O
  jumper antigo DC+ do relé → protoboard foi retirado, mantendo a alimentação externa do módulo. O 
 buzzer foi transferido para a outra protoboard, com posições propostas A50 a A52. A associação 
 final entre pinos e números de furos não foi reconfirmada por foto, portanto deve ser conferida 
