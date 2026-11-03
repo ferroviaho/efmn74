@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GA3 — Testes e resultados | Ferrovia EFMN 74</title>
 <meta name="description" content="Relatório da GA3 com testes de continuidade, acionamento do 
-relé, medições sem carga e pendências de validação de 25 e 26 de outubro de 2026.">
+relé, medições e conexões atualizadas em 03/11/2026.">
 <style>
  
     :root {
@@ -145,7 +145,7 @@ min-width: 0; } tr { break-inside: avoid; } }
 <body>
 <header class="site-header">
     <div class="header-inner">
-      <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo">
+      <a href="index.html"><img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo"></a>
       <div class="header-text">
         <p class="header-title">Ferrovia EFMN 74 - Escala HO</p>
         <p class="header-subtitle">Construção, automação, memória e documentação</p>
@@ -161,12 +161,13 @@ min-width: 0; } tr { break-inside: avoid; } }
 <h3>Continuidade antes de testar os servos</h3>
 <p>Na instalação ou após mudar a fiação, desligar e desconectar as fontes e o USB. Desencaixar os cinco servos dos conectores, mantendo os cabos identificados. Confirmar ausência de tensão em X0 e entre X1 e X2. Selecionar continuidade no multímetro e encostar uma ponta na outra para conferir o bipe. Cada seta abaixo indica onde colocar as duas pontas de prova.</p>
 <ol>
-<li><strong>Entrada do PIP.</strong> X0 positivo → VIN+ do PIP e X0 negativo → VIN− do PIP. Deve haver bipe em cada ligação.</li>
-<li><strong>Positivo dos servos.</strong> VO+ do PIP → COM do relé, NO do relé → X1 e X1 → contato positivo de cada um dos cinco conectores. Cada trecho deve dar bipe.</li>
-<li><strong>Terra comum.</strong> VO− do PIP → X2, X2 → GND da ESP32, X2 → DC− do relé e X2 → contato GND de cada conector de servo. Cada ligação deve dar bipe.</li>
-<li><strong>Comando e contatos do relé.</strong> IN1 → GPIO23 deve dar bipe. Com o relé em repouso, COM → NC deve dar bipe e COM → NO deve ficar sem bipe.</li>
+<li><strong>Entrada do PIP.</strong> X0 positivo → fusível → V1+ do PIP e X0 negativo → V1− do PIP. Deve haver bipe em cada ligação.</li>
+<li><strong>Positivo dos servos.</strong> V0+ do PIP → COM do relé, NO do relé → X1 e X1 → contato positivo de cada um dos cinco conectores. Cada trecho deve dar bipe.</li>
+<li><strong>Terra comum.</strong> V0− do PIP → X2, X2 → GND da ESP32, X2 → DC− do relé e X2 → contato GND de cada conector de servo. Cada ligação deve dar bipe.</li>
+<li><strong>Comando e contatos do relé.</strong> Conferir a ponte COM → DC+, a ligação DC+ → VIN da ESP32 e o sinal IN1 → GPIO23. Cada trecho deve dar bipe. Com o relé em repouso, COM → NC deve dar bipe e COM → NO deve ficar sem bipe.</li>
 <li><strong>Sinais individuais em X3.</strong> Para cada desvio, medir do GPIO ao borne correspondente de X3 e desse borne ao contato de sinal no conector do servo. Os dois trechos devem dar bipe. Usar o mapa da seção 3: D5 → GPIO13, D6 → GPIO18, D8 → GPIO19, D9 → GPIO21 e D10 → GPIO22.</li>
-<li><strong>Verificação de curto antes de energizar.</strong> Medir X0 positivo → X0 negativo, VO+ → VO− do PIP e X1 → X2. Nenhum par deve apresentar bipe contínuo. Se houver bipe persistente ou faltar bipe em um caminho esperado, manter a GA3 desligada, localizar a divergência e repetir o teste.</li>
+<li><strong>Sinais dos sensores em X4.</strong> Seguir o mapa da seção 3. Medir cada borne de X4 até o furo C indicado e, em seguida, do furo B da mesma linha até o pino da ESP32. Cada trecho deve dar bipe. A continuidade das cinco ligações está pendente.</li>
+<li><strong>Verificação de curto antes de energizar.</strong> Medir X0 positivo → X0 negativo, V0+ → V0− do PIP e X1 → X2. Nenhum par deve apresentar bipe contínuo. Se houver bipe persistente ou faltar bipe em um caminho esperado, manter a GA3 desligada, localizar a divergência e repetir o teste.</li>
 </ol>
 <p>Registrar os pontos medidos, o resultado e eventual correção. A continuidade aprovada permite passar à medição de tensão com o multímetro em tensão contínua. Conferir a polaridade e a tensão entre X1 e X2 com o relé em repouso e acionado antes de conectar os servos. Desligar novamente para encaixá-los.</p>
 <h3>Testes de funcionamento</h3>
@@ -179,7 +180,7 @@ min-width: 0; } tr { break-inside: avoid; } }
 
 <h2>2. Procedimento de instalação na maquete</h2>
 <ol>
-<li><strong>Preparar a gaveta.</strong> Com a fonte e o USB desligados, conferir a identificação dos cabos. X0 recebe a alimentação, X1 distribui o positivo dos servos, X2 é o GND comum e X3 leva os sinais. Conferir a tensão nominal do módulo de relé antes de usar a fonte definitiva.</li>
+<li><strong>Preparar a gaveta.</strong> Com a fonte e o USB desligados, conferir a identificação dos cabos. X0 recebe a alimentação, X1 distribui o positivo dos servos, X2 é o GND comum e X3 leva os sinais dos servos. X4 recebe os sinais dos sensores S10 a S14. Conferir a tensão nominal do módulo de relé antes de usar a fonte definitiva.</li>
 <li><strong>Identificar os servos.</strong> Com a tração desligada e as hastes soltas, comandar um desvio por vez. Conferir a etiqueta do servo que respondeu e preencher o mapa de instalação.</li>
 <li><strong>Acoplar e ajustar.</strong> Centralizar o servo, desligar a alimentação e fixar a haste. Energizar novamente e ajustar o curso aos poucos. Conferir visualmente o assentamento das agulhas nas posições direta (DI) e desviada (AC), sem forçar o mecanismo. Repetir nos cinco desvios.</li>
 <li><strong>Testar sob carga.</strong> Acionar primeiro cada desvio e depois um par. Medir entre X1 e X2 antes, durante e após o movimento. Se reaparecer a leitura de 4,93 V em repouso, esclarecer por que há tensão com o relé comandado para desligar antes de liberar a gaveta.</li>
@@ -197,8 +198,18 @@ min-width: 0; } tr { break-inside: avoid; } }
 <tr><td>D9</td><td>21</td><td>Branco</td></tr>
 <tr><td>D10</td><td>22</td><td>Marrom</td></tr>
 </tbody></table></div>
+<p><strong>Mapa dos sinais em X4.</strong> Fiação conectada em 03/11/2026. Cada sinal mantém a mesma cor nos dois trechos. O teste de continuidade deverá confirmar o mapa abaixo.</p>
+<div class="table-scroll"><table>
+<thead><tr><th>Sensor em X4</th><th>Cor</th><th>X4 → protoboard</th><th>Protoboard → ESP32</th></tr></thead>
+<tbody>
+<tr><td>S10</td><td>Verde</td><td>C35</td><td>B35 → VP (GPIO36)</td></tr>
+<tr><td>S11</td><td>Laranja</td><td>C32</td><td>B32 → VN (GPIO39)</td></tr>
+<tr><td>S12</td><td>Cinza</td><td>C29</td><td>B29 → D34 (GPIO34)</td></tr>
+<tr><td>S13</td><td>Vermelho</td><td>C26</td><td>B26 → D35 (GPIO35)</td></tr>
+<tr><td>S14</td><td>Azul</td><td>C23</td><td>B23 → D32 (GPIO32)</td></tr>
+</tbody></table></div>
 <ul>
-<li><strong>Configuração da gaveta.</strong> Relé no GPIO23, ativo em nível alto. Buzzer no GPIO25, ativo em nível baixo. Limite de dois servos em movimento.</li>
+<li><strong>Configuração da gaveta.</strong> Relé no GPIO23, ativo em nível alto. Buzzer no GPIO25 (D25 → E49 da protoboard), ativo em nível baixo. Limite de dois servos em movimento.</li>
 <li><strong>Ficha de cada desvio.</strong> Registrar ângulos ajustados para DI e AC, tempo de movimento e forma de confirmação da posição. Preencher esses valores na instalação.</li>
 <li><strong>Histórico de comandos.</strong> Registrar horário, desvio, posição solicitada e resultado: em espera, iniciado, concluído, interrompido ou recusado. Manter campos separados para posição comandada e posição confirmada.</li>
 <li><strong>Histórico de falhas.</strong> Registrar evento observado, origem do alarme, bloqueio, ação do operador e resultado do novo teste. No ensaio do D5, o alarme foi simulado por tempo. O fio solto foi identificado por inspeção. O comando R reconhece o alarme. A liberação para circulação depende da verificação do desvio.</li>
