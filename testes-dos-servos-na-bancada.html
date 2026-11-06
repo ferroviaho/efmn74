@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teste dos servos na bancada TTD-01 | EFMN 74</title>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: #222;
+  font: 17px/1.6 Georgia, "Times New Roman", serif; }
+header { background: #151515; border-bottom: 4px solid #c89b2b; }
+.marca { max-width: 1000px; margin: auto; padding: 12px 16px;
+  display: flex; align-items: center; font: 16px/1.4 Arial, sans-serif; color: white; }
+.marca img { width: 72px; height: auto; margin-right: 14px; display: block; }
+.marca small { display: block; color: #ddd; }
+main { max-width: 900px; margin: auto; padding: 28px 18px; }
+a { color: #0056b3; }
+.voltar { font-family: Arial, sans-serif; }
+h1, h2 { line-height: 1.2; }
+h1 { font-size: 2rem; }
+h2 { margin-top: 1.6em; font-size: 1.4rem; }
+li { margin-bottom: .5em; }
+.ficha { background: #fffdf8; padding: 14px 20px; border-left: 4px solid #c89b2b; }
+.ficha p { margin: .45em 0; }
+@media print { .voltar { display: none; } .ficha { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<header><div class="marca">
+<a href="index.html"><img src="logo-efmn74.PNG" alt="Ferrovia EFMN 74 — início"></a>
+<div>Ferrovia EFMN 74 - Escala HO
+<small>Construção, automação, memória e documentação</small></div>
+</div></header>
+<main>
+<p class="voltar"><a href="downloads.html">← Voltar</a></p>
+<h1>Teste dos servos na bancada TTD-01</h1>
+<p>Na EFMN 74, os 19 servos SG90 passaram pelo teste individual de bancada.
+Este guia reúne os resultados e descreve como usar o Testador Temporário
+de Desvios (TTD-01) para conferir o movimento de um servo com o braço livre.</p>
+<h2>Resultado dos testes de bancada</h2>
+<p>Em 5 de setembro de 2026, os 19 servos foram testados individualmente com
+um programa carregado pela IDE do Arduino. Todos responderam ao comando.
+Em 27 de outubro, os cinco servos da GA3 (D5, D6, D8, D9 e D10) também
+responderam aos comandos individuais e em pares, com as hastes livres.</p>
+<h2>Como testar um servo com o TTD-01</h2>
+<ol>
+<li>Identifique o servo e deixe o braço livre para girar. Com a alimentação
+desligada, conecte o servo ao TTD-01 conforme as marcações de sinal,
+positivo e GND.</li>
+<li>Ligue o testador e selecione o controle manual. Mova o comando lentamente
+para um lado e depois para o outro. Observe se o braço acompanha o comando
+nos dois sentidos.</li>
+<li>Retorne o comando ao ponto inicial e confira se o braço volta à posição
+de partida. Anote o resultado e desligue a alimentação antes de desconectar
+o servo.</li>
+</ol>
+<h2>Ficha de teste por servo</h2>
+<div class="ficha">
+<p>Data ____________ &nbsp; Identificação do servo ____________</p>
+<p>Movimento nos dois sentidos ________________________</p>
+<p>Retorno ao ponto inicial ________________________</p>
+<p>Resultado e observações ________________________</p>
+</div>
+<p class="voltar"><a href="downloads.html">← Voltar</a></p>
+</main>
+</body>
+</html>
