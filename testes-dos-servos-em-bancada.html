@@ -10,14 +10,14 @@ body { margin: 0; background: #f4f1ea; color: #222;
   font: 17px/1.6 Georgia, "Times New Roman", serif; }
 header { background: #151515; border-bottom: 4px solid #c89b2b; }
 .marca { max-width: 1000px; margin: auto; padding: 12px 16px;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 12px; font: 16px/1.4 Arial, sans-serif; color: white; }
-.marca img { width: 72px; height: auto; margin: 0 auto; display: block; }
+  display: flex; flex-direction: row; align-items: center; justify-content: center; text-align: center; gap: 12px; font: 16px/1.4 Arial, sans-serif; color: white; }
+.marca img { width: 72px; height: auto; margin: 0; display: block; }
 .marca small { display: block; color: #ddd; }
 main { max-width: 900px; margin: auto; padding: 28px 18px; }
 a { color: #0056b3; }
 .voltar { font-family: Arial, sans-serif; }
 h1, h2 { line-height: 1.2; }
-h1 { font-size: 2rem; text-align: center; }
+h1 { font-size: 2rem; text-align: left; }
 h2 { margin-top: 1.6em; font-size: 1.4rem; }
 li { margin-bottom: .5em; }
 .ficha { background: #fffdf8; padding: 14px 20px; border-left: 4px solid #c89b2b; }
@@ -32,16 +32,169 @@ li { margin-bottom: .5em; }
 <small>Construção, automação, memória e documentação</small></div>
 </div></header>
 <main>
-<p class="voltar"><a href="downloads.html">← Voltar</a></p>
+<p class="voltar"><a href="biblioteca.html">← Voltar</a></p>
 <h1>Teste dos servos na bancada</h1>
 <p>Na EFMN 74, os 19 servos SG90 passaram pelo teste individual na bancada.
-Este guia reúne os resultados e descreve como usar o Testador Temporário
-de Desvios (TTD-01) para conferir o movimento de um servo com o braço livre.</p>
+Este guia preserva os resultados já obtidos e apresenta, para consulta futura,
+os procedimentos de teste com ESP32 e Arduino IDE ou com o Testador
+Temporário de Desvios (TTD-01). Não é necessário repetir os testes já aprovados
+apenas para completar este documento.</p>
 <h2>Resultado dos testes de bancada</h2>
 <p>Em 5 de setembro de 2026, os 19 servos foram testados individualmente com
 um programa carregado pela IDE do Arduino. Todos responderam ao comando.
 Em 27 de outubro, os cinco servos da GA3 (D5, D6, D8, D9 e D10) também
 responderam aos comandos individuais e em pares, com as hastes livres.</p>
+<h2>Ângulos e registro do programa</h2>
+<p>O valor de 97° foi lembrado como possível correção do registro de 67°.
+Não se deve, portanto, tratar 67° e 97° como um par de posições confirmado. O código original não está disponível.
+Esses números não constituem calibração definitiva dos desvios nem comprovam
+os ângulos empregados nos testes anteriores.</p>
+<p>Um código gerado futuramente deverá ser identificado como novo programa.
+A posição física depende também da faixa de pulsos configurada e do servo.
+O ajuste definitivo deve ser feito individualmente, com o servo instalado,
+sem forçar a haste ou o mecanismo do desvio.</p>
+<div class="ficha"><p><strong>Como usar este guia:</strong> Os passos 1 a 7 destinam-se a um novo teste, quando necessário. Para os 19 servos já aprovados, mantenha o registro existente. Não é necessário ligar a bancada nem gerar outro programa agora.</p></div>
+<h2>Passo 1 — Separar os materiais</h2>
+<ul>
+<li>Notebook com Arduino IDE e cabo USB de dados.</li>
+<li>ESP32 DevKit V1 de 30 pinos e biblioteca ESP32Servo.</li>
+<li>Um servo SG90 com braço livre, fonte regulada de 5 V com capacidade
+para sua corrente de partida e fios de conexão.</li>
+</ul>
+<p>O procedimento abaixo descreve uma montagem independente de bancada,
+com um servo por vez. Não é um roteiro para alterar as ligações da GA3.
+O relé, os sensores, o buzzer e os MOSFETs não participam desta montagem.</p>
+<h2>Passo 2 — Fazer as conexões com tudo desligado</h2>
+<p>Faça todas as conexões com a fonte desligada e o USB desconectado.
+Confira a identificação dos fios no servo. As cores abaixo são usuais
+no SG90 e se referem ao cabo original, não às extensões da GA3.</p>
+<ul>
+<li>Positivo da fonte de 5 V → Fio vermelho do servo.</li>
+<li>Negativo da fonte → Fio marrom ou preto do servo.</li>
+<li>Negativo da fonte → Pino GND da ESP32, formando o GND comum.</li>
+<li>GPIO13 da ESP32 → Fio laranja ou amarelo de sinal do servo.</li>
+<li>USB do notebook → Conector USB da ESP32.</li>
+</ul>
+<p>A ESP32 será alimentada pelo USB e o servo pela fonte externa.
+Nesta montagem, não conecte o positivo da fonte externa ao Vin ou ao 3V3
+da ESP32. Não alimente o servo pelo pino 3V3. Deixe o braço livre e os
+terminais protegidos contra contato acidental.</p>
+<h2>Passo 3 — Instalar e preparar a Arduino IDE</h2>
+<ol>
+<li>Baixe a Arduino IDE em <a href="https://www.arduino.cc/en/software">arduino.cc/en/software</a>
+e instale a versão compatível com o notebook. Se já estiver instalada
+e funcionando com a ESP32, não é necessário reinstalar.</li>
+<li>Abra a IDE. Em Arquivo → Preferências, localize o campo de URLs
+adicionais do Gerenciador de Placas. Acrescente o endereço abaixo,
+preservando os endereços que já existirem. Cole o endereço completo e clique em OK.</li>
+</ol>
+<p style="overflow-wrap:anywhere">https://espressif.github.io/arduino-esp32/package_esp32_index.json</p>
+<ol start="3">
+<li>Na IDE, abra Ferramentas → Placa → Gerenciador de Placas. Pesquise esp32 e instale o pacote
+“esp32 by Espressif Systems”. Se já estiver instalado, mantenha a
+configuração funcional e anote a versão.</li>
+<li>Abra Ferramentas → Gerenciar Bibliotecas. Pesquise ESP32Servo e instale a
+biblioteca de Kevin Harrington e John K. Bennett. Anote sua versão.</li>
+<li>Conecte a ESP32 ao notebook com um cabo USB de dados. Selecione a
+placa correspondente em Ferramentas → Placa. Para a DevKit V1 clássica,
+use “DOIT ESP32 DEVKIT V1”, quando disponível, ou a configuração
+“ESP32 Dev Module” compatível com o módulo instalado.</li>
+<li>Em Ferramentas → Porta, selecione a porta que corresponde à ESP32.
+Ela pode aparecer como COM3 ou outro número. Não presuma que será sempre
+COM3. Os nomes dos menus podem variar conforme a versão e o idioma.</li>
+</ol>
+<h2>Passo 4 — Solicitar o novo código C++ ao GPT</h2>
+<p>O GPT pode ajudar a gerar e explicar um programa de teste em C++.
+Informe a placa, a biblioteca, as conexões reais e o comportamento desejado.
+Use, por exemplo, a solicitação abaixo:</p>
+<div class="ficha">
+<p>Gere um novo código C++ completo para Arduino IDE, usando ESP32 DevKit
+V1 de 30 pinos, biblioteca ESP32Servo e um servo SG90 com sinal no GPIO13.
+O servo terá fonte externa de 5 V e GND comum com a ESP32. O braço estará
+livre. Use o Monitor Serial em 115200 baud. Quero enviar A para uma posição
+e B para a outra. Antes de definir as duas posições, peça os ângulos desejados.
+Há apenas uma lembrança de 97°, sem confirmação do par usado anteriormente.
+Não invente os ângulos do teste antigo. Não inicie varredura automática nem movimento no setup.
+Inclua P para interromper o sinal e explique que isso não corta a energia.
+Não use relé, buzzer ou sensores. Declare a frequência e a faixa de pulsos,
+explique sua influência sobre os ângulos e não apresente esses parâmetros
+como os do programa antigo. Comente o código e explique como instalar,
+carregar e testar. Informe quais verificações ainda dependem do hardware.</p>
+</div>
+<p>Antes de carregar, confira se os pinos e a alimentação descritos no código
+coincidem com a montagem. Um programa gerado pelo GPT precisa ser revisado
+e validado. Compilar sem erros não comprova o movimento correto do servo.</p>
+<h2>Passo 5 — Colar, salvar, verificar e carregar o código</h2>
+<ol>
+<li>Crie um novo sketch em Arquivo → Novo. Se houver um programa importante
+aberto, salve-o antes. Carregar outro sketch substitui o programa que
+está executando na ESP32. Preserve o arquivo original antes de usar
+uma placa que já controla a GA3.</li>
+<li>Copie somente o código fornecido pelo GPT. Não copie as marcas de
+formatação, como as três crases ou o título “cpp”.</li>
+<li>Selecione todo o conteúdo do editor e cole o código completo, substituindo
+o exemplo inicial. Salve como Teste_servo_bancada. A IDE criará o arquivo
+.ino dentro de uma pasta de mesmo nome.</li>
+<li>Confira a placa, a porta, a biblioteca, o GPIO e os parâmetros do servo.
+Clique em Verificar, o botão com a marca de confirmação. Essa etapa
+compila o código, mas não o envia à placa.</li>
+<li>Se aparecer um erro, copie a mensagem completa para o GPT, informando
+as versões da IDE, do pacote ESP32 e da biblioteca. Faça a correção
+e repita a verificação antes de continuar.</li>
+<li>Com o servo ainda sem alimentação externa, clique em Carregar,
+o botão com a seta para a direita. Aguarde a conclusão. Se a gravação
+ficar parada em “Connecting”, a placa pode exigir manter BOOT pressionado
+no início da conexão e soltá-lo quando a gravação começar.</li>
+<li>Abra Ferramentas → Monitor Serial. No seletor de velocidade, escolha 115200 baud, conforme o programa.
+Confira a mensagem de início e os comandos disponíveis. Se ela não aparecer, pressione uma vez EN/RESET na ESP32, ainda com a fonte do servo desligada.</li>
+</ol>
+<h2>Passo 6 — Comandar e observar o servo</h2>
+<p>Este roteiro fica como referência para novos servos ou verificações
+futuras. Os testes aprovados da EFMN 74 permanecem registrados.</p>
+<ol>
+<li>Confira novamente a polaridade, o GND comum e o braço livre.
+Ligue a fonte externa do servo.</li>
+<li>No Monitor Serial, digite A e clique em Enviar ou pressione Enter.
+Observe a primeira posição. O acoplamento inicial do sinal pode produzir
+um pequeno movimento transitório.</li>
+<li>Envie B e observe a segunda posição. Volte a enviar A para conferir
+o retorno. Não force o braço com a mão durante o comando.</li>
+<li>Observe se o movimento ocorre nos dois sentidos e se o retorno é
+repetível. Se houver travamento, aquecimento ou esforço contínuo,
+desligue a fonte e revise a montagem e os parâmetros.</li>
+<li>Use P, se previsto no programa, para interromper o sinal. Isso não
+corta a alimentação e não garante que o braço fique travado na posição.</li>
+<li>Registre o movimento observado e as duas posições comandadas na ficha ao final. Salve o arquivo .ino utilizado junto com esse registro. A mensagem no Monitor Serial indica o comando
+enviado, não uma medição da posição física nem uma confirmação automática
+de que o servo se movimentou.</li>
+<li>Desligue a fonte e desconecte o USB antes de trocar o servo ou
+alterar os fios.</li>
+</ol>
+<h2>Passo 7 — Registrar e guardar o resultado</h2>
+<div class="ficha">
+<p>Data ____________ &nbsp; Identificação do servo ____________</p>
+<p>Movimento nos dois sentidos ________________________</p>
+<p>Retorno ao ponto inicial ________________________</p>
+<p>Resultado e observações ________________________</p>
+<p>Método utilizado: IDE ou TTD-01 ________________________</p>
+<p>GPIO utilizado e alimentação ________________________</p>
+<p>Ângulos comandados e faixa de pulsos, quando aplicável ________________________</p>
+<p>Versões da IDE, pacote ESP32 e biblioteca ________________________</p>
+<p>Nome e versão do arquivo .ino salvo ________________________</p>
+</div>
+<h2>Se houver dificuldade</h2>
+<ul>
+<li>Porta ausente: Confira o cabo de dados, a conexão USB e o reconhecimento
+da placa pelo computador. Se necessário, instale o driver correspondente
+ao conversor USB da placa, obtido de seu fabricante.</li>
+<li>Erro de biblioteca: Confira a instalação da ESP32Servo e se a placa
+selecionada pertence à família ESP32.</li>
+<li>Texto ilegível no Monitor Serial: Confira a velocidade de 115200 baud.</li>
+<li>Servo parado: Desligue a alimentação e confira os fios, a fonte,
+o GND comum, o GPIO e o comando previsto no código.</li>
+<li>ESP32 reiniciando ou servo tremendo: Verifique a estabilidade da fonte
+e das conexões antes de mudar o programa.</li>
+</ul>
 <h2>Como testar um servo com o TTD-01</h2>
 <ol>
 <li>Identifique o servo e deixe o braço livre para girar. Com a alimentação
@@ -54,14 +207,13 @@ nos dois sentidos.</li>
 de partida. Anote o resultado e desligue a alimentação antes de desconectar
 o servo.</li>
 </ol>
-<h2>Ficha de teste por servo</h2>
-<div class="ficha">
-<p>Data ____________ &nbsp; Identificação do servo ____________</p>
-<p>Movimento nos dois sentidos ________________________</p>
-<p>Retorno ao ponto inicial ________________________</p>
-<p>Resultado e observações ________________________</p>
-</div>
-<p class="voltar"><a href="downloads.html">← Voltar</a></p>
+<p class="voltar"><a href="biblioteca.html">← Voltar</a></p>
+<h2>Referências para consulta</h2>
+<ul>
+<li><a href="https://docs.espressif.com/projects/arduino-esp32/en/latest/installing.html">Espressif — Instalação do suporte ESP32 na Arduino IDE</a>.</li>
+<li><a href="https://support.arduino.cc/hc/en-us/articles/4733418441116-Upload-a-sketch-in-Arduino-IDE">Arduino — Como carregar um sketch</a>.</li>
+<li><a href="https://github.com/madhephaestus/ESP32Servo">ESP32Servo — Documentação da biblioteca</a>.</li>
+</ul>
 </main>
 </body>
 </html>
