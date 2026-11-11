@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teste dos servos antes de suas instalações | EFMN 74</title>
+<style>
+* { box-sizing:border-box; }
+body { margin:0; background:#f4f1ea; color:#222;
+  font:17px/1.65 Georgia,"Times New Roman",serif; }
+header { background:#151515; color:white;
+  border-bottom:4px solid #c89b2b; }
+.marca { max-width:1000px; margin:auto; padding:12px 18px;
+  display:flex; align-items:center; justify-content:center;
+  gap:16px; font-family:Arial,sans-serif; }
+.marca img { width:72px; height:auto; display:block; }
+.marca p { margin:0; }
+.marca small { color:#ddd; }
+main { max-width:1000px; margin:auto; padding:28px 20px; }
+h1 { font-size:2rem; line-height:1.25; text-align:left; }
+h2 { font-size:1.4rem; margin-top:1.6em; line-height:1.3; }
+a { color:#0056b3; }
+li { margin-bottom:.5em; }
+.table-wrap { overflow-x:auto; }
+table { width:100%; border-collapse:collapse; margin:16px 0; }
+th,td { border:1px solid #ded7c8; padding:10px; text-align:left; }
+th { background:#e9e3d6; }
+.nota,.ficha { background:#fffdf8; padding:14px 20px;
+  border-left:4px solid #c89b2b; }
+pre { background:#fffdf8; padding:16px; overflow-x:auto;
+  font:13px/1.5 Consolas,monospace; }
+.voltar,footer { font-family:Arial,sans-serif; }
+footer { margin-top:30px; }
+@media(max-width:600px) {
+  main { padding:24px 16px; } h1 { font-size:1.65rem; }
+  .marca { gap:12px; font-size:14px; }
+}
+</style>
+</head>
+<body>
+<header><div class="marca">
+<a href="index.html"><img src="logo-efmn74.PNG"
+alt="Ferrovia EFMN 74 — Início"></a>
+<div><p>Ferrovia EFMN 74 - Escala HO</p>
+<small>Construção, automação, memória e documentação</small></div>
+</div></header>
+<main>
+<p class="voltar"><a href="index.html">← Voltar</a></p>
+<h1>Teste dos servos antes de suas instalações</h1>
+<p>Antes de instalar os servos SG90 nos desvios, testar cada motor
+individualmente na bancada com o Testador Temporário de Desvios
+(TTD-01). O notebook envia comandos pela Arduino IDE à ESP32,
+que movimenta um servo por vez.</p>
+<p>Este roteiro descreve a preparação da bancada, as ligações,
+a gravação do programa, a execução dos testes e o registro dos
+resultados. Os movimentos devem ser observados com o braço livre,
+sem ligação às agulhas do desvio.</p>
+<h2>1. Preparar a bancada</h2>
+<ol>
+<li>Separar o notebook com Arduino IDE, cabo USB de dados, ESP32,
+protoboard compatível, jumpers e os servos a testar.</li>
+<li>Sugere-se instalar a ESP32 em uma protoboard compatível,
+deixando os pinos acessíveis para as conexões. Deixar espaço
+para o braço do servo se movimentar livremente.</li>
+<li>Conferir o encaixe da ESP32. As duas fileiras de pinos devem
+ficar em grupos de contatos separados, sem curto entre elas.</li>
+<li>Identificar cada servo antes do teste. Conectar somente um
+por vez e manter o mecanismo livre de obstáculos.</li>
+<li>Fazer ou alterar as ligações com o cabo USB desconectado.</li>
+</ol>
+<h2>2. Fazer as ligações</h2>
+<p>As cores abaixo correspondem ao cabo original usual do SG90.
+Conferir a identificação do servo antes de conectar.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Fio ou conexão</th><th>Destino</th></tr></thead>
+<tbody>
+<tr><td>Vermelho do servo</td><td>Ponto de 5 V da ESP32
+alimentado pelo USB.</td></tr>
+<tr><td>Marrom ou preto do servo</td><td>GND da ESP32.</td></tr>
+<tr><td>Laranja ou amarelo do servo</td><td>GPIO18 da ESP32.</td></tr>
+<tr><td>Cabo USB de dados</td><td>Notebook e conector USB
+da ESP32.</td></tr>
+</tbody></table></div>
+<p class="nota">Confirmar que o ponto de 5 V da placa recebe
+alimentação pelo USB. Não alimentar o servo pelo pino 3V3.
+Esta montagem é para um servo por vez, livre de carga, com
+alimentação estável. Se a ESP32 reiniciar ou o servo apresentar
+instabilidade, interromper o teste e conferir a alimentação.</p>
+<h2>3. Preparar a Arduino IDE</h2>
+<ol>
+<li>Abrir a Arduino IDE no notebook.</li>
+<li>No Gerenciador de Placas, instalar o pacote
+<code>esp32</code> da Espressif Systems, se ainda não estiver
+instalado. Se necessário, acrescentar em Arquivo → Preferências,
+no campo de URLs adicionais do Gerenciador de Placas:
+<code>https://espressif.github.io/arduino-esp32/package_esp32_index.json</code>.</li>
+<li>No Gerenciador de Bibliotecas, procurar e instalar
+<code>ESP32Servo</code>.</li>
+<li>Conectar a ESP32 ao notebook pelo cabo USB, mantendo o
+servo desconectado durante a gravação.</li>
+<li>Selecionar a placa correspondente. Para a ESP32 clássica
+genérica deste roteiro, usar <code>ESP32 Dev Module</code>.</li>
+<li>Selecionar a porta correspondente à ESP32. A numeração
+pode mudar conforme a conexão do notebook.</li>
+</ol>
+<h2>4. Inserir e gravar o código</h2>
+<ol>
+<li>Abrir um novo sketch. Selecionar e apagar o conteúdo inicial.</li>
+<li>Copiar todo o código da seção seguinte e colar na IDE.</li>
+<li>Salvar o sketch com o nome <code>TTD01_Servo</code>.</li>
+<li>Clicar em <strong>Verificar</strong>. A compilação deve
+terminar sem erros. Se houver erro, conferir a primeira mensagem
+antes de prosseguir.</li>
+<li>Clicar em <strong>Carregar</strong>. Aguardar a conclusão
+da gravação. Se ficar em <code>Connecting</code>, manter BOOT
+pressionado até iniciar a transferência e então soltar.</li>
+<li>Desconectar o USB. Conectar o servo conforme a tabela
+e reconectar o USB.</li>
+<li>Abrir o Monitor Serial. Selecionar <strong>115200 baud</strong>
+e o final de linha <strong>Nova linha</strong>.</li>
+</ol>
+<h2>5. Código do TTD-01</h2>
+<p>O programa usa GPIO18, frequência de 50 Hz e faixa de pulsos
+de 1000 a 2000 microssegundos. O controle do servo começa somente
+após o envio de um comando de movimento.</p>
+<pre><code>#include &lt;ESP32Servo.h&gt;
+
+constexpr int SERVO_PIN = 18;
+constexpr int DIRECT_POSITION = 80;
+constexpr int ACCESS_POSITION = 100;
+constexpr int CENTER_POSITION = 90;
+constexpr int MIN_POSITION = 60;
+constexpr int MAX_POSITION = 120;
+
+Servo testServo;
+String command;
+
+void moveServo(int position) {
+  if (position &lt; MIN_POSITION || position &gt; MAX_POSITION) {
+    Serial.println(&quot;Position outside test range: 60 to 120.&quot;);
+    return;
+  }
+  if (!testServo.attached()) {
+    testServo.setPeriodHertz(50);
+    testServo.attach(SERVO_PIN, 1000, 2000);
+  }
+  testServo.write(position);
+  Serial.print(&quot;Commanded position: &quot;);
+  Serial.println(position);
+}
+
+void processCommand(String text) {
+  text.trim();
+  text.toUpperCase();
+  if (text.length() == 0) return;
+  if (text == &quot;D&quot;) { moveServo(DIRECT_POSITION); return; }
+  if (text == &quot;A&quot;) { moveServo(ACCESS_POSITION); return; }
+  if (text == &quot;C&quot;) { moveServo(CENTER_POSITION); return; }
+  if (text == &quot;S&quot;) {
+    testServo.detach();
+    Serial.println(&quot;Control pulses stopped. USB power is still on.&quot;);
+    return;
+  }
+  bool numeric = true;
+  for (unsigned int i = 0; i &lt; text.length(); ++i) {
+    if (text[i] &lt; &#x27;0&#x27; || text[i] &gt; &#x27;9&#x27;) numeric = false;
+  }
+  if (numeric) { moveServo(text.toInt()); return; }
+  Serial.println(&quot;Use D, A, C, S, or a number from 60 to 120.&quot;);
+}
+
+void setup() {
+  Serial.begin(115200);
+  command.reserve(24);
+  Serial.println(&quot;TTD-01 servo test ready. Servo output: GPIO 18.&quot;);
+  Serial.println(&quot;Use D, A, C, S, or a number from 60 to 120.&quot;);
+  // Servo control starts only after a movement command.
+}
+
+void loop() {
+  while (Serial.available()) {
+    char c = Serial.read();
+    if (c == &#x27;\n&#x27;) {
+      processCommand(command);
+      command = &quot;&quot;;
+    } else if (c != &#x27;\r&#x27;) {
+      if (command.length() &lt; 24) command += c;
+      else {
+        command = &quot;&quot;;
+        Serial.println(&quot;Command too long. Send one short command per line.&quot;);
+      }
+    }
+  }
+}</code></pre>
+<h2>6. Conhecer os comandos</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Comando</th><th>Resultado esperado</th></tr></thead>
+<tbody>
+<tr><td>C</td><td>Comandar a posição central de 90°.</td></tr>
+<tr><td>D</td><td>Comandar a posição de teste de 80°.</td></tr>
+<tr><td>A</td><td>Comandar a posição de teste de 100°.</td></tr>
+<tr><td>Número entre 60 e 120</td><td>Comandar o valor
+informado, dentro da faixa permitida.</td></tr>
+<tr><td>S</td><td>Interromper os pulsos de controle.
+A alimentação permanece ligada.</td></tr>
+</tbody></table></div>
+<p>Digitar um comando por vez no Monitor Serial e pressionar
+Enviar ou Enter. Com Nova linha selecionada, o programa recebe
+o terminador necessário para executar o comando.</p>
+<p class="nota">Os valores de 80°, 90° e 100° são referências
+para o teste do servo livre. Não representam a calibração final
+dos desvios. A mensagem no Monitor Serial informa o comando
+enviado, não mede a posição física nem confirma o movimento.</p>
+<h2>7. Executar os testes</h2>
+<ol>
+<li>Enviar <code>C</code>. Observar o servo assumir a posição
+central comandada. No Monitor Serial, deve aparecer
+<code>Commanded position: 90</code>.</li>
+<li>Enviar <code>D</code>. Observar o deslocamento para um lado.
+O Monitor Serial deve indicar <code>Commanded position: 80</code>.</li>
+<li>Enviar <code>A</code>. Observar o deslocamento para o outro
+lado. O Monitor Serial deve indicar
+<code>Commanded position: 100</code>.</li>
+<li>Alternar D → A → D várias vezes. Conferir se o movimento
+é regular e se o braço retorna às mesmas posições.</li>
+<li>Se necessário, testar ajustes numéricos graduais dentro
+da faixa de 60 a 120, sempre com o braço livre.</li>
+<li>Enviar <code>S</code> para conferir a interrupção dos pulsos.
+O programa deve informar que a alimentação USB continua ligada.
+Esse comando não substitui a desconexão da alimentação.</li>
+<li>Enviar <code>C</code> para retomar o controle e deixar o
+servo na posição central. Desconectar o USB.</li>
+<li>Registrar o resultado. Retirar o servo e conectar o próximo
+somente com a alimentação desligada. Repetir até testar todos.</li>
+</ol>
+<h2>8. O que deve ser encontrado</h2>
+<ul>
+<li>Movimento nos dois sentidos, acompanhando os comandos.</li>
+<li>Retorno repetível às posições comandadas.</li>
+<li>Funcionamento sem travamento, vibração contínua ou
+aquecimento anormal.</li>
+<li>ESP32 funcionando sem reinicializações durante o movimento.</li>
+<li>Mensagens legíveis no Monitor Serial, correspondentes
+aos comandos enviados.</li>
+</ul>
+<p>Aprovar o servo somente após observar seu funcionamento.
+Se houver irregularidade, interromper o teste, registrar o
+problema e conferir a montagem antes de repetir.</p>
+<h2>9. Registrar o resultado de cada servo</h2>
+<div class="ficha">
+<p>Data: ______________________________</p>
+<p>Identificação do servo: ______________________________</p>
+<p>GPIO utilizado: 18</p>
+<p>Posições comandadas: C = 90°, D = 80°, A = 100°.
+Se alteradas, registrar os valores utilizados: ______________</p>
+<p>Quantidade de ciclos realizados: ______________________</p>
+<p>Movimento nos dois sentidos: __________________________</p>
+<p>Retorno às posições: _________________________________</p>
+<p>Vibração, travamento ou aquecimento: __________________</p>
+<p>Reinicialização da ESP32: _____________________________</p>
+<p>Resultado: Aprovado / Requer nova conferência.</p>
+<p>Observações: _________________________________________</p>
+<p>Arquivo do programa e versão: ________________________</p>
+</div>
+<p>Guardar o arquivo <code>.ino</code> utilizado junto com os
+registros. Separar os servos aprovados daqueles que precisam
+de nova conferência.</p>
+<h2>10. Se houver dificuldade</h2>
+<ul>
+<li><strong>Porta não aparece.</strong> Conferir o cabo USB de
+dados e o reconhecimento da placa pelo notebook.</li>
+<li><strong>Erro de compilação.</strong> Conferir a placa
+selecionada, o pacote esp32 e a biblioteca ESP32Servo.</li>
+<li><strong>Texto ilegível.</strong> Conferir 115200 baud no
+Monitor Serial.</li>
+<li><strong>Comando não executado.</strong> Selecionar Nova linha
+e enviar apenas um comando por vez.</li>
+<li><strong>Servo parado.</strong> Desconectar o USB e conferir
+positivo, GND, sinal no GPIO18 e encaixe dos jumpers.</li>
+<li><strong>Servo tremendo ou ESP32 reiniciando.</strong>
+Interromper o teste e conferir a estabilidade da alimentação
+e das conexões.</li>
+<li><strong>Travamento ou aquecimento anormal.</strong>
+Desligar imediatamente e verificar se existe impedimento
+mecânico antes de repetir.</li>
+</ul>
+<h2>11. Depois da instalação no desvio</h2>
+<p>A aprovação na bancada verifica o funcionamento do servo
+livre. Depois de instalar cada servo no desvio, ajustar
+individualmente as posições DI e AC, observando o assentamento
+das agulhas e evitando esforço contínuo no mecanismo.</p>
+<p>Os ângulos usados na bancada não devem ser aplicados
+automaticamente ao conjunto instalado. Registrar os valores
+finais de cada desvio e conferir seu funcionamento pelo
+controle definitivo antes de liberar a circulação.</p>
+<footer><a href="index.html">← Voltar</a></footer>
+</main>
+</body>
+</html>
