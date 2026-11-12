@@ -61,7 +61,7 @@ color: var(--link);
 text-decoration: none;
 font-family: Arial, Helvetica, sans-serif;
 font-size: 1rem;
-font-weight: 600;
+font-weight: 700;
 }
 h1 { margin: 0 0 18px; font-size: 2.1rem; }
 .intro { margin-bottom: 30px; font-size: 1.1rem; }
@@ -172,6 +172,8 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <p>Em 28/09/2026 foi adotada a sigla PIP para identificar o Protetor de Inversão de Polaridade. O módulo foi instalado na GA3. Sua função é a proteção contra inversão de polaridade. A proteção contra curto e sobrecorrente deverá ser tratada separadamente no projeto elétrico.</p>
 <p>Em 02/10/2026 avançou a montagem do circuito de alimentação dos servos da GA3. Naquela data, a montagem aguardava conferência elétrica antes da energização.</p>
 <p>Em 07/11/2026 foi registrada a instalação de uma barra de cobre na GA3, identificada como GND, para reunir as conexões de negativo comum. Ficou adotado o padrão de fios pretos para GND e vermelhos para +5 V. Os jumpers de sinal não seguem obrigatoriamente essas cores, mas os jumpers de GND também serão pretos.</p>
+<p>Em 12/11/2026 foi confirmada a entrada de 5 V em corrente contínua por X0 e a alimentação do positivo dos servos pelo contato NO do relé até X1, com fio vermelho. Os negativos dos servos serão ligados ao barramento GND sob a mesa, comum à ESP32. Os fios GND dos MOSFETs são branco malhado de preto, substituindo a indicação anterior de preto para essas conexões.</p>
+<p>Na bancada, a ESP32 permanece alimentada por USB, sem jumper no VIN. A alimentação definitiva pelo VIN ficou pendente para a instalação da gaveta e deverá partir de um ponto de 5 V antes do contato NO, mantendo a ESP32 ligada quando os servos forem desligados. A utilização simultânea de USB e VIN deverá ser conferida para a placa específica antes da ligação definitiva.</p>
 </article>
 
 <article id="gavetas">
@@ -201,11 +203,13 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <p>Os detalhes da montagem e da conferência da GA3 serão apresentados no documento “Um passo-a-passo para montar a GA3”, atualmente em elaboração.</p>
 
 <p>Em 02/10/2026 avançaram as ligações entre a protoboard e a ESP32, incluindo as conexões de GND. A montagem foi pausada antes da conferência completa e dos testes funcionais do conjunto.</p>
-<p>Em 19 e 20/10/2026 foi revisada a identificação dos conectores Sindal da GA3. X0 possui dois bornes para entrada de +5 V e GND. X1 e X2 passaram a utilizar um borne cada, sem pontes. Os cinco fios de +5 V dos servos foram unidos abaixo da mesa, em junção separada da união dos cinco fios de GND. Dessas junções seguem os condutores de alimentação para X1 (+5 V) e X2 (GND). Os cinco sinais de controle permanecem individuais. Em 30/10/2026 foi atualizada a numeração dos servos: D5 → GPIO13, laranja. D6 → GPIO18, azul. D8 → GPIO19, amarelo. D9 → GPIO21, branco. D10 → GPIO22, marrom. As identificações dos demais conectores deverão ser conferidas na relação específica antes de sua transcrição para este Diário.</p>
-<p>O percurso registrado para a alimentação dos servos é: X0 +5 V → fusível → entrada V1+ do PIP. A saída V0+ do PIP segue ao COM do relé, e o contato NO alimenta X1. A saída V0− do PIP segue ao X2, com GND comum à ESP32. O trajeto físico dos condutores e a distinção entre entrada e saída do PIP deverão ser conferidos no esquema definitivo.</p>
+<p>Em 19 e 20/10/2026 foi revisada a identificação dos conectores Sindal da GA3. X0 possui dois bornes para entrada de +5 V e GND. X1 e X2 passaram a utilizar um borne cada, sem pontes. Os cinco fios de +5 V dos servos foram unidos abaixo da mesa, em junção separada da união dos cinco fios de GND. Dessas junções seguem os condutores de alimentação para X1 (+5 V) e X2 (GND). Essa configuração de X2 foi substituída pela decisão de 12/11/2026 registrada abaixo. Os cinco sinais de controle permanecem individuais. Em 30/10/2026 foi atualizada a numeração dos servos: D5 → GPIO13, laranja. D6 → GPIO18, azul. D8 → GPIO19, amarelo. D9 → GPIO21, branco. D10 → GPIO22, marrom. As identificações dos demais conectores deverão ser conferidas na relação específica antes de sua transcrição para este Diário.</p>
+<p>O percurso registrado para a alimentação dos servos é: X0 +5 V → fusível → entrada V1+ do PIP. A saída V0+ do PIP segue ao COM do relé, e o contato NO alimenta X1. A saída V0− do PIP integra o GND comum à ESP32. Conforme a revisão de 12/11/2026, os negativos dos servos serão ligados diretamente ao barramento GND sob a mesa, dispensando o antigo X2 dos servos. O trajeto físico dos condutores e a distinção entre entrada e saída do PIP deverão ser conferidos no esquema definitivo.</p>
 <p>Após as conferências preliminares de 20/10/2026, os testes da GA3 avançaram para continuidade, medições de tensão e acionamento do relé em 25 e 26/10. Em 27/10/2026 foram aprovados, nas condições de bancada, os comandos individuais dos cinco servos sem carga mecânica, pares aleatórios, dez ciclos automáticos, interrupção manual, buzzer e a sequência de falha simulada com bloqueio e liberação manual. Os ensaios utilizaram fonte de 5 V e 2 A para os servos e USB para a ESP32. Permanecem pendentes a instalação mecânica, os ajustes individuais e a validação operacional. O documento foi reorganizado como guia de instalação, reunindo testes fundamentais, procedimentos na maquete e registros necessários ao software, em <a href="GA3-testes-e-resultados.html">Documentação / GA3 — Guia de instalação</a>.</p>
 <p>O buzzer da GA3 foi testado em 27/10/2026, com VCC em 3V3, sinal no GPIO25 e GND em V0− do PIP. Após correção do ponto de GND, foram medidos 3,24 V e confirmados três bipes, silêncio ao término e acionamento por nível baixo. Sua função de avisos locais permanece independente dos efeitos sonoros ambientais previstos para a GES.</p>
 <p>As conexões revisadas da GA3 incluem IN1 do relé no GPIO23, DC− no GND comum e a ligação COM → DC+. O mapa detalhado deve acompanhar a montagem atual e os testes antes da energização. Em 30/10/2026, os jumpers entre os resistores foram substituídos por jumpers curtos roxos, e o jumper de 3V3 até H35 passou de branco para vermelho.</p>
+<p>Em 12/11/2026 foi dispensado o antigo X2 destinado ao GND dos servos. O antigo X5 passou a se chamar X2, destinado às saídas de alimentação dos LEDs pelos MOSFETs. A identificação atual é: X0 — Entrada de 5 V CC e GND. X1 — Positivo dos servos após o relé. X2 — Saídas para os LEDs. X3 — Saídas dos sinais de controle dos servos. X4 — Entradas dos sinais dos sensores Hall. As referências anteriores a X2 como GND dos servos representam a montagem antiga.</p>
+<p>Confirmadas em 12/11/2026 as ligações GPIO23 → IN1 do relé, com fio amarelo, e NO do relé → X1, com fio vermelho. Para o MOSFET 1, GPIO26 → PWM utiliza fio amarelo, GND → barra GND comum utiliza fio branco malhado de preto e VIN+ está ligado a X0+, sem cor registrada. O destino físico e a cor do fio VIN− ainda precisam ser registrados, mantendo sua ligação ao negativo da fonte.</p>
 </article>
 
 <article id="esp32">
@@ -262,6 +266,8 @@ loading="lazy">
 <p>Em 05/11/2026, os cinco sinais de X4, correspondentes a S10–S14, foram aprovados no teste de continuidade até os respectivos resistores e até os pinos da ESP32. O mapa registrado é S10 → GPIO36, verde. S11 → GPIO39, laranja. S12 → GPIO34, cinza em X4, com jumper roxo até a ESP32. S13 → GPIO35, vermelho. S14 → GPIO32, azul. Essa verificação confirma a continuidade da fiação, mas não substitui o teste funcional dos sensores instalados na maquete.</p>
 
 
+<p>Em 12/11/2026 foi definido que os sensores Hall receberão +5 V e GND pelos barramentos sob a mesa, com negativo comum à ESP32. Cada sinal entra por X4 e segue para o GPIO correspondente, com resistor de pull-up de 4,7 kΩ ligado a 3,3 V, sem aplicação direta de 5 V ao GPIO.</p>
+<p>Foram confirmadas as conexões internas B35 → VP/GPIO36 e B29 → D34/GPIO34, ambas com fio laranja. Para S13, X4 → C26 utiliza fio vermelho e B26 → D35/GPIO35 utiliza fio laranja. Para S14, X4 → C23 utiliza fio azul e B23 → D32/GPIO32 utiliza fio laranja. Essas cores identificam os trechos internos da gaveta, distinguindo-os dos fios de sinal lançados sob a mesa.</p>
 </article>
 <article id="sequencias">
 <h2>Sequências operacionais por sensores e desvios</h2>
@@ -295,6 +301,7 @@ loading="lazy">
 <p>Definidos critérios para o futuro controle de velocidade considerando simultaneamente os limites da locomotiva, da composição ou carga e do trecho percorrido.</p>
 <p>A velocidade efetiva deverá respeitar sempre o menor limite aplicável, inclusive em Estação, pátios, desvios e demais trechos especiais.</p>
 <p>O cadastro de cada locomotiva deverá conter identificação, tipo de tração, limites de velocidade, sons e outros parâmetros operacionais, associados também ao tipo de composição utilizada.</p>
+<p>Em 12/11/2026 foram informados os comprimentos máximos de 20 cm para carros de passageiros e 15 cm para vagões de carga, com distância de 2,5 cm entre vagões. Esses valores serão considerados no cálculo do comprimento das composições e nos <a href="testes-de-ajustes-operacionais.html">Testes de ajustes operacionais</a>. Os comprimentos informados são máximos, não médios. O comprimento da locomotiva e as demais separações aplicáveis deverão ser considerados para obter o comprimento total.</p>
 </article>
 
 <article id="audio">
@@ -362,10 +369,12 @@ loading="lazy">
 <p><strong>Filosofia adotada:</strong> a sinalização deverá refletir as condições de rota e segurança, enquanto a iluminação deverá ser controlável de forma setorizada e independente das funções críticas de circulação. Quantidades de sinais, resistores, módulos e ligações registradas permanecem como detalhes específicos do projeto eletrônico da EFMN 74.</p>
 <p>Adotada a sigla SI para identificação dos sinaleiros, com identificação vinculada à região, como SI01ES, SI02AG e SI01TU.</p>
 <p>Os AMVs de transição entre L1 e L2, nos sentidos LO e OL, utilizarão inicialmente quatro sinais por AMV, totalizando oito sinais principais no trecho do Túnel.</p>
-<p>Os LEDs utilizarão barramento local de +5 V e GND, resistor de 330 Ω em série e um fio individual de comando.</p>
+<p>Para os LEDs dos sinaleiros, foi previsto barramento local de +5 V e GND, resistor de 330 Ω em série e um fio individual de comando. Essa previsão não define o resistor dos LEDs de Natal a serem reaproveitados, cujo valor permanece pendente.</p>
 <p>Previsto o uso do módulo PCA9685 para iluminação de casas, galpões, postes, efeitos de iluminação e controle de brilho por PWM. Com o cancelamento da gaveta dedicada de Iluminação e Som, os componentes de iluminação serão distribuídos entre GA1, GA2 e GA3 conforme a área física correspondente.</p>
 <p>Em 02/10/2026 foram recebidos dez módulos anunciados como Dual MOSFET, destinados ao comando da iluminação. A etiqueta informa alimentação de 5 a 36 V. A identificação dos bornes, a compatibilidade da entrada de comando com 3,3 V da ESP32 e a capacidade efetiva para as cargas previstas ainda serão verificadas antes da utilização. Os valores anunciados não constituem resultado de teste.</p>
 <p>Em 06/11/2026 avançou o planejamento da montagem dos quatro módulos MOSFET na base de MDF da GA3, com fixação suspensa e organização das conexões. As lâmpadas ainda não estavam disponíveis. Permanecem pendentes os ensaios de acionamento e funcionamento com as cargas reais.</p>
+<p>Em 12/11/2026, o MOSFET 1 foi aprovado no teste com resistor de 4,7 kΩ entre OUT+ e OUT−. O programa no GPIO26 alternou três segundos ligado e três segundos desligado. Foram medidos 4,91 V na entrada, 4,91 V na saída ligada e 0 V na saída desligada, com o indicador do módulo piscando conforme o programa. Essa aprovação se limita ao ensaio com resistor. O teste com LEDs ficou previsto para 13/11/2026.</p>
+<p>Foi decidido reaproveitar individualmente LEDs de um cordão de Natal, separados da placa original e deixando aproximadamente 5 cm de fio em cada terminal. A placa original, ligada diretamente à tomada, não será utilizada na GA3. A polaridade deverá ser identificada e cada LED testado com resistor em série, cujo valor definitivo ainda não foi estabelecido. As saídas dos MOSFETs para os LEDs passam pelo conector identificado como X2.</p>
 </article>
 
 <article id="inicializacao">
@@ -383,13 +392,14 @@ loading="lazy">
 <p>Nos testes do software definitivo, deverão ser verificadas a correspondência entre a ocorrência detectada e a mensagem exibida, a apresentação das possíveis causas e ações sugeridas, a atuação do buzzer, o silenciamento sem perda do aviso ou do bloqueio e o resultado do TESTE/REARME. O histórico deverá registrar também as ações do operador, o resultado do novo teste e a situação final da ocorrência. Esse procedimento permanece como requisito para desenvolvimento e validação.</p>
 <p>Em 02/10/2026 foi decidido conferir a montagem atual da GA3 antes de acrescentar novas conexões ou ligar a fonte.</p>
 
-<p>Em 21/10/2026 foram reunidos o roteiro de testes e os resultados disponíveis no documento “GA3 — Sequência de testes e resultados”, organizado em tabela com item, descrição do teste, objetivo e critério esperado, resultado real e situação. O registro consolida 11 verificações concluídas em 20/10/2026, com fonte e USB desconectados. Foram conferidos a fixação dos fios de X1 e X2, os trechos de continuidade da alimentação, os contatos do relé em repouso e o GND comum com a ESP32. Não foram registrados valores numéricos de resistência ou tensão.</p>
+<p>Em 21/10/2026 foram reunidos o roteiro de testes e os resultados disponíveis no documento “GA3 — Sequência de testes e resultados”, organizado em tabela com item, descrição do teste, objetivo e critério esperado, resultado real e situação. O registro consolida 11 verificações concluídas em 20/10/2026, com fonte e USB desconectados. Foram conferidos a fixação dos fios de X1 e do antigo X2 dos servos, os trechos de continuidade da alimentação, os contatos do relé em repouso e o GND comum com a ESP32. Não foram registrados valores numéricos de resistência ou tensão.</p>
 <p>Após o registro preliminar de 21/10/2026, foram realizadas novas conferências de continuidade, medições energizadas e testes por programa na ESP32. A numeração dos itens pertence a cada versão do relatório e não deve ser usada isoladamente como indicação do avanço atual. As aprovações parciais não representam liberação completa da GA3.</p>
 <p>Em 19 e 20/10/2026 foi preparada a sequência de testes da GA3, abrangendo conferência sem alimentação, medições com fonte energizada e testes por programa na ESP32 antes da conexão dos servos e sensores.</p>
 <p>Adotado acompanhamento item a item: cada teste será apresentado ao montador, executado e respondido antes do seguinte. Se houver dúvida, o procedimento será detalhado antes de prosseguir. A conclusão será registrada após cada item.</p>
 <p>Em 27/10/2026, os cinco servos livres responderam individualmente aos comandos, com todos conectados à ESP32. Foram confirmados pares aleatórios sem carga mecânica, dez ciclos automáticos e interrupção manual. Ficou adotado o limite de dois servos em movimento por vez, com comandos adicionais em espera no software definitivo. A previsão anterior de ensaiar três, quatro e cinco servos simultaneamente foi substituída por esse limite. Permanecem pendentes as fixações, hastes, ajustes de curso em cada desvio, ensaios com carga mecânica real, sensores Hall e integração operacional.</p>
 <p>O documento “<a href="GA3-testes-e-resultados.html">GA3 — Guia de instalação</a>” preserva a distinção entre os ensaios de bancada aprovados e as verificações necessárias na maquete. Permanecem pendentes a conferência da alimentação definitiva, o desempenho com até dois servos sob carga mecânica, a compatibilidade nominal do módulo relé e o esclarecimento de eventual tensão nos servos com o relé comandado para desligar. No software definitivo, o reinício durante uma falha deverá manter a operação bloqueada até nova verificação. O reconhecimento manual de um alarme não confirma a correção da falha física nem libera, por si só, a circulação.</p>
 <p>Em 11/11/2026 foi preparado o roteiro de <a href="testes-de-ajustes-operacionais.html">Testes de ajustes operacionais</a>, em Documentação / Testes e segurança, para validar as rotas 1 a 7 com uma locomotiva e, depois, combinações com duas locomotivas. Os resultados e ajustes de software serão registrados a cada etapa, repetindo os testes afetados pelas alterações. Após aprovação, será consolidado o documento final “Testes operacionais fundamentais” para a Biblioteca.</p>
+<p>Em 12/11/2026 foi aprovado o teste do MOSFET 1 com resistor de 4,7 kΩ, conforme o registro em <a href="#sinaleiros">Sinaleiros e iluminação</a>. Permanecem pendentes o ensaio com LEDs previsto para 13/11/2026, a definição do resistor em série desses LEDs e a conferência da alimentação definitiva da ESP32 na instalação da gaveta. A aprovação desse ensaio não representa validação com as cargas reais nem liberação integral da GA3.</p>
 </article>
 
 <article id="site">
@@ -420,6 +430,7 @@ loading="lazy">
 <p>Em 30/09/2026 foi decidido reescrever o documento de montagem da GA3 após a revisão de seu layout. O documento passou a ser identificado como “Um passo-a-passo para montar a GA3” e reunirá os detalhes de montagem e conferência. O Diário de Bordo mantém o registro da evolução e das decisões do projeto.</p>
 <p>O guia “Teste dos servos na bancada” foi preparado para a Biblioteca, preservando a aprovação dos 19 servos e reunindo os procedimentos de consulta para uso da ESP32 com Arduino IDE e do TTD-01. A revisão de 07/11/2026 incluiu o passo a passo de conexões, preparação da IDE, solicitação de um novo código C++ ao GPT, gravação e teste, sem atribuir ao novo programa os parâmetros desconhecidos do ensaio original.</p>
 <p>Foi acrescentado às Técnicas de Construção o conteúdo “Como endurecer isopor”. A divulgação da EFMN 74 também passou a incluir uma publicação no Facebook, convidando os leitores a conhecer a ferrovia.</p>
+<p>Em 12/11/2026 foi definida a revisão dos documentos afetados pelas decisões de montagem da GA3: Guia de instalação, Material utilizado na GA3, Gavetas de controle e eletrônica, Diário de Bordo, Montagem dos módulos MOSFET e listas de ligações, esquemas e legendas. O registro de testes deverá incluir o ensaio do MOSFET 1 quando abranger esses novos testes. A revisão deve distinguir o antigo X2 dos servos do atual X2 dos LEDs, sem substituição automática das referências. Os dados de comprimento das composições também deverão ser incorporados aos Testes de ajustes operacionais.</p>
 </article>
 
 <article id="materiais">
@@ -430,7 +441,7 @@ loading="lazy">
 <p>Foi recebido o módulo relé de 3,3 V destinado à montagem da GA3. Em 02/10/2026 também foram recebidos dez módulos MOSFET para os estudos e a implantação da iluminação setorizada.</p>
 </article>
 
-<!-- Diário atualizado em 09/11/2026 -->
+<!-- Diário atualizado em 12/11/2026 -->
 <!-- ===== INSERIR NOVAS DECISÕES NO TEMA CORRESPONDENTE ===== -->
 
 <p class="voltar-final">
