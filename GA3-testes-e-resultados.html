@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GA3 — Testes e resultados | Ferrovia EFMN 74</title>
-<meta name="description" content="Relatório da GA3 com testes de continuidade, acionamento do 
-relé, medições e conexões atualizadas em 03/11/2026.">
+<title>GA3 — Guia de instalação | Ferrovia EFMN 74</title>
+<meta name="description" content="Guia de instalação da GA3 com padrão de cores, conexões,
+testes e pendências. Revisão em 11/11/2026.">
 <style>
- 
+
     :root {
       --bg: #f4f1ea;
       --paper: #fffdf8;
@@ -18,9 +18,9 @@ relé, medições e conexões atualizadas em 03/11/2026.">
       --blue: #0056b3;
       --max: 1000px;
     }
- 
+
     * { box-sizing: border-box; }
- 
+
     body {
       margin: 0;
       background: var(--bg);
@@ -28,14 +28,14 @@ relé, medições e conexões atualizadas em 03/11/2026.">
       font-family: Georgia, "Times New Roman", serif;
       line-height: 1.6;
     }
- 
+
     .site-header {
       width: 100%;
       background: #000;
       border-bottom: 3px solid var(--gold);
       padding: 8px 16px;
     }
- 
+
     .header-inner {
       display: flex;
       align-items: center;
@@ -44,29 +44,29 @@ relé, medições e conexões atualizadas em 03/11/2026.">
       max-width: 1100px;
       margin: 0 auto;
     }
- 
+
     .header-logo { width: 72px; height: auto; display: block; }
- 
+
     .header-text {
       color: #fff;
       line-height: 1.25;
       text-align: left;
       font-family: Arial, Helvetica, sans-serif;
     }
- 
+
     .header-title { margin: 0; font-size: 1.05rem; font-weight: 700; }
     .header-subtitle { margin: 2px 0 0; font-size: .88rem; }
- 
+
     main { max-width: var(--max); margin: 0 auto; padding: 34px 20px 56px; }
- 
+
     .voltar { margin: 0 0 22px; font-family: Arial, Helvetica, sans-serif; }
     .voltar a, .card a { color: var(--blue); text-decoration: none; font-weight: 600; }
     .voltar a:hover, .card a:hover { text-decoration: underline; }
- 
+
     h1 { margin: 0 0 14px; line-height: 1.2; font-size: 2.25rem; }
     h2 { margin-top: 0; font-size: 1.35rem; }
     .abertura { margin: 0 0 26px; font-size: 1.08rem; }
- 
+
     .aviso {
       background: #fff7dc;
       border-left: 5px solid var(--gold);
@@ -74,31 +74,31 @@ relé, medições e conexões atualizadas em 03/11/2026.">
       padding: 16px 18px;
       margin: 0 0 28px;
     }
- 
+
     .grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
     }
- 
+
     .card, .conteudo, .exemplo {
       background: var(--paper);
       border: 1px solid var(--line);
       border-radius: 10px;
       padding: 22px 24px;
     }
- 
+
     .card h2 { margin-bottom: 8px; }
     .card p { margin: 0 0 12px; }
     .conteudo { margin-bottom: 24px; }
     .conteudo ul, .exemplo ul { margin-bottom: 0; padding-left: 24px; }
     .conteudo li, .exemplo li { margin: 8px 0; }
- 
+
     .exemplo {
       border-left: 5px solid var(--gold);
       margin-bottom: 26px;
     }
- 
+
     .exemplo .rotulo {
       color: var(--gold-dark);
       font: 700 .82rem Arial, Helvetica, sans-serif;
@@ -106,16 +106,16 @@ relé, medições e conexões atualizadas em 03/11/2026.">
       text-transform: uppercase;
       margin: 0 0 6px;
     }
- 
+
     .convite {
       background: var(--paper);
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 18px 20px;
     }
- 
+
     .convite p { margin: 0; }
- 
+
     @media (max-width: 700px) {
       .site-header { padding: 7px 10px; }
       .header-inner { gap: 10px; }
@@ -125,27 +125,30 @@ relé, medições e conexões atualizadas em 03/11/2026.">
       h1 { font-size: 1.75rem; }
       .grid { grid-template-columns: 1fr; }
     }
-  
+
     h2 { margin: 30px 0 12px; }
     h3 { margin: 22px 0 8px; }
     .table-scroll { overflow-x: auto; margin: 18px 0 24px; }
-    table { width: 100%; border-collapse: collapse; background: var(--paper); font: .94rem/1.5 
+    table { width: 100%; border-collapse: collapse; background: var(--paper); font:
+.94rem/1.5
 Arial, sans-serif; }
-    th, td { border: 1px solid #d9d9d9; padding: 12px; vertical-align: middle; text-align: left; }
+    th, td { border: 1px solid #d9d9d9; padding: 12px; vertical-align: middle; text-align:
+left; }
     th { background: #e7e6e6; text-align: center; font-weight: 700; }
     td:first-child { text-align: center; }
     .status { color: inherit; font-family: Arial, sans-serif; }
     footer { padding: 24px; text-align: center; border-top: 1px solid var(--line); }
     @media (max-width: 700px) { table { min-width: 680px; } }
-    @media print { .voltar { display: none; } .table-scroll { overflow: visible; } table { 
+    @media print { .voltar { display: none; } .table-scroll { overflow: visible; } table {
 min-width: 0; } tr { break-inside: avoid; } }
- 
+
 </style>
 </head>
 <body>
 <header class="site-header">
     <div class="header-inner">
-      <a href="index.html"><img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo"></a>
+      <a href="index.html"><img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74"
+class="header-logo"></a>
       <div class="header-text">
         <p class="header-title">Ferrovia EFMN 74 - Escala HO</p>
         <p class="header-subtitle">Construção, automação, memória e documentação</p>
@@ -155,40 +158,124 @@ min-width: 0; } tr { break-inside: avoid; } }
 <main>
 <p class="voltar"><a href="documentacao.html">← Voltar à documentação</a></p>
 <h1>GA3 — Guia de instalação</h1>
-<p>Os ensaios de bancada de 25 a 27/10/2026 foram aprovados com os cinco servos SG90 livres, sem ligação mecânica aos desvios. A instalação na maquete exige ajustar e conferir cada desvio sob carga.</p>
+<p>Os ensaios de bancada de 25 a 27/10/2026 foram aprovados com os cinco servos SG90 livres,
+sem ligação mecânica aos desvios. A instalação na maquete exige ajustar e conferir cada
+desvio sob carga.</p>
 
+<h2>Padrão de cores e identificação</h2>
+<p>Na fiação instalada pela EFMN 74, usar preto para GND e vermelho para +5 V. Todos os GND
+da gaveta devem chegar à barra comum de cobre, incluindo fonte, ESP32, relé, servos,
+sensores e entradas GND dos módulos MOSFET. GND é a referência comum do circuito e não deve
+ser confundido com o aterramento de proteção da rede elétrica.</p>
+<div class="table-scroll"><table>
+<thead><tr><th>Aplicação</th><th>Cor</th><th>Identificação</th></tr></thead>
+<tbody>
+<tr><td>GND e negativo comum</td><td>Preto</td><td>Inclui os jumpers de GND.</td></tr>
+<tr><td>Alimentação de +5 V</td><td>Vermelho</td><td>Identificar se o trecho está antes ou
+depois do contato do relé.</td></tr>
+<tr><td>Sinais Hall sob a mesa</td><td>Verde</td><td>Etiquetar S10 a S14 nas duas
+extremidades.</td></tr>
+<tr><td>Jumpers internos de sinal</td><td>Conforme o mapa</td><td>As cores não indicam
+tensão. A exceção é o jumper de GND, que deve ser preto.</td></tr>
+<tr><td>Sinais dos servos</td><td>Conforme X3</td><td>Conservar as cores e a numeração
+registradas em 30/10, sujeitas à conferência física.</td></tr>
+</tbody></table></div>
+<p>O jumper vermelho de S13 é sinal, não alimentação de +5 V. Identificá-lo nas duas pontas.
+O cabo verde do sensor sob a mesa pode mudar de cor ao entrar em X4, conforme o mapa dos
+jumpers internos. Não trocar ligações apenas para igualar cores. Nos cabos originais dos
+servos, conferir a função de cada contato, pois as cores de fábrica podem diferir do padrão
+da gaveta.</p>
+<p>Identificar também os condutores de 3,3 V. Não definir a seção dos fios por suposição:
+conferir a marcação dos condutores instalados e registrar o valor confirmado.</p>
 <h2>1. Testes fundamentais</h2>
 <h3>Continuidade antes de testar os servos</h3>
-<p>Na instalação ou após mudar a fiação, desligar e desconectar as fontes e o USB. Desencaixar os cinco servos dos conectores, mantendo os cabos identificados. Confirmar ausência de tensão em X0 e entre X1 e X2. Selecionar continuidade no multímetro e encostar uma ponta na outra para conferir o bipe. Cada seta abaixo indica onde colocar as duas pontas de prova.</p>
+<p>Na instalação ou após mudar a fiação, desligar e desconectar as fontes e o USB.
+Desencaixar os cinco servos dos conectores, mantendo os cabos identificados. Confirmar
+ausência de tensão em X0 e entre X1 e X2. Selecionar continuidade no multímetro e encostar
+uma ponta na outra para conferir o bipe. Cada seta abaixo indica onde colocar as duas pontas
+de prova.</p>
 <ol>
-<li><strong>Entrada do PIP.</strong> X0 positivo → fusível → V1+ do PIP e X0 negativo → V1− do PIP. Deve haver bipe em cada ligação.</li>
-<li><strong>Positivo dos servos.</strong> V0+ do PIP → COM do relé, NO do relé → X1 e X1 → contato positivo de cada um dos cinco conectores. Cada trecho deve dar bipe.</li>
-<li><strong>Terra comum.</strong> V0− do PIP → X2, X2 → GND da ESP32, X2 → DC− do relé e X2 → contato GND de cada conector de servo. Cada ligação deve dar bipe.</li>
-<li><strong>Comando e contatos do relé.</strong> Conferir a ponte COM → DC+, a ligação DC+ → VIN da ESP32 e o sinal IN1 → GPIO23. Cada trecho deve dar bipe. Com o relé em repouso, COM → NC deve dar bipe e COM → NO deve ficar sem bipe.</li>
-<li><strong>Sinais individuais em X3.</strong> Para cada desvio, medir do GPIO ao borne correspondente de X3 e desse borne ao contato de sinal no conector do servo. Os dois trechos devem dar bipe. Usar o mapa da seção 3: D5 → GPIO13, D6 → GPIO18, D8 → GPIO19, D9 → GPIO21 e D10 → GPIO22.</li>
-<li><strong>Sinais dos sensores em X4.</strong> Seguir o mapa da seção 3. Medir cada borne de X4 até o furo C indicado e, em seguida, do furo B da mesma linha até o pino da ESP32. Cada trecho deve dar bipe. A continuidade das cinco ligações está pendente.</li>
-<li><strong>Verificação de curto antes de energizar.</strong> Medir X0 positivo → X0 negativo, V0+ → V0− do PIP e X1 → X2. Nenhum par deve apresentar bipe contínuo. Se houver bipe persistente ou faltar bipe em um caminho esperado, manter a GA3 desligada, localizar a divergência e repetir o teste.</li>
+<li><strong>Entrada do PIP.</strong> X0 positivo → fusível → V1+ do PIP e X0 negativo → V1−
+do PIP. Deve haver bipe em cada trecho de fio e através do fusível íntegro. Confirmar na
+placa que V1 identifica a entrada e V0 a saída do PIP antes de energizar.</li>
+<li><strong>Positivo dos servos.</strong> V0+ do PIP → COM do relé, NO do relé → X1 e X1 →
+contato positivo de cada um dos cinco conectores. Cada trecho deve dar bipe.</li>
+<li><strong>GND comum.</strong> V0− do PIP → X2, X2 → GND da ESP32, X2 → DC− do relé e X2 →
+contato GND de cada conector de servo. Cada ligação deve dar bipe.</li>
+<li><strong>Comando e contatos do relé.</strong> Conferir a alimentação permanente de DC+ do
+relé e de VIN da ESP32, antes do contato NO, e o sinal IN1 → GPIO23. A ponte COM → DC+
+descrita no esquema original só deve ser mantida após confirmar que ambos pertencem ao mesmo
+ponto de +5 V e que essa alimentação corresponde à tensão nominal do módulo. Não alimentar a
+ESP32 pela saída NO, que é interrompida pelo relé. Cada trecho deve dar bipe. Com o relé em
+repouso, COM → NC deve dar bipe e COM → NO deve ficar sem bipe.</li>
+<li><strong>Sinais individuais em X3.</strong> Para cada desvio, medir do GPIO ao borne
+correspondente de X3 e desse borne ao contato de sinal no conector do servo. Os dois trechos
+devem dar bipe. Usar o mapa da seção 3: D5 → GPIO13, D6 → GPIO18, D8 → GPIO19, D9 → GPIO21 e
+D10 → GPIO22.</li>
+<li><strong>Sinais dos sensores em X4.</strong> Seguir o mapa da seção 3. Medir cada borne
+de X4 até o furo C indicado e, em seguida, do furo B da mesma linha até o pino da ESP32.
+Cada trecho deve dar bipe. A continuidade das cinco ligações está pendente.</li>
+<li><strong>Verificação de curto antes de energizar.</strong> Medir X0 positivo → X0
+negativo, V0+ → V0− do PIP e X1 → X2. Não deve haver curto persistente entre positivo e GND.
+Capacitores e circuitos conectados podem produzir bipe momentâneo. Em caso de dúvida, isolar
+o trecho e medir a resistência, sem usar apenas o bipe como diagnóstico. Se houver bipe
+persistente ou faltar bipe em um caminho esperado, manter a GA3 desligada, localizar a
+divergência e repetir o teste.</li>
 </ol>
-<p>Registrar os pontos medidos, o resultado e eventual correção. A continuidade aprovada permite passar à medição de tensão com o multímetro em tensão contínua. Conferir a polaridade e a tensão entre X1 e X2 com o relé em repouso e acionado antes de conectar os servos. Desligar novamente para encaixá-los.</p>
+<p>Registrar os pontos medidos, o resultado e eventual correção. A continuidade aprovada
+permite passar à medição de tensão com o multímetro em tensão contínua. Conferir a
+polaridade e a tensão entre X1 e X2 com o relé em repouso e acionado antes de conectar os
+servos. Desligar novamente para encaixá-los.</p>
 <h3>Testes de funcionamento</h3>
 <ul>
-<li><strong>Seleção individual.</strong> Cada comando movimentou somente o servo selecionado. Como a numeração mudou em 30/10, conferir a identificação dos cinco servos pelo mapa da seção 3 antes de fixar as hastes.</li>
-<li><strong>Movimento em pares.</strong> Dois servos funcionaram juntos e a sequência de dez ciclos foi concluída. No software definitivo, testar também três pedidos seguidos: o terceiro deve aguardar uma vaga e executar uma única vez.</li>
-<li><strong>Partida, parada e alimentação.</strong> Os servos permaneceram parados na partida e após o reinício ensaiado. A parada interrompeu a sequência. Com a fonte definitiva, conferir se o relé corta a alimentação e se nenhum pedido pendente inicia após a parada.</li>
-<li><strong>Alarme e bloqueio.</strong> A falha simulada produziu três bipes e bloqueou novos comandos. O reconhecimento por R não iniciou movimento. Falta verificar, no software definitivo, que reiniciar a ESP32 durante uma falha mantém a operação bloqueada até nova verificação.</li>
+<li><strong>Seleção individual.</strong> Cada comando movimentou somente o servo
+selecionado. Como a numeração mudou em 30/10, conferir a identificação dos cinco servos pelo
+mapa da seção 3 antes de fixar as hastes.</li>
+<li><strong>Movimento em pares.</strong> Dois servos funcionaram juntos e a sequência de dez
+ciclos foi concluída. No software definitivo, testar também três pedidos seguidos: o
+terceiro deve aguardar uma vaga e executar uma única vez.</li>
+<li><strong>Partida, parada e alimentação.</strong> Os servos permaneceram parados na
+partida e após o reinício ensaiado. A parada interrompeu a sequência. Com a fonte
+definitiva, conferir se o relé corta a alimentação e se nenhum pedido pendente inicia após a
+parada.</li>
+<li><strong>Alarme e bloqueio.</strong> A falha simulada produziu três bipes e bloqueou
+novos comandos. O reconhecimento por R não iniciou movimento. Falta verificar, no software
+definitivo, que reiniciar a ESP32 durante uma falha mantém a operação bloqueada até nova
+verificação.</li>
 </ul>
 
 <h2>2. Procedimento de instalação na maquete</h2>
 <ol>
-<li><strong>Preparar a gaveta.</strong> Com a fonte e o USB desligados, conferir a identificação dos cabos. X0 recebe a alimentação, X1 distribui o positivo dos servos, X2 é o GND comum e X3 leva os sinais dos servos. X4 recebe os sinais dos sensores S10 a S14. Conferir a tensão nominal do módulo de relé antes de usar a fonte definitiva.</li>
-<li><strong>Identificar os servos.</strong> Com a tração desligada e as hastes soltas, comandar um desvio por vez. Conferir a etiqueta do servo que respondeu e preencher o mapa de instalação.</li>
-<li><strong>Acoplar e ajustar.</strong> Centralizar o servo, desligar a alimentação e fixar a haste. Energizar novamente e ajustar o curso aos poucos. Conferir visualmente o assentamento das agulhas nas posições direta (DI) e desviada (AC), sem forçar o mecanismo. Repetir nos cinco desvios.</li>
-<li><strong>Testar sob carga.</strong> Acionar primeiro cada desvio e depois um par. Medir entre X1 e X2 antes, durante e após o movimento. Se reaparecer a leitura de 4,93 V em repouso, esclarecer por que há tensão com o relé comandado para desligar antes de liberar a gaveta.</li>
-<li><strong>Concluir a instalação.</strong> Ainda com a tração desligada, testar parada, alarme e bloqueio. Registrar a posição observada de cada desvio. Enquanto os sensores não estiverem validados, a conferência de posição é visual.</li>
+<li><strong>Preparar a gaveta.</strong> Com a fonte e o USB desligados, conferir a
+identificação dos cabos. X0 recebe a alimentação, X1 distribui o positivo dos servos, X2 é o
+GND comum e X3 leva os sinais dos servos. X4 recebe os sinais dos sensores S10 a S14.
+Conferir a tensão nominal do módulo de relé antes de usar a fonte definitiva.</li>
+<li><strong>Identificar os servos.</strong> Com a tração desligada e as hastes soltas,
+comandar um desvio por vez. Conferir a etiqueta do servo que respondeu e preencher o mapa de
+instalação.</li>
+<li><strong>Acoplar e ajustar.</strong> Centralizar o servo, desligar a alimentação e fixar
+a haste. Energizar novamente e ajustar o curso aos poucos. Conferir visualmente o
+assentamento das agulhas nas posições direta (DI) e desviada (AC), sem forçar o mecanismo.
+Repetir nos cinco desvios.</li>
+<li><strong>Testar sob carga.</strong> Acionar primeiro cada desvio e depois um par. Medir
+entre X1 e X2 antes, durante e após o movimento. Servos parados podem continuar recebendo
+aproximadamente 5 V quando o relé está ligado. A leitura de 4,93 V com os servos parados,
+isoladamente, não indica falha. Registrar separadamente o estado comandado do relé e o
+movimento dos servos. Se houver tensão sustentada entre X1 e X2 quando o relé deveria estar
+desligado, verificar os contatos COM/NO, o nível de acionamento e possíveis realimentações
+antes de liberar a gaveta.</li>
+<li><strong>Concluir a instalação.</strong> Ainda com a tração desligada, testar parada,
+alarme e bloqueio. Registrar a posição observada de cada desvio. A posição das agulhas deve
+ser conferida visualmente enquanto não houver confirmação específica instalada e validada em
+cada desvio. Os sensores S10 a S14 detectam a passagem da composição e não confirmam, por si
+só, a posição dos desvios.</li>
 </ol>
 
 <h2>3. Registros para escrever o software</h2>
-<p><strong>Mapa dos sinais em X3.</strong> Numeração informada em 30/10/2026.</p>
+<p><strong>Mapa dos sinais em X3.</strong> Numeração informada em 30/10/2026 no documento
+recebido. Este mapa difere dos registros anteriores. Confirmar cada conjunto desvio, cor e
+GPIO por continuidade e comando individual antes de gravar ou alterar o software. A revisão
+documental não comprova a ligação física.</p>
 <div class="table-scroll"><table>
 <thead><tr><th>Desvio</th><th>GPIO da ESP32</th><th>Cor do sinal</th></tr></thead>
 <tbody>
@@ -198,9 +285,13 @@ min-width: 0; } tr { break-inside: avoid; } }
 <tr><td>D9</td><td>21</td><td>Branco</td></tr>
 <tr><td>D10</td><td>22</td><td>Marrom</td></tr>
 </tbody></table></div>
-<p><strong>Mapa dos sinais em X4.</strong> Fiação conectada em 03/11/2026. Cada sinal mantém a mesma cor nos dois trechos. O teste de continuidade deverá confirmar o mapa abaixo.</p>
+<p><strong>Mapa dos sinais em X4.</strong> Fiação conectada em 03/11/2026. Cada sinal mantém
+a mesma cor nos dois trechos internos indicados na tabela. O cabo de campo sob a mesa é
+verde, identificado pelo número do sensor. O teste de continuidade deverá confirmar o mapa
+abaixo.</p>
 <div class="table-scroll"><table>
-<thead><tr><th>Sensor em X4</th><th>Cor</th><th>X4 → protoboard</th><th>Protoboard → ESP32</th></tr></thead>
+<thead><tr><th>Sensor em X4</th><th>Cor</th><th>X4 → protoboard</th><th>Protoboard →
+ESP32</th></tr></thead>
 <tbody>
 <tr><td>S10</td><td>Verde</td><td>C35</td><td>B35 → VP (GPIO36)</td></tr>
 <tr><td>S11</td><td>Laranja</td><td>C32</td><td>B32 → VN (GPIO39)</td></tr>
@@ -209,12 +300,55 @@ min-width: 0; } tr { break-inside: avoid; } }
 <tr><td>S14</td><td>Azul</td><td>C23</td><td>B23 → D32 (GPIO32)</td></tr>
 </tbody></table></div>
 <ul>
-<li><strong>Configuração da gaveta.</strong> Relé no GPIO23, ativo em nível alto. Buzzer no GPIO25 (D25 → E49 da protoboard), ativo em nível baixo. Limite de dois servos em movimento.</li>
-<li><strong>Ficha de cada desvio.</strong> Registrar ângulos ajustados para DI e AC, tempo de movimento e forma de confirmação da posição. Preencher esses valores na instalação.</li>
-<li><strong>Histórico de comandos.</strong> Registrar horário, desvio, posição solicitada e resultado: em espera, iniciado, concluído, interrompido ou recusado. Manter campos separados para posição comandada e posição confirmada.</li>
-<li><strong>Histórico de falhas.</strong> Registrar evento observado, origem do alarme, bloqueio, ação do operador e resultado do novo teste. No ensaio do D5, o alarme foi simulado por tempo. O fio solto foi identificado por inspeção. O comando R reconhece o alarme. A liberação para circulação depende da verificação do desvio.</li>
-<li><strong>Registro de aprovação.</strong> Anotar data, versão do programa, fonte, condição do ensaio (bancada ou maquete), resultado esperado, resultado observado e pendência.</li>
+<li><strong>Pull-ups dos sensores.</strong> Conferir um resistor de 4,7 kΩ entre cada sinal
+e 3,3 V, nunca +5 V. GPIO34, GPIO35, GPIO36 e GPIO39 são somente entradas e não possuem
+pull-up interno. Confirmar a ligação de cada resistor ao sinal correto. Na protoboard,
+conferir a continuidade real entre B e C da mesma linha e verificar interrupções dos
+barramentos.</li>
+<li><strong>Configuração da gaveta.</strong> Relé no GPIO23, ativo em nível alto. Buzzer no
+GPIO25 (D25 → E49 da protoboard), ativo em nível baixo. Limite de dois servos em movimento.
+Confirmar os níveis ativos do relé e do buzzer no módulo instalado antes de adotar essa
+configuração em outro programa. A posição E49 depende da montagem física atual da
+protoboard.</li>
+<li><strong>Ficha de cada desvio.</strong> Registrar ângulos ajustados para DI e AC, tempo
+de movimento e forma de confirmação da posição. Preencher esses valores na instalação.</li>
+<li><strong>Histórico de comandos.</strong> Registrar horário, desvio, posição solicitada e
+resultado: em espera, iniciado, concluído, interrompido ou recusado. Manter campos separados
+para posição comandada e posição confirmada.</li>
+<li><strong>Histórico de falhas.</strong> Registrar evento observado, origem do alarme,
+bloqueio, ação do operador e resultado do novo teste. No ensaio do D5, o alarme foi simulado
+por tempo. O fio solto foi identificado por inspeção. O comando R reconhece o alarme. A
+liberação para circulação depende da verificação do desvio.</li>
+<li><strong>Registro de aprovação.</strong> Anotar data, versão do programa, fonte, condição
+do ensaio (bancada ou maquete), resultado esperado, resultado observado e pendência.</li>
 </ul>
+<h2>4. Conferências adicionais antes da liberação</h2>
+<ul>
+<li><strong>Alimentação da ESP32.</strong> Confirmar a identificação de VIN/5 V da placa
+usada. Não aplicar 5 V no pino 3V3 ou nos GPIOs. Antes de conectar USB e fonte externa
+simultaneamente, conferir como a placa evita retorno de corrente entre as duas
+alimentações.</li>
+<li><strong>Distribuição dos servos.</strong> Quando houver uma junção comum sob a mesa,
+registrar que X1 e X2 alimentam essa junção e não cinco circuitos independentes. A corrente
+dos servos deve seguir por fios e conexões adequados, sem atravessar a ESP32.</li>
+<li><strong>MOSFETs de iluminação.</strong> Os quatro módulos também precisam de
+identificação e mapa de alimentação, saída e comando. Este guia ainda não apresenta o mapa
+completo conferido dos quatro módulos. Registrar essas ligações antes da liberação da
+iluminação. Não confundir o GND de entrada com o retorno comutado OUT−: em módulos que
+comutam o negativo, ligar OUT− diretamente à barra GND anula o controle.</li>
+<li><strong>Alarme no painel.</strong> O buzzer pode usar o mesmo padrão sonoro para falhas
+diferentes. No tablet, apresentar o tipo de problema, o circuito envolvido e sugestões de
+verificação. Registrar o evento e não declarar posição confirmada sem sensor específico ou
+verificação do operador.</li>
+<li><strong>Pendências.</strong> Conferir fisicamente o mapa de X3, concluir a continuidade
+e o funcionamento de S10 a S14, validar o corte do relé sob carga e registrar os ajustes
+mecânicos dos cinco desvios. Manter os testes de bancada separados dos testes concluídos na
+maquete.</li>
+</ul>
+<p>Referência técnica dos GPIOs: <a
+href="https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/gpio.html"
+target="_blank" rel="noopener">Documentação oficial da Espressif sobre GPIO e RTC
+GPIO</a>.</p>
 </main>
 <footer>Ferrovia EFMN 74 — Documentação técnica — GA3</footer>
 </body>
