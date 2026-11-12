@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Material utilizado na GA3 | EFMN 74</title>
+<style>*{box-sizing:border-box} body{margin:0;background:#f4f1ea;color:#222;font:17px/1.6 Georgia,"Times New Roman",serif}
+header{background:#151515;color:#fff;border-bottom:4px solid #c89b2b}
+.marca{max-width:1000px;margin:auto;padding:12px 18px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:Arial,sans-serif}
+.marca img{width:72px;height:auto;display:block}.marca p{margin:0}.marca small{color:#ddd}
+main{max-width:1100px;margin:auto;padding:30px 20px}h1{text-align:left;font-size:2rem;line-height:1.25}h2{font-size:1.4rem;margin-top:30px}
+a{color:#0056b3}.nota{background:#fffdf8;border-left:4px solid #c89b2b;padding:14px 20px}
+.tabela{overflow-x:auto}table{width:100%;border-collapse:collapse;background:#fffdf8;font:15px/1.5 Arial,sans-serif}
+th,td{border:1px solid #ded7c8;padding:12px;text-align:left;vertical-align:top}th{background:#e9e3d6}td:nth-child(2){min-width:130px}
+footer,.voltar{font-family:Arial,sans-serif}footer{margin-top:30px}
+@media(max-width:650px){main{padding:24px 14px}.marca{gap:10px;font-size:14px}h1{font-size:1.65rem}table{min-width:760px}}
+@media print{.voltar{display:none}.tabela{overflow:visible}table{min-width:0}tr{break-inside:avoid}}
+.material{background:#fffdf8;border:1px solid #ded7c8;padding:16px 20px;margin:16px 0}.material h2{margin:0 0 12px}.material p{margin:6px 0}</style>
+</head>
+<body>
+<header><div class="marca">
+<a href="index.html"><img src="logo-efmn74.PNG" alt="Ferrovia EFMN 74 — Início"></a>
+<div><p>Ferrovia EFMN 74 - Escala HO</p>
+<small>Construção, automação, memória e documentação</small></div>
+</div></header>
+<main>
+<p class="voltar"><a href="biblioteca.html">← Voltar</a></p>
+<h1>Material utilizado na GA3</h1>
+<p>Biblioteca / Listas de materiais</p>
+<p>Relação dos materiais da gaveta de controle da Área 3 da EFMN 74, com quantidades e finalidade de uso. Inclui os componentes externos atendidos pela gaveta em seção própria.</p>
+<p>Registro consolidado em 11 de novembro de 2026.</p>
+<h2>Controle e alimentação</h2>
+<section class="material"><h2>1. ESP32</h2>
+<p><strong>Quantidade:</strong> 1 unidade.</p>
+<p><strong>Especificação:</strong> ESP32 DevKit V1, 30 pinos, com pinos soldados.</p>
+<p><strong>Aplicação:</strong> Controlador da GA3. Conferir o conector USB ao comprar o cabo.</p>
+</section>
+<section class="material"><h2>2. Protoboard</h2>
+<p><strong>Quantidade:</strong> 2 módulos de 830 pontos.</p>
+<p><strong>Especificação:</strong> Protoboard sem solda, passo 2,54 mm. Total equivalente a 1.660 pontos.</p>
+</section>
+<section class="material"><h2>3. Fonte de alimentação</h2>
+<p><strong>Quantidade:</strong> 1 unidade.</p>
+<p><strong>Especificação:</strong> Saída regulada de 5 V CC, 10 A, conforme fonte adquirida para o projeto.</p>
+</section>
+<section class="material"><h2>4. PIP — Protetor de inversão de polaridade</h2>
+<p><strong>Quantidade:</strong> 1 módulo.</p>
+<p><strong>Especificação:</strong> Módulo de proteção contra inversão de polaridade, com MOSFETs de baixo RDS(on). Versão de 5 a 26 V CC, anunciada para até 10 A.</p>
+<p><strong>Aplicação:</strong> Proteção da alimentação da GA3.</p>
+</section>
+<section class="material"><h2>5. Porta-fusível</h2>
+<p><strong>Quantidade:</strong> 1 unidade.</p>
+<p><strong>Especificação:</strong> Porta-fusível em linha, compatível com o cartucho instalado.</p>
+</section>
+<section class="material"><h2>6. Fusível</h2>
+<p><strong>Quantidade:</strong> 1 unidade.</p>
+<p><strong>Especificação:</strong> Fusível compatível com o porta-fusível. Amperagem ainda não definida.</p>
+</section>
+<section class="material"><h2>7. Módulo de relé</h2>
+<p><strong>Quantidade:</strong> 1 unidade.</p>
+<p><strong>Especificação:</strong> Módulo de 1 canal, terminais DC+, DC− e IN1, contatos COM, NO e NC, comando compatível com ESP32.</p>
+</section>
+<section class="material"><h2>8. Buzzer</h2>
+<p><strong>Quantidade:</strong> 1 módulo.</p>
+<p><strong>Especificação:</strong> Módulo buzzer ativo, alimentação de 3,3 a 5 V CC.</p>
+<p><strong>Aplicação:</strong> Alarme sonoro da GA3.</p>
+</section>
+<section class="material"><h2>9. Resistores de pull-up</h2>
+<p><strong>Quantidade:</strong> 5 unidades.</p>
+<p><strong>Especificação:</strong> 4,7 kΩ, terminais axiais para protoboard. Para reposição, 1/4 W atende esta função.</p>
+<p><strong>Aplicação:</strong> Um por sinal dos sensores S10 a S14. Pull-up para 3,3 V.</p>
+</section>
+<section class="material"><h2>10. Módulos MOSFET</h2>
+<p><strong>Quantidade:</strong> 4 unidades.</p>
+<p><strong>Especificação:</strong> Módulo de chaveamento CC tipo XY-MOS / Dual MOSFET, com VIN+, VIN−, OUT+, OUT−, TRIG/PWM e GND.</p>
+</section>
+<section class="material"><h2>11. Barra comum de GND</h2>
+<p><strong>Quantidade:</strong> 1 unidade.</p>
+<p><strong>Especificação:</strong> Barra de cobre com pontos de conexão para os negativos.</p>
+</section>
+<section class="material"><h2>12. Sindal X0</h2>
+<p><strong>Quantidade:</strong> 1 barra de 2 bornes.</p>
+<p><strong>Especificação:</strong> Régua de bornes com parafusos e corpo isolante, compatível com os fios de 1,5 mm².</p>
+<p><strong>Aplicação:</strong> Entrada de +5 V e GND.</p>
+</section>
+<section class="material"><h2>13. Sindal X1</h2>
+<p><strong>Quantidade:</strong> 1 barra de 2 bornes.</p>
+<p><strong>Especificação:</strong> Régua de bornes com parafusos e corpo isolante, compatível com os fios utilizados.</p>
+<p><strong>Aplicação:</strong> Distribuição do positivo dos servos.</p>
+</section>
+<section class="material"><h2>14. Sindal X2</h2>
+<p><strong>Quantidade:</strong> 1 barra de 5 bornes.</p>
+<p><strong>Especificação:</strong> Régua de bornes com parafusos e corpo isolante, compatível com os fios utilizados.</p>
+<p><strong>Aplicação:</strong> Conexões de GND.</p>
+</section>
+<section class="material"><h2>15. Sindal X3</h2>
+<p><strong>Quantidade:</strong> 1 barra de 5 bornes.</p>
+<p><strong>Especificação:</strong> Régua de bornes com parafusos e corpo isolante, compatível com os fios utilizados.</p>
+<p><strong>Aplicação:</strong> Cinco sinais dos servos.</p>
+</section>
+<section class="material"><h2>16. Sindal X4</h2>
+<p><strong>Quantidade:</strong> 1 barra de 5 bornes.</p>
+<p><strong>Especificação:</strong> Régua de bornes com parafusos e corpo isolante, compatível com os fios utilizados.</p>
+<p><strong>Aplicação:</strong> Cinco sinais dos sensores S10 a S14.</p>
+</section>
+<section class="material"><h2>17. Sindal X5</h2>
+<p><strong>Quantidade:</strong> 1 barra de 8 bornes.</p>
+<p><strong>Especificação:</strong> Régua de bornes com parafusos e corpo isolante, compatível com os fios utilizados.</p>
+<p><strong>Aplicação:</strong> Utilizado para ligar e desligar a iluminação por LEDs em quatro locais.</p>
+</section>
+<section class="material"><h2>18. Conectores para servos</h2>
+<p><strong>Quantidade:</strong> 5 conjuntos de conexão.</p>
+<p><strong>Especificação:</strong> Conector de 3 vias compatível com o cabo do SG90, passo 2,54 mm, com polaridade identificada.</p>
+<p><strong>Aplicação:</strong> Um por servo.</p>
+</section>
+<section class="material"><h2>19. Pinos para os MOSFETs</h2>
+<p><strong>Quantidade:</strong> 1 barra.</p>
+<p><strong>Especificação:</strong> Barra de pinos macho compatível com a furação e com os jumpers fêmea.</p>
+</section>
+<section class="material"><h2>20. Fios de alimentação</h2>
+<p><strong>Quantidade:</strong> 100 metros. Serão utilizados na instalação abaixo dos trilhos, sob a mesa, para minimizar a queda de tensão e o mau contato.</p>
+<p><strong>Especificação:</strong> Cobre flexível isolado, 1,5 mm², vermelho e preto.</p>
+<p><strong>Aplicação:</strong> Vermelho para +5 V e preto para GND.</p>
+</section>
+<section class="material"><h2>21. Jumpers macho-macho</h2>
+<p><strong>Quantidade:</strong> 1 kit com jumpers de 20 cm de comprimento.</p>
+<p><strong>Especificação:</strong> Passo 2,54 mm.</p>
+<p><strong>Aplicação:</strong> Interligações locais, resistores e sinais.</p>
+</section>
+<section class="material"><h2>22. Jumpers macho-fêmea e fêmea-fêmea</h2>
+<p><strong>Quantidade:</strong> 1 kit de cada tipo, com jumpers de 20 cm de comprimento.</p>
+<p><strong>Especificação:</strong> Passo 2,54 mm.</p>
+<p><strong>Aplicação:</strong> Interligações locais, resistores e sinais.</p>
+</section>
+<section class="material"><h2>23. Fios de sinal e extensões</h2>
+<p><strong>Quantidade:</strong> 100 metros.</p>
+<p><strong>Especificação:</strong> Cobre flexível isolado, 0,75 mm² na cor verde.</p>
+<p><strong>Aplicação:</strong> Interligações entre sensores Hall e GA3.</p>
+</section>
+<section class="material"><h2>24. Base de MDF</h2>
+<p><strong>Quantidade:</strong> 1 placa.</p>
+<p><strong>Especificação:</strong> MDF de 6 mm, 38 × 45 cm.</p>
+</section>
+<section class="material"><h2>25. Suporte sob a mesa</h2>
+<p><strong>Quantidade:</strong> 1 conjunto.</p>
+<p><strong>Especificação:</strong> Suporte dimensionado para a base e para a retirada da GA3.</p>
+<p><strong>Situação:</strong> Concluído.</p>
+<p><strong>Conferência:</strong> Material, medidas e ferragens a levantar no conjunto instalado.</p>
+</section>
+<section class="material"><h2>26. Fita dupla face</h2>
+<p><strong>Quantidade:</strong> 1 rolo pequeno.</p>
+<p><strong>Especificação:</strong> Fita para fixação das protoboards ao MDF.</p>
+</section>
+<section class="material"><h2>27. Parafusos, porcas e arruelas</h2>
+<p><strong>Quantidade:</strong> mínimo 100 unidades.</p>
+<p><strong>Especificação:</strong> Tamanho M3.</p>
+<p><strong>Aplicação:</strong> Fixação dos sindais, relé, barra de GND e suporte.</p>
+</section>
+<section class="material"><h2>28. Etiquetas de identificação</h2>
+<p><strong>Quantidade:</strong> 1 conjunto.</p>
+<p><strong>Especificação:</strong> Etiquetas adesivas para identificação dos módulos, sindais e condutores antes das instalações.</p>
+</section>
+<section class="material"><h2>29. Servos SG90</h2>
+<p><strong>Quantidade:</strong> 5 unidades.</p>
+<p><strong>Especificação:</strong> Microservo SG90 de 9 g, cabo de três vias, com braços e parafusos.</p>
+<p><strong>Aplicação:</strong> Desvios D5, D6, D8, D9 e D10.</p>
+</section>
+<section class="material"><h2>30. Sensores Hall</h2>
+<p><strong>Quantidade:</strong> 5 unidades.</p>
+<p><strong>Especificação:</strong> A3144E, três terminais, com identificação de alimentação, GND e saída.</p>
+<p><strong>Aplicação:</strong> S10 a S14.</p>
+</section>
+<section class="material"><h2>31. Iluminação das construções</h2>
+<p><strong>Quantidade:</strong> 8 LEDs com resistores.</p>
+<p><strong>Especificação:</strong> LEDs ou conjuntos de iluminação compatíveis com a alimentação, com limitação de corrente adequada.</p>
+<p><strong>Utilização:</strong></p>
+<p>MOSFET 1: 3 para a casa.</p>
+<p>MOSFET 2: 3 para o armazém.</p>
+<p>MOSFET 3: vago.</p>
+<p>MOSFET 4: 2 para a cabine de sinaleiro.</p>
+</section>
+<h2>Critério para fechar a compra</h2>
+<p>Contar os jumpers por tipo, medir os fios por bitola e cor e conferir as identificações da fonte, do relé e do fusível. Para PIP e buzzer, usar as especificações acima e conferir a versão recebida.</p>
+<p>Registrar as ferragens por medida. Comprar reposições com as mesmas características elétricas e mecânicas dos componentes confirmados.</p>
+<p>Notebook, cabo USB de programação, multímetro, ferramentas e TTD-01 são equipamentos de apoio. Não compõem a quantidade de componentes permanentes da gaveta. Nobreak, DPS e a alimentação geral pertencem à infraestrutura da ferrovia.</p>
+<footer><a href="biblioteca.html">← Voltar</a></footer>
+</main></body></html>
