@@ -163,20 +163,20 @@ sem ligação mecânica aos desvios. A instalação na maquete exige ajustar e c
 desvio sob carga.</p>
 
 <h2>Padrão de cores e identificação</h2>
-<p>Na fiação instalada pela EFMN 74, usar preto para GND e vermelho para +5 V. Todos os GND
-da gaveta devem chegar à barra comum de cobre, incluindo fonte, ESP32, relé, servos,
+<p>Na fiação instalada pela EFMN 74, usar preto para GND e vermelho para +5 V. Nos fios GND dos MOSFETs, a cor confirmada é branco malhado de preto. Todos os GND
+devem estar interligados, incluindo a barra comum de cobre da gaveta e o barramento GND sob a mesa, fonte, ESP32, relé, servos,
 sensores e entradas GND dos módulos MOSFET. GND é a referência comum do circuito e não deve
 ser confundido com o aterramento de proteção da rede elétrica.</p>
 <div class="table-scroll"><table>
 <thead><tr><th>Aplicação</th><th>Cor</th><th>Identificação</th></tr></thead>
 <tbody>
-<tr><td>GND e negativo comum</td><td>Preto</td><td>Inclui os jumpers de GND.</td></tr>
+<tr><td>GND e negativo comum</td><td>Preto. Nos MOSFETs: branco malhado de preto.</td><td>Inclui os jumpers de GND, respeitando a exceção dos MOSFETs.</td></tr>
 <tr><td>Alimentação de +5 V</td><td>Vermelho</td><td>Identificar se o trecho está antes ou
 depois do contato do relé.</td></tr>
 <tr><td>Sinais Hall sob a mesa</td><td>Verde</td><td>Etiquetar S10 a S14 nas duas
 extremidades.</td></tr>
 <tr><td>Jumpers internos de sinal</td><td>Conforme o mapa</td><td>As cores não indicam
-tensão. A exceção é o jumper de GND, que deve ser preto.</td></tr>
+tensão. Para GND, usar preto, exceto nos MOSFETs, com branco malhado de preto.</td></tr>
 <tr><td>Sinais dos servos</td><td>Conforme X3</td><td>Conservar as cores e a numeração
 registradas em 30/10, sujeitas à conferência física.</td></tr>
 </tbody></table></div>
@@ -191,19 +191,19 @@ conferir a marcação dos condutores instalados e registrar o valor confirmado.<
 <h3>Continuidade antes de testar os servos</h3>
 <p>Na instalação ou após mudar a fiação, desligar e desconectar as fontes e o USB.
 Desencaixar os cinco servos dos conectores, mantendo os cabos identificados. Confirmar
-ausência de tensão em X0 e entre X1 e X2. Selecionar continuidade no multímetro e encostar
+ausência de tensão em X0 e entre X1 e o barramento GND dos servos. Selecionar continuidade no multímetro e encostar
 uma ponta na outra para conferir o bipe. Cada seta abaixo indica onde colocar as duas pontas
 de prova.</p>
 <ol>
 <li><strong>Entrada do PIP.</strong> X0 positivo → fusível → V1+ do PIP e X0 negativo → V1−
 do PIP. Deve haver bipe em cada trecho de fio e através do fusível íntegro. Confirmar na
 placa que V1 identifica a entrada e V0 a saída do PIP antes de energizar.</li>
-<li><strong>Positivo dos servos.</strong> V0+ do PIP → COM do relé, NO do relé → X1 e X1 →
+<li><strong>Positivo dos servos.</strong> V0+ do PIP → COM do relé, NO do relé → X1 (fio vermelho) e X1 →
 contato positivo de cada um dos cinco conectores. Cada trecho deve dar bipe.</li>
-<li><strong>GND comum.</strong> V0− do PIP → X2, X2 → GND da ESP32, X2 → DC− do relé e X2 →
-contato GND de cada conector de servo. Cada ligação deve dar bipe.</li>
+<li><strong>GND comum.</strong> V0− do PIP → barra GND comum, barra GND → GND da ESP32, barra GND → DC− do relé e barramento GND sob a mesa →
+contato GND de cada conector de servo. O antigo X2 dos servos foi dispensado. Conferir também a interligação entre a barra GND da gaveta e o barramento sob a mesa. Cada ligação deve dar bipe.</li>
 <li><strong>Comando e contatos do relé.</strong> Conferir a alimentação permanente de DC+ do
-relé e de VIN da ESP32, antes do contato NO, e o sinal IN1 → GPIO23. A ponte COM → DC+
+relé, antes do contato NO, e o sinal IN1 → GPIO23 (fio amarelo). Atualmente não há jumper no VIN da ESP32. Sua alimentação definitiva deve ser instalada antes do contato NO, na instalação da gaveta. A ponte COM → DC+
 descrita no esquema original só deve ser mantida após confirmar que ambos pertencem ao mesmo
 ponto de +5 V e que essa alimentação corresponde à tensão nominal do módulo. Não alimentar a
 ESP32 pela saída NO, que é interrompida pelo relé. Cada trecho deve dar bipe. Com o relé em
@@ -216,7 +216,7 @@ D10 → GPIO22.</li>
 de X4 até o furo C indicado e, em seguida, do furo B da mesma linha até o pino da ESP32.
 Cada trecho deve dar bipe. A continuidade das cinco ligações está pendente.</li>
 <li><strong>Verificação de curto antes de energizar.</strong> Medir X0 positivo → X0
-negativo, V0+ → V0− do PIP e X1 → X2. Não deve haver curto persistente entre positivo e GND.
+negativo, V0+ → V0− do PIP e X1 → barramento GND dos servos. Não deve haver curto persistente entre positivo e GND.
 Capacitores e circuitos conectados podem produzir bipe momentâneo. Em caso de dúvida, isolar
 o trecho e medir a resistência, sem usar apenas o bipe como diagnóstico. Se houver bipe
 persistente ou faltar bipe em um caminho esperado, manter a GA3 desligada, localizar a
@@ -224,7 +224,7 @@ divergência e repetir o teste.</li>
 </ol>
 <p>Registrar os pontos medidos, o resultado e eventual correção. A continuidade aprovada
 permite passar à medição de tensão com o multímetro em tensão contínua. Conferir a
-polaridade e a tensão entre X1 e X2 com o relé em repouso e acionado antes de conectar os
+polaridade e a tensão entre X1 e o barramento GND dos servos com o relé em repouso e acionado antes de conectar os
 servos. Desligar novamente para encaixá-los.</p>
 <h3>Testes de funcionamento</h3>
 <ul>
@@ -244,11 +244,16 @@ definitivo, que reiniciar a ESP32 durante uma falha mantém a operação bloquea
 verificação.</li>
 </ul>
 
+<h3>Teste do MOSFET 1 — 12/11/2026</h3>
+<p>D26 / GPIO26 da ESP32 → PWM do MOSFET 1, fio amarelo. GND do módulo → barra GND comum à ESP32, fio branco malhado de preto. VIN+ → X0+, com cor não informada. VIN− deve estar ligado ao negativo da fonte. O destino físico e a cor desse fio não foram registrados explicitamente.</p>
+<p>O programa ligou a saída por 3 segundos e desligou por 3 segundos. Com resistor de 4,7 kΩ entre OUT+ e OUT−, a entrada mediu 4,91 V e a saída alternou entre 4,91 V e 0 V. O indicador do módulo piscou conforme o programa. Resultado: aprovado no teste com resistor. O teste com LEDs ficou previsto para 13/11/2026.</p>
+<p>Para reaproveitar os LEDs de Natal, separar cada LED do cordão e da placa original, deixando aproximadamente 5 cm de fio em cada terminal. A placa original ligada diretamente à tomada não será utilizada na GA3. Identificar a polaridade e testar com resistor em série, cujo valor definitivo ainda não foi estabelecido.</p>
+
 <h2>2. Procedimento de instalação na maquete</h2>
 <ol>
 <li><strong>Preparar a gaveta.</strong> Com a fonte e o USB desligados, conferir a
-identificação dos cabos. X0 recebe a alimentação, X1 distribui o positivo dos servos, X2 é o
-GND comum e X3 leva os sinais dos servos. X4 recebe os sinais dos sensores S10 a S14.
+identificação dos cabos. X0 recebe 5 V em corrente contínua, X1 distribui o positivo dos servos pelo contato NO do relé, X2 identifica as saídas de alimentação dos LEDs pelos MOSFETs (antigo X5)
+e X3 leva os sinais dos servos. O negativo dos servos vai ao barramento GND sob a mesa, comum à ESP32, sem o antigo sindal X2 dos servos. X4 recebe os sinais dos sensores S10 a S14.
 Conferir a tensão nominal do módulo de relé antes de usar a fonte definitiva.</li>
 <li><strong>Identificar os servos.</strong> Com a tração desligada e as hastes soltas,
 comandar um desvio por vez. Conferir a etiqueta do servo que respondeu e preencher o mapa de
@@ -258,10 +263,10 @@ a haste. Energizar novamente e ajustar o curso aos poucos. Conferir visualmente 
 assentamento das agulhas nas posições direta (DI) e desviada (AC), sem forçar o mecanismo.
 Repetir nos cinco desvios.</li>
 <li><strong>Testar sob carga.</strong> Acionar primeiro cada desvio e depois um par. Medir
-entre X1 e X2 antes, durante e após o movimento. Servos parados podem continuar recebendo
+entre X1 e o barramento GND dos servos antes, durante e após o movimento. Servos parados podem continuar recebendo
 aproximadamente 5 V quando o relé está ligado. A leitura de 4,93 V com os servos parados,
 isoladamente, não indica falha. Registrar separadamente o estado comandado do relé e o
-movimento dos servos. Se houver tensão sustentada entre X1 e X2 quando o relé deveria estar
+movimento dos servos. Se houver tensão sustentada entre X1 e o barramento GND dos servos quando o relé deveria estar
 desligado, verificar os contatos COM/NO, o nível de acionamento e possíveis realimentações
 antes de liberar a gaveta.</li>
 <li><strong>Concluir a instalação.</strong> Ainda com a tração desligada, testar parada,
@@ -285,21 +290,22 @@ documental não comprova a ligação física.</p>
 <tr><td>D9</td><td>21</td><td>Branco</td></tr>
 <tr><td>D10</td><td>22</td><td>Marrom</td></tr>
 </tbody></table></div>
-<p><strong>Mapa dos sinais em X4.</strong> Fiação conectada em 03/11/2026. Cada sinal mantém
-a mesma cor nos dois trechos internos indicados na tabela. O cabo de campo sob a mesa é
+<p><strong>Mapa dos sinais em X4.</strong> Fiação conectada em 03/11/2026, com cores dos trechos internos atualizadas conforme registros de 12/11/2026.
+As cores podem diferir entre os dois trechos internos indicados na tabela. O cabo de campo sob a mesa é
 verde, identificado pelo número do sensor. O teste de continuidade deverá confirmar o mapa
 abaixo.</p>
 <div class="table-scroll"><table>
-<thead><tr><th>Sensor em X4</th><th>Cor</th><th>X4 → protoboard</th><th>Protoboard →
+<thead><tr><th>Sensor em X4</th><th>Cor X4 → protoboard</th><th>X4 → protoboard</th><th>Protoboard →
 ESP32</th></tr></thead>
 <tbody>
-<tr><td>S10</td><td>Verde</td><td>C35</td><td>B35 → VP (GPIO36)</td></tr>
+<tr><td>S10</td><td>Verde</td><td>C35</td><td>B35 → VP (GPIO36). Laranja.</td></tr>
 <tr><td>S11</td><td>Laranja</td><td>C32</td><td>B32 → VN (GPIO39)</td></tr>
-<tr><td>S12</td><td>Cinza</td><td>C29</td><td>B29 → D34 (GPIO34)</td></tr>
-<tr><td>S13</td><td>Vermelho</td><td>C26</td><td>B26 → D35 (GPIO35)</td></tr>
-<tr><td>S14</td><td>Azul</td><td>C23</td><td>B23 → D32 (GPIO32)</td></tr>
+<tr><td>S12</td><td>Cinza</td><td>C29</td><td>B29 → D34 (GPIO34). Laranja.</td></tr>
+<tr><td>S13</td><td>Vermelho</td><td>C26</td><td>B26 → D35 (GPIO35). Laranja.</td></tr>
+<tr><td>S14</td><td>Azul</td><td>C23</td><td>B23 → D32 (GPIO32). Laranja.</td></tr>
 </tbody></table></div>
 <ul>
+<li><strong>Alimentação dos sensores Hall.</strong> Positivo no barramento de +5 V sob a mesa e negativo no barramento GND sob a mesa, comum à ESP32. O sinal passa pelo X4 e segue ao GPIO correspondente, com pull-up de 4,7 kΩ para 3,3 V. Não aplicar 5 V diretamente ao GPIO.</li>
 <li><strong>Pull-ups dos sensores.</strong> Conferir um resistor de 4,7 kΩ entre cada sinal
 e 3,3 V, nunca +5 V. GPIO34, GPIO35, GPIO36 e GPIO39 são somente entradas e não possuem
 pull-up interno. Confirmar a ligação de cada resistor ao sinal correto. Na protoboard,
@@ -324,15 +330,15 @@ do ensaio (bancada ou maquete), resultado esperado, resultado observado e pendê
 </ul>
 <h2>4. Conferências adicionais antes da liberação</h2>
 <ul>
-<li><strong>Alimentação da ESP32.</strong> Confirmar a identificação de VIN/5 V da placa
+<li><strong>Alimentação da ESP32.</strong> No teste de 12/11/2026, a ESP32 foi alimentada pelo USB, sem jumper no VIN. A alimentação definitiva pelo VIN está pendente para a instalação da gaveta e deve vir de um ponto de 5 V antes do contato NO. Confirmar a identificação de VIN/5 V da placa
 usada. Não aplicar 5 V no pino 3V3 ou nos GPIOs. Antes de conectar USB e fonte externa
 simultaneamente, conferir como a placa evita retorno de corrente entre as duas
 alimentações.</li>
 <li><strong>Distribuição dos servos.</strong> Quando houver uma junção comum sob a mesa,
-registrar que X1 e X2 alimentam essa junção e não cinco circuitos independentes. A corrente
+registrar que X1 alimenta o positivo dessa junção. Os negativos dos servos vão diretamente ao barramento GND sob a mesa, comum à ESP32. O antigo X2 dos servos foi dispensado. A corrente
 dos servos deve seguir por fios e conexões adequados, sem atravessar a ESP32.</li>
 <li><strong>MOSFETs de iluminação.</strong> Os quatro módulos também precisam de
-identificação e mapa de alimentação, saída e comando. Este guia ainda não apresenta o mapa
+identificação e mapa de alimentação, saída e comando. O antigo X5 passa a se chamar X2, destinado às saídas de alimentação dos LEDs pelos MOSFETs. Este guia ainda não apresenta o mapa
 completo conferido dos quatro módulos. Registrar essas ligações antes da liberação da
 iluminação. Não confundir o GND de entrada com o retorno comutado OUT−: em módulos que
 comutam o negativo, ligar OUT− diretamente à barra GND anula o controle.</li>
