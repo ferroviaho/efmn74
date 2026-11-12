@@ -81,7 +81,7 @@
     <p>A foto mostra a preparação do módulo MOSFET antes de sua fixação na base.
       Os quatro fios de alimentação e saída já estão conectados aos bornes.
       Os fios de controle serão conectados posteriormente.</p>
-    <p>Medir, cortar e conectar os fios vermelhos e pretos de entrada e saída enquanto o módulo
+    <p>Medir, cortar e conectar os fios de entrada e saída, identificados por sua função e polaridade, enquanto o módulo
       ainda está solto. Isso facilita o acesso aos bornes e o aperto dos parafusos.</p>
     <p>Cada módulo utiliza quatro fios de potência, sendo dois de entrada e dois de saída, além
       dos fios de controle. Planejar percursos curtos e organizados, deixando uma pequena folga
@@ -94,6 +94,16 @@
       se os comprimentos e os caminhos ficaram adequados. Ajustar a disposição antes
       da fixação definitiva, preservando o acesso aos bornes e evitando que os fios
       sejam puxados ou dobrados junto às conexões.</p>
+    <p>Na GA3, X0 é a entrada de 5 V em corrente contínua. O VIN+ do MOSFET 1 está
+      ligado ao X0+. A cor desse fio não foi registrada. O VIN− deve estar ligado ao
+      negativo da fonte. Seu destino físico e a cor do fio ainda precisam ser registrados.</p>
+    <p>O D26 / GPIO26 da ESP32 está ligado ao PWM do MOSFET 1 por fio amarelo.
+      Os pinos GND dos MOSFETs são ligados à barra GND comum à ESP32 por fios
+      brancos malhados de preto, substituindo a indicação anterior de preto.</p>
+    <p>As saídas de alimentação dos LEDs pelos MOSFETs passam pelo sindal X2,
+      anteriormente identificado como X5. O antigo X2 dos negativos dos servos foi
+      dispensado. Esses negativos serão ligados ao barramento GND sob a mesa,
+      comum à ESP32. Identificar os condutores OUT+ e OUT− para preservar a polaridade dos LEDs.</p>
     </div>
   </section>
   <section class="bloco">
@@ -117,8 +127,22 @@
     <p>Com toda a alimentação desligada, inclusive a conexão USB da placa de controle, testar a
       continuidade de cada fio entre suas extremidades. Conferir também se as entradas, saídas
       e polaridades correspondem às ligações planejadas.</p>
-    <p>O teste de continuidade verifica os fios e as conexões. O funcionamento do MOSFET deverá
-      ser conferido posteriormente, em um teste com alimentação e carga adequadas.</p>
+    <p>O teste de continuidade verifica os fios e as conexões. Em seguida, conferir o
+      funcionamento do MOSFET com alimentação e carga adequadas.</p>
+    <p>Em 12/11/2026, o MOSFET 1 foi aprovado no teste com resistor de 4,7 kΩ entre
+      OUT+ e OUT−. O GPIO26 comandou ciclos de 3 segundos ligado e 3 segundos desligado.
+      A entrada apresentou 4,91 V. A saída alternou entre 4,91 V ligada e 0 V desligada.
+      O indicador do módulo piscou conforme o programa.</p>
+    <p>Nesse teste, a ESP32 foi alimentada pelo USB, sem alimentação no VIN. A ligação
+      definitiva do VIN ficou pendente para a instalação da gaveta e deverá vir de um ponto
+      de 5 V antes do contato NO do relé. O uso simultâneo de USB e alimentação pelo VIN
+      precisa ser conferido para a placa específica antes da ligação definitiva.</p>
+    <p>O teste com LEDs ficou previsto para 13/11/2026. Os LEDs de Natal serão aproveitados
+      individualmente, separados do cordão e da placa original, com aproximadamente 5 cm de
+      fio em cada terminal. A placa original ligada diretamente à tomada não será utilizada
+      na GA3. Identificar a polaridade e testar cada LED com resistor em série, cujo valor
+      definitivo ainda não foi estabelecido. O resistor de 4,7 kΩ usado entre as saídas
+      no teste do módulo não define o resistor em série dos LEDs.</p>
   </section>
   <section class="bloco">
     <h2>6. Documentar cada etapa</h2>
