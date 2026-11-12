@@ -24,7 +24,7 @@ footer,.voltar{font-family:Arial,sans-serif}footer{margin-top:30px}
 <small>Construção, automação, memória e documentação</small></div>
 </div></header>
 <main>
-<p class="voltar"><a href="biblioteca.html">← Voltar</a></p>
+<p class="voltar"><a href="biblioteca.html"><strong>← Voltar</strong></a></p>
 <h1>Material utilizado na GA3</h1>
 
 <p>Relação dos materiais da gaveta de controle da Área 3 da EFMN 74, com quantidades e finalidade de uso. Inclui os componentes externos atendidos pela gaveta em seção própria.</p>
@@ -86,12 +86,12 @@ footer,.voltar{font-family:Arial,sans-serif}footer{margin-top:30px}
 <section class="material"><h2>13. Sindal X1</h2>
 <p><strong>Quantidade:</strong> 1 barra de 2 bornes.</p>
 <p><strong>Especificação:</strong> Régua de bornes com parafusos e corpo isolante, compatível com os fios utilizados.</p>
-<p><strong>Aplicação:</strong> Distribuição do positivo dos servos.</p>
+<p><strong>Aplicação:</strong> Distribuição do positivo dos servos, alimentado pelo contato NO do relé.</p>
 </section>
 <section class="material"><h2>14. Sindal X2</h2>
-<p><strong>Quantidade:</strong> 1 barra de 5 bornes.</p>
+<p><strong>Quantidade:</strong> 1 barra de 8 bornes.</p>
 <p><strong>Especificação:</strong> Régua de bornes com parafusos e corpo isolante, compatível com os fios utilizados.</p>
-<p><strong>Aplicação:</strong> Conexões de GND.</p>
+<p><strong>Aplicação:</strong> Saídas de alimentação dos LEDs pelos MOSFETs em quatro locais. Este sindal era identificado como X5. O antigo X2 dos servos foi dispensado. Os negativos dos servos serão ligados ao barramento GND sob a mesa, comum à ESP32.</p>
 </section>
 <section class="material"><h2>15. Sindal X3</h2>
 <p><strong>Quantidade:</strong> 1 barra de 5 bornes.</p>
@@ -101,79 +101,74 @@ footer,.voltar{font-family:Arial,sans-serif}footer{margin-top:30px}
 <section class="material"><h2>16. Sindal X4</h2>
 <p><strong>Quantidade:</strong> 1 barra de 5 bornes.</p>
 <p><strong>Especificação:</strong> Régua de bornes com parafusos e corpo isolante, compatível com os fios utilizados.</p>
-<p><strong>Aplicação:</strong> Cinco sinais dos sensores S10 a S14.</p>
+<p><strong>Aplicação:</strong> Entradas dos cinco sinais dos sensores S10 a S14.</p>
 </section>
-<section class="material"><h2>17. Sindal X5</h2>
-<p><strong>Quantidade:</strong> 1 barra de 8 bornes.</p>
-<p><strong>Especificação:</strong> Régua de bornes com parafusos e corpo isolante, compatível com os fios utilizados.</p>
-<p><strong>Aplicação:</strong> Utilizado para ligar e desligar a iluminação por LEDs em quatro locais.</p>
-</section>
-<section class="material"><h2>18. Conectores para servos</h2>
+<section class="material"><h2>17. Conectores para servos</h2>
 <p><strong>Quantidade:</strong> 5 conjuntos de conexão.</p>
 <p><strong>Especificação:</strong> Conector de 3 vias compatível com o cabo do SG90, passo 2,54 mm, com polaridade identificada.</p>
 <p><strong>Aplicação:</strong> Um por servo.</p>
 </section>
-<section class="material"><h2>19. Pinos para os MOSFETs</h2>
+<section class="material"><h2>18. Pinos para os MOSFETs</h2>
 <p><strong>Quantidade:</strong> 1 barra.</p>
 <p><strong>Especificação:</strong> Barra de pinos macho compatível com a furação e com os jumpers fêmea.</p>
 </section>
-<section class="material"><h2>20. Fios de alimentação</h2>
+<section class="material"><h2>19. Fios de alimentação</h2>
 <p><strong>Quantidade:</strong> Rolo com 100 metros de cada cor</p>
-<p><strong>Aplicação:</strong> Vermelho para +5 V e preto para GND. Serão utilizados também na instalação abaixo dos trilhos, sob a mesa, para minimizar a queda de tensão e o mau contato.</p>
+<p><strong>Aplicação:</strong> Vermelho para +5 V e preto para GND. Serão utilizados também na instalação abaixo dos trilhos, sob a mesa, para minimizar a queda de tensão e o mau contato. Os fios de GND dos MOSFETs são brancos malhados de preto e ligados à barra GND comum à ESP32.</p>
 </section>
-<section class="material"><h2>21. Jumpers macho-macho</h2>
+<section class="material"><h2>20. Jumpers macho-macho</h2>
 <p><strong>Quantidade:</strong> 1 kit com jumpers de 20 cm de comprimento.</p>
 <p><strong>Especificação:</strong> Passo 2,54 mm.</p>
 <p><strong>Aplicação:</strong> Interligações locais, resistores e sinais.</p>
   
 <p><strong>Especificação:</strong> Cobre flexível isolado, 1,5 mm², vermelho e preto.</p>
 </section>
-<section class="material"><h2>22. Jumpers macho-fêmea e fêmea-fêmea</h2>
+<section class="material"><h2>21. Jumpers macho-fêmea e fêmea-fêmea</h2>
 <p><strong>Quantidade:</strong> 1 kit de cada tipo, com jumpers de 20 cm de comprimento.</p>
 <p><strong>Especificação:</strong> Passo 2,54 mm.</p>
 <p><strong>Aplicação:</strong> Interligações locais, resistores e sinais.</p>
 </section>
-<section class="material"><h2>23. Fios de sinal e extensões</h2>
+<section class="material"><h2>22. Fios de sinal e extensões</h2>
 <p><strong>Quantidade:</strong> Rolo com 100 metros.</p>
 <p><strong>Especificação:</strong> Cobre flexível isolado, 0,75 mm² na cor verde.</p>
 <p><strong>Aplicação:</strong> Interligações entre sensores Hall e GA3.</p>
 </section>
-<section class="material"><h2>24. Base de MDF</h2>
+<section class="material"><h2>23. Base de MDF</h2>
 <p><strong>Quantidade:</strong> 1 placa.</p>
 <p><strong>Especificação:</strong> MDF de 6 mm, 38 × 45 cm.</p>
 </section>
-<section class="material"><h2>25. Suporte sob a mesa</h2>
+<section class="material"><h2>24. Suporte sob a mesa</h2>
 <p><strong>Quantidade:</strong> 1 conjunto.</p>
 <p><strong>Especificação:</strong> Suporte dimensionado para a base e para a retirada da GA3.</p>
 
 <p><strong>Conferência:</strong> Material, medidas e ferragens a levantar no conjunto instalado.</p>
 </section>
-<section class="material"><h2>26. Fita dupla face</h2>
+<section class="material"><h2>25. Fita dupla face</h2>
 <p><strong>Quantidade:</strong> 1 rolo pequeno.</p>
 <p><strong>Especificação:</strong> Fita para fixação das protoboards ao MDF.</p>
 </section>
-<section class="material"><h2>27. Parafusos, porcas e arruelas</h2>
+<section class="material"><h2>26. Parafusos, porcas e arruelas</h2>
 <p><strong>Quantidade:</strong> mínimo 100 unidades.</p>
 <p><strong>Especificação:</strong> Tamanho M3.</p>
 <p><strong>Aplicação:</strong> Fixação dos sindais, relé, barra de GND e suporte.</p>
 </section>
-<section class="material"><h2>28. Etiquetas de identificação</h2>
+<section class="material"><h2>27. Etiquetas de identificação</h2>
 <p><strong>Quantidade:</strong> 1 conjunto.</p>
 <p><strong>Especificação:</strong> Etiquetas adesivas para identificação dos módulos, sindais e condutores antes das instalações.</p>
 </section>
-<section class="material"><h2>29. Servos SG90</h2>
+<section class="material"><h2>28. Servos SG90</h2>
 <p><strong>Quantidade:</strong> 5 unidades.</p>
 <p><strong>Especificação:</strong> Microservo SG90 de 9 g, cabo de três vias, com braços e parafusos.</p>
 <p><strong>Aplicação:</strong> Desvios D5, D6, D8, D9 e D10.</p>
 </section>
-<section class="material"><h2>30. Sensores Hall</h2>
+<section class="material"><h2>29. Sensores Hall</h2>
 <p><strong>Quantidade:</strong> 5 unidades.</p>
 <p><strong>Especificação:</strong> A3144E, três terminais, com identificação de alimentação, GND e saída.</p>
-<p><strong>Aplicação:</strong> S10 a S14.</p>
+<p><strong>Aplicação:</strong> S10 a S14. Positivo e negativo ligados aos barramentos de +5 V e GND sob a mesa, comum à ESP32. Os sinais passam pelo X4, com pull-up de 4,7 kΩ para 3,3 V.</p>
 </section>
-<section class="material"><h2>31. Iluminação das construções</h2>
+<section class="material"><h2>30. Iluminação das construções</h2>
 <p><strong>Quantidade:</strong> 8 LEDs com resistores.</p>
-<p><strong>Especificação:</strong> LEDs ou conjuntos de iluminação compatíveis com a alimentação, com limitação de corrente adequada.</p>
+<p><strong>Especificação:</strong> LEDs ou conjuntos de iluminação compatíveis com a alimentação, com limitação de corrente adequada. Os LEDs de Natal serão reaproveitados individualmente, com aproximadamente 5 cm de fio em cada terminal, sem a placa original. Identificar a polaridade e testar com resistor em série, cujo valor definitivo ainda não foi estabelecido.</p>
 <p><strong>Utilização:</strong></p>
 <p>MOSFET 1: 3 para a casa.</p>
 <p>MOSFET 2: 3 para o armazém.</p>
@@ -184,5 +179,5 @@ footer,.voltar{font-family:Arial,sans-serif}footer{margin-top:30px}
 <p>Contar os jumpers por tipo, medir os fios por bitola e cor e conferir as identificações da fonte, do relé e do fusível. Para PIP e buzzer, usar as especificações acima e conferir a versão recebida.</p>
 <p>Registrar as ferragens por medida. Comprar reposições com as mesmas características elétricas e mecânicas dos componentes confirmados.</p>
 <p>Notebook, cabo USB de programação, multímetro, ferramentas e TTD-01 são equipamentos de apoio. Não compõem a quantidade de componentes permanentes da gaveta. Nobreak, DPS e a alimentação geral pertencem à infraestrutura da ferrovia.</p>
-<footer><a href="biblioteca.html">← Voltar</a></footer>
+<footer><a href="biblioteca.html"><strong>← Voltar</strong></a></footer>
 </main></body></html>
