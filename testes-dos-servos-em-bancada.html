@@ -31,9 +31,15 @@ pre { background:#fffdf8; padding:16px; overflow-x:auto;
   font:13px/1.5 Consolas,monospace; }
 .voltar,footer { font-family:Arial,sans-serif; }
 footer { margin-top:30px; }
+.video-bancada { float:left; width:50%; max-width:400px;
+  margin:0 26px 16px 0; }
+.video-bancada video { display:block; width:100%; height:auto; }
+.inicio-bancada { margin-top:0; }
+.lista-bancada { padding-left:0; list-style-position:inside; }
 @media(max-width:600px) {
   main { padding:24px 16px; } h1 { font-size:1.65rem; }
   .marca { gap:12px; font-size:14px; }
+  .video-bancada { float:none; width:100%; margin:0 0 20px; }
 }
 </style>
 </head>
@@ -59,9 +65,9 @@ responderam aos testes individuais e em pares, com as hastes livres.</p>
 por causa desta consolidação. O roteiro abaixo fica como referência.
 A aprovação em bancada não substitui o ajuste após a instalação no desvio.</p>
 <h2>Registro em vídeo</h2>
-<figure style="margin:16px 0">
+<figure class="video-bancada">
 <video controls playsinline preload="metadata"
-style="display:block;width:50%;max-width:400px;margin:auto">
+>
 <source src="videos/ttd-01-desvio.mp4" type="video/mp4">
 Seu navegador não reproduz este vídeo.
 <a href="videos/ttd-01-desvio.mp4">Abrir o vídeo do TTD-01</a>.
@@ -69,8 +75,8 @@ Seu navegador não reproduz este vídeo.
 
 </figure>
  
-<h2>1. Preparar a bancada</h2>
-<ol>
+<h2 class="inicio-bancada">1. Preparar a bancada</h2>
+<ol class="lista-bancada">
 <li>Separar o notebook com Arduino IDE, cabo USB, ESP32,
 protoboard, jumpers, fonte regulada de 5 V com capacidade
 para a corrente de partida do servo e os servos a testar.</li>
