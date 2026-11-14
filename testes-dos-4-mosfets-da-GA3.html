@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Testes dos 4 Mosfets da GA3 | Ferrovia EFMN 74</title>
+<style>
+:root { --bg: #f4f1ea; --paper: #fffdf8; --ink: #222;
+  --gold: #c89b2b; --line: #ded7c8; --max: 1000px; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif; line-height: 1.6; }
+.site-header { background: #151515; color: #fff;
+  border-bottom: 4px solid var(--gold); }
+.header-inner { max-width: 1100px; margin: 0 auto; padding: 8px 20px;
+  display: flex; align-items: center; justify-content: center; gap: 16px; }
+.header-logo { width: 72px; height: auto; display: block; }
+.header-texto { text-align: left; font-family: Arial, Helvetica, sans-serif; }
+.header-linha1 { margin: 0; font-size: 1.05rem; font-weight: 700; }
+.header-linha2 { margin: 2px 0 0; font-size: .88rem; color: #d8d8d8; }
+main { max-width: var(--max); margin: 0 auto; padding: 34px 20px 48px; }
+.voltar-indice { margin: 0 0 22px; font-family: Arial, Helvetica, sans-serif; }
+.voltar-indice a { color: #0056b3; text-decoration: none; font-weight: 400; }
+.voltar-indice a:hover { text-decoration: underline; }
+h1 { margin: 0 0 26px; line-height: 1.2; font-size: 2.2rem; }
+h2 { margin: 30px 0 12px; font-size: 1.35rem; }
+p { margin: 0 0 16px; }
+.table-scroll { overflow-x: auto; margin: 18px 0 24px; }
+table { width: 100%; border-collapse: collapse; background: var(--paper);
+  font: .95rem/1.5 Arial, sans-serif; }
+th, td { border: 1px solid var(--line); padding: 12px;
+  vertical-align: middle; text-align: left; }
+th { background: #e7e6e6; font-weight: 700; }
+pre { background: var(--paper); border: 1px solid var(--line);
+  border-radius: 6px; padding: 18px; overflow-x: auto; }
+pre code { font: .95rem/1.5 Consolas, "Courier New", monospace; }
+.voltar-final { margin-top: 36px; margin-bottom: 0; }
+@media (max-width: 700px) {
+  .header-inner { padding: 8px 14px; gap: 12px; }
+  .header-logo { width: 62px; }
+  .header-linha1 { font-size: .95rem; }
+  .header-linha2 { font-size: .8rem; }
+  main { padding: 26px 16px 40px; }
+  h1 { font-size: 1.75rem; }
+  th, td { padding: 9px; }
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" aria-label="Página inicial da EFMN 74">
+      <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74"
+        class="header-logo">
+    </a>
+    <div class="header-texto">
+      <p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p>
+      <p class="header-linha2">Construção, automação, memória e documentação</p>
+    </div>
+  </div>
+</header>
+<main>
+<p class="voltar-indice"><a href="biblioteca.html">← Voltar ao índice</a></p>
+<h1>Testes dos 4 Mosfets da GA3</h1>
+<h2>1 Mapa de comando e resultados</h2>
+
+<div class="table-scroll">
+<table>
+<thead>
+<tr><th>Módulo</th><th>PWM na ESP32</th><th>Saída desligada /
+ligada</th><th>Registro</th></tr>
+</thead>
+<tbody>
+<tr><td>MOSFET 1</td><td>D26 / GPIO26</td><td>0 V / 4,91 V</td><td>Aprovado em 12/11</td></tr>
+<tr><td>MOSFET 2</td><td>D27 / GPIO27</td><td>0 V / 4,8 V</td><td>Aprovado em 14/11</td></tr>
+<tr><td>MOSFET 3</td><td>D14 / GPIO14</td><td>0 V / 4,9 V</td><td>Aprovado em 14/11</td></tr>
+<tr><td>MOSFET 4</td><td>Pino a registrar</td><td>Valores não informados</td><td>Aprovado por
+confirmação em 14/11</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Nos testes dos módulos 1, 2 e 3, o comando alternou entre 3 segundos ligado e 3 segundos
+desligado. No MOSFET 3, a primeira leitura de 0 V foi corrigida ao selecionar a escala
+adequada do multímetro.</p>
+
+<h2>2 Ligações para o teste individual</h2>
+
+<div class="table-scroll">
+<table>
+<thead>
+<tr><th>Ponto do módulo</th><th>Destino</th></tr>
+</thead>
+<tbody>
+<tr><td>PWM</td><td>GPIO correspondente ao módulo, conforme o mapa acima</td></tr>
+<tr><td>GND de controle</td><td>Barra GND comum à ESP32 e à fonte</td></tr>
+<tr><td>VIN+</td><td>X0 positivo da fonte de 5 V</td></tr>
+<tr><td>VIN−</td><td>Negativo da fonte / barra GND</td></tr>
+<tr><td>OUT+ e OUT−</td><td>Resistor de 4,7 kΩ entre os dois bornes</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>O resistor não tem polaridade. Durante o teste, os LEDs ficam desconectados. A ESP32 recebe
+alimentação pelo USB, com seu VIN sem alimentação externa.</p>
+
+<h2>3 Procedimento passo a passo</h2>
+
+<p>1. Desligar a alimentação. Desligar a fonte de 5 V e desconectar o USB antes de instalar,
+retirar ou trocar fios e resistores.</p>
+
+<p>2. Conferir o comando. Conferir a ligação PWM ao GPIO do módulo em teste e a ligação do GND
+de controle à barra GND comum.</p>
+
+<p>3. Conferir a alimentação. Conferir VIN+ no X0 positivo e VIN− no negativo da fonte.
+Identificar os bornes pelas inscrições do módulo.</p>
+
+<p>4. Instalar a carga de teste. Colocar um resistor de 4,7 kΩ entre OUT+ e OUT−. Manter os
+LEDs desconectados. O mesmo resistor pode ser transferido para outro módulo com tudo
+desligado.</p>
+
+<p>5. Preparar o programa. Copiar o código da seção 4 na IDE Arduino. Ajustar PINO_MOSFET para
+o GPIO do módulo que será ensaiado. O programa aciona um módulo por vez.</p>
+
+<p>6. Carregar na ESP32. Manter a fonte de 5 V desligada. Conectar o USB, selecionar a placa e
+a porta correspondentes e clicar na seta Carregar. Nos testes, foi utilizada ESP32 Dev Module
+na COM3. Aguardar o término sem erros.</p>
+
+<p>7. Ligar a fonte e observar. Manter o USB conectado e o VIN da ESP32 sem alimentação
+externa. Ligar a fonte de 5 V. Observar o indicador do módulo alternando 3 segundos ligado e 3
+segundos desligado.</p>
+
+<p>8. Medir a saída. Selecionar tensão contínua no multímetro. Na escala manual, usar 20 V.
+Colocar a ponta preta em OUT− e a vermelha em OUT+, mantendo o resistor conectado. Evitar
+curto entre bornes com as pontas.</p>
+
+<p>9. Registrar o resultado. Conferir a alternância entre aproximadamente 0 V e a tensão da
+fonte, próxima de 5 V. Registrar o GPIO, os dois valores e o comportamento do indicador. Se
+houver divergência, conferir a escala do multímetro e a alimentação de entrada antes de
+concluir que há defeito.</p>
+
+<p>10. Encerrar o teste. Desligar a fonte e desconectar o USB antes de retirar o resistor ou
+alterar qualquer ligação.</p>
+
+<h2>4 Código fonte do teste individual</h2>
+
+<p>Exemplo configurado para o MOSFET 2, no GPIO27. Para testar o MOSFET 3, trocar apenas o
+valor de PINO_MOSFET de 27 para 14.</p>
+
+<pre><code>// Teste individual dos MOSFETs da GA3
+// MOSFET 1: GPIO26
+// MOSFET 2: GPIO27
+// MOSFET 3: GPIO14
+// MOSFET 4: registrar o GPIO antes de reutilizar
+
+const int PINO_MOSFET = 27;
+
+void setup() {
+  pinMode(PINO_MOSFET, OUTPUT);
+  digitalWrite(PINO_MOSFET, LOW);
+}
+
+void loop() {
+  digitalWrite(PINO_MOSFET, HIGH);
+  delay(3000);
+
+  digitalWrite(PINO_MOSFET, LOW);
+  delay(3000);
+}</code></pre>
+
+<h2>5 Como interpretar o número no código</h2>
+
+<p>O número atribuído à constante determina o GPIO acionado. Durante o teste do MOSFET 3, foi
+permitido manter o nome MOSFET_2 no programa anterior e trocar somente o número 27 por 14.
+Assim, a linha const int MOSFET_2 = 14; acionava o GPIO14, fisicamente conectado ao MOSFET
+3.</p>
+
+<p>Para evitar confusão entre nome e módulo, o código deste relatório utiliza PINO_MOSFET. O
+mapa permanece MOSFET 2 no GPIO27 e MOSFET 3 no GPIO14.</p>
+
+<h2>6 Alcance da aprovação</h2>
+
+<p>Os resultados com resistor confirmam a comutação básica dos módulos ensaiados nessa
+condição. A validação com os LEDs e a carga definitiva será uma etapa própria. Para completar
+o registro do MOSFET 4, acrescentar posteriormente o GPIO utilizado e as tensões medidas.</p>
+<p class="voltar-indice voltar-final">
+  <a href="biblioteca.html">← Voltar ao índice</a>
+</p>
+</main>
+</body>
+</html>
