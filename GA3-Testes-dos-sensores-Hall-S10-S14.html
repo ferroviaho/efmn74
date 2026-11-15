@@ -15,7 +15,7 @@ body { margin:0; color:var(--texto); background:#f3f5f7; font:17px/1.65 Arial,He
 .header-linha1 { margin:0; font-size:22px; font-weight:bold; }
 .header-linha2 { margin:2px 0 0; font-size:14px; color:#ddd; }
 .pagina { max-width:1050px; margin:20px auto; background:white; padding:30px 40px 40px; border-radius:10px; }
-h1 { color:var(--azul); font-size:30px; line-height:1.2; text-align:center; }
+h1 { color:var(--azul); font-size:30px; line-height:1.2; text-align:left; }
 h2 { color:var(--azul); font-size:21px; margin-top:25px; padding-bottom:5px; border-bottom:1px solid #d6e2eb; }
 a { color:var(--azul); }
 .voltar { display:inline-block; font-weight:bold; text-decoration:none; margin:10px 0; }
@@ -36,9 +36,9 @@ footer { border-top:1px solid #d6e2eb; margin-top:28px; }
  </div>
 </header>
 <main class="pagina">
-<a class="voltar" href="manual-indice.html">&larr; Voltar ao índice</a>
+<a class="voltar" href="biblioteca.html">&larr; Voltar ao índice</a>
 <h1>GA3 – Testes dos sensores Hall S10–S14</h1>
-<p><strong>Biblioteca → Programas da ESP32.</strong> Programa de referência para testar individualmente os cinco sensores Hall A3144E da GA3. Esta página apresenta o procedimento previsto e o código de bancada. Os testes e os resultados de S10 a S14 ainda não foram registrados como concluídos.</p>
+<p>Programa de referência para testar individualmente os cinco sensores Hall A3144E da GA3. Esta página apresenta o procedimento previsto e o código de bancada. Os testes e os resultados de S10 a S14 ainda não foram registrados como concluídos.</p>
 <h2>Identificação dos sensores</h2>
 <table><thead><tr><th>Sensor</th><th>Área</th><th>Entrada durante o teste</th><th>Resultado</th></tr></thead><tbody>
 <tr><td>S10</td><td>GA3</td><td>GPIO32 (temporário)</td><td>Pendente</td></tr>
@@ -110,7 +110,7 @@ void loop() {
 </tbody></table>
 <h2>Observações</h2>
 <p>Este código foi preparado como referência para os ensaios da GA3. Após a realização dos testes, completar as medições e confirmar os GPIOs definitivos. A documentação descritiva de montagem dos sensores permanece em Técnicas de Construção até a revisão com resultados reais.</p>
-<footer><a class="voltar" href="manual-indice.html">&larr; Voltar ao índice</a></footer>
+<footer><a class="voltar" href="biblioteca.html">&larr; Voltar ao índice</a></footer>
 </main>
 </body>
 </html>
