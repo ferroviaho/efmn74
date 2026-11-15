@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GA3 – Testes dos 4 módulos Mosfets | EFMN 74</title>
+<style>
+:root { --azul:#153e66; --claro:#eaf2f9; --texto:#263543; }
+* { box-sizing:border-box; }
+body { margin:0; color:var(--texto); background:#f3f5f7; font:17px/1.65 Arial,Helvetica,sans-serif; }
+.site-header { background:#151515; border-bottom:4px solid #c89b2b; color:#fff; }
+.header-inner { max-width:1050px; margin:auto; padding:14px 20px; display:flex; align-items:center; justify-content:center; gap:18px; }
+.header-logo { display:block; width:90px; height:auto; }
+.header-texto { text-align:center; font-family:Arial,Helvetica,sans-serif; }
+.header-linha1 { margin:0; font-size:22px; font-weight:bold; }
+.header-linha2 { margin:2px 0 0; font-size:14px; color:#ddd; }
+.pagina { max-width:1050px; margin:20px auto; background:#fff; padding:30px 40px 40px; border-radius:10px; }
+h1 { color:var(--azul); font-size:30px; line-height:1.2; text-align:center; }
+h2 { color:var(--azul); font-size:21px; margin-top:25px; padding-bottom:5px; border-bottom:1px solid #d6e2eb; }
+a { color:var(--azul); }
+.voltar { display:inline-block; font-weight:bold; text-decoration:none; margin:10px 0; }
+table { width:100%; border-collapse:collapse; }
+th,td { border:1px solid #d7e1ea; padding:8px 12px; text-align:left; }
+th { background:var(--claro); color:var(--azul); }
+pre { white-space:pre; overflow-x:auto; background:#eef2f6; border-left:4px solid var(--azul); padding:18px; font:13px/1.5 Consolas,'Courier New',monospace; }
+.aviso { background:#fff5db; border-left:4px solid #d49b15; padding:12px 17px; }
+footer { border-top:1px solid #d6e2eb; margin-top:28px; }
+@media(max-width:640px) { .pagina { margin:0; padding:16px; } .header-inner { padding:12px; gap:12px; } .header-logo { width:65px; } .header-linha1 { font-size:17px; } .header-linha2 { font-size:12px; } h1 {font-size:25px;} }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" title="Voltar à página inicial"><img class="header-logo" src="logo-efmn74.png" alt="Logomarca da Ferrovia EFMN 74"></a>
+    <div class="header-texto"><p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p><p class="header-linha2">Construção, automação, memória e documentação</p></div>
+  </div>
+</header>
+<main class="pagina">
+<a class="voltar" href="manual-indice.html">&larr; Voltar ao índice</a>
+<h1>GA3 – Testes dos 4 módulos Mosfets</h1>
+<p><strong>Biblioteca → Programas da ESP32.</strong> Código-fonte de referência dos testes realizados nos quatro módulos Mosfet da GA3. O relatório de medições e procedimentos pode ser consultado em <strong>Biblioteca → Testes realizados</strong>, na página <a href="teste-dos-4-mosfets-da-GA3.html">Testes dos 4 Mosfets da GA3</a>.</p>
+<h2>Finalidade</h2>
+<p>Comandar um módulo Mosfet de cada vez pela ESP32, alternando a saída de controle entre LOW e HIGH, e conferir a resposta elétrica com multímetro e com a carga conectada.</p>
+<h2>Ligações de referência</h2>
+<table><thead><tr><th>Módulo</th><th>GPIO de controle</th><th>Identificação</th><th>Resultado registrado</th></tr></thead><tbody>
+<tr><td>Mosfet 1</td><td>GPIO26</td><td>Fio amarelo</td><td>Aprovado</td></tr>
+<tr><td>Mosfet 2</td><td>GPIO14</td><td>Ensaio com GPIO14</td><td>Aprovado</td></tr>
+<tr><td>Mosfet 3</td><td>Confirmar ligação definitiva</td><td>Testado com remanejamento de GPIO</td><td>Aprovado</td></tr>
+<tr><td>Mosfet 4</td><td>Confirmar ligação definitiva</td><td>Ensaio concluído</td><td>Aprovado</td></tr>
+</tbody></table>
+<p>O GND dos módulos deve compartilhar a barra GND comum da GA3 e o GND da ESP32. O Mosfet 1 tem Vin+ conectado a X0+ e GND à barra GND. Não presumir os GPIOs definitivos dos Mosfets 3 e 4 a partir dos testes provisórios.</p>
+<h2>Procedimento de teste</h2>
+<ol>
+<li>Desligar a alimentação e conferir a identificação dos terminais de entrada, saída e controle de cada módulo.</li>
+<li>Conectar o GND da ESP32 ao GND comum da GA3. Conferir também a ligação de terra do módulo.</li>
+<li>Conectar o fio PWM de controle ao GPIO escolhido para o ensaio.</li>
+<li>Selecionar a placa e a porta corretas na Arduino IDE. Enviar o programa abaixo.</li>
+<li>Medir a resposta elétrica nos pontos adequados do módulo. Confirmar a alternância entre aproximadamente 0 V e 4,9 V observada nos ensaios de bancada.</li>
+<li>Repetir o teste separadamente para os quatro módulos. Antes de trocar ligações, desligar a alimentação.</li>
+</ol>
+<div class="aviso"><strong>Atenção:</strong> as medições devem ser realizadas com referência de GND correta. Não confundir a entrada de controle com a saída destinada à carga. A forma de ligação da carga depende do modelo físico do módulo Mosfet.</div>
+<h2>Código-fonte completo</h2>
+<p>Alterar somente a constante <code>PINO_MOSFET</code> para o GPIO efetivamente utilizado. Exemplo: Mosfet 1 = 26. Mosfet 2 = 14.</p>
+<pre><code>// EFMN 74 - GA3 - Teste individual de modulo Mosfet
+// Testar um modulo de cada vez.
+// Mosfet 1: GPIO26. Mosfet 2: GPIO14 no ensaio.
+
+const int PINO_MOSFET = 14; // Ajustar ao modulo em teste
+const unsigned long INTERVALO = 2000;
+unsigned long ultimaTroca = 0;
+bool ligado = false;
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(PINO_MOSFET, OUTPUT);
+  digitalWrite(PINO_MOSFET, LOW);
+  Serial.println("GA3 - Teste individual de Mosfet");
+  Serial.println("Alternancia LOW / HIGH a cada 2 segundos");
+}
+
+void loop() {
+  if (millis() - ultimaTroca >= INTERVALO) {
+    ultimaTroca = millis();
+    ligado = !ligado;
+    digitalWrite(PINO_MOSFET, ligado ? HIGH : LOW);
+    Serial.println(ligado ? "HIGH - comando ativo" :
+                            "LOW - comando inativo");
+  }
+}</code></pre>
+<h2>Registro dos resultados</h2>
+<table><thead><tr><th>Módulo</th><th>Leitura registrada</th><th>Resultado</th></tr></thead><tbody>
+<tr><td>Mosfet 1</td><td>Alternância de aproximadamente 0 V e 4,91 V</td><td>Aprovado</td></tr>
+<tr><td>Mosfet 2</td><td>Alternância de aproximadamente 0 V e 4,9 V, após correção da escala do multímetro</td><td>Aprovado</td></tr>
+<tr><td>Mosfet 3</td><td>Funcionamento confirmado após testes e remanejamento de GPIO</td><td>Aprovado</td></tr>
+<tr><td>Mosfet 4</td><td>Funcionamento confirmado no encerramento dos ensaios</td><td>Aprovado</td></tr>
+</tbody></table>
+<p><strong>Data de conclusão:</strong> 14 de novembro de 2026. Todos os quatro módulos foram considerados aprovados. A ligação definitiva dos GPIOs de controle deve ser registrada após a instalação final.</p>
+<footer><a class="voltar" href="manual-indice.html">&larr; Voltar ao índice</a></footer>
+</main>
+</body>
+</html>
