@@ -5,34 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Como instalar e interligar um sensor Hall — EFMN 74</title>
   <style>
-    :root { --azul:#153e66; --claro:#eaf2f9; --texto:#263543; }
+    :root { --azul:#153e66; --claro:#eaf2f9; --texto:#263543; --dark:#151515; --gold:#c89b2b; }
     * { box-sizing:border-box; }
     body { margin:0; color:var(--texto); background:#f3f5f7; font:17px/1.65 Arial,Helvetica,sans-serif; }
     .pagina { max-width:1050px; margin:20px auto; background:white; padding:30px 40px 40px; border-radius:10px; }
-    header { display:flex; flex-direction:row; align-items:center; justify-content:flex-start; gap:20px; text-align:left; background:var(--claro); border:1px solid #d6e2eb; border-bottom:4px solid var(--azul); padding:16px 20px; border-radius:8px 8px 0 0; }
-    header img { display:block; width:115px; height:auto; margin:0; flex-shrink:0; }
-    header strong { display:block; color:var(--azul); font-size:22px; line-height:1.2; text-align:left; }
-    header span { display:block; font-size:14px; text-align:left; margin-top:4px; }
+    /* Cabeçalho original da página Como endurecer isopor */
+    .site-header { background:var(--dark); color:#fff; border-bottom:4px solid var(--gold); border-radius:0; }
+    .header-inner { max-width:1000px; margin:0 auto; padding:8px 20px; display:flex; align-items:center; justify-content:center; gap:16px; }
+    .header-logo { width:72px; height:auto; display:block; margin:0; flex:0 0 auto; }
+    .header-texto { text-align:left; font-family:Arial,Helvetica,sans-serif; }
+    .header-linha1 { margin:0; font-size:0.95rem; font-weight:600; color:#fff; }
+    .header-linha2 { margin:2px 0 0; font-size:0.9rem; color:#d8d8d8; }
     h1 { color:var(--azul); font-size:30px; line-height:1.2; }
     h2 { color:var(--azul); font-size:21px; margin-top:25px; padding-bottom:5px; border-bottom:1px solid #d6e2eb; }
     .voltar { display:inline-block; font-weight:bold; color:var(--azul); margin:15px 0; text-decoration:none; }
-    figure { margin:20px auto; text-align:center; max-width:850px; }
-    figure img { display:block; width:50%; max-width:100%; height:auto; margin:0 auto; border:1px solid #d3dce5; border-radius:6px; }
-    figcaption { font-size:14px; margin-top:7px; color:#555; }
+    figure { width:50%; max-width:425px; margin:20px auto; text-align:center; }
+    figure img { display:block; width:100%; height:auto; margin:0 auto; border:1px solid #d3dce5; border-radius:6px; }
+    figcaption { display:block; width:100%; font-size:14px; line-height:1.4; margin:7px 0 0; color:#555; text-align:center; overflow-wrap:break-word; }
     .aviso { background:#fff5db; border-left:4px solid #d49b15; padding:12px 17px; }
     table { width:100%; border-collapse:collapse; }
     th,td { border:1px solid #d7e1ea; padding:8px 12px; text-align:left; }
     th { background:var(--claro); color:var(--azul); }
     footer { border-top:1px solid #d6e2eb; margin-top:28px; }
-    @media(max-width:640px) { .pagina{margin:0;padding:16px} header{gap:12px;padding:12px} header img{width:82px} header strong{font-size:18px} header span{font-size:12px} h1{font-size:26px} }
+    @media(max-width:700px) {
+      .pagina { margin:0; padding:16px; }
+      .header-inner { padding:8px 14px; gap:12px; }
+      .header-logo { width:62px; }
+      .header-linha1 { font-size:0.9rem; }
+      .header-linha2 { font-size:0.82rem; }
+      figure { width:70%; }
+      h1 { font-size:26px; }
+    }
   </style>
 </head>
 <body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" title="Voltar à página inicial">
+      <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo">
+    </a>
+    <div class="header-texto">
+      <p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p>
+      <p class="header-linha2">Construção, automação, memória e documentação</p>
+    </div>
+  </div>
+</header>
 <main class="pagina">
-  <header>
-    <a href="index.html" title="Voltar à página inicial"><img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74"></a>
-    <div><strong>Ferrovia EFMN 74 - Escala HO</strong><span>Construção, automação, memória e documentação</span></div>
-  </header>
   <a class="voltar" href="manual-indice.html">← Voltar ao índice</a>
   <h1>Como instalar e interligar um sensor Hall</h1>
   <p>A automação da Ferrovia EFMN 74 utiliza sensores Hall para detectar a passagem das locomotivas em pontos estratégicos da maquete. O sensor é instalado junto à via e identifica a presença do ímã fixado na parte inferior da locomotiva. Além da instalação física, é necessário fazer a interligação elétrica correta entre o sensor e a gaveta de controle responsável pela leitura do sinal.</p>
