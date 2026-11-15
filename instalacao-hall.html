@@ -9,10 +9,10 @@
     * { box-sizing:border-box; }
     body { margin:0; color:var(--texto); background:#f3f5f7; font:17px/1.65 Arial,Helvetica,sans-serif; }
     .pagina { max-width:1050px; margin:20px auto; background:white; padding:30px 40px 40px; border-radius:10px; }
-    header { display:flex; align-items:center; gap:18px; border-bottom:4px solid var(--azul); padding-bottom:16px; }
-    header img { width:115px; height:auto; }
-    header strong { display:block; color:var(--azul); font-size:22px; }
-    header span { display:block; font-size:14px; }
+    header { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; text-align:center; border-bottom:4px solid var(--azul); padding-bottom:16px; }
+    header img { display:block; width:115px; height:auto; margin:0 auto; }
+    header strong { display:block; color:var(--azul); font-size:22px; text-align:center; }
+    header span { display:block; font-size:14px; text-align:center; }
     h1 { color:var(--azul); font-size:30px; line-height:1.2; }
     h2 { color:var(--azul); font-size:21px; margin-top:25px; padding-bottom:5px; border-bottom:1px solid #d6e2eb; }
     .voltar { display:inline-block; font-weight:bold; color:var(--azul); margin:15px 0; text-decoration:none; }
@@ -24,7 +24,7 @@
     th,td { border:1px solid #d7e1ea; padding:8px 12px; text-align:left; }
     th { background:var(--claro); color:var(--azul); }
     footer { border-top:1px solid #d6e2eb; margin-top:28px; }
-    @media(max-width:640px) { .pagina{margin:0;padding:16px} header{gap:10px} header img{width:82px} h1{font-size:26px} }
+    @media(max-width:640px) { .pagina{margin:0;padding:16px} header{gap:8px} header img{width:82px} h1{font-size:26px} }
   </style>
 </head>
 <body>
@@ -36,9 +36,15 @@
   <a class="voltar" href="manual-indice.html">← Voltar ao índice</a>
   <h1>Como instalar e interligar um sensor Hall</h1>
   <p>A automação da Ferrovia EFMN 74 utiliza sensores Hall para detectar a passagem das locomotivas em pontos estratégicos da maquete. O sensor é instalado junto à via e identifica a presença do ímã fixado na parte inferior da locomotiva. Além da instalação física, é necessário fazer a interligação elétrica correta entre o sensor e a gaveta de controle responsável pela leitura do sinal.</p>
-  <figure>
-    <img src="FOTO_ORIGINAL_DA_PAGINA_INSTALACAO_HALL" alt="Sensor Hall instalado junto aos trilhos">
-    <figcaption>Instalação do sensor Hall junto aos trilhos. Não cortar os trilhos. Passar os fios entre os dormentes para baixo da mesa.</figcaption>
+
+<figure>
+<img src="Hall.png" alt="Sensor Hall instalado junto aos trilhos">
+</figure>
+
+    Hall.png
+    
+
+<figcaption>Instalação do sensor Hall junto aos trilhos. Não cortar os trilhos. Passar os fios entre os dormentes para baixo da mesa.</figcaption>
   </figure>
   <h2>Finalidade do sensor Hall</h2>
   <p>O sensor Hall informa ao sistema de controle a presença da locomotiva nos pontos de detecção. Essa informação é utilizada nas rotinas de automação e nos procedimentos de segurança da ferrovia.</p>
@@ -55,7 +61,9 @@
   <h2>Interligação com qualquer gaveta de controle</h2>
   <p>O sinal OUT chega ao borne reservado ao sensor e, desse borne, segue para a entrada GPIO da ESP32. O resistor de 4,7 kΩ deve ser instalado entre o sinal e o terminal 3V3 da ESP32. O resistor é do tipo pull-up e não fica em série com o fio verde.</p>
   <figure>
-    <img src="ligacao-sensor-hall-esp32.png" alt="Esquema de ligação do sensor Hall A3144E com ESP32, resistor pull-up, bornes e barramento de alimentação">
+
+    <img src="conexoes_hall.png" alt="Esquema de ligação do sensor Hall A3144E com ESP32, resistor pull-up, bornes e barramento de alimentação">
+
     <figcaption>Esquema elétrico. O borne ilustrado como X4 é apenas um exemplo. Nas demais gavetas, utilizar o borne reservado ao sensor correspondente.</figcaption>
   </figure>
   <div class="aviso"><strong>Atenção.</strong> O A3144 original deve ser alimentado com aproximadamente 5 V, conforme sua faixa de operação. O resistor pull-up deve ligar o sinal ao <strong>3V3</strong>, nunca ao +5 V, para manter a entrada da ESP32 dentro da faixa segura. Desligar a alimentação antes das conexões.</div>
