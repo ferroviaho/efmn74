@@ -9,10 +9,10 @@
     * { box-sizing:border-box; }
     body { margin:0; color:var(--texto); background:#f3f5f7; font:17px/1.65 Arial,Helvetica,sans-serif; }
     .pagina { max-width:1050px; margin:20px auto; background:white; padding:30px 40px 40px; border-radius:10px; }
-    header { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; text-align:center; border-bottom:4px solid var(--azul); padding-bottom:16px; }
-    header img { display:block; width:115px; height:auto; margin:0 auto; }
-    header strong { display:block; color:var(--azul); font-size:22px; text-align:center; }
-    header span { display:block; font-size:14px; text-align:center; }
+    header { display:flex; flex-direction:row; align-items:center; justify-content:flex-start; gap:20px; text-align:left; background:var(--claro); border:1px solid #d6e2eb; border-bottom:4px solid var(--azul); padding:16px 20px; border-radius:8px 8px 0 0; }
+    header img { display:block; width:115px; height:auto; margin:0; flex-shrink:0; }
+    header strong { display:block; color:var(--azul); font-size:22px; line-height:1.2; text-align:left; }
+    header span { display:block; font-size:14px; text-align:left; margin-top:4px; }
     h1 { color:var(--azul); font-size:30px; line-height:1.2; }
     h2 { color:var(--azul); font-size:21px; margin-top:25px; padding-bottom:5px; border-bottom:1px solid #d6e2eb; }
     .voltar { display:inline-block; font-weight:bold; color:var(--azul); margin:15px 0; text-decoration:none; }
@@ -24,7 +24,7 @@
     th,td { border:1px solid #d7e1ea; padding:8px 12px; text-align:left; }
     th { background:var(--claro); color:var(--azul); }
     footer { border-top:1px solid #d6e2eb; margin-top:28px; }
-    @media(max-width:640px) { .pagina{margin:0;padding:16px} header{gap:8px} header img{width:82px} h1{font-size:26px} }
+    @media(max-width:640px) { .pagina{margin:0;padding:16px} header{gap:12px;padding:12px} header img{width:82px} header strong{font-size:18px} header span{font-size:12px} h1{font-size:26px} }
   </style>
 </head>
 <body>
