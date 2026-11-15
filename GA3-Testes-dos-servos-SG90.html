@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GA3 – Testes dos servos SG90 | EFMN 74</title>
+<style>
+:root { --azul:#153e66; --claro:#eaf2f9; --texto:#263543; }
+* { box-sizing:border-box; }
+body { margin:0; color:var(--texto); background:#f3f5f7; font:17px/1.65 Arial,Helvetica,sans-serif; }
+.site-header { background:#151515; border-bottom:4px solid #c89b2b; color:#fff; }
+.header-inner { max-width:1050px; margin:auto; padding:14px 20px; display:flex; align-items:center; justify-content:center; gap:18px; }
+.header-logo { display:block; width:90px; height:auto; }
+.header-texto { text-align:center; font-family:Arial,Helvetica,sans-serif; }
+.header-linha1 { margin:0; font-size:22px; font-weight:bold; }
+.header-linha2 { margin:2px 0 0; font-size:14px; color:#ddd; }
+.pagina { max-width:1050px; margin:20px auto; background:white; padding:30px 40px 40px; border-radius:10px; }
+h1 { color:var(--azul); font-size:30px; line-height:1.2; text-align:center; }
+h2 { color:var(--azul); font-size:21px; margin-top:25px; padding-bottom:5px; border-bottom:1px solid #d6e2eb; }
+a { color:var(--azul); }
+.voltar { display:inline-block; font-weight:bold; text-decoration:none; margin:10px 0; }
+table { width:100%; border-collapse:collapse; }
+th,td { border:1px solid #d7e1ea; padding:8px 12px; text-align:left; }
+th { background:var(--claro); color:var(--azul); }
+pre { white-space:pre; overflow-x:auto; background:#eef2f6; border-left:4px solid var(--azul); padding:18px; font:13px/1.5 Consolas,'Courier New',monospace; }
+.aviso { background:#fff5db; border-left:4px solid #d49b15; padding:12px 17px; }
+footer { border-top:1px solid #d6e2eb; margin-top:28px; }
+@media(max-width:640px) { .pagina { margin:0; padding:16px; } .header-inner { padding:12px; gap:12px; } .header-logo { width:65px; } .header-linha1 { font-size:17px; } .header-linha2 { font-size:12px; } h1 {font-size:25px;} }
+</style>
+</head>
+<body>
+<header class="site-header">
+ <div class="header-inner">
+  <a href="index.html" title="Voltar à página inicial"><img class="header-logo" src="logo-efmn74.png" alt="Logomarca da Ferrovia EFMN 74"></a>
+  <div class="header-texto"><p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p><p class="header-linha2">Construção, automação, memória e documentação</p></div>
+ </div>
+</header>
+<main class="pagina">
+<a class="voltar" href="manual-indice.html">&larr; Voltar ao índice</a>
+<h1>GA3 – Testes dos servos SG90</h1>
+<p><strong>Biblioteca → Programas da ESP32.</strong> Código-fonte de referência para reproduzir os testes dos cinco servos SG90 da GA3. O programa abaixo foi reorganizado a partir dos procedimentos registrados, não sendo uma cópia verificada do arquivo original usado nos testes.</p>
+<h2>Identificação dos servos e GPIOs</h2>
+<table><thead><tr><th>Desvio</th><th>GPIO da ESP32</th><th>Cor do sinal</th></tr></thead><tbody>
+<tr><td>D5</td><td>13</td><td>Laranja</td></tr>
+<tr><td>D6</td><td>18</td><td>Azul</td></tr>
+<tr><td>D8</td><td>19</td><td>Amarelo</td></tr>
+<tr><td>D9</td><td>21</td><td>Branco</td></tr>
+<tr><td>D10</td><td>22</td><td>Marrom</td></tr>
+</tbody></table>
+<h2>Preparação</h2>
+<ol><li>Instalar a biblioteca <strong>ESP32Servo</strong> no Gerenciador de Bibliotecas da Arduino IDE.</li><li>Conferir cada ligação do sinal no GPIO indicado. O fio vermelho do servo vai ao +5 V protegido pelo relé e o GND do servo vai à barra GND comum.</li><li>Alimentar os servos por fonte externa de 5 V adequada e unir o GND dessa fonte ao GND da ESP32. Não alimentar os cinco servos diretamente pelo pino 5 V ou pela USB da placa.</li><li>Manter as hastes livres de cargas mecânicas. Selecionar a placa e a porta na IDE, carregar o código e abrir o Monitor Serial em <strong>115200 baud</strong>.</li></ol>
+<div class="aviso"><strong>Atenção:</strong> os ângulos de 60°, 90° e 120° são valores conservadores de demonstração. Ajustar os limites de cada desvio após observar a mecânica, sem forçar a haste contra batentes. O código não substitui as proteções operacionais definitivas da GA3.</div>
+<h2>Comandos de teste</h2>
+<table><thead><tr><th>Tecla</th><th>Operação</th></tr></thead><tbody><tr><td>T</td><td>Testa D5, D6, D8, D9 e D10, um por vez.</td></tr><tr><td>A</td><td>Executa dez movimentos aleatórios, retornando ao centro após cada movimento.</td></tr><tr><td>P</td><td>Comanda os pares D5/D6 e D8/D9. D10 é testado pelo comando T.</td></tr><tr><td>R</td><td>Retorna os cinco servos à posição central.</td></tr></tbody></table>
+<h2>Código-fonte completo</h2>
+<pre><code>#include &lt;ESP32Servo.h&gt;
+
+// EFMN 74 - GA3 - Testes dos servos SG90
+// Comandos no Monitor Serial: T, A, P e R
+// T = cada servo, um de cada vez
+// A = dez movimentos aleatorios
+// P = movimentos em pares
+// R = retorna os cinco servos a 90 graus
+
+const int QUANTIDADE = 5;
+const char* nomes[QUANTIDADE] = {&quot;D5&quot;, &quot;D6&quot;, &quot;D8&quot;, &quot;D9&quot;, &quot;D10&quot;};
+const int pinos[QUANTIDADE] = {13, 18, 19, 21, 22};
+Servo servos[QUANTIDADE];
+
+const int CENTRO = 90;
+const int POSICAO_A = 60;
+const int POSICAO_B = 120;
+const unsigned long PAUSA = 600;
+
+void mover(int i, int angulo) {
+  Serial.print(nomes[i]);
+  Serial.print(&quot; -&gt; &quot;);
+  Serial.println(angulo);
+  servos[i].write(angulo);
+  delay(PAUSA);
+}
+
+void centralizar() {
+  for (int i = 0; i &lt; QUANTIDADE; i++) {
+    mover(i, CENTRO);
+  }
+}
+
+void testeIndividual() {
+  Serial.println(&quot;TESTE INDIVIDUAL&quot;);
+  for (int i = 0; i &lt; QUANTIDADE; i++) {
+    mover(i, POSICAO_A);
+    mover(i, POSICAO_B);
+    mover(i, CENTRO);
+  }
+}
+
+void testeAleatorio() {
+  Serial.println(&quot;DEZ MOVIMENTOS ALEATORIOS&quot;);
+  for (int n = 0; n &lt; 10; n++) {
+    int i = random(QUANTIDADE);
+    int angulo = random(2) == 0 ? POSICAO_A : POSICAO_B;
+    mover(i, angulo);
+    mover(i, CENTRO);
+  }
+}
+
+void testePares() {
+  Serial.println(&quot;TESTE EM PARES&quot;);
+  // Dois servos sao comandados sem pausa entre os comandos.
+  // Evitar alimentar todos os servos pela USB da ESP32.
+  for (int i = 0; i + 1 &lt; QUANTIDADE; i += 2) {
+    servos[i].write(POSICAO_A);
+    servos[i + 1].write(POSICAO_B);
+    Serial.print(nomes[i]);
+    Serial.print(&quot; + &quot;);
+    Serial.println(nomes[i + 1]);
+    delay(PAUSA);
+    servos[i].write(CENTRO);
+    servos[i + 1].write(CENTRO);
+    delay(PAUSA);
+  }
+  // D10 permanece fora dos pares e e testado individualmente.
+}
+
+void setup() {
+  Serial.begin(115200);
+  delay(500);
+  // ESP32Servo: instalar a biblioteca pelo Gerenciador da IDE.
+  for (int i = 0; i &lt; QUANTIDADE; i++) {
+    servos[i].setPeriodHertz(50);
+    servos[i].attach(pinos[i], 500, 2400);
+  }
+  randomSeed(micros());
+  centralizar();
+  Serial.println(&quot;Digite T, A, P ou R no Monitor Serial.&quot;);
+}
+
+void loop() {
+  if (Serial.available()) {
+    char comando = toupper(Serial.read());
+    switch (comando) {
+      case &#x27;T&#x27;: testeIndividual(); break;
+      case &#x27;A&#x27;: testeAleatorio(); break;
+      case &#x27;P&#x27;: testePares(); break;
+      case &#x27;R&#x27;: centralizar(); break;
+      case &#x27;\n&#x27;: case &#x27;\r&#x27;: break;
+      default: Serial.println(&quot;Comando invalido. Use T, A, P ou R.&quot;);
+    }
+  }
+}
+</code></pre>
+<h2>Registro histórico e observações</h2>
+<p>Em 27 de outubro de 2026, os cinco servos da GA3 responderam aos testes individuais, à rotina aleatória e ao teste de acionamento em pares. Uma falha de conexão no D5 foi identificada durante os testes, com aviso de três bipes. Este programa de demonstração não implementa o buzzer nem a detecção elétrica dessa falha.</p>
+<p>Os valores dos GPIOs apresentados refletem o mapeamento registrado da GA3. Antes de integrar esta rotina ao software definitivo, conferir eventuais alterações de pinagem e as posições mecânicas reais dos desvios.</p>
+<footer><a class="voltar" href="manual-indice.html">&larr; Voltar ao índice</a></footer>
+</main>
+</body>
+</html>
