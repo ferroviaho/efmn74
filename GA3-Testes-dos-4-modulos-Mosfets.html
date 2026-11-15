@@ -15,7 +15,7 @@ body { margin:0; color:var(--texto); background:#f3f5f7; font:17px/1.65 Arial,He
 .header-linha1 { margin:0; font-size:22px; font-weight:bold; }
 .header-linha2 { margin:2px 0 0; font-size:14px; color:#ddd; }
 .pagina { max-width:1050px; margin:20px auto; background:#fff; padding:30px 40px 40px; border-radius:10px; }
-h1 { color:var(--azul); font-size:30px; line-height:1.2; text-align:center; }
+h1 { color:var(--azul); font-size:30px; line-height:1.2; text-align:left; }
 h2 { color:var(--azul); font-size:21px; margin-top:25px; padding-bottom:5px; border-bottom:1px solid #d6e2eb; }
 a { color:var(--azul); }
 .voltar { display:inline-block; font-weight:bold; text-decoration:none; margin:10px 0; }
@@ -31,14 +31,14 @@ footer { border-top:1px solid #d6e2eb; margin-top:28px; }
 <body>
 <header class="site-header">
   <div class="header-inner">
-    <a href="index.html" title="Voltar à página inicial"><img class="header-logo" src="logo-efmn74.png" alt="Logomarca da Ferrovia EFMN 74"></a>
+    <a href="index.html" title="Voltar à página inicial"><img class="header-logo" src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74"></a>
     <div class="header-texto"><p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p><p class="header-linha2">Construção, automação, memória e documentação</p></div>
   </div>
 </header>
 <main class="pagina">
-<a class="voltar" href="manual-indice.html">&larr; Voltar ao índice</a>
+<a class="voltar" href="biblioteca.html">&larr; Voltar ao índice</a>
 <h1>GA3 – Testes dos 4 módulos Mosfets</h1>
-<p><strong>Biblioteca → Programas da ESP32.</strong> Código-fonte de referência dos testes realizados nos quatro módulos Mosfet da GA3. O relatório de medições e procedimentos pode ser consultado em <strong>Biblioteca → Testes realizados</strong>, na página <a href="teste-dos-4-mosfets-da-GA3.html">Testes dos 4 Mosfets da GA3</a>.</p>
+<p>Código-fonte de referência dos testes realizados nos quatro módulos Mosfet da GA3. O relatório de medições e procedimentos pode ser consultado em <strong>Biblioteca → Testes realizados</strong>, na página <a href="teste-dos-4-mosfets-da-GA3.html">Testes dos 4 Mosfets da GA3</a>.</p>
 <h2>Finalidade</h2>
 <p>Comandar um módulo Mosfet de cada vez pela ESP32, alternando a saída de controle entre LOW e HIGH, e conferir a resposta elétrica com multímetro e com a carga conectada.</p>
 <h2>Ligações de referência</h2>
@@ -95,7 +95,7 @@ void loop() {
 <tr><td>Mosfet 4</td><td>Funcionamento confirmado no encerramento dos ensaios</td><td>Aprovado</td></tr>
 </tbody></table>
 <p><strong>Data de conclusão:</strong> 14 de novembro de 2026. Todos os quatro módulos foram considerados aprovados. A ligação definitiva dos GPIOs de controle deve ser registrada após a instalação final.</p>
-<footer><a class="voltar" href="manual-indice.html">&larr; Voltar ao índice</a></footer>
+<footer><a class="voltar" href="biblioteca.html">&larr; Voltar ao índice</a></footer>
 </main>
 </body>
 </html>
