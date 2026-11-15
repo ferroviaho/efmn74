@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GA3 – Testes dos sensores Hall S10–S14 | EFMN 74</title>
+<style>
+:root { --azul:#153e66; --claro:#eaf2f9; --texto:#263543; }
+* { box-sizing:border-box; }
+body { margin:0; color:var(--texto); background:#f3f5f7; font:17px/1.65 Arial,Helvetica,sans-serif; }
+.site-header { background:#151515; border-bottom:4px solid #c89b2b; color:#fff; }
+.header-inner { max-width:1050px; margin:auto; padding:14px 20px; display:flex; align-items:center; justify-content:center; gap:18px; }
+.header-logo { display:block; width:90px; height:auto; }
+.header-texto { text-align:center; font-family:Arial,Helvetica,sans-serif; }
+.header-linha1 { margin:0; font-size:22px; font-weight:bold; }
+.header-linha2 { margin:2px 0 0; font-size:14px; color:#ddd; }
+.pagina { max-width:1050px; margin:20px auto; background:white; padding:30px 40px 40px; border-radius:10px; }
+h1 { color:var(--azul); font-size:30px; line-height:1.2; text-align:center; }
+h2 { color:var(--azul); font-size:21px; margin-top:25px; padding-bottom:5px; border-bottom:1px solid #d6e2eb; }
+a { color:var(--azul); }
+.voltar { display:inline-block; font-weight:bold; text-decoration:none; margin:10px 0; }
+table { width:100%; border-collapse:collapse; }
+th,td { border:1px solid #d7e1ea; padding:8px 12px; text-align:left; }
+th { background:var(--claro); color:var(--azul); }
+pre { white-space:pre; overflow-x:auto; background:#eef2f6; border-left:4px solid var(--azul); padding:18px; font:13px/1.5 Consolas,'Courier New',monospace; }
+.aviso { background:#fff5db; border-left:4px solid #d49b15; padding:12px 17px; }
+footer { border-top:1px solid #d6e2eb; margin-top:28px; }
+@media(max-width:640px) { .pagina { margin:0; padding:16px; } .header-inner { padding:12px; gap:12px; } .header-logo { width:65px; } .header-linha1 { font-size:17px; } .header-linha2 { font-size:12px; } h1 {font-size:25px;} }
+</style>
+</head>
+<body>
+<header class="site-header">
+ <div class="header-inner">
+  <a href="index.html" title="Voltar à página inicial"><img class="header-logo" src="logo-efmn74.png" alt="Logomarca da Ferrovia EFMN 74"></a>
+  <div class="header-texto"><p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p><p class="header-linha2">Construção, automação, memória e documentação</p></div>
+ </div>
+</header>
+<main class="pagina">
+<a class="voltar" href="manual-indice.html">&larr; Voltar ao índice</a>
+<h1>GA3 – Testes dos sensores Hall S10–S14</h1>
+<p><strong>Biblioteca → Programas da ESP32.</strong> Programa de referência para testar individualmente os cinco sensores Hall A3144E da GA3. Esta página apresenta o procedimento previsto e o código de bancada. Os testes e os resultados de S10 a S14 ainda não foram registrados como concluídos.</p>
+<h2>Identificação dos sensores</h2>
+<table><thead><tr><th>Sensor</th><th>Área</th><th>Entrada durante o teste</th><th>Resultado</th></tr></thead><tbody>
+<tr><td>S10</td><td>GA3</td><td>GPIO32 (temporário)</td><td>Pendente</td></tr>
+<tr><td>S11</td><td>GA3</td><td>GPIO32 (temporário)</td><td>Pendente</td></tr>
+<tr><td>S12</td><td>GA3</td><td>GPIO32 (temporário)</td><td>Pendente</td></tr>
+<tr><td>S13</td><td>GA3</td><td>GPIO32 (temporário)</td><td>Pendente</td></tr>
+<tr><td>S14</td><td>GA3</td><td>GPIO32 (temporário)</td><td>Pendente</td></tr>
+</tbody></table>
+<p>O GPIO32 é usado somente para o ensaio sequencial, conectando um sensor de cada vez. A distribuição definitiva de GPIOs dos cinco sensores deve ser conferida antes da instalação. O GPIO33 já constava como ocupado e não deve ser presumido disponível.</p>
+<h2>Preparação</h2>
+<ol>
+<li>Desligar a alimentação antes de montar ou mudar as conexões. Identificar corretamente os terminais VCC, GND e OUT do A3144E pelo modelo físico e pela folha de dados.</li>
+<li>Ligar o VCC do sensor a 3V3 da ESP32, o GND à barra GND comum e o OUT ao GPIO32, utilizando o fio verde do sinal.</li>
+<li>Conectar um resistor de <strong>4,7 kΩ</strong> entre OUT e 3V3, como pull-up externo. Nunca ligar a saída do sensor a 5 V diretamente na entrada da ESP32.</li>
+<li>Selecionar a placa e a porta na Arduino IDE, carregar o código e abrir o Monitor Serial em <strong>115200 baud</strong>.</li>
+<li>Aproximar e afastar um ímã do sensor, observando a mudança de estado. Repetir o procedimento para S10, S11, S12, S13 e S14.</li>
+</ol>
+<div class="aviso"><strong>Atenção:</strong> verificar a orientação dos terminais antes de energizar. O sensor A3144E tem saída de coletor aberto e requer pull-up. O programa demonstra detecção de campo magnético e não substitui a lógica definitiva de segurança ou a identificação de passagem de trens.</div>
+<h2>Comportamento esperado</h2>
+<table><thead><tr><th>Situação</th><th>Leitura</th><th>Mensagem</th></tr></thead><tbody>
+<tr><td>Ímã afastado</td><td>HIGH</td><td>Campo magnético ausente</td></tr>
+<tr><td>Ímã adequadamente aproximado</td><td>LOW</td><td>Campo magnético detectado</td></tr>
+<tr><td>Ímã novamente afastado</td><td>HIGH</td><td>Campo magnético ausente</td></tr>
+</tbody></table>
+<p>As mensagens aparecem quando o sinal muda. A atuação depende da orientação, polaridade e distância do ímã. Se não houver alternância, conferir a pinagem, o resistor e a conexão GND.</p>
+<h2>Código-fonte completo</h2>
+<pre><code>// EFMN 74 - GA3 - Teste individual dos sensores Hall S10 a S14
+// Conectar um sensor por vez ao GPIO32, com resistor externo de 4k7.
+// A3144E: saida em LOW quando o campo magnetico atua.
+
+const int PINO_HALL = 32;
+const unsigned long INTERVALO = 40;
+int ultimoEstado = HIGH;
+unsigned long ultimaLeitura = 0;
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(PINO_HALL, INPUT); // Pull-up EXTERNO 4k7 a 3V3
+  delay(400);
+  ultimoEstado = digitalRead(PINO_HALL);
+  Serial.println(&quot;GA3 - Teste dos sensores Hall S10 a S14&quot;);
+  Serial.println(&quot;Conecte um sensor por vez ao GPIO32.&quot;);
+  Serial.println(&quot;LOW = campo detectado; HIGH = sem deteccao.&quot;);
+  Serial.println(&quot;Aproxime e afaste o ima do sensor.&quot;);
+}
+
+void loop() {
+  if (millis() - ultimaLeitura &gt;= INTERVALO) {
+    ultimaLeitura = millis();
+    int estado = digitalRead(PINO_HALL);
+    if (estado != ultimoEstado) {
+      ultimoEstado = estado;
+      if (estado == LOW) {
+        Serial.println(&quot;LOW - campo magnetico detectado&quot;);
+      } else {
+        Serial.println(&quot;HIGH - campo magnetico ausente&quot;);
+      }
+    }
+  }
+}</code></pre>
+<h2>Registro dos testes e resultados</h2>
+<p>Preencher após a execução real: data, sensor, tensão medida em VCC, tensão de OUT sem ímã, tensão de OUT com ímã, resposta no Monitor Serial e observações de instalação. Não atribuir aprovação antecipada.</p>
+<table><thead><tr><th>Sensor</th><th>Sem ímã (V)</th><th>Com ímã (V)</th><th>Situação</th></tr></thead><tbody>
+<tr><td>S10</td><td>—</td><td>—</td><td>A testar</td></tr>
+<tr><td>S11</td><td>—</td><td>—</td><td>A testar</td></tr>
+<tr><td>S12</td><td>—</td><td>—</td><td>A testar</td></tr>
+<tr><td>S13</td><td>—</td><td>—</td><td>A testar</td></tr>
+<tr><td>S14</td><td>—</td><td>—</td><td>A testar</td></tr>
+</tbody></table>
+<h2>Observações</h2>
+<p>Este código foi preparado como referência para os ensaios da GA3. Após a realização dos testes, completar as medições e confirmar os GPIOs definitivos. A documentação descritiva de montagem dos sensores permanece em Técnicas de Construção até a revisão com resultados reais.</p>
+<footer><a class="voltar" href="manual-indice.html">&larr; Voltar ao índice</a></footer>
+</main>
+</body>
+</html>
