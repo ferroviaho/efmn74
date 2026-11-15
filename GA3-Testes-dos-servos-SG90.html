@@ -15,7 +15,7 @@ body { margin:0; color:var(--texto); background:#f3f5f7; font:17px/1.65 Arial,He
 .header-linha1 { margin:0; font-size:22px; font-weight:bold; }
 .header-linha2 { margin:2px 0 0; font-size:14px; color:#ddd; }
 .pagina { max-width:1050px; margin:20px auto; background:white; padding:30px 40px 40px; border-radius:10px; }
-h1 { color:var(--azul); font-size:30px; line-height:1.2; text-align:center; }
+h1 { color:var(--azul); font-size:30px; line-height:1.2; text-align:left; }
 h2 { color:var(--azul); font-size:21px; margin-top:25px; padding-bottom:5px; border-bottom:1px solid #d6e2eb; }
 a { color:var(--azul); }
 .voltar { display:inline-block; font-weight:bold; text-decoration:none; margin:10px 0; }
@@ -31,14 +31,14 @@ footer { border-top:1px solid #d6e2eb; margin-top:28px; }
 <body>
 <header class="site-header">
  <div class="header-inner">
-  <a href="index.html" title="Voltar à página inicial"><img class="header-logo" src="logo-efmn74.png" alt="Logomarca da Ferrovia EFMN 74"></a>
+  <a href="index.html" title="Voltar à página inicial"><img class="header-logo" src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74"></a>
   <div class="header-texto"><p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p><p class="header-linha2">Construção, automação, memória e documentação</p></div>
  </div>
 </header>
 <main class="pagina">
-<a class="voltar" href="manual-indice.html">&larr; Voltar ao índice</a>
+<a class="voltar" href="biblioteca.html">&larr; Voltar ao índice</a>
 <h1>GA3 – Testes dos servos SG90</h1>
-<p><strong>Biblioteca → Programas da ESP32.</strong> Código-fonte de referência para reproduzir os testes dos cinco servos SG90 da GA3. O programa abaixo foi reorganizado a partir dos procedimentos registrados, não sendo uma cópia verificada do arquivo original usado nos testes.</p>
+<p>Código-fonte de referência para reproduzir os testes dos cinco servos SG90 da GA3. O programa abaixo foi reorganizado a partir dos procedimentos registrados, não sendo uma cópia verificada do arquivo original usado nos testes.</p>
 <h2>Identificação dos servos e GPIOs</h2>
 <table><thead><tr><th>Desvio</th><th>GPIO da ESP32</th><th>Cor do sinal</th></tr></thead><tbody>
 <tr><td>D5</td><td>13</td><td>Laranja</td></tr>
@@ -153,7 +153,7 @@ void loop() {
 <h2>Registro histórico e observações</h2>
 <p>Em 27 de outubro de 2026, os cinco servos da GA3 responderam aos testes individuais, à rotina aleatória e ao teste de acionamento em pares. Uma falha de conexão no D5 foi identificada durante os testes, com aviso de três bipes. Este programa de demonstração não implementa o buzzer nem a detecção elétrica dessa falha.</p>
 <p>Os valores dos GPIOs apresentados refletem o mapeamento registrado da GA3. Antes de integrar esta rotina ao software definitivo, conferir eventuais alterações de pinagem e as posições mecânicas reais dos desvios.</p>
-<footer><a class="voltar" href="manual-indice.html">&larr; Voltar ao índice</a></footer>
+<footer><a class="voltar" href="biblioteca.html">&larr; Voltar ao índice</a></footer>
 </main>
 </body>
 </html>
