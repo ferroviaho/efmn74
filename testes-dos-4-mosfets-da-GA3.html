@@ -119,8 +119,8 @@ Identificar os bornes pelas inscrições do módulo.</p>
 LEDs desconectados. O mesmo resistor pode ser transferido para outro módulo com tudo
 desligado.</p>
 
-<p>5. Preparar o programa. Copiar o código da seção 4 na IDE Arduino. Ajustar PINO_MOSFET para
-o GPIO do módulo que será ensaiado. O programa aciona um módulo por vez.</p>
+<p>5. Preparar o programa. Abrir o código disponível na Biblioteca, em Programas da ESP32,
+na página GA3 - Testes dos 4 módulos Mosfets. Ajustar PINO_MOSFET para o GPIO do módulo em teste. O programa aciona um módulo por vez.</p>
 
 <p>6. Carregar na ESP32. Manter a fonte de 5 V desligada. Conectar o USB, selecionar a placa e
 a porta correspondentes e clicar na seta Carregar. Nos testes, foi utilizada ESP32 Dev Module
@@ -142,31 +142,11 @@ concluir que há defeito.</p>
 <p>10. Encerrar o teste. Desligar a fonte e desconectar o USB antes de retirar o resistor ou
 alterar qualquer ligação.</p>
 
-<h2>4 Código fonte do teste individual</h2>
+<h2>4 Código-fonte do teste individual</h2>
 
-<p>Exemplo configurado para o MOSFET 2, no GPIO27. Para testar o MOSFET 3, trocar apenas o
-valor de PINO_MOSFET de 27 para 14.</p>
+<p>O código-fonte está disponível na Biblioteca, na seção Programas da ESP32, na página
+<a href="GA3-Testes-dos-4-modulos-mosfets.html">GA3 - Testes dos 4 módulos Mosfets</a>.</p>
 
-<pre><code>// Teste individual dos MOSFETs da GA3
-// MOSFET 1: GPIO26
-// MOSFET 2: GPIO27
-// MOSFET 3: GPIO14
-// MOSFET 4: registrar o GPIO antes de reutilizar
-
-const int PINO_MOSFET = 27;
-
-void setup() {
-  pinMode(PINO_MOSFET, OUTPUT);
-  digitalWrite(PINO_MOSFET, LOW);
-}
-
-void loop() {
-  digitalWrite(PINO_MOSFET, HIGH);
-  delay(3000);
-
-  digitalWrite(PINO_MOSFET, LOW);
-  delay(3000);
-}</code></pre>
 
 <h2>5 Como interpretar o número no código</h2>
 
@@ -175,8 +155,8 @@ permitido manter o nome MOSFET_2 no programa anterior e trocar somente o número
 Assim, a linha const int MOSFET_2 = 14; acionava o GPIO14, fisicamente conectado ao MOSFET
 3.</p>
 
-<p>Para evitar confusão entre nome e módulo, o código deste relatório utiliza PINO_MOSFET. O
-mapa permanece MOSFET 2 no GPIO27 e MOSFET 3 no GPIO14.</p>
+<p>Para evitar confusão entre o nome da variável e o módulo em teste, o programa referenciado
+na seção 4 utiliza PINO_MOSFET. O mapa permanece MOSFET 2 no GPIO27 e MOSFET 3 no GPIO14.</p>
 
 <h2>6 Alcance da aprovação</h2>
 
