@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -9,12 +8,12 @@
     * { box-sizing: border-box; }
     body { margin: 0; background: #eef1f4; color: #263342; font-family: Arial, Helvetica, sans-serif; line-height: 1.65; }
     .pagina { max-width: 1000px; margin: 24px auto; background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,.09); }
-    header { background: #173954; color: white; padding: 20px 28px; }
-    .identidade { display: flex; align-items: center; gap: 20px; position: relative; min-height: 94px; }
-    .identidade > div { flex: 1; text-align: center; padding-right: 108px; }
-    .identidade img { width: 108px; max-width: 25vw; height: auto; }
-    .identidade .nome { font-weight: bold; font-size: 1.5rem; }
-    .identidade .subtitulo { font-size: 1rem; }
+    header { background: #151515; color: white; border-bottom: 4px solid #c89b2b; }
+    .header-inner { max-width: 1000px; margin: 0 auto; padding: 8px 20px; display: flex; align-items: center; justify-content: center; gap: 16px; font-family: Arial, Helvetica, sans-serif; }
+    .header-logo { width: 72px; height: auto; display: block; margin: 0; flex: 0 0 auto; }
+    .header-texto { text-align: left; }
+    .header-linha1 { margin: 0; font-size: 0.95rem; font-weight: 600; }
+    .header-linha2 { margin: 2px 0 0; font-size: 0.9rem; color: #d8d8d8; }
     main { padding: 26px 36px 36px; }
     h1 { color: #173954; font-size: 1.7rem; text-align: left; margin: 8px 0 20px; }
     h2 { color: #173954; font-size: 1.15rem; margin-top: 28px; }
@@ -25,26 +24,31 @@
     .retorno { margin-top: 30px; padding-top: 16px; border-top: 1px solid #dce2e8; }
     .retorno-topo { margin: 0 0 16px; font-weight: 600; }
     a { color: #176190; }
-    .ilustracao { text-align: center; margin: 24px 0 28px; }
-    .ilustracao img { width: 50%; max-width: 100%; height: auto; display: inline-block; }
-    @media (max-width: 600px) { .pagina { margin: 0; } header { padding: 15px; } main { padding: 18px; } .identidade { gap: 12px; } .identidade img { width: 76px; } .identidade .nome { font-size: 1.12rem; } .identidade > div { padding-right: 0; } }
+    @media (max-width: 700px) {
+      .pagina { margin: 0; }
+      .header-inner { padding: 8px 14px; gap: 12px; }
+      .header-logo { width: 62px; }
+      .header-linha1 { font-size: 0.9rem; }
+      .header-linha2 { font-size: 0.82rem; }
+      main { padding: 18px; }
+    }
   </style>
 </head>
 <body>
   <div class="pagina">
     <header>
-      <div class="identidade">
-        <a href="index.html" aria-label="Voltar à página inicial da EFMN 74"><img src="logo-efmn74.PNG" alt="Logomarca da EFMN 74"></a>
-        <div><div class="nome">EFMN 74 – Estrada de Ferro Maia Nobre</div><div class="subtitulo">Técnicas de Construção</div></div>
+      <div class="header-inner">
+        <a href="index.html"><img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo"></a>
+        <div class="header-texto">
+          <p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p>
+          <p class="header-linha2">Construção, automação, memória e documentação</p>
+        </div>
       </div>
     </header>
     <main>
-      <nav class="retorno-topo"><a href="index.html">← Voltar ao índice</a></nav>
+      <nav class="retorno-topo"><a href="manual-indice.html">← Voltar ao índice</a></nav>
       <h1>Como identificar a polaridade de LEDs</h1>
       <p>Uma maneira simples de identificar o positivo e o negativo de um LED é utilizar um multímetro na função teste de diodo. O procedimento também pode ser usado para LEDs reaproveitados de cordões de iluminação, desde que estejam desligados e isolados do circuito original.</p>
-      <div class="ilustracao">
-        <img src="img-polaridade-leds.png" alt="Ilustração sobre identificação da polaridade de LEDs">
-      </div>
       <h2>1. Identificação com o multímetro</h2>
       <ol>
         <li>Desconecte completamente o cordão da tomada e da placa de controle original. Isole o LED do restante do circuito, mantendo seus dois fios.</li>
@@ -68,9 +72,8 @@
       <p>Com resistor de 1 kΩ, o PWM permite variar o brilho entre apagado e o máximo estabelecido por esse resistor. O PWM não aumenta o brilho além desse limite.</p>
       <h2>4. Aplicação na EFMN 74</h2>
       <p>O procedimento é útil para identificar os fios e ajustar a iluminação de casas, armazéns, cabines e outros elementos da maquete. Antes da instalação definitiva, teste cada LED individualmente e identifique sua polaridade.</p>
-      <div class="retorno"><a href="index.html">← Voltar ao índice</a></div>
+      <div class="retorno"><a href="manual-indice.html">← Voltar ao índice</a></div>
     </main>
   </div>
 </body>
 </html>
-
