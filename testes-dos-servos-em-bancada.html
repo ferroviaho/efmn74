@@ -139,7 +139,7 @@ pode mudar conforme a conexão do notebook.</li>
 <ol>
 <li>Guardar o arquivo original antes de usar uma ESP32 que já controla
 a GA3. Carregar outro sketch substitui o programa da placa. Abrir um novo sketch. Selecionar e apagar o conteúdo inicial.</li>
-<li>Copiar todo o código da seção seguinte e colar na IDE.</li>
+<li>Acessar o código-fonte pelo link indicado no item 5, copiá-lo integralmente e colá-lo na IDE.</li>
 <li>Salvar o sketch com o nome <code>TTD01_Servo</code>.</li>
 <li>Clicar em <strong>Verificar</strong>. A compilação deve
 terminar sem erros. Se houver erro, conferir a primeira mensagem
@@ -153,79 +153,8 @@ até iniciar os testes.</li>
 <li>Abrir o Monitor Serial. Selecionar <strong>115200 baud</strong>
 e o final de linha <strong>Nova linha</strong>.</li>
 </ol>
-<h2>5. Código de referência para a bancada</h2>
-<p>O programa usa GPIO18, frequência de 50 Hz e faixa de pulsos
-de 1000 a 2000 microssegundos. O controle do servo começa somente
-após o envio de um comando de movimento.</p>
-<pre><code>#include &lt;ESP32Servo.h&gt;
-
-constexpr int SERVO_PIN = 18;
-constexpr int DIRECT_POSITION = 80;
-constexpr int ACCESS_POSITION = 100;
-constexpr int CENTER_POSITION = 90;
-constexpr int MIN_POSITION = 60;
-constexpr int MAX_POSITION = 120;
-
-Servo testServo;
-String command;
-
-void moveServo(int position) {
-  if (position &lt; MIN_POSITION || position &gt; MAX_POSITION) {
-    Serial.println(&quot;Position outside test range: 60 to 120.&quot;);
-    return;
-  }
-  if (!testServo.attached()) {
-    testServo.setPeriodHertz(50);
-    testServo.attach(SERVO_PIN, 1000, 2000);
-  }
-  testServo.write(position);
-  Serial.print(&quot;Commanded position: &quot;);
-  Serial.println(position);
-}
-
-void processCommand(String text) {
-  text.trim();
-  text.toUpperCase();
-  if (text.length() == 0) return;
-  if (text == &quot;D&quot;) { moveServo(DIRECT_POSITION); return; }
-  if (text == &quot;A&quot;) { moveServo(ACCESS_POSITION); return; }
-  if (text == &quot;C&quot;) { moveServo(CENTER_POSITION); return; }
-  if (text == &quot;S&quot;) {
-    testServo.detach();
-    Serial.println(&quot;Control pulses stopped. USB power is still on.&quot;);
-    return;
-  }
-  bool numeric = true;
-  for (unsigned int i = 0; i &lt; text.length(); ++i) {
-    if (text[i] &lt; &#x27;0&#x27; || text[i] &gt; &#x27;9&#x27;) numeric = false;
-  }
-  if (numeric) { moveServo(text.toInt()); return; }
-  Serial.println(&quot;Use D, A, C, S, or a number from 60 to 120.&quot;);
-}
-
-void setup() {
-  Serial.begin(115200);
-  command.reserve(24);
-  Serial.println(&quot;TTD-01 servo test ready. Servo output: GPIO 18.&quot;);
-  Serial.println(&quot;Use D, A, C, S, or a number from 60 to 120.&quot;);
-  // Servo control starts only after a movement command.
-}
-
-void loop() {
-  while (Serial.available()) {
-    char c = Serial.read();
-    if (c == &#x27;\n&#x27;) {
-      processCommand(command);
-      command = &quot;&quot;;
-    } else if (c != &#x27;\r&#x27;) {
-      if (command.length() &lt; 24) command += c;
-      else {
-        command = &quot;&quot;;
-        Serial.println(&quot;Command too long. Send one short command per line.&quot;);
-      }
-    }
-  }
-}</code></pre>
+<h2>5. Código-fonte disponível na Biblioteca</h2>
+<p>Os códigos-fonte dos testes dos servos SG90 da GA3 estão disponíveis em <strong>Biblioteca → Programas da ESP32</strong>, na página <a href="GA3-Testes-dos-servos-SG90.html">GA3 - Testes dos servos SG90</a>. Consultar essa página para obter o programa antes de executar os procedimentos descritos a seguir.</p>
 <h2>6. Conhecer os comandos</h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Comando</th><th>Resultado esperado</th></tr></thead>
