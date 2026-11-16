@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GA3 — Guia de instalação | Ferrovia EFMN 74</title>
 <meta name="description" content="Guia de instalação da GA3 com padrão de cores, conexões,
-testes e pendências. Revisão em 11/11/2026.">
+testes e pendências. Revisão em 16/11/2026.">
 <style>
 
     :root {
@@ -226,7 +226,7 @@ divergência e repetir o teste.</li>
 permite passar à medição de tensão com o multímetro em tensão contínua. Conferir a
 polaridade e a tensão entre X1 e o barramento GND dos servos com o relé em repouso e acionado antes de conectar os
 servos. Desligar novamente para encaixá-los.</p>
-<h3>Testes de funcionamento</h3>
+<h3>Testes de funcionamento dos servos SG90</h3>
 <ul>
 <li><strong>Seleção individual.</strong> Cada comando movimentou somente o servo
 selecionado. Como a numeração mudou em 30/10, conferir a identificação dos cinco servos pelo
@@ -243,11 +243,16 @@ novos comandos. O reconhecimento por R não iniciou movimento. Falta verificar, 
 definitivo, que reiniciar a ESP32 durante uma falha mantém a operação bloqueada até nova
 verificação.</li>
 </ul>
+<p><strong>Programa de testes dos servos SG90.</strong> O código-fonte dos ensaios está disponível em Biblioteca → Programas da ESP32, na página <a href="GA3-Testes-dos-servos-SG90.html">GA3 - Testes dos servos SG90</a>. Este guia mantém as orientações de instalação e os resultados, sem reproduzir o programa.</p>
 
-<h3>Teste do MOSFET 1 — 12/11/2026</h3>
-<p>D26 / GPIO26 da ESP32 → PWM do MOSFET 1, fio amarelo. GND do módulo → barra GND comum à ESP32, fio branco malhado de preto. VIN+ → X0+, com cor não informada. VIN− deve estar ligado ao negativo da fonte. O destino físico e a cor desse fio não foram registrados explicitamente.</p>
-<p>O programa ligou a saída por 3 segundos e desligou por 3 segundos. Com resistor de 4,7 kΩ entre OUT+ e OUT−, a entrada mediu 4,91 V e a saída alternou entre 4,91 V e 0 V. O indicador do módulo piscou conforme o programa. Resultado: aprovado no teste com resistor. O teste com LEDs ficou previsto para 13/11/2026.</p>
+<h3>Testes dos quatro módulos Mosfets — até 14/11/2026</h3>
+<p>Os Mosfets 1, 2, 3 e 4 foram aprovados nos testes de bancada até 14/11/2026. Foram verificadas a referência GND comum e a alternância das saídas entre aproximadamente 0 V e 4,9 V. A aprovação em bancada não substitui a conferência das conexões e das cargas de iluminação na montagem definitiva.</p>
+<p><strong>Registro específico do Mosfet 1, em 12/11/2026.</strong>
+<p>D26 / GPIO26 da ESP32 → PWM do Mosfet 1, fio amarelo. GND do módulo → barra GND comum à ESP32, fio branco malhado de preto. VIN+ → X0+, com cor não informada. VIN− deve estar ligado ao negativo da fonte. O destino físico e a cor desse fio não foram registrados explicitamente.</p>
+<p>O programa ligou a saída por 3 segundos e desligou por 3 segundos. Com resistor de 4,7 kΩ entre OUT+ e OUT−, a entrada mediu 4,91 V e a saída alternou entre 4,91 V e 0 V. O indicador do módulo piscou conforme o programa. Resultado: aprovado no teste com resistor. A montagem final com LEDs e seus resistores deve ser conferida separadamente.</p>
 <p>Para reaproveitar os LEDs de Natal, separar cada LED do cordão e da placa original, deixando aproximadamente 5 cm de fio em cada terminal. A placa original ligada diretamente à tomada não será utilizada na GA3. Identificar a polaridade e testar com resistor em série, cujo valor definitivo ainda não foi estabelecido.</p>
+
+<p><strong>Programa dos quatro Mosfets.</strong> Consultar Biblioteca → Programas da ESP32, na página <a href="GA3-Testes-dos-4-modulos-Mosfets.html">GA3 - Testes dos 4 módulos Mosfets</a>, para o código-fonte e o procedimento de teste de cada módulo.</p>
 
 <h2>2. Procedimento de instalação na maquete</h2>
 <ol>
@@ -276,7 +281,7 @@ cada desvio. Os sensores S10 a S14 detectam a passagem da composição e não co
 só, a posição dos desvios.</li>
 </ol>
 
-<h2>3. Registros para escrever o software</h2>
+<h2>3. Registros para configurar e conferir o software</h2>
 <p><strong>Mapa dos sinais em X3.</strong> Numeração informada em 30/10/2026 no documento
 recebido. Este mapa difere dos registros anteriores. Confirmar cada conjunto desvio, cor e
 GPIO por continuidade e comando individual antes de gravar ou alterar o software. A revisão
@@ -305,6 +310,7 @@ ESP32</th></tr></thead>
 <tr><td>S14</td><td>Azul</td><td>C23</td><td>B23 → D32 (GPIO32). Laranja.</td></tr>
 </tbody></table></div>
 <ul>
+<li><strong>Programa de testes dos sensores Hall S10–S14.</strong> O código-fonte correspondente está disponível em Biblioteca → Programas da ESP32, na página <a href="GA3-Testes-dos-sensores-Hall-S10-S14.html">GA3 - Testes dos sensores Hall S10–S14</a>. O guia preserva o mapa físico de X4 e os cuidados elétricos. Os testes de continuidade e de funcionamento na instalação ainda precisam ser registrados e validados.</li>
 <li><strong>Alimentação dos sensores Hall.</strong> Positivo no barramento de +5 V sob a mesa e negativo no barramento GND sob a mesa, comum à ESP32. O sinal passa pelo X4 e segue ao GPIO correspondente, com pull-up de 4,7 kΩ para 3,3 V. Não aplicar 5 V diretamente ao GPIO.</li>
 <li><strong>Pull-ups dos sensores.</strong> Conferir um resistor de 4,7 kΩ entre cada sinal
 e 3,3 V, nunca +5 V. GPIO34, GPIO35, GPIO36 e GPIO39 são somente entradas e não possuem
@@ -337,8 +343,7 @@ alimentações.</li>
 <li><strong>Distribuição dos servos.</strong> Quando houver uma junção comum sob a mesa,
 registrar que X1 alimenta o positivo dessa junção. Os negativos dos servos vão diretamente ao barramento GND sob a mesa, comum à ESP32. O antigo X2 dos servos foi dispensado. A corrente
 dos servos deve seguir por fios e conexões adequados, sem atravessar a ESP32.</li>
-<li><strong>MOSFETs de iluminação.</strong> Os quatro módulos também precisam de
-identificação e mapa de alimentação, saída e comando. O antigo X5 passa a se chamar X2, destinado às saídas de alimentação dos LEDs pelos MOSFETs. Este guia ainda não apresenta o mapa
+<li><strong>MOSFETs de iluminação.</strong> Os quatro módulos foram aprovados em bancada até 14/11/2026, mas ainda precisam de identificação e mapa definitivo de alimentação, saída e comando na montagem. O antigo X5 passa a se chamar X2, destinado às saídas de alimentação dos LEDs pelos MOSFETs. Este guia ainda não apresenta o mapa
 completo conferido dos quatro módulos. Registrar essas ligações antes da liberação da
 iluminação. Não confundir o GND de entrada com o retorno comutado OUT−: em módulos que
 comutam o negativo, ligar OUT− diretamente à barra GND anula o controle.</li>
@@ -346,10 +351,7 @@ comutam o negativo, ligar OUT− diretamente à barra GND anula o controle.</li>
 diferentes. No tablet, apresentar o tipo de problema, o circuito envolvido e sugestões de
 verificação. Registrar o evento e não declarar posição confirmada sem sensor específico ou
 verificação do operador.</li>
-<li><strong>Pendências.</strong> Conferir fisicamente o mapa de X3, concluir a continuidade
-e o funcionamento de S10 a S14, validar o corte do relé sob carga e registrar os ajustes
-mecânicos dos cinco desvios. Manter os testes de bancada separados dos testes concluídos na
-maquete.</li>
+<li><strong>Pendências.</strong> Os testes de bancada dos cinco servos SG90 e dos quatro Mosfets já foram aprovados. Ainda é necessário conferir fisicamente o mapa de X3, concluir e registrar a continuidade e o funcionamento de S10 a S14, validar o corte do relé sob carga, conferir as cargas e os circuitos de iluminação e registrar os ajustes mecânicos dos cinco desvios. Manter os testes de bancada separados dos testes concluídos na maquete.</li>
 </ul>
 <p>Referência técnica dos GPIOs: <a
 href="https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/gpio.html"
