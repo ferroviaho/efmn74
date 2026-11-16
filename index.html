@@ -371,13 +371,34 @@ font-size: 16px;
 line-height: 1.5;
 color: #68635a;
 }
+/* Botão de áudio do vídeo de abertura (compatível com iPhone/Safari) */
+.hero-sound-button {
+  position: absolute;
+  left: 28px;
+  bottom: 20px;
+  z-index: 10;
+  border: 1px solid rgba(255,255,255,.85);
+  border-radius: 8px;
+  padding: 11px 16px;
+  background: rgba(21,21,21,.78);
+  color: #fff;
+  font: 600 15px Arial, Helvetica, sans-serif;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.hero-sound-button:hover,
+.hero-sound-button:focus-visible { background: rgba(21,21,21,.95); }
+@media (max-width: 760px) {
+  .hero-sound-button { left: 16px; bottom: 12px; padding: 9px 12px; font-size: 13px; }
+}
 </style>
 </head>
 <body>
 <header class="hero" id="inicio">
-<video class="hero-video" autoplay muted loop playsinline preload="auto" poster="capa.png" aria-label="Ferrovia EFMN 74 com água em movimento">
+<video id="video-capa" class="hero-video" autoplay muted loop playsinline preload="auto" poster="capa.png" aria-label="Ferrovia EFMN 74 com água em movimento">
 <source src="videos/capa-agua-correnteza.MP4" type="video/mp4">
 </video>
+<button id="alternar-som" class="hero-sound-button" type="button" aria-controls="video-capa" aria-pressed="false">🔊 Ativar som</button>
 <div class="hero-inner">
 <h1>EFMN 74</h1>
 <p class="hero-text">Ferrovia em escala HO<br/>
@@ -457,6 +478,36 @@ contato.classList.add('aberto');
 fecharContato.addEventListener('click', () => {
 contato.classList.remove('aberto');
 });
+// O Safari/iPhone exige um gesto do visitante para liberar áudio.
+const videoCapa = document.getElementById('video-capa');
+const botaoSom = document.getElementById('alternar-som');
+
+function atualizarBotaoSom() {
+  const comSom = !videoCapa.muted;
+  botaoSom.textContent = comSom ? '🔇 Silenciar' : '🔊 Ativar som';
+  botaoSom.setAttribute('aria-pressed', String(comSom));
+}
+
+botaoSom.addEventListener('click', () => {
+  if (videoCapa.muted) {
+    videoCapa.muted = false;
+    videoCapa.volume = 1;
+  } else {
+    videoCapa.muted = true;
+  }
+  atualizarBotaoSom();
+  // A chamada a play() ocorre diretamente após o toque, como exige o iOS.
+  if (videoCapa.paused) {
+    const tentativa = videoCapa.play();
+    if (tentativa && typeof tentativa.catch === 'function') {
+      tentativa.catch(() => {
+        botaoSom.textContent = '▶ Tocar vídeo com som';
+      });
+    }
+  }
+});
+videoCapa.addEventListener('volumechange', atualizarBotaoSom);
+atualizarBotaoSom();
 </script>
 </body>
 </html>
