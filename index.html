@@ -375,10 +375,10 @@ color: #68635a;
 .hero-sound-button {
   position: absolute;
   left: 28px;
-  bottom: 20px;
+  bottom: 0;
   z-index: 10;
   border: 1px solid rgba(255,255,255,.85);
-  border-radius: 8px;
+  border-radius: 8px 8px 0 0;
   padding: 11px 16px;
   background: rgba(21,21,21,.78);
   color: #fff;
@@ -389,14 +389,14 @@ color: #68635a;
 .hero-sound-button:hover,
 .hero-sound-button:focus-visible { background: rgba(21,21,21,.95); }
 @media (max-width: 760px) {
-  .hero-sound-button { left: 16px; bottom: 12px; padding: 9px 12px; font-size: 13px; }
+  .hero-sound-button { left: 16px; bottom: 0; padding: 9px 12px; font-size: 13px; }
 }
 </style>
 </head>
 <body>
 <header class="hero" id="inicio">
 <video id="video-capa" class="hero-video" autoplay muted loop playsinline preload="auto" poster="capa.png" aria-label="Ferrovia EFMN 74 com água em movimento">
-<source src="videos/capa-agua-correnteza.MP4" type="video/mp4">
+<source src="videos/capa-agua-som.MP4" type="video/mp4">
 </video>
 <button id="alternar-som" class="hero-sound-button" type="button" aria-controls="video-capa" aria-pressed="false">🔊 Ativar som</button>
 <div class="hero-inner">
