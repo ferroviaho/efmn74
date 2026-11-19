@@ -414,7 +414,7 @@ color: #68635a;
 /* Apresentação exclusiva para celulares, conforme esboço fornecido. */
 .mobile-welcome-title, .mobile-intro { display: none; }
 @media (max-width: 760px) {
-  .mobile-welcome-title {
+  .mobile-welcome-title { font-weight: 700;
     display: block;
     background: var(--bg);
     padding: 17px 15px 15px;
@@ -427,7 +427,7 @@ color: #68635a;
   .hero { aspect-ratio: 16 / 9; height: auto; min-height: 0; }
   .hero-video { object-fit: contain; object-position: center center; }
   .hero-inner { display: none; }
-  .mobile-intro {
+  .mobile-intro { text-align: center;
     display: block;
     padding: 20px 16px 14px;
     color: var(--ink);
@@ -591,7 +591,7 @@ if (noIPhone) {
     ganhoAgua = contextoAudio.createGain();
     ganhoSino = contextoAudio.createGain();
     ganhoAgua.gain.value = 0.22;
-    ganhoSino.gain.value = 0.35;
+    ganhoSino.gain.value = 0.70;
     contextoAudio.createMediaElementSource(videoCapa).connect(ganhoAgua);
     ganhoAgua.connect(contextoAudio.destination);
     contextoAudio.createMediaElementSource(audioSino).connect(ganhoSino);
