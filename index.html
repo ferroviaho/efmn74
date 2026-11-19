@@ -301,81 +301,86 @@ text-decoration: none;
 padding-top: 20px;
 }
 
+.mobile-menu-toggle { display: none; }
+/* Layout exclusivo de celulares: vídeo inteiro, sem a coluna lateral */
 @media (max-width: 760px) {
-/* Capa inteira no iPhone, sem faixa lateral cobrindo a igreja. */
-.hero {
-height: auto;
-min-height: 0;
-display: flex;
-flex-direction: column;
-overflow: visible;
-}
-.hero-video {
-position: relative;
-inset: auto;
-display: block;
-width: 100%;
-height: auto;
-aspect-ratio: 16 / 9;
-object-fit: contain;
-object-position: center center;
-background: #151515;
-}
-.hero-inner {
-position: absolute;
-top: 0;
-left: 0;
-right: 0;
-bottom: auto;
-height: calc(100vw * 9 / 16);
-}
-.hero h1 {
-top: 12px;
-left: 12px;
-width: 46%;
-color: #fff;
-font-size: clamp(1.7rem, 7vw, 2.5rem);
-text-shadow: 0 2px 6px rgba(0,0,0,.9);
-}
-.hero p {
-top: 63px;
-left: 12px;
-right: auto;
-bottom: auto;
-width: 46%;
-color: #fff;
-font-size: clamp(.63rem, 2.5vw, .82rem);
-line-height: 1.3;
-text-shadow: 0 2px 5px rgba(0,0,0,.95);
-}
-.hero-text {
-padding-top: 0;
-color: #fff !important;
-}
-.side-nav {
-position: relative;
-top: auto;
-right: auto;
-width: 100%;
-height: auto;
-display: grid;
-grid-template-columns: repeat(2, minmax(0, 1fr));
-gap: 0 18px;
-padding: 12px 18px;
-border-left: 0;
-border-top: 2px solid var(--gold);
-background: var(--bg);
-color: #111;
-}
-.side-nav a {
-border-bottom: 1px solid rgba(0,0,0,.12);
-padding: 10px 0;
-font-size: .88rem;
-}
-.side-nav a:first-child { padding-top: 10px; }
-.menu-vazio { display: none; }
-.welcome { display: block; }
-section { padding: 46px 0; }
+  .hero {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+    overflow: visible;
+    background: #151515;
+  }
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+  .hero-inner { z-index: 2; }
+  .hero h1 {
+    top: 27%;
+    left: 12px;
+    width: auto;
+    max-width: 54%;
+    color: #fff;
+    font-size: clamp(1.7rem, 8vw, 2.5rem);
+    text-shadow: 0 2px 7px #000, 0 0 12px #000;
+  }
+  .hero p {
+    top: 48%;
+    left: 12px;
+    right: auto;
+    bottom: auto;
+    width: 56%;
+    color: #fff;
+    font-size: clamp(.62rem, 2.6vw, .9rem);
+    line-height: 1.24;
+    text-shadow: 0 1px 4px #000, 0 0 8px #000;
+  }
+  .hero-text { padding-top: 0; }
+  .mobile-menu-toggle {
+    position: absolute;
+    display: block;
+    top: 12px;
+    right: 12px;
+    z-index: 12;
+    border: 1px solid rgba(255,255,255,.8);
+    border-radius: 7px;
+    padding: 5px 12px;
+    background: rgba(20,20,20,.78);
+    color: #fff;
+    font: 600 24px Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  .side-nav {
+    display: none;
+    position: absolute;
+    top: 56px;
+    right: 12px;
+    width: min(310px, calc(100vw - 24px));
+    height: auto;
+    max-height: min(75vh, 440px);
+    overflow-y: auto;
+    flex-direction: column;
+    gap: 0;
+    padding: 10px 18px;
+    background: rgba(244,241,234,.98);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    color: #111;
+    z-index: 11;
+    box-shadow: 0 8px 24px rgba(0,0,0,.3);
+  }
+  .side-nav.mobile-open { display: flex; }
+  .side-nav a { padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,.12); }
+  .menu-vazio { display: none; }
+  .contact-modal { position: fixed; top: 50%; z-index: 30; }
+  .welcome { display: block; }
+  section { padding: 46px 0; }
 }
 
 .assinatura {
@@ -403,11 +408,56 @@ color: #68635a;
 .hero-sound-button:hover,
 .hero-sound-button:focus-visible { background: rgba(21,21,21,.95); }
 @media (max-width: 760px) {
-  .hero-sound-button { left: 12px; top: calc(100vw * 9 / 16 - 40px); bottom: auto; padding: 7px 10px; font-size: 12px; }
+  .hero-sound-button { left: 16px; bottom: 0; padding: 9px 12px; font-size: 13px; }
+}
+
+/* Apresentação exclusiva para celulares, conforme esboço fornecido. */
+.mobile-welcome-title, .mobile-intro { display: none; }
+@media (max-width: 760px) {
+  .mobile-welcome-title {
+    display: block;
+    background: var(--bg);
+    padding: 17px 15px 15px;
+    text-align: center;
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--ink);
+    font-size: clamp(1.35rem, 5.3vw, 1.9rem);
+    line-height: 1.25;
+  }
+  .hero { aspect-ratio: 16 / 9; height: auto; min-height: 0; }
+  .hero-video { object-fit: contain; object-position: center center; }
+  .hero-inner { display: none; }
+  .mobile-intro {
+    display: block;
+    padding: 20px 16px 14px;
+    color: var(--ink);
+    background: var(--bg);
+    font-size: 1.12rem;
+    line-height: 1.45;
+  }
+  .mobile-intro p { margin: 0 0 7px; }
+  #apresentacao { padding-top: 14px; }
+  #apresentacao h2 { display: none; }
+  #apresentacao .welcome {
+    border: 1px solid var(--line);
+    background: var(--paper);
+    padding: 20px 18px;
+    border-radius: 3px;
+  }
+  .hero-sound-button {
+    left: 12px;
+    bottom: 0;
+    background: transparent;
+    text-shadow: 0 1px 3px rgba(0,0,0,.85);
+  }
+  .hero-sound-button:hover,
+  .hero-sound-button:focus-visible { background: transparent; }
+  .mobile-menu-toggle { top: 12px; right: 12px; }
 }
 </style>
 </head>
 <body>
+<div class="mobile-welcome-title">Bem-vindo à Ferrovia EFMN 74</div>
 <header class="hero" id="inicio">
 <video id="video-capa" class="hero-video" autoplay muted loop playsinline preload="auto" poster="capa.png" aria-label="Ferrovia EFMN 74 com água em movimento">
 <source src="videos/capa-agua-som.MP4" type="video/mp4">
@@ -443,7 +493,8 @@ color: #68635a;
 <button type="submit">Enviar</button>
 </form>
 </div>
-<nav aria-label="Navegação principal" class="side-nav">
+<button class="mobile-menu-toggle" id="abrir-menu-movel" type="button" aria-controls="navegacao-principal" aria-expanded="false" aria-label="Abrir menu">☰</button>
+<nav id="navegacao-principal" aria-label="Navegação principal" class="side-nav">
 <span class="menu-vazio" aria-hidden="true"></span>
 <a href="curso-ferrovia.html">Automação com Arduino e C++</a>
 <a href="biblioteca.html">Biblioteca</a>
@@ -455,6 +506,10 @@ color: #68635a;
   <a href="#contato" id="abrir-contato">Contato</a>
 </nav>
 </header>
+<div class="mobile-intro">
+  <p>Ferrovia em escala HO</p>
+  <p>Construção - automação - memória - documentação</p>
+</div>
 <main>
 <section id="apresentacao">
 <div class="welcome">
@@ -481,6 +536,24 @@ Ferrovia EFMN 74
 </a>
 </footer>
 <script>
+// Abre e fecha apenas o menu de celulares.
+const botaoMenuMovel = document.getElementById('abrir-menu-movel');
+const navegacaoPrincipal = document.getElementById('navegacao-principal');
+botaoMenuMovel.addEventListener('click', () => {
+  const aberto = navegacaoPrincipal.classList.toggle('mobile-open');
+  botaoMenuMovel.setAttribute('aria-expanded', String(aberto));
+  botaoMenuMovel.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+  botaoMenuMovel.textContent = aberto ? '×' : '☰';
+});
+navegacaoPrincipal.addEventListener('click', (event) => {
+  if (event.target.closest('a')) {
+    navegacaoPrincipal.classList.remove('mobile-open');
+    botaoMenuMovel.setAttribute('aria-expanded', 'false');
+    botaoMenuMovel.setAttribute('aria-label', 'Abrir menu');
+    botaoMenuMovel.textContent = '☰';
+  }
+});
+
 const abrirContato = document.getElementById('abrir-contato');
 const fecharContato = document.getElementById('fechar-contato');
 const contato = document.getElementById('contato');
@@ -518,7 +591,7 @@ if (noIPhone) {
     ganhoAgua = contextoAudio.createGain();
     ganhoSino = contextoAudio.createGain();
     ganhoAgua.gain.value = 0.22;
-    ganhoSino.gain.value = 0.28;
+    ganhoSino.gain.value = 0.35;
     contextoAudio.createMediaElementSource(videoCapa).connect(ganhoAgua);
     ganhoAgua.connect(contextoAudio.destination);
     contextoAudio.createMediaElementSource(audioSino).connect(ganhoSino);
