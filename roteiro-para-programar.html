@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="Roteiro de consulta para programar o software de controle da EFMN 74.">
+  <title>Roteiro para programar a EFMN 74</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f4f1ea;
+      color: #222;
+      font: 17px/1.6 Georgia, "Times New Roman", serif;
+    }
+    .site-header {
+      background: #000;
+      color: #fff;
+      border-bottom: 3px solid #c89b2b;
+      padding: 8px 16px;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font: 700 16px/1.3 Arial, Helvetica, sans-serif;
+    }
+    .header-inner a { flex-shrink: 0; margin-right: 14px; }
+    .header-inner img { display: block; width: 72px; height: auto; }
+    main { max-width: 900px; margin: 0 auto; padding: 24px 16px 40px; }
+    h1 { margin: 0 0 12px; font-size: 2rem; line-height: 1.2; }
+    h2 { margin: 0 0 6px; font-size: 1.18rem; line-height: 1.3; }
+    p { margin: 0 0 8px; }
+    a { color: #0056b3; }
+    .voltar { font-family: Arial, Helvetica, sans-serif; }
+    .voltar a { font-weight: 600; }
+    .topo { margin-bottom: 20px; }
+    .rodape { margin-top: 24px; }
+    .roteiro { margin: 20px 0 0; padding-left: 2rem; }
+    .roteiro li {
+      margin-bottom: 12px;
+      padding: 14px 16px;
+      background: #fffdf8;
+      border: 1px solid #ded7c8;
+      border-radius: 8px;
+    }
+    .roteiro li p:last-child { margin-bottom: 0; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html">
+        <img src="logo-efmn74.PNG" alt="Página principal da Ferrovia EFMN 74">
+      </a>
+      <span>Ferrovia EFMN 74 – Escala HO</span>
+    </div>
+  </header>
+  <main>
+    <p class="voltar topo"><a href="documentacao.html">← Voltar à Documentação</a></p>
+    <h1>Roteiro para programar a EFMN 74</h1>
+    <p>Siga esta ordem para recuperar as decisões de operação, conferir a montagem
+      e escolher os ensaios que vão validar cada parte do software.</p>
+    <ol class="roteiro">
+      <li>
+        <h2>Software de controle</h2>
+        <p>Use o estudo preliminar para definir o módulo de cada gaveta. A GA3 é
+          a base para validar comandos, acionar servos e relé, informar estados
+          e tratar falhas e rearme.</p>
+        <p><a href="software-controle.html">Estudo preliminar de software</a></p>
+      </li>
+      <li>
+        <h2>Diário de Bordo</h2>
+        <p>Na primeira versão DCC, o operador informa a locomotiva, a posição
+          inicial e o sentido antes de escolher uma rota compatível. Depois
+          de validado, o RFID será o padrão, com aviso e entrada manual se a
+          leitura falhar. Organize o código em funções pequenas e teste as
+          rotinas dependentes quando mudar uma saída.</p>
+      </li>
+      <li>
+        <h2>Rotas e componentes da ferrovia</h2>
+        <p>Para cada rota e sentido, anote a origem, o destino, a sequência de
+          sensores e as posições DI ou AC dos desvios. Confira os trechos
+          compartilhados e as condições para liberar a rota.</p>
+        <p><a href="layout-e-componentes.pdf">Layout e componentes da ferrovia</a></p>
+      </li>
+      <li>
+        <h2>Gavetas de controle e eletrônica</h2>
+        <p>Confira a divisão de funções entre a GCP e as gavetas de área.
+          Identifique qual unidade comanda cada desvio, lê cada sensor e envia
+          os estados usados pelo controle central.</p>
+      </li>
+      <li>
+        <h2>Guia de instalação da GA3</h2>
+        <p>Confira os bornes e os GPIOs da montagem real antes de fixá-los no
+          código. Use o guia para relacionar D5, D6, D8, D9 e D10 aos servos
+          e verificar a ligação do relé e dos sensores S10 a S14.</p>
+        <p><a href="GA3-guia-de-instalacao.html">GA3 – Guia de instalação</a></p>
+      </li>
+      <li>
+        <h2>Ensaios operacionais</h2>
+        <p>Comece pelo teste entre GCP e GA3. Confira comandos e leituras sem
+          circulação e depois faça os percursos supervisionados. Use os testes
+          de ajustes operacionais para os cenários com uma e duas locomotivas.</p>
+        <p><a href="teste-operacional-preliminar.html">Teste operacional preliminar</a>
+          · <a href="testes-de-ajustes-operacionais.html">Testes de ajustes operacionais</a></p>
+      </li>
+      <li>
+        <h2>Testes dos componentes da GA3</h2>
+        <p>Consulte os ensaios de servos, sensores Hall e MOSFETs para validar
+          as rotinas individualmente. Confira os resultados e os GPIOs
+          definitivos. O GPIO32 do ensaio Hall é temporário, para testar
+          um sensor por vez.</p>
+        <p>
+          <a href="GA3-Testes-dos-servos-SG90.html">Servos SG90</a> ·
+          <a href="GA3-Testes-dos-sensores-Hall-S10-S14.html">Sensores Hall S10 a S14</a> ·
+          <a href="GA3-Testes-dos-4-modulos-Mosfets.html">Quatro MOSFETs</a>
+        </p>
+      </li>
+    </ol>
+    <footer class="rodape">
+      <p class="voltar"><a href="documentacao.html">← Voltar à Documentação</a></p>
+    </footer>
+  </main>
+</body>
+</html>
