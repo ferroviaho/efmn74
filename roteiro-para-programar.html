@@ -15,19 +15,39 @@
       font: 17px/1.6 Georgia, "Times New Roman", serif;
     }
     .site-header {
+      width: 100%;
       background: #000;
-      color: #fff;
       border-bottom: 3px solid #c89b2b;
       padding: 8px 16px;
     }
+ 
     .header-inner {
       display: flex;
       align-items: center;
       justify-content: center;
-      font: 700 16px/1.3 Arial, Helvetica, sans-serif;
+      gap: 14px;
+      max-width: 1100px;
+      margin: 0 auto;
     }
-    .header-inner a { flex-shrink: 0; margin-right: 14px; }
-    .header-inner img { display: block; width: 72px; height: auto; }
+ 
+    .header-logo { width: 72px; height: auto; display: block; }
+ 
+    .header-text {
+      color: #fff;
+      line-height: 1.25;
+      text-align: left;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+ 
+    .header-title { margin: 0; font-size: 1.05rem; font-weight: 700; }
+    .header-subtitle { margin: 2px 0 0; font-size: .88rem; }
+ 
+    @media (max-width: 700px) {
+      .site-header { padding: 7px 10px; }
+      .header-inner { gap: 10px; }
+      .header-title { font-size: .98rem; }
+      .header-subtitle { font-size: .80rem; }
+    }
     main { max-width: 900px; margin: 0 auto; padding: 24px 16px 40px; }
     h1 { margin: 0 0 12px; font-size: 2rem; line-height: 1.2; }
     h2 { margin: 0 0 6px; font-size: 1.18rem; line-height: 1.3; }
@@ -51,10 +71,11 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a href="index.html">
-        <img src="logo-efmn74.PNG" alt="Página principal da Ferrovia EFMN 74">
-      </a>
-      <span>Ferrovia EFMN 74 – Escala HO</span>
+      <a href="index.html"><img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo"></a>
+      <div class="header-text">
+        <p class="header-title">Ferrovia EFMN 74 - Escala HO</p>
+        <p class="header-subtitle">Construção, automação, memória e documentação</p>
+      </div>
     </div>
   </header>
   <main>
