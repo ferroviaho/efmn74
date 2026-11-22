@@ -2,38 +2,22 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Documentação da Ferrovia EFMN 74: estudos preliminares, sensores, desvios, gavetas de controle, alimentação elétrica, testes e segurança.">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Documentação | Ferrovia EFMN 74">
-  <meta property="og:description" content="Acompanhe os estudos preliminares e a documentação técnica da Ferrovia EFMN 74, da montagem aos testes de segurança.">
-  <title>Documentação | Ferrovia EFMN 74</title>
-<style>
-    :root {
-      --bg: #f4f1ea;
-      --paper: #fffdf8;
-      --ink: #222;
-      --gold: #c89b2b;
-      --gold-dark: #8a6517;
-      --line: #ded7c8;
-      --blue: #0056b3;
-      --max: 1000px;
-    }
- 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="Roteiro de consulta para programar o software de controle da EFMN 74.">
+  <title>Roteiro para programar a EFMN 74</title>
+  <style>
     * { box-sizing: border-box; }
- 
     body {
       margin: 0;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: Georgia, "Times New Roman", serif;
-      line-height: 1.6;
+      background: #f4f1ea;
+      color: #222;
+      font: 17px/1.6 Georgia, "Times New Roman", serif;
     }
- 
     .site-header {
       width: 100%;
       background: #000;
-      border-bottom: 3px solid var(--gold);
+      border-bottom: 3px solid #c89b2b;
       padding: 8px 16px;
     }
  
@@ -58,74 +42,30 @@
     .header-title { margin: 0; font-size: 1.05rem; font-weight: 700; }
     .header-subtitle { margin: 2px 0 0; font-size: .88rem; }
  
-    main { max-width: var(--max); margin: 0 auto; padding: 34px 20px 56px; }
- 
-    .voltar { margin: 0 0 22px; font-family: Arial, Helvetica, sans-serif; }
-    .voltar a, .card a { color: var(--blue); text-decoration: none; font-weight: 600; }
-    .voltar a:hover, .card a:hover { text-decoration: underline; }
- 
-    h1 { margin: 0 0 14px; line-height: 1.2; font-size: 2.25rem; }
-    h2 { margin-top: 0; font-size: 1.35rem; }
-    .abertura { margin: 0 0 26px; font-size: 1.08rem; }
- 
-    .aviso {
-      background: #fff7dc;
-      border-left: 5px solid var(--gold);
-      border-radius: 6px;
-      padding: 16px 18px;
-      margin: 0 0 28px;
-    }
- 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
- 
-    .card, .conteudo, .exemplo {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 22px 24px;
-    }
- 
-    .card h2 { margin-bottom: 8px; }
-    .card p { margin: 0 0 12px; }
-    .conteudo { margin-bottom: 24px; }
-    .conteudo ul, .exemplo ul { margin-bottom: 0; padding-left: 24px; }
-    .conteudo li, .exemplo li { margin: 8px 0; }
- 
-    .exemplo {
-      border-left: 5px solid var(--gold);
-      margin-bottom: 26px;
-    }
- 
-    .exemplo .rotulo {
-      color: var(--gold-dark);
-      font: 700 .82rem Arial, Helvetica, sans-serif;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      margin: 0 0 6px;
-    }
- 
-    .convite {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 18px 20px;
-    }
- 
-    .convite p { margin: 0; }
- 
     @media (max-width: 700px) {
       .site-header { padding: 7px 10px; }
       .header-inner { gap: 10px; }
       .header-title { font-size: .98rem; }
       .header-subtitle { font-size: .80rem; }
-      main { padding: 26px 16px 44px; }
-      h1 { font-size: 1.75rem; }
-      .grid { grid-template-columns: 1fr; }
     }
+    main { max-width: 900px; margin: 0 auto; padding: 24px 16px 40px; }
+    h1 { margin: 0 0 12px; font-size: 2rem; line-height: 1.2; }
+    h2 { margin: 0 0 6px; font-size: 1.18rem; line-height: 1.3; }
+    p { margin: 0 0 8px; }
+    a { color: #0056b3; }
+    .voltar { font-family: Arial, Helvetica, sans-serif; }
+    .voltar a { font-weight: 600; }
+    .topo { margin-bottom: 20px; }
+    .rodape { margin-top: 24px; }
+    .roteiro { margin: 20px 0 0; padding-left: 2rem; }
+    .roteiro li {
+      margin-bottom: 12px;
+      padding: 14px 16px;
+      background: #fffdf8;
+      border: 1px solid #ded7c8;
+      border-radius: 8px;
+    }
+    .roteiro li p:last-child { margin-bottom: 0; }
   </style>
 </head>
 <body>
@@ -138,56 +78,71 @@
       </div>
     </div>
   </header>
- 
   <main>
-    <p class="voltar"><a href="index.html">← Voltar à página principal</a></p>
-    <h1>Documentação</h1>
-    <p class="abertura">Esta área apresentará documentos técnicos elaborados durante o planejamento, a montagem e os testes da Ferrovia.</p>
-    <div class="aviso">A documentação será publicada gradualmente, sempre depois da montagem prática, da conferência das ligações e da atualização das informações.</div>
- 
-    <div class="grid">
-      <section class="card">
-        <h2>Estudos preliminares</h2>
-        <p>Propostas, decisões em análise e resultados de testes que orientam os procedimentos futuros. Cada estudo registra a data, a versão e os pontos ainda pendentes de validação.</p>
-        <p><a href="estudo-preliminar-sensores.html">Sensores</a></p>
-        <p><a href="software-controle.html">Software</a></p>
-        <p><a href="roteiro-para-programar.html">Roteiro para programar o software</a></p>
-      </section>
-      <section class="card">
-        <h2>Gavetas de controle</h2>
-        <p>Descrição das funções, componentes e ligações das gavetas GCP, GA1, GA2, GA3, GAR e GES.</p>
+    <p class="voltar topo"><a href="documentacao.html">← Voltar à Documentação</a></p>
+    <h1>Roteiro para programar a EFMN 74</h1>
+    <p>Siga esta ordem para recuperar as decisões de operação, conferir a montagem
+      e escolher os ensaios que vão validar cada parte do software.</p>
+    <ol class="roteiro">
+      <li>
+        <h2>Software de controle</h2>
+        <p>Use o estudo preliminar para definir o módulo de cada gaveta. A GA3 é
+          a base para validar comandos, acionar servos e relé, informar estados
+          e tratar falhas e rearme.</p>
+        <p><a href="software-controle.html">Estudo preliminar de software</a></p>
+      </li>
+      <li>
+        <h2>Diário de Bordo</h2>
+        <p>Na primeira versão DCC, o operador informa a locomotiva, a posição
+          inicial e o sentido antes de escolher uma rota compatível. Depois
+          de validado, o RFID será o padrão, com aviso e entrada manual se a
+          leitura falhar. Organize o código em funções pequenas e teste as
+          rotinas dependentes quando mudar uma saída.</p>
+      </li>
+      <li>
+        <h2>Rotas e componentes da ferrovia</h2>
+        <p>Para cada rota e sentido, anote a origem, o destino, a sequência de
+          sensores e as posições DI ou AC dos desvios. Confira os trechos
+          compartilhados e as condições para liberar a rota.</p>
+        <p><a href="layout-e-componentes.pdf">Layout e componentes da ferrovia</a></p>
+      </li>
+      <li>
+        <h2>Gavetas de controle e eletrônica</h2>
+        <p>Confira a divisão de funções entre a GCP e as gavetas de área.
+          Identifique qual unidade comanda cada desvio, lê cada sensor e envia
+          os estados usados pelo controle central.</p>
+      </li>
+      <li>
+        <h2>Guia de instalação da GA3</h2>
+        <p>Confira os bornes e os GPIOs da montagem real antes de fixá-los no
+          código. Use o guia para relacionar D5, D6, D8, D9 e D10 aos servos
+          e verificar a ligação do relé e dos sensores S10 a S14.</p>
         <p><a href="GA3-guia-de-instalacao.html">GA3 – Guia de instalação</a></p>
-      </section>
-      <section class="card">
-        <h2>Desvios e servos</h2>
-        <p>Instalação dos servos SG90, preparação das hastes, ajustes de movimento e testes.</p>
-      </section>
-      <section class="card">
-        <h2>Sensores</h2>
-        <p>Posicionamento, instalação, ligação e uso dos sensores na segurança das rotas.</p>
-      </section>
-      <section class="card">
-        <h2>Alimentação elétrica</h2>
-        <p>Fontes, proteções, barramentos, relés, aterramento comum e distribuição de energia.</p>
-      </section>
-      <section class="card">
-        <h2>Testes e segurança</h2>
-        <p>Procedimentos de conferência, testes por etapas, avisos sonoros e rotinas para detectar falhas.</p>
-        <p><a href="teste-operacional-preliminar.html">Teste operacional preliminar - GCP e GA3</a></p>
-        <p><a href="testes-de-ajustes-operacionais.html">Testes de ajustes operacionais</a></p>
-      </section>
-    </div>
- 
-    <section class="exemplo" style="margin-top: 26px;">
-      <p class="rotulo">Exemplo de futura documentação</p>
-      <h2>Montagem da gaveta GA3, passo a passo</h2>
-      <p>Documento mostrando a montagem desde o Sindal de entrada até os sensores, servos, iluminação e som, acompanhado de fotografias reais e desenhos das ligações.</p>
-    </section>
- 
-    <section class="convite">
-      <p>Novos documentos serão acrescentados conforme a ferrovia avançar. Volte ao site para acompanhar as próximas etapas ou sugerir um assunto que gostaria de ver explicado.</p>
-    </section>
-    <footer style="padding-top: 1.6em;"><p class="voltar"><a href="index.html">← Voltar à página principal</a></p></footer>
+      </li>
+      <li>
+        <h2>Ensaios operacionais</h2>
+        <p>Comece pelo teste entre GCP e GA3. Confira comandos e leituras sem
+          circulação e depois faça os percursos supervisionados. Use os testes
+          de ajustes operacionais para os cenários com uma e duas locomotivas.</p>
+        <p><a href="teste-operacional-preliminar.html">Teste operacional preliminar</a>
+          · <a href="testes-de-ajustes-operacionais.html">Testes de ajustes operacionais</a></p>
+      </li>
+      <li>
+        <h2>Testes dos componentes da GA3</h2>
+        <p>Consulte os ensaios de servos, sensores Hall e MOSFETs para validar
+          as rotinas individualmente. Confira os resultados e os GPIOs
+          definitivos. O GPIO32 do ensaio Hall é temporário, para testar
+          um sensor por vez.</p>
+        <p>
+          <a href="GA3-Testes-dos-servos-SG90.html">Servos SG90</a> ·
+          <a href="GA3-Testes-dos-sensores-Hall-S10-S14.html">Sensores Hall S10 a S14</a> ·
+          <a href="GA3-Testes-dos-4-modulos-Mosfets.html">Quatro MOSFETs</a>
+        </p>
+      </li>
+    </ol>
+    <footer class="rodape">
+      <p class="voltar"><a href="documentacao.html">← Voltar à Documentação</a></p>
+    </footer>
   </main>
 </body>
 </html>
