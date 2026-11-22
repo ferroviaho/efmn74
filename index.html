@@ -590,8 +590,8 @@ if (noIPhone) {
     contextoAudio = new AudioContextCompat();
     ganhoAgua = contextoAudio.createGain();
     ganhoSino = contextoAudio.createGain();
-    ganhoAgua.gain.value = 0.22;
-    ganhoSino.gain.value = 0.70;
+    ganhoAgua.gain.value = 0.12;
+    ganhoSino.gain.value = 0.90;
     contextoAudio.createMediaElementSource(videoCapa).connect(ganhoAgua);
     ganhoAgua.connect(contextoAudio.destination);
     contextoAudio.createMediaElementSource(audioSino).connect(ganhoSino);
