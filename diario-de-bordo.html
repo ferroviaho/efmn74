@@ -83,6 +83,9 @@ main { padding: 26px 16px 44px; }
 h1 { font-size: 1.75rem; }
 .intro { font-size: 1.05rem; }
 }
+.figura-ga3 { margin: 1em 0; }
+.figura-ga3 img { display: block; max-width: 100%; width: 420px; height: auto; }
+.figura-ga3 figcaption { margin-top: .35em; }
 </style>
 </head>
 <body>
@@ -103,6 +106,7 @@ h1 { font-size: 1.75rem; }
 </p>
 
 <h1>Diário de Bordo</h1>
+<p>Atualizado em 23/11/2026.</p>
 
 <div class="intro">
 <p>
@@ -211,6 +215,26 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <p>Em 12/11/2026 foi dispensado o antigo X2 destinado ao GND dos servos. O antigo X5 passou a se chamar X2, destinado às saídas de alimentação dos LEDs pelos MOSFETs. A identificação atual é: X0 — Entrada de 5 V CC e GND. X1 — Positivo dos servos após o relé. X2 — Saídas para os LEDs. X3 — Saídas dos sinais de controle dos servos. X4 — Entradas dos sinais dos sensores Hall. As referências anteriores a X2 como GND dos servos representam a montagem antiga.</p>
 <p>Confirmadas em 12/11/2026 as ligações GPIO23 → IN1 do relé, com fio amarelo, e NO do relé → X1, com fio vermelho. Para o Mosfet 1, GPIO26 → PWM utiliza fio amarelo, GND → barra GND comum utiliza fio branco malhado de preto e VIN+ está ligado a X0+, sem cor registrada. O destino físico e a cor do fio VIN− ainda precisam ser registrados, mantendo sua ligação ao negativo da fonte.</p>
 <p>Em 14/11/2026 foram concluídos e aprovados em bancada os testes de acionamento dos quatro módulos Mosfet da GA3. Foram verificadas as alternâncias de tensão de saída, com leituras próximas de 0 V (desligado) e 4,9 V (ligado), após correção da referência GND comum. A aprovação corresponde ao funcionamento elétrico ensaiado. Ainda será necessária a validação das cargas de iluminação na instalação definitiva. O procedimento e os programas de teste estão relacionados na <a href="biblioteca.html">Biblioteca</a>, incluindo <a href="GA3-Testes-dos-4-modulos-Mosfets.html">GA3 — Testes dos 4 módulos Mosfets</a>.</p>
+<h3>GA3 — Alimentação dos cinco servos (23/11/2026)</h3>
+<p>Os desvios D5, D6, D8, D9 e D10 compartilham a alimentação. Cada servo conserva seu próprio fio de sinal em X3.</p>
+<figure class="figura-ga3">
+<img src="ga3-servos-x1.png" alt="Ligação dos cinco fios vermelhos ao borne X1" loading="lazy">
+<figcaption>Sob a mesa, unir os cinco fios vermelhos (+5 V). Da junção, levar um único fio vermelho de 1,5 mm² ao borne X1. O outro lado de X1 recebe o positivo do contato NO do relé.</figcaption>
+</figure>
+<figure class="figura-ga3">
+<img src="ga3-servos-gnd.png" alt="Ligação dos cinco retornos à barra GND sob a mesa" loading="lazy">
+<figcaption>Em uma junção separada, unir os fios de GND dos cinco servos. Ligar essa junção diretamente à barra GND sob a mesa com um único fio preto de 1,5 mm². O borne X2 atual atende à iluminação.</figcaption>
+</figure>
+<h3>Montagem das próximas gavetas (23/11/2026)</h3>
+<ol>
+<li>Usar duas protoboards de 830 pontos, afastadas o suficiente para instalar a ESP32 entre elas e manter os pinos dos dois lados acessíveis aos jumpers.</li>
+<li>Fixar as protoboards na vertical, próximas à borda inferior da placa de MDF. Orientar o conector USB da ESP32 para essa borda e deixar espaço para conectar o cabo ao notebook durante as atualizações do software.</li>
+</ol>
+<figure class="figura-ga3">
+<img src="esp32-entre-protoboards.jpg" alt="ESP32 de 30 pinos entre duas protoboards" loading="lazy">
+<figcaption>As setas verdes indicam os furos livres para jumpers nos dois lados da ESP32. O conector USB fica voltado para a borda inferior do MDF.</figcaption>
+</figure>
+<p>Essas recomendações se aplicam às próximas gavetas. A GA3 mantém a disposição atual.</p>
 </article>
 
 
@@ -278,6 +302,7 @@ loading="lazy">
 <p>Foram confirmadas as conexões internas B35 → VP/GPIO36 e B29 → D34/GPIO34, ambas com fio laranja. Para S13, X4 → C26 utiliza fio vermelho e B26 → D35/GPIO35 utiliza fio laranja. Para S14, X4 → C23 utiliza fio azul e B23 → D32/GPIO32 utiliza fio laranja. Essas cores identificam os trechos internos da gaveta, distinguindo-os dos fios de sinal lançados sob a mesa.</p>
 <p>Em 19/11/2026, o teste funcional de S10 a S14 na maquete continuava pendente. Em 20/11/2026 ficou definido que os próximos ensaios começarão com ímã e sensor Hall. O teste de RFID na linha de carga virá depois.</p>
 <p>Será avaliada a fixação de um ímã em cada vagão, além do ímã da locomotiva, para permitir qualquer ordem de montagem da composição. Antes de liberar o trecho ou desvio, o programa poderá conferir a passagem de todos os veículos a partir da quantidade de vagões informada no tablet. Eduardo verificará o espaço sob cada modelo e testará a leitura antes da fixação definitiva.</p>
+<p>Nos ensaios de S10 a S14, registrar individualmente o local, o borne de X4, as tensões com o ímã afastado, próximo e novamente afastado, o resultado e as correções de ligação. Registrar separadamente a medição em X4, a leitura pela ESP32 e a detecção com o trem em movimento.</p>
 </article>
 <article id="sequencias">
 <h2>Sequências operacionais por sensores e desvios</h2>
@@ -302,6 +327,7 @@ loading="lazy">
 <p>Revisada a estratégia de confirmação de posição dos desvios: inicialmente, os desvios operarão sem sensores Hall dedicados para confirmar DI ou AC. A ESP32 comandará o servo, aguardará o movimento e registrará a posição como “comandada”, e não como “confirmada”.</p>
 <p>Caso algum desvio apresente comportamento problemático durante a operação real, poderá ser instalada posteriormente confirmação específica próxima à entrada e/ou à saída desse desvio, evitando a instrumentação de todos os desvios desde o início.</p>
 <p>A posição DI ou AC dos desvios será utilizada como informação complementar de segurança da rota, sem substituir os sensores de presença. Quando uma composição for detectada por um sensor, o sistema deverá verificar os desvios relevantes à frente e, se algum estiver em posição incompatível com a rota prevista, comandar sua correção ou impedir o prosseguimento até que a condição de segurança seja atendida.</p>
+<p>Na proposta da R8 configurável, um desvio só poderá mudar de posição entre percursos depois que a cauda da composição tiver liberado por completo o trecho protegido. A passagem da locomotiva pela referência de contagem das voltas, por si só, não libera o desvio.</p>
 </article>
 
 
@@ -356,7 +382,7 @@ loading="lazy">
 
 <article id="operacao">
 <h2>Operação da Estação e rotas</h2>
-<p><strong>Filosofia adotada:</strong> o operador escolhe a operação desejada, mas o sistema somente libera a circulação depois de validar posição, sentido, compatibilidade da rota, condições de segurança e preparação dos desvios necessários. As rotas R1 a R7, os desvios, sensores, distâncias e pontos de parada citados a seguir são parâmetros específicos da EFMN 74 e serão consolidados na Especificação Operacional.</p>
+<p><strong>Filosofia adotada.</strong> O operador escolhe no tablet a operação desejada. Quando o sistema identifica a locomotiva por RFID, a rota escolhida determina o sentido autorizado de saída. O tablet exibe esse sentido e só permite ao operador defini-lo no comando manual. Em ambos os casos, o sistema só libera a circulação após confirmar que a posição da composição e o sentido de saída são compatíveis com a rota, verificar as condições de segurança e preparar os desvios necessários. As rotas R1 a R7, os desvios, os sensores, as distâncias e os pontos de parada citados a seguir são parâmetros específicos da EFMN 74 e serão consolidados na Especificação Operacional.</p>
 <p>Foram oficializadas sete rotas operacionais, R1 a R7. R1 e R2 operam no sentido Leste → Oeste, R4 e R5 no sentido Oeste → Leste, R3 executa R1 seguida de R2 e R6 executa R4 seguida de R5.</p>
 <p>A R7 foi definida como Modo Aleatório Inteligente, em execução contínua até o comando FINALIZAR.</p>
 <p>As rotas R1 a R7 executam continuamente e somente encerram após FINALIZAR, concluindo antes o percurso em andamento.</p>
@@ -373,8 +399,13 @@ loading="lazy">
 <p>Essa regra representa a filosofia de liberação de uma composição no modo DCC. O percurso exato de retorno, sensores envolvidos, desvios e posições DI/AC serão definidos na Especificação Operacional da EFMN 74.</p>
 <h3>Dados de partida no tablet</h3>
 <p>Na primeira versão digital, o operador identificará a locomotiva e informará a posição inicial e o sentido de saída. O software verificará os dados e apresentará as rotas compatíveis após as verificações de retorno à Estação, quando aplicáveis. Quando utilizada, a quantidade de vagões será informada uma única vez para estimar o comprimento da composição e, se for adotado um ímã por vagão, conferir a contagem pelos sensores Hall.</p>
-<p>Após a validação do RFID para leitura antes da partida, a identificação automática da locomotiva será o padrão. Quando a rota definir o sentido autorizado de saída, o sistema poderá preencher esse campo. Em caso de falha de leitura, o tablet avisará o operador e habilitará automaticamente a entrada manual dos dados afetados, inclusive o sentido, quando necessário. A partida continuará sujeita às verificações de segurança da rota.</p>
+<p>Após a validação do RFID para leitura antes da partida, a identificação automática da locomotiva será o padrão. Com a locomotiva identificada por RFID, a rota escolhida determinará o sentido autorizado de saída. O tablet exibirá esse sentido. Em caso de falha de leitura, o tablet avisará o operador e habilitará automaticamente a entrada manual dos dados afetados, inclusive o sentido, quando necessário. A partida continuará sujeita às verificações de segurança da rota.</p>
 <p>Após o início do movimento, será testada a confirmação do sentido pela ordem de duas leituras da mesma locomotiva. Com o Hall a oeste e a leitora RFID a leste, Hall → RFID indica circulação de oeste para leste. RFID → Hall indica o sentido inverso. O programa comparará o sentido detectado com o autorizado pela rota. A associação das leituras será testada nos dois sentidos.</p>
+<h3>R8 configurável — proposta para o pátio de cargas</h3>
+<p>Para uma futura oitava rota, o operador escolheria no tablet a quantidade de voltas e o percurso de cada uma antes da saída do pátio de cargas. Exemplo com três voltas:</p>
+<ol><li>Primeira volta pela L2.</li><li>Segunda volta pela L1.</li><li>Terceira volta com início na L1 e passagem para a L2 durante a mesma volta.</li></ol>
+<p>Na proposta, a primeira passagem da locomotiva pelo ponto de referência inicia a contagem. Cada retorno a esse ponto após cumprir o percurso previsto encerra uma volta. A Especificação Operacional deverá definir a referência, os percursos e sentidos possíveis, os desvios, a sequência de sensores e a manobra de encerramento. O ponto de parada final permanece em aberto.</p>
+<p>O software deverá verificar a sequência completa antes da partida. Os testes de ajustes operacionais deverão conferir a contagem desde a saída, a transição L1 → L2 dentro da terceira volta, o bloqueio dos desvios até a passagem da cauda e o encerramento após a última volta. O Manual do Operador será atualizado quando o procedimento estiver definido. A R8 aguarda validação do traçado e dos pontos de detecção.</p>
 </article>
 
 <article id="interfaces">
@@ -430,6 +461,7 @@ loading="lazy">
 <p>O documento “<a href="GA3-testes-e-resultados.html">GA3 — Guia de instalação</a>” preserva a distinção entre os ensaios de bancada aprovados e as verificações necessárias na maquete. Permanecem pendentes a conferência da alimentação definitiva, o desempenho com até dois servos sob carga mecânica, a compatibilidade nominal do módulo relé e o esclarecimento de eventual tensão nos servos com o relé comandado para desligar. No software definitivo, o reinício durante uma falha deverá manter a operação bloqueada até nova verificação. O reconhecimento manual de um alarme não confirma a correção da falha física nem libera, por si só, a circulação.</p>
 <p>Em 11/11/2026 foi preparado o roteiro de <a href="testes-de-ajustes-operacionais.html">Testes de ajustes operacionais</a>, em Documentação / Testes e segurança, para validar as rotas 1 a 7 com uma locomotiva e, depois, combinações com duas locomotivas. Os resultados e ajustes de software serão registrados a cada etapa, repetindo os testes afetados pelas alterações. Após aprovação, será consolidado o documento final “Testes operacionais fundamentais” para a Biblioteca.</p>
 <p>Em 12/11/2026 foi aprovado o teste do Mosfet 1 com resistor de 4,7 kΩ, conforme o registro em <a href="#sinaleiros">Sinaleiros e iluminação</a>. Na data do primeiro ensaio, permaneciam pendentes os testes com LEDs e a definição dos resistores em série. Em 14/11/2026, os quatro módulos Mosfet foram aprovados nos testes de acionamento em bancada, conforme o registro em <a href="#sinaleiros">Sinaleiros e iluminação</a>. Ainda precisam ser validados com as cargas reais, assim como a alimentação definitiva da ESP32 na instalação da gaveta. A aprovação desse ensaio não representa validação com as cargas reais nem liberação integral da GA3.</p>
+<p>Após os ensaios de S10 a S14, atualizar os resultados individuais no Guia de instalação da GA3 e em “Sensores de presença” deste Diário. Registrar aqui as verificações ainda pendentes. Revisar o passo a passo “Como instalar e interligar um sensor Hall”, transferi-lo de Técnicas de Construção para a Biblioteca e atualizar os links. Se o programa de teste for usado, registrar na página “GA3 — Testes dos sensores Hall S10–S14” o comportamento observado na ESP32. Se houver mudança no código ou nos GPIOs, atualizar também o programa publicado.</p>
 </article>
 
 <article id="site">
@@ -475,7 +507,7 @@ loading="lazy">
 <p>Foi recebido o módulo relé de 3,3 V destinado à montagem da GA3. Em 02/10/2026 também foram recebidos dez módulos Mosfet para os estudos e a implantação da iluminação setorizada.</p>
 </article>
 
-<!-- Diário atualizado em 22/11/2026 -->
+<!-- Diário atualizado em 23/11/2026 -->
 <!-- ===== INSERIR NOVAS DECISÕES NO TEMA CORRESPONDENTE ===== -->
 
 <p class="voltar-final">
