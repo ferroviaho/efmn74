@@ -83,8 +83,10 @@ main { padding: 26px 16px 44px; }
 h1 { font-size: 1.75rem; }
 .intro { font-size: 1.05rem; }
 }
-.figura-ga3 { margin: 1em 0; }
-.figura-ga3 img { display: block; max-width: 100%; width: 420px; height: auto; }
+.fotos-ga3 { display: flex; justify-content: center; align-items: flex-start; margin: 1em 0; }
+.fotos-ga3 figure + figure { margin-left: 12px !important; }
+.fotos-ga3 .figura-ga3 { width: 294px; max-width: calc(50% - 6px); margin: 0; }
+.figura-ga3 img { display: block; max-width: 100%; width: 100%; height: auto; }
 .figura-ga3 figcaption { margin-top: .35em; }
 </style>
 </head>
@@ -217,6 +219,7 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <p>Em 14/11/2026 foram concluídos e aprovados em bancada os testes de acionamento dos quatro módulos Mosfet da GA3. Foram verificadas as alternâncias de tensão de saída, com leituras próximas de 0 V (desligado) e 4,9 V (ligado), após correção da referência GND comum. A aprovação corresponde ao funcionamento elétrico ensaiado. Ainda será necessária a validação das cargas de iluminação na instalação definitiva. O procedimento e os programas de teste estão relacionados na <a href="biblioteca.html">Biblioteca</a>, incluindo <a href="GA3-Testes-dos-4-modulos-Mosfets.html">GA3 — Testes dos 4 módulos Mosfets</a>.</p>
 <h3>GA3 — Alimentação dos cinco servos (23/11/2026)</h3>
 <p>Os desvios D5, D6, D8, D9 e D10 compartilham a alimentação. Cada servo conserva seu próprio fio de sinal em X3.</p>
+<div class="fotos-ga3">
 <figure class="figura-ga3">
 <img src="ga3-servos-x1.png" alt="Ligação dos cinco fios vermelhos ao borne X1" loading="lazy">
 <figcaption>Sob a mesa, unir os cinco fios vermelhos (+5 V). Da junção, levar um único fio vermelho de 1,5 mm² ao borne X1. O outro lado de X1 recebe o positivo do contato NO do relé.</figcaption>
@@ -225,6 +228,7 @@ reunindo em um mesmo local as decisões, experiências, dificuldades e avanços 
 <img src="ga3-servos-gnd.png" alt="Ligação dos cinco retornos à barra GND sob a mesa" loading="lazy">
 <figcaption>Em uma junção separada, unir os fios de GND dos cinco servos. Ligar essa junção diretamente à barra GND sob a mesa com um único fio preto de 1,5 mm². O borne X2 atual atende à iluminação.</figcaption>
 </figure>
+</div>
 <h3>Montagem das próximas gavetas (23/11/2026)</h3>
 <ol>
 <li>Usar duas protoboards de 830 pontos, afastadas o suficiente para instalar a ESP32 entre elas e manter os pinos dos dois lados acessíveis aos jumpers.</li>
