@@ -7,38 +7,62 @@
   <title>Onde comprar artigos em escala HO | Ferrovia EFMN 74</title>
 
   <style>
-    :root {
-      --bg: #f4f1ea;
-      --paper: #fffdf8;
-      --ink: #222;
-      --muted: #68635a;
-      --line: #ded7c8;
-      --blue: #0056b3;
-      --max: 1000px;
-    }
-
     * {
       box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      background: var(--bg);
-      color: var(--ink);
+      background: #f4f1ea;
+      color: #222;
       font-family: Arial, Helvetica, sans-serif;
       line-height: 1.6;
     }
 
-    main {
-      width: 100%;
+    .topo-efmn {
+      background: #151515;
+      color: #fff;
+      border-bottom: 4px solid #c89b2b;
+    }
+
+    .topo-conteudo {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .topo-logo {
+      display: block;
+      width: 72px;
+      height: auto;
+      margin-right: 16px;
+    }
+
+    .topo-textos {
+      line-height: 1.2;
+    }
+
+    .topo-titulo {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .topo-subtitulo {
+      margin: 2px 0 0;
+      font-size: 0.9rem;
+      color: #d8d8d8;
     }
 
     .onde-comprar {
-      max-width: var(--max);
+      max-width: 1000px;
       margin: 30px auto;
       padding: 30px 24px;
-      background: var(--paper);
-      border: 1px solid var(--line);
+      background: #fffdf8;
+      border: 1px solid #ded7c8;
       border-radius: 10px;
     }
 
@@ -46,14 +70,10 @@
       margin: 0 0 18px;
     }
 
-    .voltar-manual a {
-      color: var(--blue);
-      text-decoration: none;
-      font-size: 1rem;
+    .voltar-manual a,
+    .lista-lojas a {
+      color: #0056b3;
       font-weight: 600;
-    }
-
-    .voltar-manual a:hover {
       text-decoration: none;
     }
 
@@ -61,33 +81,32 @@
       margin: 0 0 14px;
       font-size: 2rem;
       line-height: 1.2;
-      color: var(--ink);
     }
 
     .abertura {
       margin: 0 0 28px;
       font-size: 1.1rem;
-      color: var(--ink);
     }
 
     .lista-lojas {
       width: 100%;
       border-collapse: collapse;
       table-layout: fixed;
-      border-top: 1px solid var(--line);
+      border-top: 1px solid #ded7c8;
     }
 
     .lista-lojas th,
     .lista-lojas td {
       padding: 14px 8px;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid #ded7c8;
       text-align: left;
       vertical-align: top;
+      word-wrap: break-word;
       overflow-wrap: anywhere;
     }
 
     .lista-lojas th {
-      background: var(--bg);
+      background: #f4f1ea;
     }
 
     .lista-lojas th:first-child {
@@ -103,50 +122,24 @@
     }
 
     .lista-lojas a {
-      color: var(--blue);
-      text-decoration: none;
       font-size: 1.08rem;
-      font-weight: 600;
-    }
-
-    .lista-lojas a:hover,
-    .lista-lojas a:focus {
-      text-decoration: none;
     }
 
     .observacao {
-      margin: 28px 0 0;
+      margin: 28px 0 18px;
       padding-top: 18px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
+      border-top: 1px solid #ded7c8;
+      color: #68635a;
       font-size: 0.95rem;
     }
-@media (max-width: 700px) {
 
-      .topo-conteudo {
-        padding: 8px 12px;
-        gap: 12px;
-      }
-
-      .topo-titulo {
-        font-size: 0.92rem;
-      }
-
-      .topo-subtitulo {
-        font-size: 0.78rem;
-      }
-
-
+    @media (max-width: 700px) {
       .topo-conteudo {
         padding: 8px 12px 7px;
       }
 
-      .topo-identidade {
-        gap: 12px;
-      }
-
       .topo-logo {
-        width: 72px;
+        margin-right: 12px;
       }
 
       .topo-titulo {
@@ -155,16 +148,6 @@
 
       .topo-subtitulo {
         font-size: 0.78rem;
-      }
-
-      .topo-menu {
-        gap: 10px 14px;
-        margin-top: 6px;
-      }
-
-      .topo-menu a,
-      .topo-menu span {
-        font-size: 0.82rem;
       }
 
       .onde-comprar {
@@ -186,66 +169,23 @@
       .lista-lojas th,
       .lista-lojas td {
         padding: 13px 4px;
-        font-size: 0.85rem;
       }
 
+      .lista-lojas th,
+      .lista-lojas td,
       .lista-lojas a {
         font-size: 0.85rem;
       }
-}
-  
-    /* ===== Cabeçalho padrão das páginas internas ===== */
-    .topo-efmn {
-      width: 100%;
-      background: #151515;
-      color: #fff;
-      border-bottom: 4px solid #c89b2b;
     }
-
-    .topo-conteudo {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 8px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    .topo-logo {
-      width: 72px;
-      height: auto;
-      display: block;
-      margin: 0;
-      flex: 0 0 auto;
-    }
-
-    .topo-textos {
-      text-align: left;
-      line-height: 1.2;
-    }
-
-    .topo-titulo {
-      margin: 0;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #fff;
-    }
-
-    .topo-subtitulo {
-      margin: 2px 0 0;
-      font-size: 0.9rem;
-      color: #d8d8d8;
-    }
-
   </style>
 </head>
 
 <body>
   <header class="topo-efmn">
     <div class="topo-conteudo">
-      <a href="index.html"><img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="topo-logo"></a>
+      <a href="index.html">
+        <img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="topo-logo">
+      </a>
       <div class="topo-textos">
         <p class="topo-titulo">Ferrovia EFMN 74 - Escala HO</p>
         <p class="topo-subtitulo">Construção, automação, memória e documentação</p>
@@ -255,7 +195,6 @@
 
   <main>
     <section class="onde-comprar" id="onde-comprar">
-
       <p class="voltar-manual">
         <a href="manual-indice.html">← Voltar ao índice</a>
       </p>
@@ -269,40 +208,141 @@
 
       <table class="lista-lojas">
         <thead>
-          <tr><th scope="col">Nome da loja</th><th scope="col">Site</th><th scope="col">Instagram</th></tr>
+          <tr>
+            <th scope="col">Nome da loja</th>
+            <th scope="col">Site</th>
+            <th scope="col">Instagram</th>
+          </tr>
         </thead>
         <tbody>
-          <tr><td>AliExpress</td><td><a href="https://www.aliexpress.com/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td>-</td></tr>
-          <tr><td>City 3D</td><td><a href="https://city3d.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td><a href="https://www.instagram.com/city3d.com.br/" target="_blank" rel="noopener noreferrer">@city3d.com.br</a></td></tr>
-          <tr><td>Estação Hobby</td><td><a href="https://www.estacaohobby.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td><a href="https://www.instagram.com/estacao_hobby.com.br/" target="_blank" rel="noopener noreferrer">@estacao_hobby.com.br</a></td></tr>
-          <tr><td>Giltec Modelismo</td><td><a href="https://giltecmodelismo.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td>-</td></tr>
-          <tr><td>Hangar 18</td><td><a href="https://loja.hangar18.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td>-</td></tr>
-          <tr><td>Loja da Frateschi</td><td><a href="https://www.lojadafrateschi.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td><a href="https://www.instagram.com/frateschitrens/" target="_blank" rel="noopener noreferrer">@frateschitrens</a></td></tr>
-          <tr><td>LVL Artes</td><td><a href="https://lvlartes.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td><a href="https://www.instagram.com/lvlartes.ofc/" target="_blank" rel="noopener noreferrer">@lvlartes.ofc</a></td></tr>
-          <tr><td>Mais Modelismo</td><td><a href="https://www.maismodelismo.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td>-</td></tr>
-          <tr><td>Mercado Livre</td><td><a href="https://www.mercadolivre.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td>-</td></tr>
-          <tr><td>Minimundi</td><td><a href="https://www.minimundi.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td>-</td></tr>
-          <tr><td>Minitec</td><td><a href="https://minitec.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td>-</td></tr>
-          <tr><td>Modal Maquetes</td><td><a href="https://www.modalmaquetes.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td>-</td></tr>
-          <tr><td>Orange Box</td><td><a href="https://orangeboxminiaturas.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td>-</td></tr>
-          <tr><td>Rio Grande Modelismo</td><td><a href="https://www.riograndemodelismo.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td><a href="https://www.instagram.com/riograndemodelismo/" target="_blank" rel="noopener noreferrer">@riograndemodelismo</a></td></tr>
-          <tr><td>Sarah Navarro Ferromodelismo</td><td><a href="https://sarahnavarroferromodelismo.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td><a href="https://www.instagram.com/sarah_navarro_ferromodelismo/" target="_blank" rel="noopener noreferrer">@sarah_navarro_ferromodelismo</a></td></tr>
-          <tr><td>ShopFerreo</td><td><a href="https://shopferreo.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td><a href="https://www.instagram.com/shopferreo" target="_blank" rel="noopener noreferrer">@shopferreo</a></td></tr>
-          <tr><td>Soeiro Models</td><td><a href="https://soeiromodels.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td>-</td></tr>
-          <tr><td>Temu</td><td><a href="https://www.temu.com/" target="_blank" rel="noopener noreferrer">Acessar site</a></td><td><a href="https://www.instagram.com/temu/" target="_blank" rel="noopener noreferrer">@temu</a></td></tr>
+          <tr>
+            <td>AliExpress</td>
+            <td><a href="https://www.aliexpress.com/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Brasil Hobbies</td>
+            <td><a href="https://brasilhobbies.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>City 3D</td>
+            <td><a href="https://city3d.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td><a href="https://www.instagram.com/city3d.com.br/" target="_blank" rel="noopener noreferrer">@city3d.com.br</a></td>
+          </tr>
+          <tr>
+            <td>Estação Hobby</td>
+            <td><a href="https://www.estacaohobby.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td><a href="https://www.instagram.com/estacao_hobby.com.br/" target="_blank" rel="noopener noreferrer">@estacao_hobby.com.br</a></td>
+          </tr>
+          <tr>
+            <td>Giltec Modelismo</td>
+            <td><a href="https://www.giltecmodelismo.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Hangar 18</td>
+            <td><a href="https://loja.hangar18.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Hobby Trade Center (HTC)</td>
+            <td><a href="https://www.htc.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td><a href="https://www.instagram.com/htc_modelismo_oficial/" target="_blank" rel="noopener noreferrer">@htc_modelismo_oficial</a></td>
+          </tr>
+          <tr>
+            <td>HobbyMod – A Casa do Modelista</td>
+            <td><a href="https://www.hobbymodelismo.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>José Ferromodelismo</td>
+            <td><a href="https://www.joseferromodelismo.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Lima Hobbies</td>
+            <td><a href="https://www.limahobbies.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td><a href="https://linktr.ee/LimaHobbies" target="_blank" rel="noopener noreferrer">Instagram via Linktree</a></td>
+          </tr>
+          <tr>
+            <td>Loja da Frateschi</td>
+            <td><a href="https://www.lojadafrateschi.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td><a href="https://www.instagram.com/frateschitrens/" target="_blank" rel="noopener noreferrer">@frateschitrens</a></td>
+          </tr>
+          <tr>
+            <td>LVL Artes</td>
+            <td><a href="https://lvlartes.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td><a href="https://www.instagram.com/lvlartes.ofc/" target="_blank" rel="noopener noreferrer">@lvlartes.ofc</a></td>
+          </tr>
+          <tr>
+            <td>Mais Modelismo</td>
+            <td><a href="https://www.maismodelismo.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Mercado Livre</td>
+            <td><a href="https://www.mercadolivre.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Minimundi</td>
+            <td><a href="https://www.minimundi.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Minitec</td>
+            <td><a href="https://www.minitec.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Modal Maquetes</td>
+            <td><a href="https://www.modalmaquetes.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Orange Box</td>
+            <td><a href="https://www.orangeboxminiaturas.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td><a href="https://www.instagram.com/orangeboxminiaturas/" target="_blank" rel="noopener noreferrer">@orangeboxminiaturas</a></td>
+          </tr>
+          <tr>
+            <td>Rio Grande Modelismo</td>
+            <td><a href="https://www.riograndemodelismo.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td><a href="https://www.instagram.com/riograndemodelismo/" target="_blank" rel="noopener noreferrer">@riograndemodelismo</a></td>
+          </tr>
+          <tr>
+            <td>Sarah Navarro Ferromodelismo</td>
+            <td><a href="https://sarahnavarroferromodelismo.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td><a href="https://www.instagram.com/sarah_navarro_ferromodelismo/" target="_blank" rel="noopener noreferrer">@sarah_navarro_ferromodelismo</a></td>
+          </tr>
+          <tr>
+            <td>ShopFerreo</td>
+            <td><a href="https://www.shopferreo.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td><a href="https://www.instagram.com/shopferreo/" target="_blank" rel="noopener noreferrer">@shopferreo</a></td>
+          </tr>
+          <tr>
+            <td>Soeiro Models</td>
+            <td><a href="https://soeiromodels.com.br/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Temu</td>
+            <td><a href="https://www.temu.com/" target="_blank" rel="noopener noreferrer">Acessar site</a></td>
+            <td><a href="https://www.instagram.com/temu/" target="_blank" rel="noopener noreferrer">@temu</a></td>
+          </tr>
         </tbody>
       </table>
 
       <p class="observacao">
+        O traço na coluna Instagram indica que o perfil da loja ainda não foi identificado.
         Os links são apresentados apenas como referência das lojas e sites consultados.
         A disponibilidade de produtos, preços e condições de venda pode variar.
       </p>
-<p>
-    <p class="voltar-manual">
+
+      <p class="voltar-manual">
         <a href="manual-indice.html">← Voltar ao índice</a>
-    </p>
+      </p>
     </section>
   </main>
 </body>
 </html>
-</p)
