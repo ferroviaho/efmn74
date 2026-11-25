@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teste da GA3 com o controlador Frateschi | Ferrovia EFMN 74</title>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f1ea; color: #222;
+  font: 1.05rem/1.6 Georgia, serif; }
+header { background: #151515; color: white;
+  border-bottom: 4px solid #c89b2b; }
+.cab { max-width: 960px; margin: auto; padding: 10px 16px;
+  display: flex; align-items: center; justify-content: center;
+  font: 1rem/1.4 Arial, sans-serif; }
+.cab img { width: 72px; height: auto; margin-right: 16px; }
+main { max-width: 880px; margin: auto; padding: 24px 18px 48px; }
+h1, h2 { line-height: 1.25; }
+li { margin: 0 0 14px; }
+.voltar { font-weight: 600; color: #0056b3; }
+footer { margin-top: 36px; border-top: 1px solid #ded7c8;
+  padding-top: 18px; }
+</style>
+</head>
+<body>
+<header><div class="cab">
+<a href="index.html"><img src="logo-efmn74.PNG"
+  alt="Página inicial da Ferrovia EFMN 74"></a>
+<div>Ferrovia EFMN 74 – Escala HO<br>
+<small>Construção, automação, memória e documentação</small></div>
+</div></header>
+<main>
+<a class="voltar" href="documentacao.html">← Voltar à documentação</a>
+<h1>Teste da GA3 com o controlador Frateschi</h1>
+<p>Roteiro para testar os sensores e desvios da Área 3 antes da
+instalação da GCP. O operador dirige a locomotiva pelo Frateschi
+e acompanha a ESP32 da GA3 pelo Monitor Serial da IDE Arduino no
+notebook. A parada do trem é manual.</p>
+<h2>Preparação com tudo desligado</h2>
+<ol>
+<li><strong>Escolha o trecho.</strong> Reserve espaço para parar o
+trem. Comece pelo Hall S10 e por um desvio já instalado no trecho,
+por exemplo o D5, se estiver no percurso.</li>
+<li><strong>Ligue a tração.</strong> Com o controle em zero, ligue
+a saída de tração do Frateschi aos dois trilhos. Isole o trecho das
+demais fontes de tração. Mantenha ambos os fios dos trilhos separados
+do GND, da alimentação e das entradas da GA3.</li>
+<li><strong>Prepare a GA3.</strong> Neste ensaio, o USB do notebook
+alimenta a ESP32. Antes de conectar o cabo, confira se a fonte externa
+está desligada do pino VIN/5V da placa. Use a alimentação externa de
+5 V da gaveta para relé, servos e sensores, com GND comum à ESP32.
+Mantenha a alimentação dos servos pelo contato do relé até X1.
+Use o 3V3 da ESP32 para o pull-up das entradas de sensor.</li>
+</ol>
+<h2>Verificação com a tração desligada</h2>
+<ol start="4">
+<li><strong>Teste o S10.</strong> Ligue a GA3, abra o programa de
+leitura e o Monitor Serial. Aproxime e afaste o ímã forte. Confira
+as duas mudanças de estado. Para medir, use a ponta preta no GND da
+GA3 e a vermelha em X4/S10. No teste anterior foram medidos cerca de
+3,2 V sem ímã e 0,05 V com ímã.</li>
+<li><strong>Teste o desvio.</strong> Com a via livre, use o programa
+de teste dos servos para comandar as duas posições. Observe se cada
+agulha encosta no trilho correspondente.</li>
+<li><strong>Prepare a rota.</strong> Posicione o desvio para a
+primeira passagem. Se usar programas separados, carregue o programa
+do Hall após o teste do servo. Confira novamente as agulhas depois da
+troca e mantenha o desvio nessa posição durante a passagem.</li>
+</ol>
+<h2>Passagem da locomotiva e comparação dos sensores</h2>
+<ol start="7">
+<li><strong>Faça a primeira passagem.</strong> Coloque a locomotiva
+com o ímã no trecho. Ligue o Frateschi em zero e aumente a velocidade
+aos poucos. Passe pelo S10, confira o registro no Monitor Serial e
+pare o trem dentro do trecho reservado.</li>
+<li><strong>Acrescente a barreira quando os pares chegarem.</strong>
+Confira a pinagem e a alimentação do modelo recebido. Instale o
+emissor e o receptor frente a frente, perto do S10. Antes de ligar o
+sinal a uma entrada livre de X4, meça a tensão em relação ao GND da
+GA3 com o feixe livre e interrompido. Ambos os níveis devem estar
+entre 0 e 3,3 V e permitir distinguir os dois estados. Compare a
+barreira e o Hall durante a mesma passagem.</li>
+<li><strong>Faça o teste integrado.</strong> Esta etapa depende de um
+programa de bancada que leia os sensores e aceite comandos de desvio
+e de manobra pelo Monitor Serial. Antes de inverter o Frateschi, ative
+Manobra para cancelar o temporizador e inibir a contagem. Continue
+registrando as leituras. Use o tempo de feixe livre apenas como
+indicação de possível passagem da cauda. Confirme visualmente que o
+último veículo liberou o desvio antes de movimentar as agulhas.</li>
+</ol>
+<footer><a class="voltar" href="documentacao.html">← Voltar à documentação</a></footer>
+</main>
+</body>
+</html>
