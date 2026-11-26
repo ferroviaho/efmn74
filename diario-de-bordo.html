@@ -578,11 +578,13 @@ mMP3F0zssz7SnjL5iccF0zs0z7S2+5KF9zZ9EKcjC+5s+iFc4WbcLiTJKu8fA1EbpK5jndgymdkmfaQ6
 XJ2kfmUBf3lU7scz7S265OH8hvUnJs+Q3qTOFn3C4jI6u8fA1CGkjmST+wymdjmfaXMaSGZPmXTexzPtLbrk4fyG9Scmz5DepM4WfcLiMjq7x8DUU6SOZNv2GU3scz7SvjJ5j+ZFPP3pM96255OGf7m3qTk4fyG9 SPCFm3C4sZJV3j4Go50k8xgP2DU+/wDFpnvXxOkpmSf3EU3skz7S2/5OH8hvUpycP5DepTL7PuVxLklXePgagu0ksyhuwTTR95zPtLmzSSzJO/BNO7JM+0tu+Th/Ib1JybPkt6ky+z7lcRklXeM1G8ZLMfzIp3ZZ nvV8ZPMa37B6f2aZ71txybPkN6k5OGPtG9SZfZtwuLJklXePgai+MpmNf9g1O7LM96HSUzG8x6f2aZ71t1ycP5DepOTh/Ib1Jl9n3K4suSVd4+BqINJTMU/uHp3ZpnvXLxlMwxvwLT/qJnvW3PJw/kM6k5KF8hvU
 pl1n3K4sZLV3nI1JZpMY5taJgWQv0MmQq7SVx1wwJJW/ycyttDBg3/W2fRCohwvkN+iEy6zblcWMlq7zkajeMxjsO/YHJH/MmV/HVsxc681IL8PUTDkamyU2NSN4JLPh6zDsIfGibm89rLcUwoX3Nn0QuWq0NAAA HMEWEKMHjQoq/wB7vDslSSudR3GMNHzKuBlthmNDmYsOZrU+WvnY8MeQ0D4sNhO0tFzt4krJ2oVyCXC86tWnWm5zd7Z3KdONOKjHUf/Z" alt="Derivações de L1 e L2 para os quatro PC817">
 <p><strong>Esquema proposto para L1 e L2.</strong> Usar dois PC817 por linha, quatro no total. Os dois fios de cada saída seguem diretamente para os trilhos. O detector é ligado em paralelo, com um resistor na derivação de cada linha.</p>
+<div style="clear: both; padding: 20px 0;">
 <table class="registro-tabela">
 <tr><th>Linha</th><th>Derivação do trilho A</th><th>Ligação ao trilho B</th></tr>
 <tr><td>L1</td><td>A1 → R1 → pino 1 de U1 e pino 2 de U2</td><td>B1 → pino 2 de U1 e pino 1 de U2</td></tr>
 <tr><td>L2</td><td>A2 → R2 → pino 1 de U3 e pino 2 de U4</td><td>B2 → pino 2 de U3 e pino 1 de U4</td></tr>
 </table>
+</div>
 <img class="registro-foto" src="frateschi-opt.png" alt="Vista superior dos quatro PC817 das linhas L1 e L2">
 <p><strong>Vista superior dos quatro PC817 DIP-4.</strong> A marca no corpo identifica o pino 1. Na posição ilustrada, os pinos 1 e 2 ficam à esquerda e recebem os fios da tração. Na L1, a saída de R1 chega ao pino 1 de U1 e ao pino 2 de U2. Na L2, a saída de R2 chega ao pino 1 de U3 e ao pino 2 de U4. Os pinos 3 e 4 ficam à direita e pertencem ao circuito da GA3. As faixas coloridas de R1 e R2 são ilustrativas. O valor de cada resistor depende da tensão máxima da respectiva saída do Frateschi.</p>
 <p>Os sinais + e − representam a posição ilustrada do comando. Com tensão suficiente e o trilho A positivo em relação a B, atua U1 em L1 ou U3 em L2. Ao inverter a polaridade da respectiva linha, atua U2 ou U4. No lado da GA3, o pino 3 de cada PC817 vai ao GND da gaveta. Cada pino 4 segue para uma entrada própria, com um resistor de 4,7 kΩ até o 3V3. Os fios de tração ficam isolados do GND da GA3. Confirmar o tipo de saída e a tensão máxima de cada linha para dimensionar R1 e R2. Os quatro GPIOs ainda serão definidos.</p>
