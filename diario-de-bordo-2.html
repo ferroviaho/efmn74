@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Acompanhe a construção da Ferrovia EFMN 74 em escala HO: decisões sobre trilhos, desvios, sensores, automação com ESP32, gavetas de controle e cenários.">
+<meta name="author" content="Eduardo Carvalhaes Nobre">
+<title>Diário de Bordo - Parte 2 da Ferrovia EFMN 74 | Construção e automação HO</title>
+<style>
+:root {
+--bg: #f4f1ea;
+--ink: #222;
+--dark: #151515;
+--gold: #c89b2b;
+--line: #ded7c8;
+--link: #0056b3;
+--max: 1000px;
+}
+* { box-sizing: border-box; }
+body {
+margin: 0;
+background: var(--bg);
+color: var(--ink);
+font-family: Georgia, "Times New Roman", serif;
+line-height: 1.6;
+}
+header {
+background: var(--dark);
+color: white;
+border-bottom: 4px solid var(--gold);
+}
+.header-inner {
+max-width: var(--max);
+margin: 0 auto;
+padding: 8px 20px;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 16px;
+font-family: Arial, Helvetica, sans-serif;
+}
+.header-logo {
+width: 72px;
+height: auto;
+display: block;
+margin: 0;
+flex: 0 0 auto;
+}
+.header-texto { text-align: left; }
+.header-linha1 { margin: 0; font-size: 0.95rem; font-weight: 600; }
+.header-linha2 { margin: 2px 0 0; font-size: 0.9rem; color: #d8d8d8; }
+main {
+max-width: var(--max);
+margin: 0 auto;
+padding: 36px 20px 60px;
+}
+.voltar-inicio, .voltar-final { margin: 0 0 20px; }
+.voltar-final { margin-top: 30px; }
+.voltar-inicio a, .voltar-final a {
+color: var(--link);
+text-decoration: none;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 1rem;
+font-weight: 600;
+}
+h1 { margin: 0 0 18px; font-size: 2.1rem; }
+.intro { margin-bottom: 30px; font-size: 1.1rem; }
+.indice {
+padding: 18px 20px;
+margin: 0 0 24px;
+border: 1px solid var(--line);
+background: rgba(255,255,255,0.28);
+}
+.indice h2 { margin: 0 0 10px; font-size: 1.25rem; }
+.indice ul { margin: 0; padding-left: 22px; }
+.indice a { color: var(--link); }
+article { padding: 20px 0; border-top: 1px solid var(--line); }
+article h2 { margin-top: 0; font-size: 1.35rem; }
+article p { margin: 0.65em 0; }
+@media (max-width: 700px) {
+.header-inner { padding: 16px; }
+main { padding: 26px 16px 44px; }
+h1 { font-size: 1.75rem; }
+.intro { font-size: 1.05rem; }
+}
+.fotos-ga3 { display: flex; justify-content: center; align-items: flex-start; margin: 1em 0; }
+.fotos-ga3 figure + figure { margin-left: 12px !important; }
+.fotos-ga3 .figura-ga3 { width: 294px; max-width: calc(50% - 6px); margin: 0; }
+.figura-ga3 img { display: block; max-width: 100%; width: 100%; height: auto; }
+.figura-ga3 figcaption { margin-top: .35em; }
+.registro-foto { float: left; clear: left; width: 40%; max-width: 380px; height: auto; margin: 0 1em .6em 0; }
+article::after { content: ""; display: block; clear: both; }
+.registro-tabela { width: 100%; clear: both; border-collapse: collapse; }
+.registro-tabela td, .registro-tabela th { padding: .35em; border: 1px solid #ccc; text-align: left; }
+</style>
+</head>
+<body>
+
+<header>
+<div class="header-inner">
+<a href="index.html"><img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74" class="header-logo"></a>
+<div class="header-texto">
+<p class="header-linha1">Ferrovia EFMN 74 - Escala HO</p>
+<p class="header-linha2">Construção, automação, memória e documentação</p>
+</div>
+</div>
+</header>
+
+<main>
+<p class="voltar-inicio">
+<a href="diario-de-bordo.html">← Voltar ao Diário de Bordo - Parte 1</a>
+</p>
+
+<h1>Diário de Bordo - Parte 2</h1>
+<p>Atualizado em 26/11/2026.</p>
+
+<div class="indice">
+<h2>Assuntos</h2>
+<ul>
+<li><a href="#sequencias">Sequências operacionais por sensores e desvios</a></li>
+<li><a href="#desvios">Desvios e segurança de rotas</a></li>
+<li><a href="#velocidade">Locomotivas, composições e velocidade</a></li>
+<li><a href="#audio">Áudio e efeitos sonoros</a></li>
+<li><a href="#identificacao">Identificação das locomotivas e dos vagões</a></li>
+<li><a href="#operacao">Operação da Estação e rotas</a></li>
+<li><a href="#interfaces">Tablets, TV e sinótico</a></li>
+<li><a href="#sinaleiros">Sinaleiros e iluminação</a></li>
+<li><a href="#inicializacao">Inicialização, testes e liberação</a></li>
+<li><a href="#site">Site, Manual e documentação</a></li>
+<li><a href="#materiais">Materiais, ambiente e fornecedores</a></li>
+<li><a href="#pendencias-tecnicas">Pendências técnicas</a></li>
+</ul>
+</div>
+
+<article id="sequencias">
+<h2>Sequências operacionais por sensores e desvios</h2>
+<p>Definido que a detecção de uma composição deverá orientar a atualização de sua posição lógica e as verificações de sentido, rota, desvios pertinentes e segurança antes da continuidade da circulação.</p>
+<p>Mantida a decisão de utilizar inicialmente a posição comandada dos desvios, em conjunto com a passagem pelos sensores de presença, sem confirmação física individual de DI ou AC por sensores Hall em todos os desvios.</p>
+<p>Em 05/10/2026, as sequências de processamento, o tratamento dos sensores de fronteira S1 e S2, as verificações de sequência, as respostas às inconsistências e o detalhamento preliminar de S1 a S19 foram reunidos no <a href="estudo-preliminar-sensores.html">Estudo preliminar dos sensores</a>, disponível em Documentação.</p>
+<p>O estudo servirá de base para a futura Especificação Operacional e para a programação em C++. O mapeamento definitivo por rota e sentido, os tempos, as distâncias e as ações de cada sensor continuam sujeitos à conferência do layout e aos testes reais da ferrovia.</p>
+<h3>25/11/2026 — Prioridade para a revisão das rotinas</h3>
+<p>S1 marca a divisa A1 ↔ A2 e S2 marca A1 ↔ A3. Com o sentido de marcha conhecido, a passagem da locomotiva identifica a área em que ela entrou. A composição pode ocupar as duas áreas ao mesmo tempo. Manter o trecho anterior e os desvios envolvidos protegidos até confirmar a saída do último veículo. No ensaio, a confirmação é visual, inclusive para as composições longas de minério e combustível.</p>
+<table class="registro-tabela">
+<tr><th>Ordem</th><th>Sensores</th><th>Função a conferir na via</th></tr>
+<tr><td>1</td><td>S1 e S2</td><td>Registrar as travessias de fronteira. Avaliar Hall e infravermelho nos dois locais para comparar leituras e identificar passagens perdidas. Começar pelo S2.</td></tr>
+<tr><td>2</td><td>S3 e S4</td><td>Antecipar a conferência de D1 e D7, respectivamente, no sentido em que o sensor precede o desvio da estação.</td></tr>
+<tr><td>3</td><td>S7, S8, S9 e S14</td><td>Antecipar a conferência dos desvios nas regiões de D2/D3, D10, D9 e D8, conforme a rota e o sentido.</td></tr>
+<tr><td>4</td><td>S15 a S19</td><td>Acompanhar linhas e manobras do pátio. Dar prioridade ao sensor que protege o desvio usado na manobra.</td></tr>
+<tr><td>5</td><td>S5, S6 e S10 a S13</td><td>Acompanhar o avanço nas linhas externas e identificar atrasos nos túneis, viadutos e pontes.</td></tr>
+</table>
+<p>A ordem é uma proposta operacional. Validar em cada rota o sentido de aproximação, a distância disponível para parar e a regra para liberar a cauda.</p>
+</article>
+<article id="desvios">
+<h2>Desvios e segurança de rotas</h2>
+<p><strong>Filosofia adotada:</strong> o operador define a intenção de movimento, enquanto o sistema protege a circulação verificando somente os desvios pertinentes ao trecho imediato da rota. A posição do desvio DI/AC (posição DIreta ou ACionada) registrada pelo sistema é inicialmente uma posição comandada e atua como informação complementar de segurança, sem substituir a detecção física da composição pelos sensores. Numeração, posição normal de cada desvio e combinações específicas de cada rota são parâmetros da EFMN 74 e serão consolidados na Especificação Operacional.</p>
+<p>Definido o padrão de identificação dos desvios como Dx, indicando o número do desvio.</p>
+  <p>Padronizado o acionamento dos desvios para integração com a ESP32 e definida a substituição dos acionamentos por bobinas ainda existentes pelos mesmos motores utilizados nos demais desvios.</p>
+
+<p>Após aprovação dos testes de inicialização, a configuração automática prevista é D1 a D9 em DI, D10 em AC e D11 a D20 em DI.</p>
+<p>Estabelecido que o operador escolhe e comanda a movimentação, enquanto o sistema executa automaticamente o posicionamento e a proteção de segurança dos desvios necessários.</p>
+<p>Na Estação, D1 e D7 podem ser reposicionados automaticamente com a composição parada, inclusive para encaminhamento de trens de carga à L6.</p>
+<p>Regra central de segurança: sempre que uma locomotiva ou composição se aproximar de um trecho que envolva desvios, o sistema deverá conferir a rota prevista e a posição dos desvios pertinentes antes de permitir a passagem. A verificação abrange somente os desvios relacionados à rota imediata da composição, e não todos os desvios da ferrovia.</p>
+<p>A composição somente pode prosseguir normalmente quando os desvios necessários à rota estiverem na posição comandada compatível. Caso algum esteja em posição comandada incompatível ou indefinida, o sistema deve comandar seu posicionamento e reduzir ou impedir a alimentação da locomotiva até que a condição prevista seja atendida.</p>
+<p>Inicialmente, a segurança de rota utilizará a posição comandada dos desvios em conjunto com os sensores de presença. A confirmação física individual de DI ou AC não será exigida em todos os desvios. Quando um desvio apresentar comportamento problemático, poderá receber confirmação específica posteriormente.</p>
+
+<p>Revisada a estratégia de confirmação de posição dos desvios: inicialmente, os desvios operarão sem sensores Hall dedicados para confirmar DI ou AC. A ESP32 comandará o servo, aguardará o movimento e registrará a posição como “comandada”, e não como “confirmada”.</p>
+<p>Caso algum desvio apresente comportamento problemático durante a operação real, poderá ser instalada posteriormente confirmação específica próxima à entrada e/ou à saída desse desvio, evitando a instrumentação de todos os desvios desde o início.</p>
+<p>A posição DI ou AC dos desvios será utilizada como informação complementar de segurança da rota, sem substituir os sensores de presença. Quando uma composição for detectada por um sensor, o sistema deverá verificar os desvios relevantes à frente e, se algum estiver em posição incompatível com a rota prevista, comandar sua correção ou impedir o prosseguimento até que a condição de segurança seja atendida.</p>
+<p>Na proposta da R8 configurável, um desvio só poderá mudar de posição entre percursos depois que a cauda da composição tiver liberado por completo o trecho protegido. A passagem da locomotiva pela referência de contagem das voltas, por si só, não libera o desvio.</p>
+<h3>25/11/2026 — Detecção da cauda e trava de ré</h3>
+<p><strong>Chegada e cauda.</strong> Em circulação normal, com a locomotiva à frente e a entrada armada, o primeiro bloqueio marca a chegada. Quando o feixe volta ao receptor, iniciar o temporizador X, em milissegundos. Cada novo bloqueio antes de X zera o tempo. Após X contínuos de feixe livre, registrar uma única indicação de provável passagem da cauda. A contagem individual de vagões é opcional. Para verificá-la, testar uma locomotiva seguida de três vagões e descontar a locomotiva.</p>
+<p><strong>Ajuste de X e travamento.</strong> Medir o maior intervalo de feixe livre entre veículos na menor velocidade prevista, acrescentar margem e validar com composições curtas e longas. Incluir uma parada com o vão entre vagões sobre a barreira. Nessa situação o tempo pode vencer com o trem ainda no trecho. Onde houver possibilidade de parada, manter o desvio travado até confirmação independente da saída da cauda. O valor de X e o método de confirmação ficam pendentes dos testes.</p>
+<p><strong>Sentido e manobra de ré.</strong> O operador seleciona L→O ou O→L no tablet. A detecção funciona em ambos os sentidos quando a locomotiva segue à frente. Guardar separadamente o sentido da rota e o estado de manobra. Ao entrar em ré, cancelar a sequência e zerar X. Durante a ré, manter as leituras físicas para diagnóstico e inibir a contagem, os eventos de chegada e cauda e qualquer liberação de desvio baseada nesses eventos. Aplicar a mesma inibição se o sentido for desconhecido. Ao retomar a marcha à frente com o trem sobre o ponto de leitura, aguardar uma nova aproximação válida antes de rearmar.</p>
+<p><strong>Teste da trava.</strong> Ao detectar ré, neutro ou sentido indeterminado, cancelar o temporizador X, inibir a contagem e manter os desvios travados. Testar em ambas as GARs a parada com o feixe entre vagões, a inversão com velocidade em zero e a retomada. O retorno do sinal de avanço, sozinho, não rearma a detecção da locomotiva com a composição ainda sobre o sensor.</p>
+</article>
+
+
+<article id="velocidade">
+<h2>Locomotivas, composições e velocidade</h2>
+<p><strong>Filosofia adotada:</strong> a velocidade permitida deverá resultar sempre da condição mais restritiva aplicável entre locomotiva, composição/carga, trecho e situação operacional. Valores individuais e tabelas de limites serão tratados como dados de cadastro e parâmetros específicos da EFMN 74, e não como regras gerais do Diário.</p>
+<p>Definidos critérios para o futuro controle de velocidade considerando simultaneamente os limites da locomotiva, da composição ou carga e do trecho percorrido.</p>
+<p>A velocidade efetiva deverá respeitar sempre o menor limite aplicável, inclusive em Estação, pátios, desvios e demais trechos especiais.</p>
+<p>O cadastro de cada locomotiva deverá conter identificação, tipo de tração, limites de velocidade, sons e outros parâmetros operacionais, associados também ao tipo de composição utilizada.</p>
+<p>Em 12/11/2026 foram informados os comprimentos máximos de 20 cm para carros de passageiros e 15 cm para vagões de carga, com distância de 2,5 cm entre vagões. Os vagões de minério e os vagões de óleo medem 10 cm cada. Esses valores serão considerados no cálculo do comprimento das composições e nos <a href="testes-de-ajustes-operacionais.html">Testes de ajustes operacionais</a>. Os comprimentos informados são máximos, não médios. O comprimento da locomotiva e as demais separações aplicáveis deverão ser considerados para obter o comprimento total.</p>
+</article>
+
+<article id="audio">
+<h2>Áudio e efeitos sonoros</h2>
+<p><strong>Filosofia adotada:</strong> os sons deverão acompanhar a situação operacional de cada composição sem interferir indevidamente nas demais. A regra funcional pertence ao Diário. Escolha de mixers, amplificadores, módulos, caixas e arquitetura física de áudio será definida na documentação técnica do sistema de som.</p>
+<p>Definido que buzina, apito, sino e demais efeitos sonoros poderão ser reproduzidos pelos alto-falantes das regiões de acordo com o tipo de locomotiva e a situação operacional.</p>
+<p>Na partida da Estação, o sino deve ser acionado e, após 5 segundos, a locomotiva pode ser energizada.</p>
+<p>Regra de operação simultânea de áudio: cada comando de áudio deve ser associado à composição, à linha e ao AF que o acionou.</p>
+<p>Ao terminar um som, o sistema deve desligar somente o AF ou o som correspondente àquela composição. Não deve ser utilizado o comando “desligar todos os AF” como rotina normal, pois isso poderia interromper o áudio de outra composição em operação simultânea.</p>
+<p>O comando geral de desligamento de todos os AF fica reservado para emergência, reinicialização do sistema ou falha detectada.</p>
+<p>Para permitir sons simultâneos de composições diferentes pela mesma caixa acústica AF, ficou registrado para estudo futuro o uso de mixagem dos sinais de áudio antes da amplificação.</p>
+<p>Permanece em estudo a reprodução simultânea e a mixagem dos sons. Com a definição da GES em 21/10/2026, a escolha dos módulos, amplificadores, eventual mixer e distribuição dos sinais aos alto-falantes deverá ser detalhada no projeto de áudio antes da compra definitiva dos componentes.</p>
+<p>O repertório inicialmente previsto inclui apitos, buzinas, animais, música nas residências, ruídos de oficina, sons de estação, sinos de igreja, veículos, tratores, pássaros e outros efeitos. A combinação de sons permanece como requisito em estudo, sem arquitetura de mixagem definida.</p>
+<p>Em 21/10/2026 foram registradas as características do módulo buzzer da GA3, conforme a descrição do anúncio do fornecedor: tipo ativo, alimentação de 3,3 a 5 V, três pinos identificados como +B, GND e Sinal, dimensões de 38 × 13 mm, peso anunciado de 6 g, marca genérica e furo para fixação. A tabela do anúncio indica 5 V como tensão recomendada e 5,5 V como limite informado pelo vendedor. Estes dados são especificações anunciadas, ainda não validadas em teste.</p>
+<p>O buzzer ativo produz um tom fixo. O programa da ESP32 poderá controlar a duração, as pausas e a quantidade de bipes para diferenciar avisos. Sua função na GA3 será sinalizar testes e eventos locais, independentemente dos efeitos sonoros reproduzidos pelo sistema de áudio da ferrovia.</p>
+<p>Em 27/10/2026 foi confirmado o aviso de três bipes no teste isolado do buzzer e na sequência integrada de falha simulada. O aviso indica o término da sequência programada, e a aprovação depende das verificações e do resultado registrado. No teste integrado, o bloqueio impediu novos movimentos e o reconhecimento manual liberou novos comandos sem partida automática. Essa simulação não detecta fisicamente travamento, fio solto ou posição real do desvio.</p>
+<p>Em 15/11/2026 foi reservado o arquivo <code>GES-sino-igreja-distante.wav</code> para reproduzir na Gaveta de Efeitos Sonoros (GES) o sino de uma igreja ao longe.</p>
+</article>
+
+<article id="identificacao">
+<h2>Identificação das locomotivas e dos vagões</h2>
+<p><strong>Filosofia adotada:</strong> antes de uma operação que dependa de características individuais, o sistema deverá conhecer qual locomotiva está sendo controlada e carregar seu perfil operacional. RFID/NFC, seleção manual ou outra tecnologia são meios de implementação e poderão evoluir sem alterar essa regra central.</p>
+<p>Desenvolvido o conceito de cadastro individual das locomotivas com seus parâmetros de operação.</p>
+<p>Cada locomotiva terá um ímã ou dois fixado na parte inferior para permitir sua detecção pelos sensores de presença S durante a circulação. O ímã informa a passagem ou presença da composição, mas não identifica sozinho qual locomotiva foi detectada.</p>
+<p>Estudada a identificação automática por tag eletrônica RFID/NFC passiva com UID próprio, associando a leitura ao cadastro da locomotiva no software.</p>
+<p>Mantida também a possibilidade de identificação ou seleção manual da locomotiva pelo tablet antes do início da operação.</p>
+<p>Os dois métodos deverão utilizar o mesmo cadastro e permitir o carregamento do perfil operacional da locomotiva.</p>
+<h3>Teste de RFID na linha de carga</h3>
+<p>Em 20/11/2026 foi proposta a instalação experimental de uma leitora em uma das saídas da linha de carga, onde é possível testar uma composição mista com cinco ou seis tipos de vagão. Da Estação partem apenas trens de passageiros. A instalação de leitoras nas saídas leste e oeste da Estação será avaliada depois.</p>
+<p>Em 21/11/2026 foi definida a composição para o ensaio: uma locomotiva e seis vagões de modelos diferentes, cada veículo com uma etiqueta de UID fixo e único. A identificação dos sete veículos em movimento será conferida antes da instalação definitiva. Com o modelo e o comprimento cadastrados uma vez por veículo, o software poderá registrar a ordem de passagem, contar os vagões e estimar o comprimento do trem. O reconhecimento do fim da composição ainda será avaliado.</p>
+<p>Para o ensaio será avaliada a <a href="https://www.mercadolivre.com.br/nfc-tags-babiqt-ntag215-fpc-stickers-10mm-round-10pcs/p/MLB2074614020">etiqueta RFID/NFC BABIQT NTAG215 FPC</a>, redonda, flexível e autoadesiva, com 10 mm de diâmetro, em pacote de dez unidades. A fixação sob o vagão e a leitura em movimento com o RC522 ainda serão testadas.</p>
+<p>A quantidade e a posição definitivas das leitoras dependerão dos percursos dos trens de carga e de passageiros. Serão estudadas a alternativa de quatro leitoras e a de duas, uma após D1 e outra após D7.</p>
+<h3>Rotinas de segurança a avaliar com RFID</h3>
+<ul>
+<li><strong>Conferir a composição.</strong> Comparar os veículos lidos com a lista da viagem. Cada etiqueta contará uma única vez por passagem, mesmo que o veículo pare sobre a antena. O tablet indicará o veículo sem confirmação ou fora da lista.</li>
+<li><strong>Conferir a contagem do Hall.</strong> Se for adotado um ímã por veículo, comparar as passagens detectadas pelo Hall com os veículos identificados pelo RFID no mesmo trecho. Uma divergência manterá a liberação pendente.</li>
+<li><strong>Proteger o desvio até a passagem da cauda.</strong> Manter o desvio travado e a rota conflitante bloqueada até confirmar todos os veículos e a saída completa do último vagão. A posição da antena será testada considerando a distância entre a etiqueta e a extremidade do vagão nos dois sentidos de circulação.</li>
+<li><strong>Conferir o percurso.</strong> Com leitoras em saídas distintas, comparar o ponto de leitura com a rota autorizada. Se a locomotiva aparecer em uma saída inesperada, acionar o buzzer, identificar a saída no tablet e manter a rota conflitante bloqueada.</li>
+</ul>
+<p><strong>Exemplo na linha de carga.</strong> São esperados uma locomotiva e os vagões V1 a V6. A leitora registra a locomotiva, V1, V2, V3, V5 e V6. Mesmo após a passagem de V6, falta confirmar V4. O programa mantém o desvio travado, aciona o buzzer e exibe no tablet “Linha de carga — V4 sem confirmação. Verificar o vagão e a etiqueta.” O operador verifica se V4 ficou no trecho ou se passou sem leitura. A liberação depende da conferência da composição e da saída completa da cauda da área do desvio.</p>
+<h3>25/11/2026 — Sentido de circulação por RFID</h3>
+<p><strong>RFID futuro.</strong> Prever a determinação automática de L→O ou O→L pela ordem em que dois leitores de posições conhecidas identificarem a mesma etiqueta. Manter a seleção manual no tablet como alternativa. Uma inversão entre leitores deve ser informada pelo comando de manobra ou pelo controle de tração.</p>
+</article>
+
+<article id="operacao">
+<h2>Operação da Estação e rotas</h2>
+<p><strong>Filosofia adotada.</strong> O operador escolhe no tablet a operação desejada. Quando o sistema identifica a locomotiva por RFID, a rota escolhida determina o sentido autorizado de saída. O tablet exibe esse sentido e só permite ao operador defini-lo no comando manual. Em ambos os casos, o sistema só libera a circulação após confirmar que a posição da composição e o sentido de saída são compatíveis com a rota, verificar as condições de segurança e preparar os desvios necessários. As rotas R1 a R7, os desvios, os sensores, as distâncias e os pontos de parada citados a seguir são parâmetros específicos da EFMN 74 e serão consolidados na Especificação Operacional.</p>
+<p>Foram oficializadas sete rotas operacionais, R1 a R7. R1 e R2 operam no sentido Leste → Oeste, R4 e R5 no sentido Oeste → Leste, R3 executa R1 seguida de R2 e R6 executa R4 seguida de R5.</p>
+<p>A R7 foi definida como Modo Aleatório Inteligente, em execução contínua até o comando FINALIZAR.</p>
+<p>As rotas R1 a R7 executam continuamente e somente encerram após FINALIZAR, concluindo antes o percurso em andamento.</p>
+<p>Na finalização, trem de passageiros estaciona na Estação e trem de carga na Linha L6, situada entre D1 e D7.</p>
+<p>Para estacionamento de carga no sentido LO, D7 encaminha a composição à L6. No sentido OL, D1 executa esse encaminhamento. Em ambos os casos, a locomotiva passa pelo S18 e para 40 cm depois dele.</p>
+<p>O modo manual mantém a decisão de movimentação nas mãos do operador, enquanto o sistema continua controlando automaticamente desvios, sensores, alarmes e segurança.</p>
+<p>A composição poderá ser posicionada manualmente em qualquer ponto da ferrovia, que passa a ser considerado o ponto inicial válido. O operador deverá identificar a posição, determinar o sentido, apresentar somente rotas compatíveis e bloquear as incompatíveis.</p>
+<p>Após confirmação da rota, o sistema posicionará automaticamente os desvios, executará a verificação final de segurança e somente então iniciará a circulação.</p>
+<p>Ficou decidido que novas rotas somente serão estudadas após a construção completa da ferrovia e os testes operacionais das rotas R1 a R7.</p>
+<p>Definida a regra de transição do modo Analógico para o modo Digital: ao selecionar Digital, o sistema deverá desenergizar momentaneamente a tração, confirmar a seleção do sistema Digital/DCC e retirar o travamento especial dos desvios imposto pelo modo Analógico.</p>
+<p>Na mudança para o modo Digital, os desvios deverão permanecer fisicamente na posição em que se encontravam, sem retorno automático às posições normais. Após a confirmação do modo Digital, ficam liberados para operação normal conforme as regras de segurança vigentes.</p>
+<p>No modo Digital/DCC, deverá existir um travamento de segurança que impeça a partida até que estejam definidos a locomotiva, sua posição inicial e o sentido de movimento. Somente depois dessa identificação o sistema poderá carregar o perfil operacional da locomotiva e avaliar as condições para movimentação.</p>
+<p>Se a composição estiver fora da Estação, o sistema deverá preparar seu retorno automático à Estação, verificando sensores, sentido, desvios pertinentes e demais condições de segurança. Concluído o retorno, a composição permanecerá parada enquanto o sistema executa as verificações necessárias. Somente então serão apresentadas ao operador as rotas compatíveis para escolha e posterior comando de partida.</p>
+<p>Essa regra representa a filosofia de liberação de uma composição no modo DCC. O percurso exato de retorno, sensores envolvidos, desvios e posições DI/AC serão definidos na Especificação Operacional da EFMN 74.</p>
+<h3>Dados de partida no tablet</h3>
+<p>Na primeira versão digital, o operador identificará a locomotiva e informará a posição inicial e o sentido de saída. O software verificará os dados e apresentará as rotas compatíveis após as verificações de retorno à Estação, quando aplicáveis. Quando utilizada, a quantidade de vagões será informada uma única vez para estimar o comprimento da composição e, se for adotado um ímã por vagão, conferir a contagem pelos sensores Hall.</p>
+<p>Após a validação do RFID para leitura antes da partida, a identificação automática da locomotiva será o padrão. Com a locomotiva identificada por RFID, a rota escolhida determinará o sentido autorizado de saída. O tablet exibirá esse sentido. Em caso de falha de leitura, o tablet avisará o operador e habilitará automaticamente a entrada manual dos dados afetados, inclusive o sentido, quando necessário. A partida continuará sujeita às verificações de segurança da rota.</p>
+<p>Após o início do movimento, será testada a confirmação do sentido pela ordem de duas leituras da mesma locomotiva. Com o Hall a oeste e a leitora RFID a leste, Hall → RFID indica circulação de oeste para leste. RFID → Hall indica o sentido inverso. O programa comparará o sentido detectado com o autorizado pela rota. A associação das leituras será testada nos dois sentidos.</p>
+<h3>R8 configurável — proposta para o pátio de cargas</h3>
+<p>Para uma futura oitava rota, o operador escolheria no tablet a quantidade de voltas e o percurso de cada uma antes da saída do pátio de cargas. Exemplo com três voltas:</p>
+<ol><li>Primeira volta pela L2.</li><li>Segunda volta pela L1.</li><li>Terceira volta com início na L1 e passagem para a L2 durante a mesma volta.</li></ol>
+<p>Na proposta, a primeira passagem da locomotiva pelo ponto de referência inicia a contagem. Cada retorno a esse ponto após cumprir o percurso previsto encerra uma volta. A Especificação Operacional deverá definir a referência, os percursos e sentidos possíveis, os desvios, a sequência de sensores e a manobra de encerramento. O ponto de parada final permanece em aberto.</p>
+<p>O software deverá verificar a sequência completa antes da partida. Os testes de ajustes operacionais deverão conferir a contagem desde a saída, a transição L1 → L2 dentro da terceira volta, o bloqueio dos desvios até a passagem da cauda e o encerramento após a última volta. O Manual do Operador será atualizado quando o procedimento estiver definido. A R8 aguarda validação do traçado e dos pontos de detecção.</p>
+</article>
+
+<article id="interfaces">
+<h2>Tablets, TV e sinótico</h2>
+<p><strong>Filosofia adotada:</strong> as interfaces deverão apresentar ao operador somente comandos e informações coerentes com o estado real da ferrovia, mantendo separadas as funções de operação, visualização, diagnóstico e segurança. Quantidade de telas, distribuição de botões e desenho final pertencem à Especificação da Interface e poderão evoluir durante o desenvolvimento.</p>
+<p>A interface do Tablet de Controle de Mão será composta por duas telas.</p>
+<p>A Tela 1 exibirá o desenho da ferrovia, LEDs indicadores e os comandos D1 a D20 para acionamento manual dos desvios, seguindo a identificação visual simplificada adotada no layout.</p>
+<p>A Tela 2 concentrará seleção de rotas, Emergência, Teste/Rearme, Silenciar Alarme, Finalizar, seleção Passageiros/Carga, comandos manuais futuros, diagnósticos, configurações e histórico de eventos. A navegação entre as telas será feita por ← e →.</p>
+<p>Os comandos e a comunicação com o Tablet de Controle de Mão e com a TV permanecem centralizados na GCP, por meio da ESP32 principal e da lógica de supervisão do sistema.</p>
+<p id="padrao-mensagens"><strong>Padrão de avisos e mensagens ao operador — decisão de 09/11/2026:</strong> o buzzer da GA3 poderá emitir o mesmo sinal sonoro para diferentes falhas. A identificação do problema será apresentada no tablet. A ESP32 da área comunicará a ocorrência à GCP, responsável por encaminhar a mensagem ao tablet. Esse procedimento será adotado como padrão das mensagens de falha do sistema.</p>
+<p>Cada mensagem deverá apresentar a área e o equipamento envolvidos, o problema efetivamente detectado, as possíveis causas, as verificações ou ações sugeridas e o procedimento para novo teste e eventual liberação. O texto deverá ser claro e separar o fato detectado das hipóteses de causa. Não deverá afirmar uma falha física que o sistema não tenha meios de confirmar, como fio de servo solto ou posição real de um desvio sem confirmação física.</p>
+<p><strong>Exemplo de mensagem prevista:</strong> “GA3 — Passagem esperada não detectada no S12. Possíveis causas: trem parado antes do sensor, ímã fora de posição ou falha na conexão do sensor. O que fazer: verificar a posição do trem. Se ele passou pelo S12, conferir o ímã e, com a alimentação desligada, as conexões do sensor. Depois: executar TESTE/REARME. A circulação somente será liberada se as verificações de segurança forem aprovadas.” Esse exemplo depende da implementação e validação da lógica de sequência e dos critérios de detecção. Não representa uma função já testada.</p>
+<p>A TV poderá ser ligada a qualquer momento. O sistema deverá identificá-la, testar a comunicação e enviar automaticamente o painel sinótico. Falha de comunicação com a TV será registrada e informada ao operador, mas não impedirá a operação.</p>
+<p>O desenho do sinótico será preparado em SVG, com elementos identificáveis para linhas, desvios, sensores, regiões, indicadores e botões, permitindo alteração dinâmica de estados e destaque da rota selecionada.</p>
+<p>Em 24/09/2026 foi informada a falha do tablet Apple utilizado no projeto. A escolha de um substituto de menor custo, adequado ao painel de operação, permanece pendente.</p>
+</article>
+
+<article id="sinaleiros">
+<h2>Sinaleiros e iluminação</h2>
+<p><strong>Filosofia adotada:</strong> a sinalização deverá refletir as condições de rota e segurança, enquanto a iluminação deverá ser controlável de forma setorizada e independente das funções críticas de circulação. Quantidades de sinais, resistores, módulos e ligações registradas permanecem como detalhes específicos do projeto eletrônico da EFMN 74.</p>
+<p>Adotada a sigla SI para identificação dos sinaleiros, com identificação vinculada à região, como SI01ES, SI02AG e SI01TU.</p>
+<p>Os AMVs de transição entre L1 e L2, nos sentidos LO e OL, utilizarão inicialmente quatro sinais por AMV, totalizando oito sinais principais no trecho do Túnel.</p>
+<p>Para os LEDs dos sinaleiros, foi previsto barramento local de +5 V e GND, resistor de 330 Ω em série e um fio individual de comando. Essa previsão não define o resistor dos LEDs de Natal a serem reaproveitados, cujo valor permanece pendente.</p>
+<p>Previsto o uso do módulo PCA9685 para iluminação de casas, galpões, postes, efeitos de iluminação e controle de brilho por PWM. Com o cancelamento da gaveta dedicada de Iluminação e Som, os componentes de iluminação serão distribuídos entre GA1, GA2 e GA3 conforme a área física correspondente.</p>
+<p>Em 02/10/2026 foram recebidos dez módulos anunciados como Dual MOSFET, destinados ao comando da iluminação. A etiqueta informa alimentação de 5 a 36 V. A identificação dos bornes, a compatibilidade da entrada de comando com 3,3 V da ESP32 e a capacidade efetiva para as cargas previstas ainda serão verificadas antes da utilização. Os valores anunciados não constituem resultado de teste.</p>
+<p>Em 06/11/2026 avançou o planejamento da montagem dos quatro módulos Mosfet na base de MDF da GA3, com fixação suspensa e organização das conexões. As lâmpadas ainda não estavam disponíveis. Naquela etapa, permaneciam pendentes os ensaios de acionamento e funcionamento com as cargas reais.</p>
+<p>Em 12/11/2026, o Mosfet 1 foi aprovado no teste com resistor de 4,7 kΩ entre OUT+ e OUT−. O programa no GPIO26 alternou três segundos ligado e três segundos desligado. Foram medidos 4,91 V na entrada, 4,91 V na saída ligada e 0 V na saída desligada, com o indicador do módulo piscando conforme o programa. Essa aprovação se limita ao ensaio com resistor. Na ocasião, o teste com LEDs foi previsto para 13/11/2026.</p>
+<p>Foi decidido reaproveitar individualmente LEDs de um cordão de Natal, separados da placa original e deixando aproximadamente 5 cm de fio em cada terminal. A placa original, ligada diretamente à tomada, não será utilizada na GA3. A polaridade deverá ser identificada e cada LED testado com resistor em série, cujo valor definitivo ainda não foi estabelecido. As saídas dos Mosfets para os LEDs passam pelo conector identificado como X2.</p>
+<p>Em 14/11/2026, os quatro módulos Mosfet foram aprovados nos testes de acionamento em bancada. As medições verificaram aproximadamente 4,9 V na saída ligada e 0 V na saída desligada, depois da correção da ligação GND comum. O registro completo dos procedimentos e do código está disponível em <a href="GA3-Testes-dos-4-modulos-Mosfets.html">GA3 — Testes dos 4 módulos Mosfets</a>, na Biblioteca / Programas da ESP32. A aprovação não dispensa os testes posteriores com as cargas reais de iluminação.</p>
+</article>
+
+
+<article id="inicializacao">
+<h2>Inicialização, testes e liberação</h2>
+<p><strong>Filosofia adotada:</strong> energizar o sistema de controle não significa liberar imediatamente a circulação. Antes da liberação da via, o sistema deverá executar verificações de segurança, distinguir falhas bloqueantes das não bloqueantes e somente permitir a operação quando as condições necessárias estiverem atendidas. A lista exata de testes, limites e critérios será consolidada no Procedimento de Inicialização e Operação e no Plano de Testes da EFMN 74.</p>
+<p>Na inicialização, o nobreak energizará apenas o sistema de controle. Os trilhos permanecerão desenergizados até a aprovação dos testes.</p>
+<p>Os testes automáticos incluirão ESP32, comunicações previstas, sensores, servos SG90, alimentações, curto entre trilhos e sobrecorrente, de acordo com os componentes efetivamente instalados.</p>
+<p>Os testes específicos da GA3 passaram das conferências de montagem aos ensaios energizados e funcionais de bancada. O documento “<a href="GA3-testes-e-resultados.html">GA3 — Guia de instalação</a>” reúne os testes fundamentais, os procedimentos de instalação na maquete e os registros necessários ao software. Também foi preparado o documento “Testes finais da GA3”, destinado à seção Documentação / Testes e segurança. A preparação dos roteiros não representa execução ou aprovação dos testes ainda pendentes.</p>
+<p>Cada desvio, identificado no padrão Dx, deverá ser comandado para DI e AC durante o teste, aguardando-se o tempo necessário ao movimento e registrando-se a posição como comandada. Não haverá, inicialmente, sensores Hall dedicados para confirmação física de DI ou AC em todos os desvios. Falhas bloqueantes impedirão a operação.</p>
+<p>Também serão testados painel, mensagens, alarmes, TESTE/REARME e EMERGÊNCIA. Falha do botão EMERGÊNCIA impede a operação. Falhas de LEDs, indicadores, alto-falantes e alarmes sonoros serão registradas, mas são classificadas como não críticas.</p>
+<p>Antes de energizar a via, o sistema verificará ausência de curto e sobrecorrente, o estado dos sensores disponíveis e a coerência das posições comandadas dos desvios com as condições de segurança conhecidas pelo sistema. Somente após aprovação completa os trilhos serão energizados e será apresentada a mensagem “FERROVIA LIBERADA PARA OPERAÇÃO”.</p>
+<p>No modo Digital/DCC, a aprovação dos testes gerais da ferrovia não elimina o travamento específico de partida da composição: locomotiva, posição inicial e sentido deverão estar definidos e, quando a composição estiver fora da Estação, deverá ser concluído o retorno seguro à Estação antes da apresentação das rotas disponíveis.</p>
+<p>Todos os eventos relevantes serão registrados com data, hora, região, equipamento, descrição e resultado da operação.</p>
+<p>Conforme o <a href="#padrao-mensagens">padrão de avisos e mensagens ao operador</a>, silenciar o buzzer não deverá apagar a mensagem nem retirar um bloqueio de segurança. O reconhecimento do aviso não comprova a correção do problema. Após as verificações e correções indicadas, o operador deverá executar TESTE/REARME. A liberação dependerá da aprovação das verificações de segurança aplicáveis, sem partida automática pelo simples reconhecimento ou rearme.</p>
+<p>Nos testes do software definitivo, deverão ser verificadas a correspondência entre a ocorrência detectada e a mensagem exibida, a apresentação das possíveis causas e ações sugeridas, a atuação do buzzer, o silenciamento sem perda do aviso ou do bloqueio e o resultado do TESTE/REARME. O histórico deverá registrar também as ações do operador, o resultado do novo teste e a situação final da ocorrência. Esse procedimento permanece como requisito para desenvolvimento e validação.</p>
+<p>Em 02/10/2026 foi decidido conferir a montagem atual da GA3 antes de acrescentar novas conexões ou ligar a fonte.</p>
+
+<p>Em 21/10/2026 foram reunidos o roteiro de testes e os resultados disponíveis no documento “GA3 — Sequência de testes e resultados”, organizado em tabela com item, descrição do teste, objetivo e critério esperado, resultado real e situação. O registro consolida 11 verificações concluídas em 20/10/2026, com fonte e USB desconectados. Foram conferidos a fixação dos fios de X1 e do antigo X2 dos servos, os trechos de continuidade da alimentação, os contatos do relé em repouso e o GND comum com a ESP32. Não foram registrados valores numéricos de resistência ou tensão.</p>
+<p>Após o registro preliminar de 21/10/2026, foram realizadas novas conferências de continuidade, medições energizadas e testes por programa na ESP32. A numeração dos itens pertence a cada versão do relatório e não deve ser usada isoladamente como indicação do avanço atual. As aprovações parciais não representam liberação completa da GA3.</p>
+<p>Em 19 e 20/10/2026 foi preparada a sequência de testes da GA3, abrangendo conferência sem alimentação, medições com fonte energizada e testes por programa na ESP32 antes da conexão dos servos e sensores.</p>
+<p>Adotado acompanhamento item a item: cada teste será apresentado ao montador, executado e respondido antes do seguinte. Se houver dúvida, o procedimento será detalhado antes de prosseguir. A conclusão será registrada após cada item.</p>
+<p>Em 27/10/2026, os cinco servos livres responderam individualmente aos comandos, com todos conectados à ESP32. Foram confirmados pares aleatórios sem carga mecânica, dez ciclos automáticos e interrupção manual. Ficou adotado o limite de dois servos em movimento por vez, com comandos adicionais em espera no software definitivo. A previsão anterior de ensaiar três, quatro e cinco servos simultaneamente foi substituída por esse limite. Permanecem pendentes as fixações, hastes, ajustes de curso em cada desvio, ensaios com carga mecânica real, sensores Hall e integração operacional.</p>
+<p>O documento “<a href="GA3-testes-e-resultados.html">GA3 — Guia de instalação</a>” preserva a distinção entre os ensaios de bancada aprovados e as verificações necessárias na maquete. Permanecem pendentes a conferência da alimentação definitiva, o desempenho com até dois servos sob carga mecânica, a compatibilidade nominal do módulo relé e o esclarecimento de eventual tensão nos servos com o relé comandado para desligar. No software definitivo, o reinício durante uma falha deverá manter a operação bloqueada até nova verificação. O reconhecimento manual de um alarme não confirma a correção da falha física nem libera, por si só, a circulação.</p>
+<p>Em 11/11/2026 foi preparado o roteiro de <a href="testes-de-ajustes-operacionais.html">Testes de ajustes operacionais</a>, em Documentação / Testes e segurança, para validar as rotas 1 a 7 com uma locomotiva e, depois, combinações com duas locomotivas. Os resultados e ajustes de software serão registrados a cada etapa, repetindo os testes afetados pelas alterações. Após aprovação, será consolidado o documento final “Testes operacionais fundamentais” para a Biblioteca.</p>
+<p>Em 12/11/2026 foi aprovado o teste do Mosfet 1 com resistor de 4,7 kΩ, conforme o registro em <a href="#sinaleiros">Sinaleiros e iluminação</a>. Na data do primeiro ensaio, permaneciam pendentes os testes com LEDs e a definição dos resistores em série. Em 14/11/2026, os quatro módulos Mosfet foram aprovados nos testes de acionamento em bancada, conforme o registro em <a href="#sinaleiros">Sinaleiros e iluminação</a>. Ainda precisam ser validados com as cargas reais, assim como a alimentação definitiva da ESP32 na instalação da gaveta. A aprovação desse ensaio não representa validação com as cargas reais nem liberação integral da GA3.</p>
+<p>Após os ensaios de S10 a S14, atualizar os resultados individuais no Guia de instalação da GA3 e em “Sensores de presença” deste Diário. Registrar aqui as verificações ainda pendentes. Revisar o passo a passo “Como instalar e interligar um sensor Hall”, transferi-lo de Técnicas de Construção para a Biblioteca e atualizar os links. Se o programa de teste for usado, registrar na página “GA3 — Testes dos sensores Hall S10–S14” o comportamento observado na ESP32. Se houver mudança no código ou nos GPIOs, atualizar também o programa publicado.</p>
+<h3>25 e 26/11/2026 — Ensaio da GA3 com o Frateschi</h3>
+<p>Antes da instalação da GCP e da GA1, o operador controla partida, velocidade, parada e inversão pelo Frateschi. A ESP32 da GA3 comanda os desvios da Área 3 e registra H (Hall) e IV (barreira infravermelha) em entradas distintas pelo Monitor Serial do notebook. A tração permanece isolada da GA3. Ensaiar primeiro o Hall e um desvio com a via livre. Quando os pares chegarem, comparar H e IV na mesma passagem. Na sequência, testar S14 na aproximação de D8. No teste integrado, ativar Manobra antes de inverter o Frateschi e aplicar a trava de ré já descrita.</p>
+<p>O passo a passo está em <a href="teste-ga3-frateschi.html">Teste da GA3 com o controlador Frateschi</a>.</p>
+</article>
+
+<article id="site">
+<h2>Site, Manual e documentação</h2>
+<p><strong>Critério documental:</strong> o Diário de Bordo registra a evolução, as decisões e a filosofia do projeto — o que foi decidido e por quê. A Especificação Operacional da EFMN 74 deverá registrar exatamente como esta ferrovia deve se comportar. Os Projetos Elétrico, Eletrônico e de Cabeamento registrarão como está fisicamente ligada. E a documentação de software descreverá como as regras serão implementadas em C++.</p>
+<p>Implantado o movimento das águas e a alternância automática das imagens da capa, com tempo de exibição ajustado para 4 segundos.</p>
+<p>O site passou a ser acompanhado pelo Google Search Console. Foi discutido o uso do sitemap para facilitar a descoberta das páginas e planejada a revisão gradual das descrições de cada página para os resultados de busca. A descrição da página “Pintura com aerógrafo” foi revisada.</p>
+<p>Revisado o formulário de Contato e ajustado o envio das mensagens.</p>
+<p>Foram acrescentados à página inicial os links para Documentação e Downloads. Em 06/11/2026, foi definida a substituição de Downloads por <a href="biblioteca.html">Biblioteca</a>, destinada aos documentos finais de consulta, mantendo Documentação para os registros técnicos e materiais em desenvolvimento.</p>
+<p>Configurado o domínio próprio ferroviaho.com.br para acesso ao site, incluindo a versão com www.</p>
+<p>O Diário de Bordo deixa de ter a data como estrutura principal e passa a reunir as informações por tema, permitindo que cada assunto seja consultado isoladamente.</p>
+<p>Foram desenvolvidos e gravados programas de teste da GA3 para relé, servos, buzzer e falha simulada. Esses programas são instrumentos de bancada. No desenvolvimento do software operacional definitivo, este Diário deverá ser utilizado como uma das fontes para separar as decisões registradas em requisitos, rotinas, regras de segurança e exceções operacionais.</p>
+<p>Definido um conjunto de documentos técnicos do projeto, incluindo a Especificação Operacional da Ferrovia EFMN 74, Especificação Funcional, Procedimento de Inicialização e Operação, Manuais do Operador, Manutenção e Instalação, Projetos Elétrico, Eletrônico e de Cabeamento, Tabela Mestre de Componentes, Lista de Materiais, Manuais de Software e Interface Web, Plano e Relatório de Testes, Registro de Decisões, Plano de Manutenção Preventiva, Plano de Recuperação de Falhas e Índice Geral da Documentação.</p>
+<p>O projeto será documentado de modo a permitir divulgação futura com site oficial, documentação técnica, vídeos, materiais para a comunidade e eventual disponibilização do software e dos esquemas.</p>
+<p>O banner da capa do site deverá também ser reproduzido fisicamente na maquete, na região entre Armazéns e Chiqueirinho.</p>
+<p>Elaborado o conteúdo “Pintura com aerógrafo”, com orientações para aplicação de primer, uso de luvas e máscara, trabalho em ambiente ventilado e pressão de 25 psi.</p>
+<p>Revisado o título “Manual de Construção” para “Técnicas de Construção”, pois o conteúdo passou a abranger também técnicas e procedimentos de utilização. Uma seção específica de operação será considerada quando a ferrovia estiver operacional.</p>
+
+
+<p>Estruturado o curso “Automação da Ferrovia com Arduino e C++”, dividido em três níveis: Básico, Intermediário e Avançado, com conteúdo direcionado à aplicação prática na própria ferrovia.</p>
+<p>Definido que cada capítulo do curso será disponibilizado em PDF, contendo introdução, objetivo, meta e exercício prático relacionado a situações da ferrovia. Os primeiros capítulos do nível Básico passaram a ser preparados no padrão visual adotado para o projeto.</p>
+<p>Na abertura do curso, adotada a proposta de aprendizado do tipo “faça você mesmo”, registrando que a automação foi desenvolvida passo a passo mesmo sem conhecimento inicial de Arduino e C++, com orientação da inteligência artificial GPT.</p>
+<p>Criada a conta de divulgação no Instagram, com identificação @efmn74, e incluído seu link no rodapé da página inicial. Foi adotada a proposta de divulgação simples, com fotografias e resumos das técnicas e dos avanços da construção, em intervalos de aproximadamente três a quatro dias.</p>
+<p>Criado o estudo preliminar dos sensores e incluído seu acesso na página Documentação. Também foi criada a página sobre piso de pedra tipo pé-de-moleque.</p>
+<p>Prosseguiram as revisões das páginas sobre posicionamento da cabine de sinalização, construção da cabine, saída do túnel, instalação dos sensores Hall e curso de automação, com ajustes de fotografias, legendas, disposição dos textos e navegação. Na ilustração da instalação Hall foi indicada a ressalva de que o trilho não deve ser cortado.</p>
+<p>Conteúdo revisado: em 08/10/2026 foi concluída a revisão dos metadados de todos os arquivos HTML do site, com descrições mais detalhadas e específicas para o conteúdo de cada página, visando melhorar sua apresentação nos resultados de busca. A automatização da atualização do sitemap permanece prevista para uma etapa futura.</p>
+<p>Prosseguiram os estudos do painel panorâmico para impressão atrás da maquete, com composição de fotografias, ajustes de montanhas e céu e divisão em três partes com continuidade visual. A proposta foi ampliada para aproximadamente 2,40 m de largura por 0,70 m de altura, com resolução prevista de 150 dpi.</p>
+<p>Em 30/09/2026 foi decidido reescrever o documento de montagem da GA3 após a revisão de seu layout. O documento passou a ser identificado como “Um passo a passo para montar a GA3” e reunirá os detalhes de montagem e conferência. O Diário de Bordo mantém o registro da evolução e das decisões do projeto.</p>
+<p>O guia “Teste dos servos na bancada” foi preparado para a Biblioteca, preservando a aprovação dos 19 servos e reunindo os procedimentos de consulta para uso da ESP32 com Arduino IDE e do TTD-01. A revisão de 07/11/2026 incluiu o passo a passo de conexões, preparação da IDE, solicitação de um novo código C++ ao GPT, gravação e teste, sem atribuir ao novo programa os parâmetros desconhecidos do ensaio original.</p>
+<p>Foi acrescentado às Técnicas de Construção o conteúdo “Como endurecer isopor”. A divulgação da EFMN 74 também passou a incluir uma publicação no Facebook, convidando os leitores a conhecer a ferrovia.</p>
+<p>Em 15/11/2026, a Biblioteca passou a organizar os códigos-fonte de teste da GA3 em páginas próprias na seção Programas da ESP32. As páginas técnicas e os relatos de ensaios devem apresentar o procedimento e os resultados, com links para os respectivos programas, evitando a repetição integral dos códigos. Foi também revisado o material de instalação e interligação dos sensores Hall, mantido em Técnicas de Construção até a conclusão dos testes funcionais.</p>
+<p>Em 12/11/2026 foi definida a revisão dos documentos afetados pelas decisões de montagem da GA3: Guia de instalação, Material utilizado na GA3, Gavetas de controle e eletrônica, Diário de Bordo, Montagem dos módulos Mosfet e listas de ligações, esquemas e legendas. O registro de testes deverá incluir o ensaio do Mosfet 1 quando abranger esses novos testes. A revisão deve distinguir o antigo X2 dos servos do atual X2 dos LEDs, sem substituição automática das referências. Os dados de comprimento das composições também deverão ser incorporados aos Testes de ajustes operacionais.</p>
+<p>Em 18 e 19/11/2026 foram ajustados o enquadramento da igreja na capa do site para iPhone, o menu e os sons da água e do sino. As fotografias mais pesadas estão sendo convertidas para JPEG XL (.jxl).</p>
+<p>A EFMN 74 passou a contar com uma página própria no Facebook para divulgar a construção da ferrovia. Em 19/11/2026 foi preparado material sobre os testes dos servos em bancada antes da instalação nos desvios.</p>
+<p>Foi preparado o <a href="roteiro-para-programar.html">Roteiro para programar a EFMN 74</a>, que reúne em sete passos as referências para desenvolver e testar o software de controle.</p>
+</article>
+
+<article id="materiais">
+<h2>Materiais, ambiente e fornecedores</h2>
+<p>Adquirido desumidificador para reduzir a umidade e auxiliar na proteção da maquete e dos componentes.</p>
+<p>Atualizada a página “Onde comprar” com novos fornecedores e realizadas pesquisas de desvios em escala HO, incluindo modelos Frateschi, Peco e Atlas.</p>
+<p>O ambiente onde está sendo montada a ferrovia possui 20 m² e o comprimento de trilhos instalado até o momento é de aproximadamente 47 metros lineares.</p>
+<p>Foi recebido o módulo relé de 3,3 V destinado à montagem da GA3. Em 02/10/2026 também foram recebidos dez módulos Mosfet para os estudos e a implantação da iluminação setorizada.</p>
+</article>
+
+<article id="pendencias-tecnicas">
+<h2>Pendências técnicas</h2>
+<p>Situação em 26/11/2026. As verificações abaixo continuam abertas.</p>
+<ol>
+<li><strong>Alimentação e proteção.</strong> Consolidar o percurso elétrico da GCP e a alimentação definitiva da ESP32 pelo VIN. Conferir a isolação das fontes, o GND comum dos circuitos de 5 V e a separação dos positivos. Medir a alimentação da GA3 durante a partida de dois servos sob carga. Verificar a tensão nominal do relé e investigar eventual tensão em X1 com o contato aberto.</li>
+<li><strong>Desvios da GA3.</strong> Instalar hastes e fixações, ajustar DI e AC em cada desvio e conferir o movimento real. Validar o limite de dois servos simultâneos e a fila dos demais. Identificar os desvios que precisarão de confirmação por Hall.</li>
+<li><strong>Hall S10 a S14.</strong> Ensaiar cada sensor a partir de X4 com e sem ímã e depois com a composição em movimento. Repetir a medição de S12 nas duas condições para esclarecer a leitura de 0,47 V. Registrar posição, distância do ímã e velocidade em cada ensaio.</li>
+<li><strong>Barreira infravermelha no S2.</strong> Identificar o par adquirido e conferir pinagem, alimentação, tipo de saída e níveis com o feixe livre e interrompido antes da conexão à ESP32. Ajustar a altura com o veículo mais baixo e verificar engates, janelas e vãos.</li>
+<li><strong>Redundância nas fronteiras.</strong> Registrar separadamente os horários de Hall e IV no S2. Comparar perdas, pulsos extras e divergências nos dois sentidos e em três velocidades. Simular falha de cada sensor. Avaliar a duplicação no S1 e, quando houver GA1, testar a divisão das leituras entre gavetas e a perda de comunicação.</li>
+<li><strong>Cauda e contagem.</strong> Medir o maior intervalo de feixe livre entre veículos em baixa velocidade e ajustar o temporizador X. Ensaiar uma locomotiva com três vagões e repetir com composições longas. Parar com o vão sobre o feixe e definir a confirmação independente para liberar o desvio. Até a validação, conferir a cauda visualmente.</li>
+<li><strong>Frateschi e GAR eletrônica.</strong> Confirmar modelo, tipo de saída e tensão máxima em L1 e L2. Dimensionar R1 e R2, reservar quatro GPIOs livres e verificar qual PC817 atua em cada polaridade, inclusive na retomada após tensão zero. Na GAR eletrônica, avaliar o terceiro polo independente da chave e a leitura de neutro.</li>
+<li><strong>Trava de ré.</strong> Nas duas GARs, testar avanço, parada, inversão em zero e retomada com a composição sobre o sensor. Conferir no registro que ré, neutro ou sentido desconhecido cancelam X e bloqueiam contagem, chegada, cauda e liberação. Verificar o rearme somente após nova aproximação válida.</li>
+<li><strong>Rotas e composições longas.</strong> Validar a prioridade S1/S2, a aproximação de D1 e D7 por S3 e S4 e a de D8 por S14. Conferir em cada rota a distância de parada e a proteção até a passagem da cauda. Medir os trens de minério e combustível e definir o comprimento a partir do qual a sequência de travamentos muda. Para as voltas múltiplas, definir referência, percursos, manobra e parada final.</li>
+<li><strong>Ímãs e RFID.</strong> Verificar espaço para o ímã em cada modelo. Ensaiar a identificação da locomotiva e de seis vagões na linha de carga. Registrar leituras ausentes e repetidas, conferir a ordem e a cauda e decidir quantidade e posição das leitoras. Validar o sentido pela sequência de leituras e a entrada manual no tablet em caso de falha.</li>
+<li><strong>Iluminação e som.</strong> Conferir a separação dos positivos nos MOSFETs, fechar o mapa de saídas PWM e dimensionar os resistores dos LEDs reaproveitados. Testar as cargas instaladas. Definir posição, dimensões e equipamentos da GES e testar a reprodução simultânea nos alto-falantes previstos.</li>
+<li><strong>Integração e painel.</strong> Validar o ensaio GA3–Frateschi com o Monitor Serial, inicialmente com a via livre. Testar alarmes, bloqueio após reinício e liberação após correção da falha. Concluir a escolha do tablet e testar o painel. Atualizar o esquema, o mapa de pinos, o Guia da GA3 e os resultados individuais após os ensaios.</li>
+</ol>
+</article>
+<!-- Diário atualizado em 26/11/2026 -->
+<!-- ===== INSERIR NOVAS DECISÕES NO TEMA CORRESPONDENTE ===== -->
+
+<p class="voltar-final">
+<a href="diario-de-bordo.html">← Voltar ao Diário de Bordo - Parte 1</a>
+</p>
+
+</main>
+
+</body>
+</html>
