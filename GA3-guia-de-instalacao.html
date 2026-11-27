@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GA3 — Guia de instalação | Ferrovia EFMN 74</title>
 <meta name="description" content="Guia de instalação da GA3 com padrão de cores, conexões,
-testes e pendências. Revisão em 16/11/2026.">
+testes e pendências. Revisão em 27/11/2026.">
 <style>
 
     :root {
@@ -213,8 +213,7 @@ correspondente de X3 e desse borne ao contato de sinal no conector do servo. Os 
 devem dar bipe. Usar o mapa da seção 3: D5 → GPIO13, D6 → GPIO18, D8 → GPIO19, D9 → GPIO21 e
 D10 → GPIO22.</li>
 <li><strong>Sinais dos sensores em X4.</strong> Seguir o mapa da seção 3. Medir cada borne
-de X4 até o furo C indicado e, em seguida, do furo B da mesma linha até o pino da ESP32.
-Cada trecho deve dar bipe. A continuidade das cinco ligações está pendente.</li>
+de X4 até o furo C indicado e, em seguida, de cada furo de saída indicado na tabela até o respectivo pino da ESP32. Cada trecho deve dar bipe.</li>
 <li><strong>Verificação de curto antes de energizar.</strong> Medir X0 positivo → X0
 negativo, V0+ → V0− do PIP e X1 → barramento GND dos servos. Não deve haver curto persistente entre positivo e GND.
 Capacitores e circuitos conectados podem produzir bipe momentâneo. Em caso de dúvida, isolar
@@ -247,7 +246,7 @@ verificação.</li>
 
 <h3>Testes dos quatro módulos Mosfets — até 14/11/2026</h3>
 <p>Os Mosfets 1, 2, 3 e 4 foram aprovados nos testes de bancada até 14/11/2026. Foram verificadas a referência GND comum e a alternância das saídas entre aproximadamente 0 V e 4,9 V. A aprovação em bancada não substitui a conferência das conexões e das cargas de iluminação na montagem definitiva.</p>
-<p><strong>Registro específico do Mosfet 1, em 12/11/2026.</strong>
+<p><strong>Registro específico do Mosfet 1, em 12/11/2026.</strong></p>
 <p>D26 / GPIO26 da ESP32 → PWM do Mosfet 1, fio amarelo. GND do módulo → barra GND comum à ESP32, fio branco malhado de preto. VIN+ → X0+, com cor não informada. VIN− deve estar ligado ao negativo da fonte. O destino físico e a cor desse fio não foram registrados explicitamente.</p>
 <p>O programa ligou a saída por 3 segundos e desligou por 3 segundos. Com resistor de 4,7 kΩ entre OUT+ e OUT−, a entrada mediu 4,91 V e a saída alternou entre 4,91 V e 0 V. O indicador do módulo piscou conforme o programa. Resultado: aprovado no teste com resistor. A montagem final com LEDs e seus resistores deve ser conferida separadamente.</p>
 <p>Para reaproveitar os LEDs de Natal, separar cada LED do cordão e da placa original, deixando aproximadamente 5 cm de fio em cada terminal. A placa original ligada diretamente à tomada não será utilizada na GA3. Identificar a polaridade e testar com resistor em série, cujo valor definitivo ainda não foi estabelecido.</p>
@@ -295,22 +294,19 @@ documental não comprova a ligação física.</p>
 <tr><td>D9</td><td>21</td><td>Branco</td></tr>
 <tr><td>D10</td><td>22</td><td>Marrom</td></tr>
 </tbody></table></div>
-<p><strong>Mapa dos sinais em X4.</strong> Fiação conectada em 03/11/2026, com cores dos trechos internos atualizadas conforme registros de 12/11/2026.
-As cores podem diferir entre os dois trechos internos indicados na tabela. O cabo de campo sob a mesa é
-verde, identificado pelo número do sensor. O teste de continuidade deverá confirmar o mapa
-abaixo.</p>
+<p><strong>Mapa dos sinais em X4.</strong> Ligações usadas nos testes individuais de 27/11/2026. As letras B, C e D seguidas de número indicam furos da protoboard. A última coluna identifica também o pino da ESP32. O cabo de campo sob a mesa é verde e recebe a etiqueta do sensor.</p>
 <div class="table-scroll"><table>
 <thead><tr><th>Sensor em X4</th><th>Cor X4 → protoboard</th><th>X4 → protoboard</th><th>Protoboard →
 ESP32</th></tr></thead>
 <tbody>
-<tr><td>S10</td><td>Verde</td><td>C35</td><td>B35 → VP (GPIO36). Laranja.</td></tr>
+<tr><td>S10</td><td>Verde</td><td>C35</td><td>D35 da protoboard → D32 da ESP32 (GPIO32), entrada testada. Na mesma linha permanece a ponte verde B35 → VP (GPIO36).</td></tr>
 <tr><td>S11</td><td>Laranja</td><td>C32</td><td>B32 → VN (GPIO39)</td></tr>
 <tr><td>S12</td><td>Cinza</td><td>C29</td><td>B29 → D34 (GPIO34). Laranja.</td></tr>
 <tr><td>S13</td><td>Vermelho</td><td>C26</td><td>B26 → D35 (GPIO35). Laranja.</td></tr>
-<tr><td>S14</td><td>Azul</td><td>C23</td><td>B23 → D32 (GPIO32). Laranja.</td></tr>
+<tr><td>S14</td><td>Azul</td><td>C23</td><td>B23 → RX2 (GPIO16).</td></tr>
 </tbody></table></div>
 <ul>
-<li><strong>Programa de testes dos sensores Hall S10–S14.</strong> O código-fonte correspondente está disponível em Biblioteca → Programas da ESP32, na página <a href="GA3-Testes-dos-sensores-Hall-S10-S14.html">GA3 - Testes dos sensores Hall S10–S14</a>. O guia preserva o mapa físico de X4 e os cuidados elétricos. Os testes de continuidade e de funcionamento na instalação ainda precisam ser registrados e validados.</li>
+<li><strong>Teste das entradas dos sensores S10 a S14.</strong> Em 27/11/2026, com a ESP32 alimentada por USB, as fontes externas desligadas e os sensores desconectados, cada programa individual leu o borne correspondente de X4. O Monitor Serial indicou LIVRE com o borne aberto, ACIONADO ao encostar o GND e LIVRE ao retirar o contato. As cinco entradas passaram. A última gravação lê apenas S14. Consultar <a href="GA3-Testes-dos-sensores-Hall-S10-S14.html">Teste das entradas dos sensores S10 a S14</a> em Biblioteca → Programas da ESP32.</li>
 <li><strong>Alimentação dos sensores Hall.</strong> Positivo no barramento de +5 V sob a mesa e negativo no barramento GND sob a mesa, comum à ESP32. O sinal passa pelo X4 e segue ao GPIO correspondente, com pull-up de 4,7 kΩ para 3,3 V. Não aplicar 5 V diretamente ao GPIO.</li>
 <li><strong>Pull-ups dos sensores.</strong> Conferir um resistor de 4,7 kΩ entre cada sinal
 e 3,3 V, nunca +5 V. GPIO34, GPIO35, GPIO36 e GPIO39 são somente entradas e não possuem
@@ -351,7 +347,7 @@ comutam o negativo, ligar OUT− diretamente à barra GND anula o controle.</li>
 diferentes. No tablet, apresentar o tipo de problema, o circuito envolvido e sugestões de
 verificação. Registrar o evento e não declarar posição confirmada sem sensor específico ou
 verificação do operador.</li>
-<li><strong>Pendências.</strong> Os testes de bancada dos cinco servos SG90 e dos quatro Mosfets já foram aprovados. Ainda é necessário conferir fisicamente o mapa de X3, concluir e registrar a continuidade e o funcionamento de S10 a S14, validar o corte do relé sob carga, conferir as cargas e os circuitos de iluminação e registrar os ajustes mecânicos dos cinco desvios. Manter os testes de bancada separados dos testes concluídos na maquete.</li>
+<li><strong>Pendências.</strong> Os testes de bancada dos cinco servos SG90 e dos quatro Mosfets já foram aprovados. Ainda é necessário conferir fisicamente o mapa de X3, testar S10 a S14 em conjunto com um único programa e validar a detecção com os sensores instalados na via, validar o corte do relé sob carga, conferir as cargas e os circuitos de iluminação e registrar os ajustes mecânicos dos cinco desvios. Manter os testes de bancada separados dos testes concluídos na maquete.</li>
 </ul>
 <p>Referência técnica dos GPIOs: <a
 href="https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/gpio.html"
