@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Acompanhe a construção da Ferrovia EFMN 74 em escala HO: decisões sobre trilhos, desvios, sensores, automação com ESP32, gavetas de controle e cenários.">
 <meta name="author" content="Eduardo Carvalhaes Nobre">
-<title>Diário de Bordo - Parte 2 da Ferrovia EFMN 74 | Construção e automação HO</title>
+<title>Diário de Bordo - Parte 2/2 da Ferrovia EFMN 74 | Construção e automação HO</title>
 <style>
 :root {
 --bg: #f4f1ea;
@@ -32,23 +32,23 @@ border-bottom: 4px solid var(--gold);
 .header-inner {
 max-width: var(--max);
 margin: 0 auto;
-padding: 8px 20px;
+padding: 14px 20px;
 display: flex;
 align-items: center;
 justify-content: center;
-gap: 16px;
+gap: 18px;
 font-family: Arial, Helvetica, sans-serif;
 }
 .header-logo {
-width: 72px;
+width: 90px;
 height: auto;
 display: block;
 margin: 0;
 flex: 0 0 auto;
 }
-.header-texto { text-align: left; }
-.header-linha1 { margin: 0; font-size: 0.95rem; font-weight: 600; }
-.header-linha2 { margin: 2px 0 0; font-size: 0.9rem; color: #d8d8d8; }
+.header-texto { text-align: center; }
+.header-linha1 { margin: 0; font-size: 22px; font-weight: bold; }
+.header-linha2 { margin: 2px 0 0; font-size: 14px; color: #ddd; }
 main {
 max-width: var(--max);
 margin: 0 auto;
@@ -78,7 +78,8 @@ article { padding: 20px 0; border-top: 1px solid var(--line); }
 article h2 { margin-top: 0; font-size: 1.35rem; }
 article p { margin: 0.65em 0; }
 @media (max-width: 700px) {
-.header-inner { padding: 16px; }
+.header-inner { padding: 12px; gap: 12px; }
+.header-logo { width: 64px; }
 main { padding: 26px 16px 44px; }
 h1 { font-size: 1.75rem; }
 .intro { font-size: 1.05rem; }
@@ -108,11 +109,11 @@ article::after { content: ""; display: block; clear: both; }
 
 <main>
 <p class="voltar-inicio">
-<a href="diario-de-bordo.html">← Voltar ao Diário de Bordo - Parte 1</a>
+<a href="diario-de-bordo.html">← Voltar</a>
 </p>
 
-<h1>Diário de Bordo - Parte 2</h1>
-<p>Atualizado em 26/11/2026.</p>
+<h1>Diário de Bordo - Parte 2/2</h1>
+<p>Atualizado em 27/11/2026.</p>
 
 <div class="indice">
 <h2>Assuntos</h2>
@@ -883,10 +884,22 @@ yQWtZEQDTkpuiIB3KCiICb2UXREAHFSiIBxS6IgFwh7ERARxREQEpbmiIACOKXuURASbKOaIgAtdLXRE
 <p>O documento “<a href="GA3-testes-e-resultados.html">GA3 — Guia de instalação</a>” preserva a distinção entre os ensaios de bancada aprovados e as verificações necessárias na maquete. Permanecem pendentes a conferência da alimentação definitiva, o desempenho com até dois servos sob carga mecânica, a compatibilidade nominal do módulo relé e o esclarecimento de eventual tensão nos servos com o relé comandado para desligar. No software definitivo, o reinício durante uma falha deverá manter a operação bloqueada até nova verificação. O reconhecimento manual de um alarme não confirma a correção da falha física nem libera, por si só, a circulação.</p>
 <p>Em 11/11/2026 foi preparado o roteiro de <a href="testes-de-ajustes-operacionais.html">Testes de ajustes operacionais</a>, em Documentação / Testes e segurança, para validar as rotas 1 a 7 com uma locomotiva e, depois, combinações com duas locomotivas. Os resultados e ajustes de software serão registrados a cada etapa, repetindo os testes afetados pelas alterações. Após aprovação, será consolidado o documento final “Testes operacionais fundamentais” para a Biblioteca.</p>
 <p>Em 12/11/2026 foi aprovado o teste do Mosfet 1 com resistor de 4,7 kΩ, conforme o registro em <a href="#sinaleiros">Sinaleiros e iluminação</a>. Na data do primeiro ensaio, permaneciam pendentes os testes com LEDs e a definição dos resistores em série. Em 14/11/2026, os quatro módulos Mosfet foram aprovados nos testes de acionamento em bancada, conforme o registro em <a href="#sinaleiros">Sinaleiros e iluminação</a>. Ainda precisam ser validados com as cargas reais, assim como a alimentação definitiva da ESP32 na instalação da gaveta. A aprovação desse ensaio não representa validação com as cargas reais nem liberação integral da GA3.</p>
-<p>Após os ensaios de S10 a S14, atualizar os resultados individuais no Guia de instalação da GA3 e em “Sensores de presença” deste Diário. Registrar aqui as verificações ainda pendentes. Revisar o passo a passo “Como instalar e interligar um sensor Hall”, transferi-lo de Técnicas de Construção para a Biblioteca e atualizar os links. Se o programa de teste for usado, registrar na página “GA3 — Testes dos sensores Hall S10–S14” o comportamento observado na ESP32. Se houver mudança no código ou nos GPIOs, atualizar também o programa publicado.</p>
+<p>Após os ensaios de S10 a S14, atualizar os resultados individuais no Guia de instalação da GA3 e em “Sensores de presença” deste Diário. Registrar aqui as verificações ainda pendentes. Revisar o passo a passo “Como instalar e interligar um sensor Hall”, transferi-lo de Técnicas de Construção para a Biblioteca e atualizar os links. Se o programa de teste for usado, registrar na página “GA3 — Teste das entradas dos sensores S10 a S14” o comportamento observado na ESP32. Se houver mudança no código ou nos GPIOs, atualizar também o programa publicado.</p>
 <h3>25 e 26/11/2026 — Ensaio da GA3 com o Frateschi</h3>
 <p>Antes da instalação da GCP e da GA1, o operador controla partida, velocidade, parada e inversão pelo Frateschi. A ESP32 da GA3 comanda os desvios da Área 3 e registra H (Hall) e IV (barreira infravermelha) em entradas distintas pelo Monitor Serial do notebook. A tração permanece isolada da GA3. Ensaiar primeiro o Hall e um desvio com a via livre. Quando os pares chegarem, comparar H e IV na mesma passagem. Na sequência, testar S14 na aproximação de D8. No teste integrado, ativar Manobra antes de inverter o Frateschi e aplicar a trava de ré já descrita.</p>
 <p>O passo a passo está em <a href="teste-ga3-frateschi.html">Teste da GA3 com o controlador Frateschi</a>.</p>
+<h3>27/11/2026 — Teste em bancada das entradas X4 da GA3</h3>
+<p>Com a ESP32 alimentada pela USB, as fontes externas desligadas e os sensores desconectados, testamos um borne de X4 por vez. O Monitor Serial indicou LIVRE com o borne aberto, ACIONADO ao encostar o jumper de GND e LIVRE ao retirar o jumper. As cinco entradas foram aprovadas com programas individuais. O último programa gravado lê S14.</p>
+<table><caption>Ligações utilizadas no teste de 27/11</caption>
+<thead><tr><th>Borne X4</th><th>Fio de X4 na protoboard</th><th>Jumper da protoboard ao pino da ESP32</th></tr></thead><tbody>
+<tr><th scope="row">S10</th><td>C35</td><td>D35 → D32 (GPIO32). Ponte verde B35 → VP mantida.</td></tr>
+<tr><th scope="row">S11</th><td>C32</td><td>B32 → VN (GPIO39)</td></tr>
+<tr><th scope="row">S12</th><td>C29</td><td>B29 → D34 (GPIO34)</td></tr>
+<tr><th scope="row">S13</th><td>C26</td><td>B26 → D35 (GPIO35)</td></tr>
+<tr><th scope="row">S14</th><td>C23</td><td>B23 → RX2 (GPIO16)</td></tr>
+</tbody></table>
+<p>Transferimos a ponta do jumper de GPIO32 de B23 para D35 da protoboard e a de VN de B31 para B32. Instalamos o jumper de B23 a RX2 para S14.</p>
+<p>Usar esse mapa ao conferir o desenho da GA3, a tabela de ligações e os programas que leem X4. Conferir também as referências aos pinos no procedimento de instalação do Hall, no teste com o Frateschi e no roteiro de software.</p>
 </article>
 
 <article id="site">
@@ -934,10 +947,11 @@ yQWtZEQDTkpuiIB3KCiICb2UXREAHFSiIBxS6IgFwh7ERARxREQEpbmiIACOKXuURASbKOaIgAtdLXRE
 
 <article id="pendencias-tecnicas">
 <h2>Pendências técnicas</h2>
-<p>Situação em 26/11/2026. As verificações abaixo continuam abertas.</p>
+<p>Situação em 27/11/2026. As verificações abaixo continuam abertas.</p>
 <ol>
 <li><strong>Alimentação e proteção.</strong> Consolidar o percurso elétrico da GCP e a alimentação definitiva da ESP32 pelo VIN. Conferir a isolação das fontes, o GND comum dos circuitos de 5 V e a separação dos positivos. Medir a alimentação da GA3 durante a partida de dois servos sob carga. Verificar a tensão nominal do relé e investigar eventual tensão em X1 com o contato aberto.</li>
 <li><strong>Desvios da GA3.</strong> Instalar hastes e fixações, ajustar DI e AC em cada desvio e conferir o movimento real. Validar o limite de dois servos simultâneos e a fila dos demais. Identificar os desvios que precisarão de confirmação por Hall.</li>
+<li><strong>Leitura conjunta de X4.</strong> Testar os cinco bornes com um único programa e conferir no Monitor Serial a identificação de cada entrada.</li>
 <li><strong>Hall S10 a S14.</strong> Ensaiar cada sensor a partir de X4 com e sem ímã e depois com a composição em movimento. Repetir a medição de S12 nas duas condições para esclarecer a leitura de 0,47 V. Registrar posição, distância do ímã e velocidade em cada ensaio.</li>
 <li><strong>Substituição de um Hall por infravermelho.</strong> Para reaproveitar o borne e o GPIO do Hall, conferir se a saída digital do módulo é compatível com 3,3 V. Uma saída de 5 V exige adaptação de nível. Medir o sinal durante a passagem e configurar LOW ou HIGH como nível ativo. No S2, onde os dois sensores trabalham juntos, reservar uma entrada para cada um.</li>
 <li><strong>Barreira infravermelha no S2.</strong> Identificar o par adquirido e conferir pinagem, alimentação, tipo de saída e níveis com o feixe livre e interrompido antes da conexão à ESP32. Ajustar a altura com o veículo mais baixo e verificar engates, janelas e vãos.</li>
@@ -952,11 +966,11 @@ yQWtZEQDTkpuiIB3KCiICb2UXREAHFSiIBxS6IgFwh7ERARxREQEpbmiIACOKXuURASbKOaIgAtdLXRE
 <li><strong>Integração e painel.</strong> Validar o ensaio GA3–Frateschi com o Monitor Serial, inicialmente com a via livre. Testar alarmes, bloqueio após reinício e liberação após correção da falha. Concluir a escolha do tablet e testar o painel. Atualizar o esquema, o mapa de pinos, o Guia da GA3 e os resultados individuais após os ensaios.</li>
 </ol>
 </article>
-<!-- Diário atualizado em 26/11/2026 -->
+<!-- Diário atualizado em 27/11/2026 -->
 <!-- ===== INSERIR NOVAS DECISÕES NO TEMA CORRESPONDENTE ===== -->
 
 <p class="voltar-final">
-<a href="diario-de-bordo.html">← Voltar ao Diário de Bordo - Parte 1</a>
+<a href="diario-de-bordo.html">← Voltar</a>
 </p>
 
 </main>
