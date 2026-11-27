@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teste das entradas dos sensores S10 a S14 | Ferrovia EFMN 74</title>
+<meta name="description" content="Registro do teste individual das cinco entradas de X4 na GA3 em 27/11/2026.">
+<style>
+
+    :root {
+      --bg: #f4f1ea;
+      --paper: #fffdf8;
+      --ink: #222;
+      --gold: #c89b2b;
+      --gold-dark: #8a6517;
+      --line: #ded7c8;
+      --blue: #0056b3;
+      --max: 1000px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+
+    .site-header {
+      width: 100%;
+      background: #000;
+      border-bottom: 3px solid var(--gold);
+      padding: 8px 16px;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .header-logo { width: 72px; height: auto; display: block; }
+
+    .header-text {
+      color: #fff;
+      line-height: 1.25;
+      text-align: left;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .header-title { margin: 0; font-size: 1.05rem; font-weight: 700; }
+    .header-subtitle { margin: 2px 0 0; font-size: .88rem; }
+
+    main { max-width: var(--max); margin: 0 auto; padding: 34px 20px 56px; }
+
+    .voltar { margin: 0 0 22px; font-family: Arial, Helvetica, sans-serif; }
+    .voltar a, .card a { color: var(--blue); text-decoration: none; font-weight: 600; }
+    .voltar a:hover, .card a:hover { text-decoration: underline; }
+
+    h1 { margin: 0 0 14px; line-height: 1.2; font-size: 2.25rem; }
+    h2 { margin-top: 0; font-size: 1.35rem; }
+    .abertura { margin: 0 0 26px; font-size: 1.08rem; }
+
+    .aviso {
+      background: #fff7dc;
+      border-left: 5px solid var(--gold);
+      border-radius: 6px;
+      padding: 16px 18px;
+      margin: 0 0 28px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card, .conteudo, .exemplo {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 22px 24px;
+    }
+
+    .card h2 { margin-bottom: 8px; }
+    .card p { margin: 0 0 12px; }
+    .conteudo { margin-bottom: 24px; }
+    .conteudo ul, .exemplo ul { margin-bottom: 0; padding-left: 24px; }
+    .conteudo li, .exemplo li { margin: 8px 0; }
+
+    .exemplo {
+      border-left: 5px solid var(--gold);
+      margin-bottom: 26px;
+    }
+
+    .exemplo .rotulo {
+      color: var(--gold-dark);
+      font: 700 .82rem Arial, Helvetica, sans-serif;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin: 0 0 6px;
+    }
+
+    .convite {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+
+    .convite p { margin: 0; }
+
+    @media (max-width: 700px) {
+      .site-header { padding: 7px 10px; }
+      .header-inner { gap: 10px; }
+      .header-title { font-size: .98rem; }
+      .header-subtitle { font-size: .80rem; }
+      main { padding: 26px 16px 44px; }
+      h1 { font-size: 1.75rem; }
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    h2 { margin: 30px 0 12px; }
+    h3 { margin: 22px 0 8px; }
+    .table-scroll { overflow-x: auto; margin: 18px 0 24px; }
+    table { width: 100%; border-collapse: collapse; background: var(--paper); font:
+.94rem/1.5
+Arial, sans-serif; }
+    th, td { border: 1px solid #d9d9d9; padding: 12px; vertical-align: middle; text-align:
+left; }
+    th { background: #e7e6e6; text-align: center; font-weight: 700; }
+    td:first-child { text-align: center; }
+    .status { color: inherit; font-family: Arial, sans-serif; }
+    footer.voltar { margin: 3.2em 0 0; padding: 0; text-align: left; }
+    @media (max-width: 700px) { table { min-width: 680px; } }
+    @media print { .voltar { display: none; } .table-scroll { overflow: visible; } table {
+min-width: 0; } tr { break-inside: avoid; } }
+
+</style>
+</head>
+<body>
+<header class="site-header">
+    <div class="header-inner">
+      <a href="index.html"><img src="logo-efmn74.PNG" alt="Logomarca da Ferrovia EFMN 74"
+class="header-logo"></a>
+      <div class="header-text">
+        <p class="header-title">Ferrovia EFMN 74 - Escala HO</p>
+        <p class="header-subtitle">Construção, automação, memória e documentação</p>
+      </div>
+    </div>
+  </header>
+<main>
+<p class="voltar"><a href="documentacao.html">← Voltar à Documentação</a></p>
+<h1>Teste das entradas dos sensores S10 a S14</h1>
+<p><strong>GA3 · Ensaio de bancada · 27/11/2026</strong></p>
+<p>As cinco entradas do borne X4 foram aprovadas individualmente. Em cada teste, o Monitor Serial indicou LIVRE com o borne aberto, ACIONADO durante o contato com GND e LIVRE após a retirada do contato.</p>
+<h2>Como o teste foi realizado</h2>
+<ol>
+<li>A ESP32 foi alimentada pelo USB do notebook. As fontes externas ficaram desligadas e os sensores permaneceram desconectados.</li>
+<li>Para cada entrada, foi gravado o programa individual correspondente. Com o Monitor Serial aberto, foi conferido o estado inicial LIVRE.</li>
+<li>O borne de sinal em X4 foi ligado momentaneamente ao GND comum. Foram observadas a mudança para ACIONADO e a volta a LIVRE ao soltar o fio.</li>
+</ol>
+<h2>Ligações e resultados</h2>
+<div class="table-scroll"><table>
+<thead><tr><th>Borne de X4</th><th>Entrada na protoboard</th><th>Jumper da protoboard à ESP32</th><th>Resultado</th></tr></thead>
+<tbody>
+<tr><td>S10</td><td>C35</td><td>D35 → D32 (GPIO32)</td><td>Aprovado</td></tr>
+<tr><td>S11</td><td>C32</td><td>B32 → VN (GPIO39)</td><td>Aprovado</td></tr>
+<tr><td>S12</td><td>C29</td><td>B29 → D34 (GPIO34)</td><td>Aprovado</td></tr>
+<tr><td>S13</td><td>C26</td><td>B26 → D35 (GPIO35)</td><td>Aprovado</td></tr>
+<tr><td>S14</td><td>C23</td><td>B23 → RX2 (GPIO16)</td><td>Aprovado</td></tr>
+</tbody></table></div>
+<p>Em S10, D35 é o furo da protoboard de onde sai o jumper para D32 da ESP32. A ponte verde de B35 até VP permaneceu instalada na mesma linha.</p>
+<h2>Próximos testes</h2>
+<p>A última gravação na ESP32 lê apenas S14. Falta testar as cinco entradas com um único programa e verificar a detecção da composição com os sensores instalados na via.</p>
+<p><a href="GA3-Testes-dos-sensores-Hall-S10-S14.html">Consultar o programa de teste das entradas S10 a S14</a></p>
+<footer class="voltar"><a href="documentacao.html">← Voltar à Documentação</a></footer>
+</main>
+</body>
+</html>
